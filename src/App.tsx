@@ -22,10 +22,10 @@ function App() {
     <div className="min-h-screen bg-white">
       <Hero scrollToSignup={scrollToSignup} />
       <ProblemSolution />
-      <SocialProof />
       <Features />
       <HowItWorks />
       <Pricing scrollToSignup={scrollToSignup} />
+      <SocialProof />
       <Footer />
     </div>
   );
