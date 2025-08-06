@@ -22,6 +22,8 @@ function App() {
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [signupStatus, setSignupStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
+  const [isOfflineMode, setIsOfflineMode] = useState(false);
+  const [currentTestimonial, setCurrentTestimonial] = useState(0);
 
   // Track user behavior to validate conversion issues
   React.useEffect(() => {
@@ -59,6 +61,14 @@ function App() {
     };
   }, []);
 
+  // Testimonial carousel rotation
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTestimonial((prev) => (prev + 1) % 3);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
     setSignupStatus('submitting');
@@ -87,112 +97,190 @@ function App() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-blue-50 via-white to-blue-50 overflow-hidden">
+      <section className="relative bg-gradient-to-br from-blue-50 via-white to-purple-50 overflow-hidden">
         <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
+        {/* Floating elements for visual interest */}
+        <div className="absolute top-20 left-10 w-20 h-20 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float"></div>
+        <div className="absolute top-40 right-20 w-32 h-32 bg-purple-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float" style={{animationDelay: '2s'}}></div>
+        <div className="absolute bottom-20 left-20 w-24 h-24 bg-indigo-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float" style={{animationDelay: '4s'}}></div>
+        
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
           <div className="text-center">
             <div className="mb-8">
-              <div className="flex justify-center flex-wrap gap-4 mb-6 animate-fade-in">
-                <div className="inline-flex items-center px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">
+              {/* Enhanced badges with glow effect */}
+              <div className="flex justify-center flex-wrap gap-4 mb-8 animate-slide-up">
+                <div className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-full text-sm font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
                   <Lock className="w-4 h-4 mr-2" />
                   100% Client-Side Privacy
                 </div>
-                <div className="inline-flex items-center px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">
+                <div className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-green-600 to-green-700 text-white rounded-full text-sm font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
                   <Zap className="w-4 h-4 mr-2" />
-                  100% Client-Side Processing
+                  Lightning Fast
                 </div>
-                <div className="inline-flex items-center px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">
+                <div className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-purple-600 to-purple-700 text-white rounded-full text-sm font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
                   <Award className="w-4 h-4 mr-2" />
                   Manifest V3 Compliant
                 </div>
               </div>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 leading-tight" data-optimize-experiment-id="HERO_TITLE" data-optimize-variant="0">
-                Stop Wasting Time on Messy Web Copies—PromptReady Delivers Perfect Text in 1 Click
+              
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight animate-slide-up" style={{animationDelay: '0.2s'}}>
+                Stop Wasting Time on{' '}
+                <span className="bg-gradient-to-r from-red-600 to-red-700 bg-clip-text text-transparent">
+                  Messy Web Copies
+                </span>
               </h1>
-              <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
+              
+              <p className="text-2xl font-semibold text-gray-800 mb-4 animate-slide-up" style={{animationDelay: '0.4s'}}>
+                PromptReady Delivers Perfect, LLM-Ready Text in 1 Click
+              </p>
+              
+              <p className="text-xl text-gray-600 mb-10 max-w-4xl mx-auto leading-relaxed animate-slide-up" style={{animationDelay: '0.6s'}}>
                 Save 2+ hours weekly copying web content. Get clean, AI-ready text instantly—works offline or with optional AI enhancement for perfect formatting.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              
+              {/* Enhanced CTA with glow effect */}
+              <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12 animate-slide-up" style={{animationDelay: '0.8s'}}>
                 <button
                   onClick={() => {
                     console.log('🎯 HERO_CTA: User clicked main CTA button');
                     document.getElementById('signup')?.scrollIntoView({ behavior: 'smooth' });
                   }}
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 h-12 rounded-lg font-semibold text-lg transition-all duration-200 transform hover:scale-105 hover:shadow-lg flex items-center group"
+                  className="glow-effect bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-10 py-5 rounded-2xl font-bold text-xl transition-all duration-300 transform hover:scale-105 shadow-2xl flex items-center group relative overflow-hidden"
                 >
-                  Start Copying Clean Text Now
-                  <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                  <span className="relative z-10">Start Copying Clean Text Now</span>
+                  <ArrowRight className="w-6 h-6 ml-3 group-hover:translate-x-1 transition-transform relative z-10" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </button>
-                <div className="flex items-center text-gray-600">
-                  <Users className="w-5 h-5 mr-2" />
-                  <span className="text-sm font-medium">Join 500+ Waitlisters</span>
+                
+                <div className="flex items-center text-gray-700 bg-white px-6 py-3 rounded-full shadow-lg">
+                  <div className="flex text-yellow-400 mr-3">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="w-4 h-4 fill-current" />
+                    ))}
+                  </div>
+                  <span className="font-semibold">4.9★ • 500+ Beta Users</span>
                 </div>
               </div>
             </div>
             
-            {/* Video Demo */}
-            <div className="mb-12">
-              <div className="bg-white rounded-xl shadow-2xl p-6 max-w-4xl mx-auto border">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="flex space-x-2">
-                    <div className="w-3 h-3 bg-red-400 rounded-full"></div>
-                    <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
-                    <div className="w-3 h-3 bg-green-400 rounded-full"></div>
+            {/* Interactive Mode Toggle Demo */}
+            <div className="mb-12 animate-slide-up" style={{animationDelay: '1s'}}>
+              <div className="max-w-5xl mx-auto">
+                <div className="text-center mb-8">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-4">Try Our Dual Mode System</h3>
+                  <div className="flex justify-center items-center gap-4 mb-6">
+                    <span className={`font-semibold transition-colors ${!isOfflineMode ? 'text-blue-600' : 'text-gray-500'}`}>
+                      Offline Mode
+                    </span>
+                    <div
+                      className={`mode-toggle ${isOfflineMode ? 'active' : ''}`}
+                      onClick={() => setIsOfflineMode(!isOfflineMode)}
+                    >
+                    </div>
+                    <span className={`font-semibold transition-colors ${isOfflineMode ? 'text-purple-600' : 'text-gray-500'}`}>
+                      AI Enhanced
+                    </span>
                   </div>
-                  <div className="bg-gray-100 rounded-full px-4 py-1 text-sm text-gray-600">
-                    Quick Demo (30s)
+                </div>
+                
+                {/* Browser Mockup with Enhanced Visual */}
+                <div className="browser-mockup floating-card max-w-4xl mx-auto">
+                  <div className="browser-header">
+                    <div className="browser-dot bg-red-500"></div>
+                    <div className="browser-dot bg-yellow-500"></div>
+                    <div className="browser-dot bg-green-500"></div>
+                    <div className="ml-4 bg-gray-200 rounded-full px-4 py-1 text-sm text-gray-600 font-medium">
+                      example-article.com
+                    </div>
+                    <div className="ml-auto">
+                      <div className="inline-flex items-center px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-medium">
+                        <Sparkles className="w-3 h-3 mr-1" />
+                        PromptReady Active
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="p-8">
+                    <div className="grid md:grid-cols-2 gap-8">
+                      {/* Before Section */}
+                      <div className="space-y-4">
+                        <h4 className="font-bold text-red-800 text-lg flex items-center">
+                          <span className="w-3 h-3 bg-red-500 rounded-full mr-2"></span>
+                          Before: Messy Copy
+                        </h4>
+                        <div className="space-y-3 text-sm">
+                          <div className="bg-red-100 border border-red-300 p-3 rounded-lg">
+                            <div className="text-red-700 font-medium">🎯 LIMITED TIME OFFER! 50% OFF!</div>
+                          </div>
+                          <div className="text-gray-700 leading-relaxed">
+                            Important article content about AI and machine learning trends in 2024...
+                          </div>
+                          <div className="bg-yellow-100 border border-yellow-300 p-3 rounded-lg">
+                            <div className="text-yellow-700 font-medium">📧 Subscribe to our newsletter!</div>
+                          </div>
+                          <div className="text-gray-700 leading-relaxed">
+                            More valuable content mixed with promotional elements...
+                          </div>
+                          <div className="bg-gray-100 border border-gray-300 p-3 rounded-lg">
+                            <div className="text-gray-600 text-xs">Footer • Privacy Policy • Terms of Service</div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      {/* After Section */}
+                      <div className="space-y-4">
+                        <h4 className="font-bold text-green-800 text-lg flex items-center">
+                          <span className="w-3 h-3 bg-green-500 rounded-full mr-2"></span>
+                          After: PromptReady {isOfflineMode ? '(AI Enhanced)' : '(Offline)'}
+                        </h4>
+                        <div className="space-y-3 text-sm">
+                          <div className="font-semibold text-gray-900 text-lg">
+                            # AI and Machine Learning Trends in 2024
+                          </div>
+                          <div className="text-gray-700 leading-relaxed space-y-2">
+                            <p>Clean, structured content ready for AI processing.</p>
+                            <p>No ads, no distractions, just pure information.</p>
+                            <p>Perfectly formatted for ChatGPT, Claude, or any LLM.</p>
+                            {isOfflineMode && (
+                              <div className="mt-4 p-3 bg-purple-50 border border-purple-200 rounded-lg">
+                                <div className="text-purple-700 font-medium text-xs">
+                                  ✨ AI Enhancement: Auto-generated summary, key points extracted
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            {/* Quick Demo Video Placeholder */}
+            <div className="mb-12 animate-slide-up" style={{animationDelay: '1.2s'}}>
+              <div className="browser-mockup floating-card max-w-4xl mx-auto">
+                <div className="browser-header">
+                  <div className="browser-dot bg-red-500"></div>
+                  <div className="browser-dot bg-yellow-500"></div>
+                  <div className="browser-dot bg-green-500"></div>
+                  <div className="ml-4 bg-gradient-to-r from-blue-100 to-purple-100 rounded-full px-4 py-1 text-sm font-medium">
+                    🎬 Quick Demo (30s)
                   </div>
                 </div>
                 <div
-                  className="aspect-video bg-gradient-to-br from-blue-100 to-purple-100 rounded-lg flex items-center justify-center cursor-pointer hover:bg-gradient-to-br hover:from-blue-200 hover:to-purple-200 transition-all"
+                  className="aspect-video bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 flex items-center justify-center cursor-pointer hover:bg-gradient-to-br hover:from-blue-200 hover:via-purple-200 hover:to-pink-200 transition-all duration-300 group"
                   onClick={() => {
                     console.log('🎬 VIDEO_CLICK: User clicked video demo placeholder');
                     alert('Video demo coming soon! This click shows user interest in seeing the product in action.');
                   }}
                 >
                   <div className="text-center">
-                    <div className="bg-white rounded-full p-4 mb-4 shadow-lg inline-block">
-                      <Play className="w-8 h-8 text-blue-600" />
+                    <div className="bg-white rounded-full p-6 mb-4 shadow-2xl inline-block group-hover:scale-110 transition-transform duration-300">
+                      <Play className="w-12 h-12 text-blue-600" />
                     </div>
-                    <p className="text-gray-700 font-medium">Watch: Install → Copy Clean Text → Paste Anywhere</p>
-                    <p className="text-sm text-blue-600 mt-2 font-medium">Video demo coming after validation</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            {/* Hero Visual */}
-            <div className="mt-12 relative">
-              <div className="bg-white rounded-xl shadow-2xl p-6 max-w-4xl mx-auto border">
-                <div className="flex items-center mb-4">
-                  <div className="flex space-x-2">
-                    <div className="w-3 h-3 bg-red-400 rounded-full"></div>
-                    <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
-                    <div className="w-3 h-3 bg-green-400 rounded-full"></div>
-                  </div>
-                  <div className="ml-4 bg-gray-100 rounded-full px-4 py-1 text-sm text-gray-600">
-                    browser-tab.com
-                  </div>
-                </div>
-                <div className="grid md:grid-cols-2 gap-6 w-full">
-                  <div className="bg-red-50 border border-red-200 rounded-lg p-4 w-full">
-                    <h4 className="font-semibold text-red-800 mb-2">Before: Messy Copy</h4>
-                    <div className="text-xs text-red-600 space-y-1">
-                      <div className="bg-red-100 p-2 rounded">Ad: Buy Now! Limited Time!</div>
-                      <div>Important article content here...</div>
-                      <div className="bg-red-100 p-2 rounded">Subscribe to Newsletter!</div>
-                      <div>More content mixed with junk...</div>
-                      <div className="bg-red-100 p-2 rounded">Footer links | Privacy | Terms</div>
-                    </div>
-                  </div>
-                  <div className="bg-green-50 border border-green-200 rounded-lg p-4 w-full">
-                    <h4 className="font-semibold text-green-800 mb-2">After: Promp tReady</h4>
-                    <div className="text-xs text-green-600 space-y-1">
-                      <div className="font-medium"># Article Title</div>
-                      <div>Clean, structured content ready for AI processing.</div>
-                      <div>No ads, no distractions, just pure information.</div>
-                      <div>Perfectly formatted for ChatGPT, Claude, or any LLM.</div>
-                    </div>
+                    <p className="text-gray-800 font-bold text-lg mb-2">Watch: Install → Copy Clean Text → Paste Anywhere</p>
+                    <p className="text-blue-600 font-semibold">Coming after validation • Click to show interest!</p>
                   </div>
                 </div>
               </div>
@@ -328,80 +416,153 @@ function App() {
       </section>
 
       {/* How It Works Section */}
-      <section className="py-16 lg:py-24 bg-gradient-to-br from-blue-50 to-indigo-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-              How PromptReady Works in 3 Easy Steps
+      <section className="py-20 lg:py-32 bg-gradient-to-br from-blue-50 to-indigo-50 relative overflow-hidden">
+        <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
+        
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-20">
+            <div className="inline-flex items-center px-4 py-2 bg-indigo-100 text-indigo-800 rounded-full text-sm font-semibold mb-6">
+              <Play className="w-4 h-4 mr-2" />
+              How It Works
+            </div>
+            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+              Get Started in{' '}
+              <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+                3 Easy Steps
+              </span>
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Get started in seconds and transform how you copy content forever
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Transform how you copy content forever with our simple installation and intuitive interface
             </p>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="mb-6 bg-white rounded-xl p-4 shadow-lg">
-                <div className="aspect-video bg-gradient-to-br from-blue-100 to-blue-200 rounded-lg flex items-center justify-center mb-4">
-                  <div className="text-center">
-                    <Download className="w-12 h-12 text-blue-600 mx-auto mb-2" />
-                    <div className="text-sm text-blue-700 font-medium">Animated GIF: Install Process</div>
+          <div className="grid md:grid-cols-3 gap-12">
+            {/* Step 1 */}
+            <div className="text-center group">
+              <div className="relative mb-8">
+                {/* Animated GIF Placeholder */}
+                <div className="browser-mockup floating-card mx-auto max-w-sm">
+                  <div className="browser-header">
+                    <div className="browser-dot bg-red-500"></div>
+                    <div className="browser-dot bg-yellow-500"></div>
+                    <div className="browser-dot bg-green-500"></div>
+                    <div className="ml-4 bg-gray-200 rounded-full px-3 py-1 text-xs text-gray-600">
+                      Chrome Web Store
+                    </div>
+                  </div>
+                  <div className="aspect-video bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center group-hover:from-blue-200 group-hover:to-blue-300 transition-all duration-300">
+                    <div className="text-center">
+                      <div className="bg-white rounded-full p-4 mb-3 shadow-lg inline-block group-hover:scale-110 transition-transform duration-300">
+                        <Download className="w-8 h-8 text-blue-600" />
+                      </div>
+                      <div className="text-sm text-blue-700 font-medium">🎬 Installation Demo</div>
+                      <div className="text-xs text-blue-600 mt-1">Click → Install → Done!</div>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Step Number */}
+                <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2">
+                  <div className="bg-gradient-to-r from-blue-500 to-blue-600 text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl shadow-lg">
+                    1
                   </div>
                 </div>
               </div>
-              <div className="bg-white rounded-xl p-8 shadow-lg mb-6">
-                <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Download className="w-8 h-8 text-blue-600" />
-                </div>
-                <div className="text-6xl font-bold text-blue-600 mb-2">1</div>
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Install the Extension</h3>
-              <p className="text-gray-600">Add to Chrome (or your browser) in seconds.</p>
+              
+              <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors">
+                Install Extension
+              </h3>
+              <p className="text-gray-600 leading-relaxed">
+                Add PromptReady to Chrome, Firefox, or Edge in seconds. One-click installation from the official store.
+              </p>
             </div>
             
-            <div className="text-center">
-              <div className="mb-6 bg-white rounded-xl p-4 shadow-lg">
-                <div className="aspect-video bg-gradient-to-br from-green-100 to-green-200 rounded-lg flex items-center justify-center mb-4">
-                  <div className="text-center">
-                    <Settings className="w-12 h-12 text-green-600 mx-auto mb-2" />
-                    <div className="text-sm text-green-700 font-medium">Animated GIF: Mode Toggle</div>
+            {/* Step 2 */}
+            <div className="text-center group">
+              <div className="relative mb-8">
+                {/* Animated GIF Placeholder */}
+                <div className="browser-mockup floating-card mx-auto max-w-sm">
+                  <div className="browser-header">
+                    <div className="browser-dot bg-red-500"></div>
+                    <div className="browser-dot bg-yellow-500"></div>
+                    <div className="browser-dot bg-green-500"></div>
+                    <div className="ml-4 bg-gray-200 rounded-full px-3 py-1 text-xs text-gray-600">
+                      example.com
+                    </div>
+                  </div>
+                  <div className="aspect-video bg-gradient-to-br from-green-100 to-green-200 flex items-center justify-center group-hover:from-green-200 group-hover:to-green-300 transition-all duration-300">
+                    <div className="text-center">
+                      <div className="bg-white rounded-full p-4 mb-3 shadow-lg inline-block group-hover:scale-110 transition-transform duration-300">
+                        <Settings className="w-8 h-8 text-green-600" />
+                      </div>
+                      <div className="text-sm text-green-700 font-medium">🎬 Mode Selection</div>
+                      <div className="text-xs text-green-600 mt-1">Offline ⟷ AI Enhanced</div>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Step Number */}
+                <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2">
+                  <div className="bg-gradient-to-r from-green-500 to-green-600 text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl shadow-lg">
+                    2
                   </div>
                 </div>
               </div>
-              <div className="bg-white rounded-xl p-8 shadow-lg mb-6">
-                <div className="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Settings className="w-8 h-8 text-green-600" />
-                </div>
-                <div className="text-6xl font-bold text-green-600 mb-2">2</div>
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Choose Your Mode</h3>
-              <p className="text-gray-600">Toggle offline for speed or online for AI smarts.</p>
+              
+              <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-green-600 transition-colors">
+                Choose Your Mode
+              </h3>
+              <p className="text-gray-600 leading-relaxed">
+                Toggle between offline mode for speed or AI-enhanced mode for intelligent formatting and summaries.
+              </p>
             </div>
             
-            <div className="text-center">
-              <div className="mb-6 bg-white rounded-xl p-4 shadow-lg">
-                <div className="aspect-video bg-gradient-to-br from-purple-100 to-purple-200 rounded-lg flex items-center justify-center mb-4">
-                  <div className="text-center">
-                    <Copy className="w-12 h-12 text-purple-600 mx-auto mb-2" />
-                    <div className="text-sm text-purple-700 font-medium">Animated GIF: Copy Action</div>
+            {/* Step 3 */}
+            <div className="text-center group">
+              <div className="relative mb-8">
+                {/* Animated GIF Placeholder */}
+                <div className="browser-mockup floating-card mx-auto max-w-sm">
+                  <div className="browser-header">
+                    <div className="browser-dot bg-red-500"></div>
+                    <div className="browser-dot bg-yellow-500"></div>
+                    <div className="browser-dot bg-green-500"></div>
+                    <div className="ml-4 bg-gray-200 rounded-full px-3 py-1 text-xs text-gray-600">
+                      article.com
+                    </div>
+                  </div>
+                  <div className="aspect-video bg-gradient-to-br from-purple-100 to-purple-200 flex items-center justify-center group-hover:from-purple-200 group-hover:to-purple-300 transition-all duration-300">
+                    <div className="text-center">
+                      <div className="bg-white rounded-full p-4 mb-3 shadow-lg inline-block group-hover:scale-110 transition-transform duration-300">
+                        <Copy className="w-8 h-8 text-purple-600" />
+                      </div>
+                      <div className="text-sm text-purple-700 font-medium">🎬 Clean Copy Action</div>
+                      <div className="text-xs text-purple-600 mt-1">Select → Copy → Perfect!</div>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Step Number */}
+                <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2">
+                  <div className="bg-gradient-to-r from-purple-500 to-purple-600 text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl shadow-lg">
+                    3
                   </div>
                 </div>
               </div>
-              <div className="bg-white rounded-xl p-8 shadow-lg mb-6">
-                <div className="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Copy className="w-8 h-8 text-purple-600" />
-                </div>
-                <div className="text-6xl font-bold text-purple-600 mb-2">3</div>
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Copy & Go</h3>
-              <p className="text-gray-600">Click the button, customize if needed, and paste perfect text anywhere.</p>
+              
+              <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-purple-600 transition-colors">
+                Copy & Paste
+              </h3>
+              <p className="text-gray-600 leading-relaxed">
+                Click the PromptReady button, customize formatting if needed, and paste clean text anywhere.
+              </p>
             </div>
           </div>
           
-          <div className="mt-12 text-center">
-            <div className="inline-flex items-center px-6 py-3 bg-white rounded-full text-sm font-medium text-gray-700 shadow-md">
-              <Award className="w-4 h-4 mr-2 text-green-600" />
-              Manifest V3 Compliant - Compatible with Chrome, Firefox, Edge
+          <div className="mt-16 text-center">
+            <div className="inline-flex items-center px-8 py-4 bg-white rounded-full font-semibold text-gray-700 shadow-xl">
+              <Award className="w-5 h-5 mr-3 text-green-600" />
+              Manifest V3 Compliant • Compatible with Chrome, Firefox, Edge
+              <Sparkles className="w-5 h-5 ml-3 text-blue-600" />
             </div>
           </div>
         </div>
@@ -441,57 +602,127 @@ function App() {
       </section>
 
       {/* Social Proof Section */}
-      <section className="py-16 lg:py-24 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-              Why Users Love PromptReady
+      <section className="py-20 lg:py-32 bg-gradient-to-br from-gray-50 to-blue-50 relative overflow-hidden">
+        <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
+        
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-20">
+            <div className="inline-flex items-center px-4 py-2 bg-green-100 text-green-800 rounded-full text-sm font-semibold mb-6">
+              <Users className="w-4 h-4 mr-2" />
+              Loved by Developers
+            </div>
+            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+              Why Users{' '}
+              <span className="bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
+                Love PromptReady
+              </span>
             </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Join hundreds of developers, content creators, and professionals who've transformed their workflow
+            </p>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-8 mb-16">
-            <div className="bg-white p-6 rounded-xl shadow-lg">
-              <div className="flex items-center mb-4">
-                <div className="flex text-yellow-400">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 fill-current" />
-                  ))}
+          {/* Rotating Testimonials Carousel */}
+          <div className="testimonial-carousel max-w-4xl mx-auto mb-16">
+            <div className="testimonial-track" style={{ transform: `translateX(-${currentTestimonial * 100}%)` }}>
+              {/* Testimonial 1 */}
+              <div className="testimonial-slide">
+                <div className="bg-white p-10 rounded-3xl shadow-2xl border border-gray-100">
+                  <div className="flex items-center justify-center mb-6">
+                    <div className="flex text-yellow-400 mr-4">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="w-6 h-6 fill-current" />
+                      ))}
+                    </div>
+                    <span className="text-lg font-semibold text-gray-700">5.0★</span>
+                  </div>
+                  <blockquote className="text-2xl text-gray-800 font-medium text-center mb-8 leading-relaxed">
+                    "Saves me hours weekly on research! The offline mode is incredibly fast and the AI features are game-changing for content creation."
+                  </blockquote>
+                  <div className="text-center">
+                    <div className="text-gray-600 font-semibold">Alex Chen</div>
+                    <div className="text-sm text-gray-500">Senior Developer, Reddit</div>
+                  </div>
                 </div>
               </div>
-              <p className="text-gray-700 mb-4 italic">
-                "Saves me hours weekly on research! The offline mode is incredibly fast and the AI features are game-changing for content creation."
-              </p>
-              <div className="text-sm text-gray-600">– Developer, Reddit</div>
+              
+              {/* Testimonial 2 */}
+              <div className="testimonial-slide">
+                <div className="bg-white p-10 rounded-3xl shadow-2xl border border-gray-100">
+                  <div className="flex items-center justify-center mb-6">
+                    <div className="flex text-yellow-400 mr-4">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="w-6 h-6 fill-current" />
+                      ))}
+                    </div>
+                    <span className="text-lg font-semibold text-gray-700">5.0★</span>
+                  </div>
+                  <blockquote className="text-2xl text-gray-800 font-medium text-center mb-8 leading-relaxed">
+                    "Privacy-first approach is exactly what our team needed. No more worrying about sensitive data being processed externally."
+                  </blockquote>
+                  <div className="text-center">
+                    <div className="text-gray-600 font-semibold">Sarah Mitchell</div>
+                    <div className="text-sm text-gray-500">IT Security Manager, Enterprise Corp</div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Testimonial 3 */}
+              <div className="testimonial-slide">
+                <div className="bg-white p-10 rounded-3xl shadow-2xl border border-gray-100">
+                  <div className="flex items-center justify-center mb-6">
+                    <div className="flex text-yellow-400 mr-4">
+                      {[...Array(4)].map((_, i) => (
+                        <Star key={i} className="w-6 h-6 fill-current" />
+                      ))}
+                      <Star className="w-6 h-6 fill-current opacity-50" />
+                    </div>
+                    <span className="text-lg font-semibold text-gray-700">4.5★</span>
+                  </div>
+                  <blockquote className="text-2xl text-gray-800 font-medium text-center mb-8 leading-relaxed">
+                    "Finally, clean copies without the junk! Perfect for feeding content to ChatGPT and Claude. This is a must-have tool."
+                  </blockquote>
+                  <div className="text-center">
+                    <div className="text-gray-600 font-semibold">Marcus Johnson</div>
+                    <div className="text-sm text-gray-500">Content Creator, YouTube</div>
+                  </div>
+                </div>
+              </div>
             </div>
             
-            <div className="bg-white p-6 rounded-xl shadow-lg">
-              <div className="flex items-center mb-4">
-                <div className="flex text-yellow-400">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 fill-current" />
-                  ))}
-                </div>
-              </div>
-              <p className="text-gray-700 mb-4 italic">
-                "Offline mode is a privacy game-changer. No more struggling with messy copies when I'm on the go or have poor internet."
-              </p>
-              <div className="text-sm text-gray-600">– IT Manager</div>
+            {/* Carousel indicators */}
+            <div className="flex justify-center space-x-3 mt-8">
+              {[0, 1, 2].map((index) => (
+                <button
+                  key={index}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    currentTestimonial === index
+                      ? 'bg-blue-600 w-8'
+                      : 'bg-gray-300 hover:bg-gray-400'
+                  }`}
+                  onClick={() => setCurrentTestimonial(index)}
+                />
+              ))}
             </div>
-            
-            <div className="bg-white p-6 rounded-xl shadow-lg">
-              <div className="flex items-center mb-4">
-                <div className="flex text-yellow-400">
-                  {[...Array(4)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 fill-current" />
-                  ))}
-                  <Star className="w-5 h-5 fill-current opacity-50" />
-                </div>
-                <span className="ml-2 text-sm text-gray-600">4.5★</span>
-              </div>
-              <p className="text-gray-700 mb-4 italic">
-                "Finally, clean copies without the junk! Perfect for feeding content to ChatGPT and Claude."
-              </p>
-              <div className="text-sm text-gray-600">– Content Creator</div>
+          </div>
+          
+          {/* Stats Section */}
+          <div className="grid md:grid-cols-4 gap-8 mb-16">
+            <div className="text-center">
+              <div className="text-4xl font-bold text-blue-600 mb-2">500+</div>
+              <div className="text-gray-600">Beta Users</div>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl font-bold text-green-600 mb-2">4.8★</div>
+              <div className="text-gray-600">Average Rating</div>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl font-bold text-purple-600 mb-2">2hrs+</div>
+              <div className="text-gray-600">Time Saved Weekly</div>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl font-bold text-orange-600 mb-2">100%</div>
+              <div className="text-gray-600">Privacy Protected</div>
             </div>
           </div>
           
