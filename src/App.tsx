@@ -23,14 +23,60 @@ function App() {
   const [name, setName] = useState('');
   const [signupStatus, setSignupStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
 
+  // Track user behavior to validate conversion issues
+  React.useEffect(() => {
+    const startTime = Date.now();
+    console.log('📊 PAGE_LOAD: User landed on page', {
+      timestamp: new Date().toISOString(),
+      userAgent: navigator.userAgent
+    });
+
+    // Track scroll behavior to see if users reach signup
+    const handleScroll = () => {
+      const scrollPercent = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+      if (scrollPercent > 75) {
+        console.log('📈 SCROLL: User reached 75% of page');
+      }
+    };
+
+    // Track time spent on page
+    const handleBeforeUnload = () => {
+      const timeOnPage = Date.now() - startTime;
+      const signupElement = document.getElementById('signup');
+      console.log('⏱️ EXIT: User leaving page', {
+        timeOnPage: `${timeOnPage}ms`,
+        scrollPosition: window.scrollY,
+        reachedSignup: signupElement ? signupElement.getBoundingClientRect().top < window.innerHeight : false
+      });
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, []);
+
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
     setSignupStatus('submitting');
+    
+    // Track conversion attempt
+    console.log('🎯 CONVERSION: User attempted signup', {
+      timestamp: new Date().toISOString(),
+      email: email,
+      name: name,
+      scrollPosition: window.scrollY,
+      timeOnPage: performance.now()
+    });
     
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 1000));
     
     setSignupStatus('success');
+    console.log('✅ CONVERSION: Signup successful');
     setEmail('');
     setName('');
     
@@ -46,32 +92,35 @@ function App() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
           <div className="text-center">
             <div className="mb-8">
-              <div className="inline-flex items-center px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium mb-6 animate-fade-in">
-                <Lock className="w-4 h-4 mr-2" />
-                100% Client-Side Privacy – No Data Shared
+              <div className="flex justify-center flex-wrap gap-4 mb-6 animate-fade-in">
+                <div className="inline-flex items-center px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">
+                  <Lock className="w-4 h-4 mr-2" />
+                  100% Client-Side Privacy
+                </div>
+                <div className="inline-flex items-center px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">
+                  <Zap className="w-4 h-4 mr-2" />
+                  100% Client-Side Processing
+                </div>
+                <div className="inline-flex items-center px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">
+                  <Award className="w-4 h-4 mr-2" />
+                  Manifest V3 Compliant
+                </div>
               </div>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 leading-tight">
-                CleanCopy: Instant, Privacy-First{' '}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-teal-600">
-                  Text Extraction
-                </span>{' '}
-                for Any Page
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 leading-tight" data-optimize-experiment-id="HERO_TITLE" data-optimize-variant="0">
+                Stop Wasting Time on Messy Web Copies—PromptReady Delivers Perfect Text in 1 Click
               </h1>
-              <div className="mb-6">
-                <p className="text-lg text-gray-500 italic">A/B Test Variant:</p>
-                <h2 className="text-2xl sm:text-3xl font-semibold text-gray-700 mb-4">
-                  Boost Productivity with CleanCopy's AI + Offline Modes
-                </h2>
-              </div>
               <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
-                Copy clean, LLM-ready content without the clutter. Free offline mode for speed, optional AI for power—trusted by developers and enterprises.
+                Save 2+ hours weekly copying web content. Get clean, AI-ready text instantly—works offline or with optional AI enhancement for perfect formatting.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <button 
-                  onClick={() => document.getElementById('signup')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200 transform hover:scale-105 hover:shadow-lg flex items-center group"
+                <button
+                  onClick={() => {
+                    console.log('🎯 HERO_CTA: User clicked main CTA button');
+                    document.getElementById('signup')?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 h-12 rounded-lg font-semibold text-lg transition-all duration-200 transform hover:scale-105 hover:shadow-lg flex items-center group"
                 >
-                  Join Waitlist Now
+                  Start Copying Clean Text Now
                   <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                 </button>
                 <div className="flex items-center text-gray-600">
@@ -94,13 +143,19 @@ function App() {
                     Quick Demo (30s)
                   </div>
                 </div>
-                <div className="aspect-video bg-gradient-to-br from-blue-100 to-purple-100 rounded-lg flex items-center justify-center">
+                <div
+                  className="aspect-video bg-gradient-to-br from-blue-100 to-purple-100 rounded-lg flex items-center justify-center cursor-pointer hover:bg-gradient-to-br hover:from-blue-200 hover:to-purple-200 transition-all"
+                  onClick={() => {
+                    console.log('🎬 VIDEO_CLICK: User clicked video demo placeholder');
+                    alert('Video demo coming soon! This click shows user interest in seeing the product in action.');
+                  }}
+                >
                   <div className="text-center">
                     <div className="bg-white rounded-full p-4 mb-4 shadow-lg inline-block">
                       <Play className="w-8 h-8 text-blue-600" />
                     </div>
-                    <p className="text-gray-700 font-medium">Watch: Install → Toggle Mode → Copy Clean Text</p>
-                    <p className="text-sm text-gray-500 mt-2">Video Demo Coming Soon</p>
+                    <p className="text-gray-700 font-medium">Watch: Install → Copy Clean Text → Paste Anywhere</p>
+                    <p className="text-sm text-blue-600 mt-2 font-medium">Video demo coming after validation</p>
                   </div>
                 </div>
               </div>
@@ -119,8 +174,8 @@ function App() {
                     browser-tab.com
                   </div>
                 </div>
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+                <div className="grid md:grid-cols-2 gap-6 w-full">
+                  <div className="bg-red-50 border border-red-200 rounded-lg p-4 w-full">
                     <h4 className="font-semibold text-red-800 mb-2">Before: Messy Copy</h4>
                     <div className="text-xs text-red-600 space-y-1">
                       <div className="bg-red-100 p-2 rounded">Ad: Buy Now! Limited Time!</div>
@@ -130,8 +185,8 @@ function App() {
                       <div className="bg-red-100 p-2 rounded">Footer links | Privacy | Terms</div>
                     </div>
                   </div>
-                  <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-                    <h4 className="font-semibold text-green-800 mb-2">After: Clean Copy</h4>
+                  <div className="bg-green-50 border border-green-200 rounded-lg p-4 w-full">
+                    <h4 className="font-semibold text-green-800 mb-2">After: Promp tReady</h4>
                     <div className="text-xs text-green-600 space-y-1">
                       <div className="font-medium"># Article Title</div>
                       <div>Clean, structured content ready for AI processing.</div>
@@ -173,7 +228,7 @@ function App() {
             </div>
             <div>
               <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
-                CleanCopy: Simple, Secure, and Smart
+                PromptReady: Simple, Secure, and Smart
               </h2>
               <p className="text-lg text-gray-600 mb-8 leading-relaxed">
                 Dual modes deliver instant results offline or AI-enhanced structuring online, all client-side for ultimate privacy.
@@ -201,11 +256,11 @@ function App() {
               Powerful Features, Simple Experience
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Choose your extraction mode and get perfect results every time
+              Get perfect results with instant text extraction and optional AI enhancement
             </p>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border hover:border-blue-200">
               <div className="mb-4 bg-gradient-to-br from-yellow-100 to-yellow-200 rounded-lg p-4 aspect-video flex items-center justify-center">
                 <div className="text-center">
@@ -216,10 +271,8 @@ function App() {
               <div className="bg-yellow-100 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
                 <Zap className="w-6 h-6 text-yellow-600" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Save Hours with Instant Offline Parsing</h3>
-              <p className="text-gray-600 leading-relaxed">
-                Strip HTML to clean text in under 100ms—no internet needed. Perfect for quick copies on the go.
-              </p>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">Instant Results</h3>
+              <p className="text-gray-600 leading-relaxed">Get clean text in under 100ms, even offline</p>
             </div>
             
             <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border hover:border-blue-200">
@@ -232,10 +285,8 @@ function App() {
               <div className="bg-purple-100 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
                 <Brain className="w-6 h-6 text-purple-600" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">AI-Powered Structuring</h3>
-              <p className="text-gray-600 leading-relaxed">
-                Add summaries, formatting, and LLM-ready Markdown with OpenRouter or your own key (BYOK) for unlimited power.
-              </p>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">Smart AI Features</h3>
+              <p className="text-gray-600 leading-relaxed">Auto-generate summaries and perfect LLM formatting</p>
             </div>
             
             <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border hover:border-blue-200">
@@ -248,10 +299,8 @@ function App() {
               <div className="bg-blue-100 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
                 <Settings className="w-6 h-6 text-blue-600" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Progressive Customization</h3>
-              <p className="text-gray-600 leading-relaxed">
-                One-click copy with optional toggles for titles, spacing, and more—all styled intuitively.
-              </p>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">Personalized Formatting</h3>
+              <p className="text-gray-600 leading-relaxed">Adjust headings, lists & more with one click</p>
             </div>
             
             <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border hover:border-blue-200">
@@ -264,10 +313,8 @@ function App() {
               <div className="bg-green-100 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
                 <Shield className="w-6 h-6 text-green-600" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">100% Client-Side</h3>
-              <p className="text-gray-600 leading-relaxed">
-                No data leaves your browser in offline mode; control your API in online mode.
-              </p>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">Privacy & Speed</h3>
+              <p className="text-gray-600 leading-relaxed">All processing locally for maximum security & performance</p>
             </div>
           </div>
           
@@ -285,7 +332,7 @@ function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-              How CleanCopy Works in 3 Easy Steps
+              How PromptReady Works in 3 Easy Steps
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               Get started in seconds and transform how you copy content forever
@@ -360,76 +407,36 @@ function App() {
         </div>
       </section>
 
-      {/* Pricing Section */}
+      {/* Simple Pricing Section */}
       <section className="py-16 lg:py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-              Choose Your Tier – Free Forever Basics, Power for Pros
-            </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Like Grammarly, Start Free and Scale. 93% of Enterprises Use Extensions—CleanCopy Fits Right In.
-            </p>
-          </div>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+            Start Free, Always Free Core Features
+          </h2>
+          <p className="text-lg text-gray-600 mb-8">
+            Like Grammarly, PromptReady starts free and scales with your needs.
+          </p>
           
-          <div className="bg-white rounded-2xl shadow-xl overflow-hidden border">
-            <div className="bg-gradient-to-r from-blue-50 to-purple-50 px-6 py-4 border-b">
-              <div className="flex items-center justify-center">
-                <Award className="w-5 h-5 text-blue-600 mr-2" />
-                <span className="text-sm font-medium text-gray-700">Approved for Teams - Enterprise Ready</span>
+          <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-2xl p-8 mb-8 border">
+            <div className="text-center">
+              <div className="text-3xl font-bold text-green-600 mb-2">FREE FOREVER</div>
+              <p className="text-lg text-gray-700 mb-4">Instant clean text extraction, offline processing, basic AI features</p>
+              <div className="inline-flex items-center px-4 py-2 bg-white rounded-full text-sm font-medium text-gray-700 shadow-md">
+                <Award className="w-4 h-4 mr-2 text-green-600" />
+                Enterprise-Ready • Privacy-First • Manifest V3
               </div>
             </div>
-            <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead className="bg-gray-50">
-                  <tr>
-                    <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">Tier</th>
-                    <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">Features</th>
-                    <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">Price</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-200">
-                  <tr className="hover:bg-gray-50">
-                    <td className="px-6 py-4 font-medium text-gray-900">Offline Free</td>
-                    <td className="px-6 py-4 text-gray-600">Instant parsing, basic cleanup</td>
-                    <td className="px-6 py-4">
-                      <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">Free</span>
-                    </td>
-                  </tr>
-                  <tr className="hover:bg-gray-50">
-                    <td className="px-6 py-4 font-medium text-gray-900">Online Free</td>
-                    <td className="px-6 py-4 text-gray-600">Rate-limited AI</td>
-                    <td className="px-6 py-4">
-                      <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">Free</span>
-                    </td>
-                  </tr>
-                  <tr className="hover:bg-gray-50">
-                    <td className="px-6 py-4 font-medium text-gray-900">BYOK</td>
-                    <td className="px-6 py-4 text-gray-600">Unlimited AI with your key</td>
-                    <td className="px-6 py-4">
-                      <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">Free (your costs)</span>
-                    </td>
-                  </tr>
-                  <tr className="hover:bg-gray-50 bg-gradient-to-r from-blue-50 to-purple-50">
-                    <td className="px-6 py-4 font-medium text-gray-900">Pro (Coming Soon)</td>
-                    <td className="px-6 py-4 text-gray-600">Premium models, integrations</td>
-                    <td className="px-6 py-4">
-                      <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-medium">$4.99/mo</span>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
           </div>
           
-          <div className="text-center mt-8">
-            <button 
-              onClick={() => document.getElementById('signup')?.scrollIntoView({ behavior: 'smooth' })}
-              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200 transform hover:scale-105 shadow-lg"
-            >
-              Sign Up Now and Get Notified for Pro Launch
-            </button>
-          </div>
+          <button
+            onClick={() => {
+              console.log('🎯 PRICING_CTA: User clicked pricing section CTA');
+              document.getElementById('signup')?.scrollIntoView({ behavior: 'smooth' });
+            }}
+            className="bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 text-white px-8 py-4 h-12 rounded-lg font-semibold text-lg transition-all duration-200 transform hover:scale-105 shadow-lg"
+          >
+            Get Started Free Now
+          </button>
         </div>
       </section>
 
@@ -438,7 +445,7 @@ function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-              Why Users Love CleanCopy
+              Why Users Love PromptReady
             </h2>
           </div>
           
@@ -496,7 +503,7 @@ function App() {
                   Join the Waitlist for Early Beta Access
                 </h3>
                 <p className="text-gray-600">
-                  Get notified when CleanCopy launches and receive exclusive updates
+                  Get notified when PromptReady launches and receive exclusive updates
                 </p>
                 <div className="mt-4 inline-flex items-center px-4 py-2 bg-red-100 text-red-800 rounded-full text-sm font-medium animate-pulse">
                   <Clock className="w-4 h-4 mr-2" />
@@ -539,7 +546,7 @@ function App() {
                 <button
                   type="submit"
                   disabled={signupStatus === 'submitting'}
-                  className="w-full bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200 transform hover:scale-105 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                  className="w-full bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white px-8 py-4 h-12 rounded-lg font-semibold text-lg transition-all duration-200 transform hover:scale-105 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                 >
                   {signupStatus === 'submitting' ? (
                     <span className="flex items-center justify-center">
@@ -567,7 +574,7 @@ function App() {
           <div className="text-center">
             <div className="flex justify-center items-center mb-6">
               <Copy className="w-8 h-8 text-blue-400 mr-3" />
-              <span className="text-2xl font-bold text-white">CleanCopy</span>
+              <span className="text-2xl font-bold text-white">PromptReady</span>
             </div>
             <div className="mb-6">
               <div className="inline-flex items-center px-4 py-2 bg-gray-800 rounded-full text-sm font-medium">
@@ -576,7 +583,7 @@ function App() {
               </div>
             </div>
             <p className="text-gray-400 mb-6">
-              © 2025 CleanCopy - Making web content extraction simple and powerful
+              © 2025 PromptReady - Making web content extraction simple and powerful
             </p>
             <div className="flex justify-center space-x-6 mb-6">
               <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
