@@ -2,7 +2,7 @@ import React from 'react';
 import { Play, Download, Settings, Copy, Award, Sparkles } from 'lucide-react';
 
 const HowItWorks: React.FC = () => (
-  <section className="py-20 lg:py-32 bg-gradient-to-br from-blue-50 to-indigo-50 relative overflow-hidden">
+  <section className="py-20 lg:py-32 bg-blue-50 relative overflow-hidden">
     <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
     <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="text-center mb-20">
@@ -12,7 +12,7 @@ const HowItWorks: React.FC = () => (
         </div>
         <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
           Get Started in{' '}
-          <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+          <span className="text-indigo-700 font-bold">
             3 Easy Steps
           </span>
         </h2>
@@ -33,7 +33,7 @@ const HowItWorks: React.FC = () => (
                   Chrome Web Store
                 </div>
               </div>
-              <div className="aspect-video bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center group-hover:from-blue-200 group-hover:to-blue-300 transition-all duration-300">
+              <div className="aspect-video bg-blue-200 flex items-center justify-center group-hover:bg-blue-300 transition-all duration-300">
                 <div className="text-center">
                   <div className="bg-white rounded-full p-4 mb-3 shadow-lg inline-block group-hover:scale-110 transition-transform duration-300">
                     <Download className="w-8 h-8 text-blue-600" />
@@ -44,7 +44,7 @@ const HowItWorks: React.FC = () => (
               </div>
             </div>
             <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2">
-              <div className="bg-gradient-to-r from-blue-500 to-blue-600 text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl shadow-lg">
+              <div className="bg-blue-600 text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl shadow-lg">
                 1
               </div>
             </div>
@@ -68,7 +68,7 @@ const HowItWorks: React.FC = () => (
                   example.com
                 </div>
               </div>
-              <div className="aspect-video bg-gradient-to-br from-green-100 to-green-200 flex items-center justify-center group-hover:from-green-200 group-hover:to-green-300 transition-all duration-300">
+              <div className="aspect-video bg-green-200 flex items-center justify-center group-hover:bg-green-300 transition-all duration-300">
                 <div className="text-center">
                   <div className="bg-white rounded-full p-4 mb-3 shadow-lg inline-block group-hover:scale-110 transition-transform duration-300">
                     <Settings className="w-8 h-8 text-green-600" />
@@ -79,7 +79,7 @@ const HowItWorks: React.FC = () => (
               </div>
             </div>
             <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2">
-              <div className="bg-gradient-to-r from-green-500 to-green-600 text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl shadow-lg">
+              <div className="bg-green-600 text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl shadow-lg">
                 2
               </div>
             </div>
@@ -103,7 +103,7 @@ const HowItWorks: React.FC = () => (
                   article.com
                 </div>
               </div>
-              <div className="aspect-video bg-gradient-to-br from-purple-100 to-purple-200 flex items-center justify-center group-hover:from-purple-200 group-hover:to-purple-300 transition-all duration-300">
+              <div className="aspect-video bg-purple-200 flex items-center justify-center group-hover:bg-purple-300 transition-all duration-300">
                 <div className="text-center">
                   <div className="bg-white rounded-full p-4 mb-3 shadow-lg inline-block group-hover:scale-110 transition-transform duration-300">
                     <Copy className="w-8 h-8 text-purple-600" />
@@ -114,7 +114,7 @@ const HowItWorks: React.FC = () => (
               </div>
             </div>
             <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2">
-              <div className="bg-gradient-to-r from-purple-500 to-purple-600 text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl shadow-lg">
+              <div className="bg-purple-600 text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl shadow-lg">
                 3
               </div>
             </div>

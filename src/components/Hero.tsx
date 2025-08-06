@@ -6,7 +6,7 @@ interface HeroProps {
 }
 
 const Hero: React.FC<HeroProps> = ({ scrollToSignup }) => (
-  <section className="relative bg-gradient-to-br from-blue-50 via-white to-purple-50 overflow-hidden">
+  <section className="relative bg-white overflow-hidden">
     <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
     <div className="absolute top-20 left-10 w-20 h-20 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float"></div>
     <div className="absolute top-40 right-20 w-32 h-32 bg-purple-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float" style={{animationDelay: '2s'}}></div>
@@ -15,22 +15,22 @@ const Hero: React.FC<HeroProps> = ({ scrollToSignup }) => (
       <div className="text-center">
         <div className="mb-8">
           <div className="flex justify-center flex-wrap gap-4 mb-8 animate-slide-up">
-            <div className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-full text-sm font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+            <div className="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-full text-sm font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
               <Lock className="w-4 h-4 mr-2" />
               100% Client-Side Privacy
             </div>
-            <div className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-green-600 to-green-700 text-white rounded-full text-sm font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+            <div className="inline-flex items-center px-6 py-3 bg-green-600 text-white rounded-full text-sm font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
               <Zap className="w-4 h-4 mr-2" />
               Lightning Fast
             </div>
-            <div className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-purple-600 to-purple-700 text-white rounded-full text-sm font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+            <div className="inline-flex items-center px-6 py-3 bg-purple-600 text-white rounded-full text-sm font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
               <Award className="w-4 h-4 mr-2" />
               Manifest V3 Compliant
             </div>
           </div>
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight animate-slide-up" style={{animationDelay: '0.2s'}}>
             Stop Wasting Time on{' '}
-            <span className="bg-gradient-to-r from-red-600 to-red-700 bg-clip-text text-transparent">
+            <span className="text-red-700 font-bold">
               Messy Web Copies
             </span>
           </h1>
@@ -43,11 +43,11 @@ const Hero: React.FC<HeroProps> = ({ scrollToSignup }) => (
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12 animate-slide-up" style={{animationDelay: '0.8s'}}>
             <button
               onClick={scrollToSignup}
-              className="glow-effect bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-10 py-5 rounded-2xl font-bold text-xl transition-all duration-300 transform hover:scale-105 shadow-2xl flex items-center group relative overflow-hidden"
+              className="glow-effect bg-blue-600 hover:bg-blue-700 text-white px-10 py-5 rounded-2xl font-bold text-xl transition-all duration-300 transform hover:scale-105 shadow-2xl flex items-center group relative overflow-hidden"
             >
               <span className="relative z-10">Join the Private Beta</span>
               <ArrowRight className="w-6 h-6 ml-3 group-hover:translate-x-1 transition-transform relative z-10" />
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              {/* Gradient overlay removed */}
             </button>
             <div className="flex items-center text-gray-700 bg-white px-6 py-3 rounded-full shadow-lg">
               <div className="flex text-yellow-400 mr-3">
@@ -131,7 +131,7 @@ const Hero: React.FC<HeroProps> = ({ scrollToSignup }) => (
               <div className="browser-dot bg-red-500"></div>
               <div className="browser-dot bg-yellow-500"></div>
               <div className="browser-dot bg-green-500"></div>
-              <div className="ml-4 bg-gradient-to-r from-blue-100 to-purple-100 rounded-full px-4 py-1 text-sm font-medium">
+              <div className="ml-4 bg-blue-100 rounded-full px-4 py-1 text-sm font-medium">
                 🎬 Quick Demo (30s)
               </div>
             </div>

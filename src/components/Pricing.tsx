@@ -14,7 +14,7 @@ const Pricing: React.FC<PricingProps> = ({ scrollToSignup }) => (
       <p className="text-lg text-gray-600 mb-8">
         Get early access to new features, help shape the product, and enjoy exclusive updates.
       </p>
-      <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-2xl p-8 mb-8 border">
+      <div className="bg-green-50 rounded-2xl p-8 mb-8 border">
         <div className="text-center">
           <div className="text-3xl font-bold text-green-600 mb-2">FREE FOREVER</div>
           <p className="text-lg text-gray-700 mb-4">Instant clean text extraction, offline processing, basic AI features</p>
@@ -26,7 +26,7 @@ const Pricing: React.FC<PricingProps> = ({ scrollToSignup }) => (
       </div>
       <button
         onClick={scrollToSignup}
-        className="bg-gradient-to-r from-blue-700 to-green-700 hover:from-blue-800 hover:to-green-800 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200 transform hover:scale-105 shadow-lg"
+        className="bg-blue-700 hover:bg-blue-800 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200 transform hover:scale-105 shadow-lg"
       >
         Get Early Access
       </button>

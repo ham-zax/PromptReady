@@ -4,7 +4,7 @@ import SignupForm from "./SignupForm";
 import { Users } from "lucide-react";
 
 const SocialProof: React.FC = () => (
-  <section className="py-20 lg:py-32 bg-gradient-to-br from-gray-50 to-blue-50 relative overflow-hidden">
+  <section className="py-20 lg:py-32 bg-gray-50 relative overflow-hidden">
     <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
     <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="flex flex-col gap-6">
@@ -16,7 +16,7 @@ const SocialProof: React.FC = () => (
             </div>
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
               Why Users{' '}
-              <span className="bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
+              <span className="text-green-700 font-bold">
                 Love PromptReady
               </span>
             </h2>
