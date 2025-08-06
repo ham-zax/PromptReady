@@ -26,7 +26,7 @@ const Pricing: React.FC<PricingProps> = ({ scrollToSignup }) => (
       </div>
       <button
         onClick={scrollToSignup}
-        className="bg-gradient-to-r from-blue-700 to-green-700 hover:from-blue-800 hover:to-green-800 text-white px-8 py-4 h-12 rounded-lg font-semibold text-lg transition-all duration-200 transform hover:scale-105 shadow-lg"
+        className="bg-gradient-to-r from-blue-700 to-green-700 hover:from-blue-800 hover:to-green-800 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200 transform hover:scale-105 shadow-lg"
       >
         Get Early Access
       </button>
