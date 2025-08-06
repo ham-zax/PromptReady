@@ -22,7 +22,6 @@ function App() {
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [signupStatus, setSignupStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
-  const [isOfflineMode, setIsOfflineMode] = useState(false);
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
 
   // Track user behavior to validate conversion issues
@@ -61,13 +60,15 @@ function App() {
     };
   }, []);
 
-  // Testimonial carousel rotation
+  // Auto-rotate testimonials carousel
   React.useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentTestimonial((prev) => (prev + 1) % 3);
-    }, 5000);
+      setCurrentTestimonial(prev => (prev + 1) % 3);
+    }, 5000); // Rotate every 5 seconds
+
     return () => clearInterval(interval);
   }, []);
+
 
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -142,12 +143,11 @@ function App() {
               <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12 animate-slide-up" style={{animationDelay: '0.8s'}}>
                 <button
                   onClick={() => {
-                    console.log('🎯 HERO_CTA: User clicked main CTA button');
                     document.getElementById('signup')?.scrollIntoView({ behavior: 'smooth' });
                   }}
                   className="glow-effect bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-10 py-5 rounded-2xl font-bold text-xl transition-all duration-300 transform hover:scale-105 shadow-2xl flex items-center group relative overflow-hidden"
                 >
-                  <span className="relative z-10">Start Copying Clean Text Now</span>
+                  <span className="relative z-10">Join the Private Beta</span>
                   <ArrowRight className="w-6 h-6 ml-3 group-hover:translate-x-1 transition-transform relative z-10" />
                   <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </button>
@@ -158,7 +158,7 @@ function App() {
                       <Star key={i} className="w-4 h-4 fill-current" />
                     ))}
                   </div>
-                  <span className="font-semibold">4.9★ • 500+ Beta Users</span>
+                  <span className="font-semibold">4.9★ • Join 500+ testers in our private beta</span>
                 </div>
               </div>
             </div>
@@ -167,20 +167,7 @@ function App() {
             <div className="mb-12 animate-slide-up" style={{animationDelay: '1s'}}>
               <div className="max-w-5xl mx-auto">
                 <div className="text-center mb-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-4">Try Our Dual Mode System</h3>
-                  <div className="flex justify-center items-center gap-4 mb-6">
-                    <span className={`font-semibold transition-colors ${!isOfflineMode ? 'text-blue-600' : 'text-gray-500'}`}>
-                      Offline Mode
-                    </span>
-                    <div
-                      className={`mode-toggle ${isOfflineMode ? 'active' : ''}`}
-                      onClick={() => setIsOfflineMode(!isOfflineMode)}
-                    >
-                    </div>
-                    <span className={`font-semibold transition-colors ${isOfflineMode ? 'text-purple-600' : 'text-gray-500'}`}>
-                      AI Enhanced
-                    </span>
-                  </div>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-4">See How It Works</h3>
                 </div>
                 
                 {/* Browser Mockup with Enhanced Visual */}
@@ -231,7 +218,7 @@ function App() {
                       <div className="space-y-4">
                         <h4 className="font-bold text-green-800 text-lg flex items-center">
                           <span className="w-3 h-3 bg-green-500 rounded-full mr-2"></span>
-                          After: PromptReady {isOfflineMode ? '(AI Enhanced)' : '(Offline)'}
+                          After: PromptReady
                         </h4>
                         <div className="space-y-3 text-sm">
                           <div className="font-semibold text-gray-900 text-lg">
@@ -241,13 +228,6 @@ function App() {
                             <p>Clean, structured content ready for AI processing.</p>
                             <p>No ads, no distractions, just pure information.</p>
                             <p>Perfectly formatted for ChatGPT, Claude, or any LLM.</p>
-                            {isOfflineMode && (
-                              <div className="mt-4 p-3 bg-purple-50 border border-purple-200 rounded-lg">
-                                <div className="text-purple-700 font-medium text-xs">
-                                  ✨ AI Enhancement: Auto-generated summary, key points extracted
-                                </div>
-                              </div>
-                            )}
                           </div>
                         </div>
                       </div>
@@ -292,48 +272,75 @@ function App() {
       {/* Problem-Solution Section */}
       <section className="py-16 lg:py-24 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
-                End the Web Copy Nightmare
-              </h2>
-              <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                Ads, footers, and broken formats waste your time—especially for AI workflows.
-              </p>
-              <div className="bg-white p-6 rounded-lg border-l-4 border-red-400">
-                <div className="flex items-center mb-2">
-                  <div className="flex text-yellow-400 mr-2">
-                    {[...Array(4)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-current" />
-                    ))}
-                    <Star className="w-4 h-4 fill-current opacity-50" />
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            {/* Problem Section */}
+            <div className="space-y-8">
+              <div>
+                <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
+                  End the Web Copy Nightmare
+                </h2>
+                <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+                  Ads, footers, and broken formats waste your time—especially for AI workflows.
+                </p>
+              </div>
+              
+              {/* Social Proof Card - Repositioned and Redesigned */}
+              <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200 relative">
+                {/* Consistent rounded accent instead of sharp line */}
+                <div className="absolute left-0 top-6 bottom-6 w-1 bg-gradient-to-b from-blue-500 to-green-500 rounded-full"></div>
+                <div className="ml-6">
+                  <div className="flex items-center mb-3">
+                    <div className="flex text-yellow-400 mr-3">
+                      {[...Array(4)].map((_, i) => (
+                        <Star key={i} className="w-4 h-4 fill-current" />
+                      ))}
+                      <Star className="w-4 h-4 fill-current opacity-50" />
+                    </div>
+                    {/* Improved contrast for accessibility */}
+                    <span className="text-sm font-semibold text-gray-800">4.5★ Rating</span>
                   </div>
-                  <span className="text-sm font-medium text-gray-600">4.5★ Rating</span>
-                </div>
-                <p className="text-gray-700 italic">"Transformed my research workflow!" – Developer</p>
-              </div>
-              </div>
-            </div>
-            <div>
-              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
-                PromptReady: Simple, Secure, and Smart
-              </h2>
-              <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                Dual modes deliver instant results offline or AI-enhanced structuring online, all client-side for ultimate privacy.
-              </p>
-              <div className="flex items-center space-x-4">
-                <div className="bg-blue-100 p-3 rounded-full">
-                  <Copy className="w-6 h-6 text-blue-600" />
-                </div>
-                <div className="bg-green-100 p-3 rounded-full">
-                  <CheckCircle className="w-6 h-6 text-green-600" />
-                </div>
-                <div className="bg-purple-100 p-3 rounded-full">
-                  <Shield className="w-6 h-6 text-purple-600" />
+                  <p className="text-gray-700 italic font-medium">"Transformed my research workflow!" – Developer</p>
                 </div>
               </div>
             </div>
-          </div>          
+
+            {/* Solution Section - Enhanced Visual Separation */}
+            <div className="space-y-8">
+              <div>
+                <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
+                  PromptReady: Simple, Secure, and Smart
+                </h2>
+                <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+                  Dual modes deliver instant results offline or AI-enhanced structuring online, all client-side for ultimate privacy.
+                </p>
+              </div>
+              
+              {/* Enhanced Icon Group with Better Visual Hierarchy */}
+              <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-200">
+                <div className="flex items-center justify-center space-x-6">
+                  <div className="flex flex-col items-center space-y-2">
+                    <div className="bg-blue-100 p-4 rounded-xl">
+                      <Copy className="w-6 h-6 text-blue-600" />
+                    </div>
+                    <span className="text-xs font-medium text-gray-600">Copy Clean</span>
+                  </div>
+                  <div className="flex flex-col items-center space-y-2">
+                    <div className="bg-green-100 p-4 rounded-xl">
+                      <CheckCircle className="w-6 h-6 text-green-600" />
+                    </div>
+                    <span className="text-xs font-medium text-gray-600">Instant Results</span>
+                  </div>
+                  <div className="flex flex-col items-center space-y-2">
+                    <div className="bg-purple-100 p-4 rounded-xl">
+                      <Shield className="w-6 h-6 text-purple-600" />
+                    </div>
+                    <span className="text-xs font-medium text-gray-600">Privacy First</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* Features Section */}
@@ -349,57 +356,45 @@ function App() {
           </div>
           
           <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border hover:border-blue-200">
-              <div className="mb-4 bg-gradient-to-br from-yellow-100 to-yellow-200 rounded-lg p-4 aspect-video flex items-center justify-center">
+            <div className="bg-white p-4 rounded-xl shadow-lg hover:shadow-xl transition-shadow border hover:border-blue-200">
+              <div className="mb-6 bg-gradient-to-br from-yellow-100 to-yellow-200 rounded-lg p-4 aspect-video flex items-center justify-center">
                 <div className="text-center">
                   <Zap className="w-8 h-8 text-yellow-600 mx-auto mb-2" />
                   <div className="text-xs text-yellow-700 font-medium">Instant Parsing</div>
                 </div>
               </div>
-              <div className="bg-yellow-100 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
-                <Zap className="w-6 h-6 text-yellow-600" />
-              </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-3">Instant Results</h3>
               <p className="text-gray-600 leading-relaxed">Get clean text in under 100ms, even offline</p>
             </div>
             
-            <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border hover:border-blue-200">
-              <div className="mb-4 bg-gradient-to-br from-purple-100 to-purple-200 rounded-lg p-4 aspect-video flex items-center justify-center">
+            <div className="bg-white p-4 rounded-xl shadow-lg hover:shadow-xl transition-shadow border hover:border-blue-200">
+              <div className="mb-6 bg-gradient-to-br from-purple-100 to-purple-200 rounded-lg p-4 aspect-video flex items-center justify-center">
                 <div className="text-center">
                   <Brain className="w-8 h-8 text-purple-600 mx-auto mb-2" />
                   <div className="text-xs text-purple-700 font-medium">AI Enhancement</div>
                 </div>
               </div>
-              <div className="bg-purple-100 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
-                <Brain className="w-6 h-6 text-purple-600" />
-              </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-3">Smart AI Features</h3>
               <p className="text-gray-600 leading-relaxed">Auto-generate summaries and perfect LLM formatting</p>
             </div>
             
-            <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border hover:border-blue-200">
-              <div className="mb-4 bg-gradient-to-br from-blue-100 to-blue-200 rounded-lg p-4 aspect-video flex items-center justify-center">
+            <div className="bg-white p-4 rounded-xl shadow-lg hover:shadow-xl transition-shadow border hover:border-blue-200">
+              <div className="mb-6 bg-gradient-to-br from-blue-100 to-blue-200 rounded-lg p-4 aspect-video flex items-center justify-center">
                 <div className="text-center">
                   <Settings className="w-8 h-8 text-blue-600 mx-auto mb-2" />
                   <div className="text-xs text-blue-700 font-medium">Customization</div>
                 </div>
               </div>
-              <div className="bg-blue-100 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
-                <Settings className="w-6 h-6 text-blue-600" />
-              </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-3">Personalized Formatting</h3>
               <p className="text-gray-600 leading-relaxed">Adjust headings, lists & more with one click</p>
             </div>
             
-            <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border hover:border-blue-200">
-              <div className="mb-4 bg-gradient-to-br from-green-100 to-green-200 rounded-lg p-4 aspect-video flex items-center justify-center">
+            <div className="bg-white p-4 rounded-xl shadow-lg hover:shadow-xl transition-shadow border hover:border-blue-200">
+              <div className="mb-6 bg-gradient-to-br from-green-100 to-green-200 rounded-lg p-4 aspect-video flex items-center justify-center">
                 <div className="text-center">
                   <Shield className="w-8 h-8 text-green-600 mx-auto mb-2" />
                   <div className="text-xs text-green-700 font-medium">Privacy First</div>
                 </div>
-              </div>
-              <div className="bg-green-100 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
-                <Shield className="w-6 h-6 text-green-600" />
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-3">Privacy & Speed</h3>
               <p className="text-gray-600 leading-relaxed">All processing locally for maximum security & performance</p>
@@ -572,10 +567,10 @@ function App() {
       <section className="py-16 lg:py-24">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-            Start Free, Always Free Core Features
+            What to Expect in the Beta
           </h2>
           <p className="text-lg text-gray-600 mb-8">
-            Like Grammarly, PromptReady starts free and scales with your needs.
+            Get early access to new features, help shape the product, and enjoy exclusive updates.
           </p>
           
           <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-2xl p-8 mb-8 border">
@@ -591,12 +586,11 @@ function App() {
           
           <button
             onClick={() => {
-              console.log('🎯 PRICING_CTA: User clicked pricing section CTA');
               document.getElementById('signup')?.scrollIntoView({ behavior: 'smooth' });
             }}
-            className="bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 text-white px-8 py-4 h-12 rounded-lg font-semibold text-lg transition-all duration-200 transform hover:scale-105 shadow-lg"
+            className="bg-gradient-to-r from-blue-700 to-green-700 hover:from-blue-800 hover:to-green-800 text-white px-8 py-4 h-12 rounded-lg font-semibold text-lg transition-all duration-200 transform hover:scale-105 shadow-lg"
           >
-            Get Started Free Now
+            Get Early Access
           </button>
         </div>
       </section>
@@ -623,67 +617,67 @@ function App() {
           </div>
           
           {/* Rotating Testimonials Carousel */}
-          <div className="testimonial-carousel max-w-4xl mx-auto mb-16">
+          <div className="testimonial-carousel max-w-5xl mx-auto mb-16 px-4">
             <div className="testimonial-track" style={{ transform: `translateX(-${currentTestimonial * 100}%)` }}>
               {/* Testimonial 1 */}
-              <div className="testimonial-slide">
-                <div className="bg-white p-10 rounded-3xl shadow-2xl border border-gray-100">
-                  <div className="flex items-center justify-center mb-6">
-                    <div className="flex text-yellow-400 mr-4">
+              <div className="testimonial-slide px-4">
+                <div className="bg-white p-8 md:p-12 rounded-3xl shadow-2xl border border-gray-100 max-w-4xl mx-auto">
+                  <div className="flex items-center justify-center mb-8">
+                    <div className="flex text-yellow-400 mr-3 gap-1">
                       {[...Array(5)].map((_, i) => (
-                        <Star key={i} className="w-6 h-6 fill-current" />
+                        <Star key={i} className="w-5 h-5 fill-current" />
                       ))}
                     </div>
                     <span className="text-lg font-semibold text-gray-700">5.0★</span>
                   </div>
-                  <blockquote className="text-2xl text-gray-800 font-medium text-center mb-8 leading-relaxed">
+                  <blockquote className="text-xl md:text-2xl text-gray-800 font-medium text-center mb-10 leading-relaxed max-w-3xl mx-auto">
                     "Saves me hours weekly on research! The offline mode is incredibly fast and the AI features are game-changing for content creation."
                   </blockquote>
-                  <div className="text-center">
-                    <div className="text-gray-600 font-semibold">Alex Chen</div>
+                  <div className="text-center space-y-2">
+                    <div className="text-gray-800 font-semibold text-lg">Alex Chen</div>
                     <div className="text-sm text-gray-500">Senior Developer, Reddit</div>
                   </div>
                 </div>
               </div>
               
               {/* Testimonial 2 */}
-              <div className="testimonial-slide">
-                <div className="bg-white p-10 rounded-3xl shadow-2xl border border-gray-100">
-                  <div className="flex items-center justify-center mb-6">
-                    <div className="flex text-yellow-400 mr-4">
+              <div className="testimonial-slide px-4">
+                <div className="bg-white p-8 md:p-12 rounded-3xl shadow-2xl border border-gray-100 max-w-4xl mx-auto">
+                  <div className="flex items-center justify-center mb-8">
+                    <div className="flex text-yellow-400 mr-3 gap-1">
                       {[...Array(5)].map((_, i) => (
-                        <Star key={i} className="w-6 h-6 fill-current" />
+                        <Star key={i} className="w-5 h-5 fill-current" />
                       ))}
                     </div>
                     <span className="text-lg font-semibold text-gray-700">5.0★</span>
                   </div>
-                  <blockquote className="text-2xl text-gray-800 font-medium text-center mb-8 leading-relaxed">
+                  <blockquote className="text-xl md:text-2xl text-gray-800 font-medium text-center mb-10 leading-relaxed max-w-3xl mx-auto">
                     "Privacy-first approach is exactly what our team needed. No more worrying about sensitive data being processed externally."
                   </blockquote>
-                  <div className="text-center">
-                    <div className="text-gray-600 font-semibold">Sarah Mitchell</div>
+                  <div className="text-center space-y-2">
+                    <div className="text-gray-800 font-semibold text-lg">Sarah Mitchell</div>
                     <div className="text-sm text-gray-500">IT Security Manager, Enterprise Corp</div>
                   </div>
                 </div>
               </div>
               
               {/* Testimonial 3 */}
-              <div className="testimonial-slide">
-                <div className="bg-white p-10 rounded-3xl shadow-2xl border border-gray-100">
-                  <div className="flex items-center justify-center mb-6">
-                    <div className="flex text-yellow-400 mr-4">
+              <div className="testimonial-slide px-4">
+                <div className="bg-white p-8 md:p-12 rounded-3xl shadow-2xl border border-gray-100 max-w-4xl mx-auto">
+                  <div className="flex items-center justify-center mb-8">
+                    <div className="flex text-yellow-400 mr-3 gap-1">
                       {[...Array(4)].map((_, i) => (
-                        <Star key={i} className="w-6 h-6 fill-current" />
+                        <Star key={i} className="w-5 h-5 fill-current" />
                       ))}
-                      <Star className="w-6 h-6 fill-current opacity-50" />
+                      <Star className="w-5 h-5 fill-current opacity-50" />
                     </div>
                     <span className="text-lg font-semibold text-gray-700">4.5★</span>
                   </div>
-                  <blockquote className="text-2xl text-gray-800 font-medium text-center mb-8 leading-relaxed">
+                  <blockquote className="text-xl md:text-2xl text-gray-800 font-medium text-center mb-10 leading-relaxed max-w-3xl mx-auto">
                     "Finally, clean copies without the junk! Perfect for feeding content to ChatGPT and Claude. This is a must-have tool."
                   </blockquote>
-                  <div className="text-center">
-                    <div className="text-gray-600 font-semibold">Marcus Johnson</div>
+                  <div className="text-center space-y-2">
+                    <div className="text-gray-800 font-semibold text-lg">Marcus Johnson</div>
                     <div className="text-sm text-gray-500">Content Creator, YouTube</div>
                   </div>
                 </div>
@@ -691,16 +685,17 @@ function App() {
             </div>
             
             {/* Carousel indicators */}
-            <div className="flex justify-center space-x-3 mt-8">
+            <div className="flex justify-center items-center space-x-3 mt-12">
               {[0, 1, 2].map((index) => (
                 <button
                   key={index}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  className={`rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-300 ${
                     currentTestimonial === index
-                      ? 'bg-blue-600 w-8'
-                      : 'bg-gray-300 hover:bg-gray-400'
+                      ? 'bg-blue-600 w-12 h-4'
+                      : 'bg-gray-300 hover:bg-gray-400 w-4 h-4'
                   }`}
                   onClick={() => setCurrentTestimonial(index)}
+                  aria-label={`Go to testimonial ${index + 1}`}
                 />
               ))}
             </div>
@@ -709,19 +704,19 @@ function App() {
           {/* Stats Section */}
           <div className="grid md:grid-cols-4 gap-8 mb-16">
             <div className="text-center">
-              <div className="text-4xl font-bold text-blue-600 mb-2">500+</div>
+              <div className="text-4xl font-bold text-gray-800 mb-2">500+</div>
               <div className="text-gray-600">Beta Users</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold text-green-600 mb-2">4.8★</div>
+              <div className="text-4xl font-bold text-gray-800 mb-2">4.8★</div>
               <div className="text-gray-600">Average Rating</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold text-purple-600 mb-2">2hrs+</div>
+              <div className="text-4xl font-bold text-gray-800 mb-2">2hrs+</div>
               <div className="text-gray-600">Time Saved Weekly</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold text-orange-600 mb-2">100%</div>
+              <div className="text-4xl font-bold text-gray-800 mb-2">100%</div>
               <div className="text-gray-600">Privacy Protected</div>
             </div>
           </div>
@@ -731,7 +726,7 @@ function App() {
             <div className="bg-white rounded-2xl shadow-xl p-8 border">
               <div className="text-center mb-8">
                 <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                  Join the Waitlist for Early Beta Access
+                  Join the Waitlist for Exclusive Early Access
                 </h3>
                 <p className="text-gray-600">
                   Get notified when PromptReady launches and receive exclusive updates
@@ -777,7 +772,7 @@ function App() {
                 <button
                   type="submit"
                   disabled={signupStatus === 'submitting'}
-                  className="w-full bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white px-8 py-4 h-12 rounded-lg font-semibold text-lg transition-all duration-200 transform hover:scale-105 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                  className="w-full bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200 transform hover:scale-105 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                 >
                   {signupStatus === 'submitting' ? (
                     <span className="flex items-center justify-center">
