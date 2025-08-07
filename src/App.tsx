@@ -15,6 +15,12 @@ import { Analytics } from '@vercel/analytics/react';
 const WAITLIST_URL = "https://waitlister.me/p/promptready"; // TODO: Replace with actual URL
 
 function App() {
+  React.useEffect(() => {
+    console.log('[Startup] App.tsx: App mounted');
+    return () => {
+      console.log('[Startup] App.tsx: App unmounted');
+    };
+  }, []);
   // Centralized Action Handler for waitlist redirect
   const handlePrimaryAction = (sourceComponent: string) => {
     trackEvent('primary_cta_click', {
