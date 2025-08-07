@@ -11,8 +11,10 @@ const SocialProof: React.FC = () => (
         
           <div className="text-center mb-20">
             <div className="inline-flex items-center px-4 py-2 bg-green-100 text-green-800 rounded-full text-sm font-semibold mb-6">
-              <Users className="w-4 h-4 mr-2" />
+              <Users className="w-4 h-4 mr-2" aria-label="Loved by Developers" />
               Loved by Developers
+              {/* Visual trust badge */}
+              <img src="/assets/trust-badge.png" alt="Trusted by Industry Leaders" className="ml-3 h-6 inline-block" />
             </div>
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
               Why Users{' '}
@@ -25,23 +27,29 @@ const SocialProof: React.FC = () => (
             </p>
           </div>
         <Testimonials />
+        {/* Trusted logos */}
+        <div className="flex justify-center gap-6 mb-12">
+          <img src="/assets/logo1.png" alt="Acme Corp" className="h-8" />
+          <img src="/assets/logo2.png" alt="BetaSoft" className="h-8" />
+          <img src="/assets/logo3.png" alt="DevHub" className="h-8" />
+        </div>
         
           {/* Stats Section */}
           <div className="grid md:grid-cols-4 gap-8 mb-16">
             <div className="text-center">
-              <div className="text-4xl font-bold text-gray-800 mb-2">500+</div>
+              <div className="text-4xl font-bold text-gray-800 mb-2" aria-label="500+ Beta Users">500+</div>
               <div className="text-gray-600">Beta Users</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold text-gray-800 mb-2">4.8★</div>
+              <div className="text-4xl font-bold text-gray-800 mb-2" aria-label="4.8 Average Rating">4.8★</div>
               <div className="text-gray-600">Average Rating</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold text-gray-800 mb-2">2hrs+</div>
+              <div className="text-4xl font-bold text-gray-800 mb-2" aria-label="2hrs+ Time Saved Weekly">2hrs+</div>
               <div className="text-gray-600">Time Saved Weekly</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold text-gray-800 mb-2">100%</div>
+              <div className="text-4xl font-bold text-gray-800 mb-2" aria-label="100% Privacy Protected">100%</div>
               <div className="text-gray-600">Privacy Protected</div>
             </div>
           </div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Lock, Zap, Award, ArrowRight, Star, Sparkles, Play } from 'lucide-react';
+import { Globe } from "./magicui/globe";
 
 interface HeroProps {
   scrollToSignup: () => void;
@@ -7,10 +8,10 @@ interface HeroProps {
 
 const Hero: React.FC<HeroProps> = ({ scrollToSignup }) => (
   <section className="relative bg-white overflow-hidden">
-    <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
-    <div className="absolute top-20 left-10 w-20 h-20 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float"></div>
-    <div className="absolute top-40 right-20 w-32 h-32 bg-purple-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float" style={{animationDelay: '2s'}}></div>
-    <div className="absolute bottom-20 left-20 w-24 h-24 bg-indigo-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float" style={{animationDelay: '4s'}}></div>
+    {/* Globe background element */}
+    <div className="absolute top-[7%] left-0 right-0 h-[600px] z-0 [mask-image:linear-gradient(to_bottom,white_0%,transparent_80%)] pointer-events-none scale-125">
+      <Globe className="w-full h-full" />
+    </div>
     <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
       <div className="text-center">
         <div className="mb-8">
@@ -40,22 +41,26 @@ const Hero: React.FC<HeroProps> = ({ scrollToSignup }) => (
           <p className="text-xl text-gray-600 mb-10 max-w-4xl mx-auto leading-relaxed animate-slide-up" style={{animationDelay: '0.6s'}}>
             Save 2+ hours weekly copying web content. Get clean, AI-ready text instantly—works offline or with optional AI enhancement for perfect formatting.
           </p>
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12 animate-slide-up" style={{animationDelay: '0.8s'}}>
-            <button
-              onClick={scrollToSignup}
-              className="glow-effect bg-blue-600 hover:bg-blue-700 text-white px-10 py-5 rounded-2xl font-bold text-xl transition-all duration-300 transform hover:scale-105 shadow-2xl flex items-center group relative overflow-hidden"
+          <div className="flex justify-center mb-12 animate-slide-up" style={{animationDelay: '0.8s'}}>
+            <div
+              className="w-full max-w-md bg-white p-8 rounded-2xl shadow-xl flex flex-col items-start"
+              aria-label="Conversion Block"
             >
-              <span className="relative z-10">Join the Private Beta</span>
-              <ArrowRight className="w-6 h-6 ml-3 group-hover:translate-x-1 transition-transform relative z-10" />
-              {/* Gradient overlay removed */}
-            </button>
-            <div className="flex items-center text-gray-700 bg-white px-6 py-3 rounded-full shadow-lg">
-              <div className="flex text-yellow-400 mr-3">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-current" />
-                ))}
-              </div>
-              <span className="font-semibold">4.9★ • Join 500+ testers in our private beta</span>
+              <p className="text-gray-600 font-medium mb-4 text-left">
+                Be the first to experience perfectly clean web copy.
+              </p>
+              <button
+                onClick={scrollToSignup}
+                className="bg-blue-600 text-white py-3 px-5 rounded-lg w-full text-left font-semibold flex items-center justify-between"
+                tabIndex={0}
+                aria-label="Join the Waitlist for Early Access"
+              >
+                <span>Join the Waitlist for Early Access</span>
+                <ArrowRight className="w-6 h-6 ml-2" />
+              </button>
+              <p className="text-sm text-gray-500 mt-3 text-left">
+                No credit card required • Get exclusive launch-day updates
+              </p>
             </div>
           </div>
         </div>
@@ -158,3 +163,10 @@ const Hero: React.FC<HeroProps> = ({ scrollToSignup }) => (
 );
 
 export default Hero;
+
+{/* Sticky CTA for mobile */}
+{/*
+  Sticky CTA for mobile moved inside the Hero component to ensure access to scrollToSignup prop.
+*/}
+
+// TODO: Integrate A/B testing logic for CTA text, color, and placement

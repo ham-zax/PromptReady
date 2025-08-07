@@ -37,7 +37,7 @@ const InteractiveFeatures = () => {
               </span>
             </CardContent>
             <Pointer>
-                <Zap className="w-8 h-8 text-yellow-500" />
+              <Zap className="w-8 h-8 text-yellow-500" aria-label="Instant Text Cleaning" />
             </Pointer>
           </Card>
 
@@ -53,7 +53,7 @@ const InteractiveFeatures = () => {
                 Get perfect results
               </span>
             </CardContent>
-            <Pointer className="fill-blue-500" />
+            <Pointer className="fill-blue-500" aria-label="AI-Powered Formatting" />
           </Card>
 
           <Card className="col-span-1 row-span-1 overflow-hidden border bg-gradient-to-br from-purple-50 to-purple-100 transition-all dark:from-purple-900 dark:to-purple-800 shadow-none">
@@ -69,7 +69,7 @@ const InteractiveFeatures = () => {
               </span>
             </CardContent>
             <Pointer>
-              <Lock className="w-8 h-8 text-purple-500" />
+              <Lock className="w-8 h-8 text-purple-500" aria-label="Privacy First" />
             </Pointer>
           </Card>
 
@@ -86,9 +86,19 @@ const InteractiveFeatures = () => {
               </span>
             </CardContent>
             <Pointer>
-              <div className="text-4xl">✨</div>
+              <div className="text-4xl" aria-label="Universal Compatibility">✨</div>
             </Pointer>
           </Card>
+        </div>
+        {/* Summary/CTA after feature grid */}
+        <div className="mt-12 text-center">
+          <button className="bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200 transform hover:scale-105 shadow-lg"
+            tabIndex={0}
+            aria-label="Try PromptReady Now"
+          >
+            Try PromptReady Now
+          </button>
+          <div className="mt-4 text-gray-600 text-sm">Experience all features instantly—no signup required.</div>
         </div>
       </div>
     </section>

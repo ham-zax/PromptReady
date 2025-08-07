@@ -26,9 +26,12 @@ const Pricing: React.FC<PricingProps> = ({ scrollToSignup }) => (
       </div>
       <button
         onClick={scrollToSignup}
-        className="bg-blue-700 hover:bg-blue-800 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200 transform hover:scale-105 shadow-lg"
-      >
+        className="bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200 transform hover:scale-105 shadow-lg"
+      tabIndex={0}
+      aria-label="Get Early Access – Limited Beta Spots!"
+    >
         Get Early Access
+        <span className="block text-xs text-blue-100 font-medium mt-2">Limited beta spots • No credit card required</span>
       </button>
     </div>
   </section>
