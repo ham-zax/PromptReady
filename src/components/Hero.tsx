@@ -33,13 +33,10 @@ const Hero: React.FC<HeroProps> = ({ scrollToSignup }) => (
             </div>
           </div>
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight animate-slide-up" style={{ animationDelay: '0.2s' }}>
-            Stop Wasting Time on{' '}
-            <span className="text-red-700 font-bold">
-              Messy Web Copies
-            </span>
+            Skip the Manual Cleanup. Get Instantly AI-Ready Content.
           </h1>
           <p className="text-2xl font-semibold text-gray-800 mb-4 animate-slide-up" style={{ animationDelay: '0.4s' }}>
-            PromptReady Delivers Perfect, LLM-Ready Text in 1 Click
+            The one-click extension that turns any web page into perfect, private context for your LLM.
           </p>
           <p className="text-xl text-gray-600 mb-10 max-w-4xl mx-auto leading-relaxed animate-slide-up" style={{ animationDelay: '0.6s' }}>
             Save 2+ hours weekly copying web content. Get clean, AI-ready text instantly—works offline or with optional AI enhancement for perfect formatting.

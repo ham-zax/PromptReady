@@ -11,10 +11,7 @@ const HowItWorks: React.FC = () => (
           How It Works
         </div>
         <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-          Get Started in{' '}
-          <span className="text-indigo-700 font-bold">
-            3 Easy Steps
-          </span>
+          From Clutter to Clean in 3 Seconds.
         </h2>
         <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
           Transform how you copy content forever with our simple installation and intuitive interface

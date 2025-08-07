@@ -16,10 +16,10 @@ const InteractiveFeatures = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-              An Interactive Experience
+              Tired of the Manual Copy-Paste-Cleanse Cycle?
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              PromptReady is designed to be fast, smart, and secure. See our core principles in action.
+              Ever copy text only to end up with a mess—random line breaks, weird spaces, and broken formatting? Tired of wasting time fixing what should be simple? We know the frustration of cleaning up chaos, just to get your work done.
             </p>
         </div>
 

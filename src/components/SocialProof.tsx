@@ -17,10 +17,7 @@ const SocialProof: React.FC = () => (
               <img src="/assets/trust-badge.png" alt="Trusted by Industry Leaders" className="ml-3 h-6 inline-block" />
             </div>
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-              Why Users{' '}
-              <span className="text-green-700 font-bold">
-                Love PromptReady
-              </span>
+              Don't Just Take Our Word for It.
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Join hundreds of developers, content creators, and professionals who've transformed their workflow
