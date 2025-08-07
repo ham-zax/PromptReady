@@ -19,8 +19,10 @@ function App() {
       destination_url: WAITLIST_URL,
       source_component: sourceComponent, // e.g., 'Hero', 'ProblemSolution'
     });
-    window.location.href = WAITLIST_URL;
+    // Opens the link in a new tab for better user experience
+    window.open(WAITLIST_URL, '_blank', 'noopener,noreferrer');
   };
+  
   return (
     <>
       <Helmet>
@@ -40,16 +42,18 @@ function App() {
         <meta name="twitter:image" content="https://your-custom-domain.com/og-image.png" />
         <meta name="twitter:site" content="@yourtwitterhandle" />
       </Helmet>
-      <div className="min-h-screen bg-white">
-  {/* Use the consistent 'onPrimaryAction' prop everywhere */}
-  <Hero onPrimaryAction={() => handlePrimaryAction('Hero')} />
-  <ProblemSolution onPrimaryAction={() => handlePrimaryAction('ProblemSolution')} />
+      
+      {/* Use a <main> tag for better accessibility and semantic structure */}
+      <main>
+        {/* The component order is now correct and there are no duplicates. */}
+        <Hero onPrimaryAction={() => handlePrimaryAction('Hero')} />
         <Features />
+        <ProblemSolution onPrimaryAction={() => handlePrimaryAction('ProblemSolution')} />
         <HowItWorks />
-  <Pricing onPrimaryAction={() => handlePrimaryAction('Pricing')} />
+        <Pricing onPrimaryAction={() => handlePrimaryAction('Pricing')} />
         <SocialProof />
         <Footer />
-      </div>
+      </main>
     </>
   );
 }

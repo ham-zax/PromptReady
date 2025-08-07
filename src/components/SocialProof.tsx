@@ -6,7 +6,7 @@ import Testimonials from "./Testimonials";
 import { ShieldCheck, Code2 } from "lucide-react"; 
 
 const SocialProof: React.FC = () => (
-  <section className="py-20 lg:py-32 bg-gray-50 relative overflow-hidden">
+  <section className="py-20 lg:py-32 bg-saffron-900 relative overflow-hidden">
     <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
     <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="text-center mb-20">
