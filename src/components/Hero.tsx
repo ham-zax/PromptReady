@@ -33,13 +33,13 @@ const Hero: React.FC<HeroProps> = ({ onPrimaryAction }) => (
             </div>
           </div>
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight animate-slide-up" style={{ animationDelay: '0.2s' }}>
-            Skip the Manual Cleanup. Get Instantly AI-Ready Content.
+            Stop Copying Clutter. Get Instantly AI-Ready Content.
           </h1>
           <p className="text-2xl font-semibold text-gray-800 mb-4 animate-slide-up" style={{ animationDelay: '0.4s' }}>
-            The one-click extension for developers, writers, and researchers that turns any web page into perfect, private context for your LLM.
+            The one-click extension for developers, writers, and researchers that transforms any webpage into perfect, private context for your LLM. Save 2+ hours weekly with instant, offline processing or optional AI enhancement.
           </p>
           <p className="text-xl text-gray-600 mb-10 max-w-4xl mx-auto leading-relaxed animate-slide-up" style={{ animationDelay: '0.6s' }}>
-            Save 2+ hours weekly copying web content. Get clean, AI-ready text instantly—works offline or with optional AI enhancement for perfect formatting.
+            100% client-side privacy. Works offline or with optional AI enhancement for perfect formatting.
           </p>
           <div className="flex justify-center mb-12 animate-slide-up" style={{ animationDelay: '0.8s' }}>
             <ShadcnWaitlistCard onPrimaryAction={onPrimaryAction} />
