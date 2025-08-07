@@ -1,6 +1,10 @@
 // src/hooks/useAnalytics.ts
 import { useEffect } from 'react';
 
+const trackEvent = (eventName: string, payload: Record<string, any>) => {
+  console.log(`[Analytics] Event: ${eventName}`, payload);
+};
+
 const useAnalytics = () => {
   useEffect(() => {
     const startTime = Date.now();
@@ -36,6 +40,8 @@ const useAnalytics = () => {
       window.removeEventListener('beforeunload', handleBeforeUnload);
     };
   }, []);
+  return trackEvent;
 };
 
+export { trackEvent };
 export default useAnalytics;

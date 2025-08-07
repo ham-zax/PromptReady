@@ -12,11 +12,14 @@ import useAnalytics from './hooks/useAnalytics';
 const WAITLIST_URL = "https://waitlister.me/p/promptready"; // TODO: Replace with actual URL
 
 function App() {
-  useAnalytics();
-  
+  const trackEvent = useAnalytics();
+
   // Centralized Action Handler for waitlist redirect
   const handlePrimaryAction = () => {
-    // TODO: Add analytics tracking here
+    trackEvent('primary_cta_click', {
+      destination_url: WAITLIST_URL,
+      component: 'App'
+    });
     window.location.href = WAITLIST_URL;
   };
   
