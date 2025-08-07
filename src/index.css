@@ -275,6 +275,7 @@
   }
   .theme {
     --animate-shine: shine var(--duration) infinite linear;
+    --animate-grid: grid 15s linear infinite;
   }
 }
 
@@ -328,6 +329,14 @@ input:focus-visible {
     }
   to {
     background-position: 0% 0%;
+    }
+  }
+  @keyframes grid {
+  0% {
+    transform: translateY(-50%);
+    }
+  100% {
+    transform: translateY(0);
     }
   }
 }
