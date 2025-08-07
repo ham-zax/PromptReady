@@ -8,7 +8,7 @@ const VideoDemo: React.FC = () => {
     <section className="py-8 lg:py-24">
 
       {/* Demo anchor */}
-      <div className="mb-10 flex justify-center">
+      <div className="mb-10 justify-center flex">
         <a
           href="#demo"
           aria-label="Watch a 30 second demo"
@@ -19,7 +19,7 @@ const VideoDemo: React.FC = () => {
         </a>
       </div>
       {/* Video/demo */}
-      <div id="demo">
+      <div id="demo" className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <div className="browser-mockup floating-card mx-auto max-w-4xl">
           <div className="browser-header">
             <div className="browser-dot bg-red-500"></div>
