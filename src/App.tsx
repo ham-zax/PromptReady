@@ -13,21 +13,21 @@ const WAITLIST_URL = "https://waitlister.me/p/promptready"; // TODO: Replace wit
 
 function App() {
   // Centralized Action Handler for waitlist redirect
-  const handlePrimaryAction = () => {
+  const handlePrimaryAction = (sourceComponent: string) => {
     trackEvent('primary_cta_click', {
       destination_url: WAITLIST_URL,
-      component: 'App'
+      source_component: sourceComponent, // e.g., 'Hero', 'ProblemSolution'
     });
     window.location.href = WAITLIST_URL;
   };
-  
   return (
     <div className="min-h-screen bg-white">
-      <Hero scrollToSignup={handlePrimaryAction} />
-      <ProblemSolution onTryNow={handlePrimaryAction} />
+      {/* Pass a string to identify the source of the click */}
+      <Hero onPrimaryAction={() => handlePrimaryAction('Hero')} />
+      <ProblemSolution onTryNow={() => handlePrimaryAction('ProblemSolution')} />
       <Features />
       <HowItWorks />
-      <Pricing scrollToSignup={handlePrimaryAction} />
+      <Pricing onPrimaryAction={() => handlePrimaryAction('Pricing')} />
       <SocialProof />
       <Footer />
     </div>

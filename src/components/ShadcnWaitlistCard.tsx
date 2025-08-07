@@ -4,10 +4,10 @@ import { Card, CardContent } from "./ui/card";
 import { BorderBeam } from "./magicui/border-beam";
 
 interface ShadcnWaitlistCardProps {
-  scrollToSignup: () => void;
+  onPrimaryAction: () => void;
 }
-
-export function ShadcnWaitlistCard({ scrollToSignup }: ShadcnWaitlistCardProps) {
+ 
+export function ShadcnWaitlistCard({ onPrimaryAction }: ShadcnWaitlistCardProps) {
   return (
     // THE FIX: A new wrapper div that acts as the positioning context.
     <div className="relative w-full max-w-md">
@@ -18,7 +18,7 @@ export function ShadcnWaitlistCard({ scrollToSignup }: ShadcnWaitlistCardProps) 
             Be the first to experience perfectly clean web copy.
           </p>
           <Button
-            onClick={scrollToSignup}
+            onClick={onPrimaryAction}
             className="w-full text-lg h-12"
             aria-label="Join the Waitlist for Early Access"
           >

@@ -2,10 +2,10 @@ import React from 'react';
 import { Award } from 'lucide-react';
 
 interface PricingProps {
-  scrollToSignup: () => void;
+  onPrimaryAction: () => void;
 }
-
-const Pricing: React.FC<PricingProps> = ({ scrollToSignup }) => (
+ 
+const Pricing: React.FC<PricingProps> = ({ onPrimaryAction }) => (
   <section className="py-16 lg:py-24">
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
@@ -25,7 +25,7 @@ const Pricing: React.FC<PricingProps> = ({ scrollToSignup }) => (
         </div>
       </div>
       <button
-        onClick={scrollToSignup}
+        onClick={onPrimaryAction}
         className="bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200 transform hover:scale-105 shadow-lg"
       tabIndex={0}
       aria-label="Get Early Access – Limited Beta Spots!"

@@ -6,10 +6,10 @@ import { BorderBeam } from './magicui/border-beam';
 import { ShadcnWaitlistCard } from './ShadcnWaitlistCard';
 
 interface HeroProps {
-  scrollToSignup: () => void;
+  onPrimaryAction: () => void;
 }
-
-const Hero: React.FC<HeroProps> = ({ scrollToSignup }) => (
+ 
+const Hero: React.FC<HeroProps> = ({ onPrimaryAction }) => (
   <section className="relative bg-white overflow-hidden">
     {/* Globe background element */}
     <div className="absolute top-[7%] left-0 right-0 h-[600px] z-0 [mask-image:linear-gradient(to_bottom,white_0%,transparent_80%)] pointer-events-none scale-125">
@@ -36,13 +36,13 @@ const Hero: React.FC<HeroProps> = ({ scrollToSignup }) => (
             Skip the Manual Cleanup. Get Instantly AI-Ready Content.
           </h1>
           <p className="text-2xl font-semibold text-gray-800 mb-4 animate-slide-up" style={{ animationDelay: '0.4s' }}>
-            The one-click extension that turns any web page into perfect, private context for your LLM.
+            The one-click extension for developers, writers, and researchers that turns any web page into perfect, private context for your LLM.
           </p>
           <p className="text-xl text-gray-600 mb-10 max-w-4xl mx-auto leading-relaxed animate-slide-up" style={{ animationDelay: '0.6s' }}>
             Save 2+ hours weekly copying web content. Get clean, AI-ready text instantly—works offline or with optional AI enhancement for perfect formatting.
           </p>
           <div className="flex justify-center mb-12 animate-slide-up" style={{ animationDelay: '0.8s' }}>
-            <ShadcnWaitlistCard scrollToSignup={scrollToSignup} />
+            <ShadcnWaitlistCard onPrimaryAction={onPrimaryAction} />
           </div>
         </div>
         <div className="mb-12 animate-slide-up" style={{ animationDelay: '1s' }}>
@@ -147,7 +147,7 @@ export default Hero;
 
 {/* Sticky CTA for mobile */ }
 {/*
-  Sticky CTA for mobile moved inside the Hero component to ensure access to scrollToSignup prop.
+  Sticky CTA for mobile moved inside the Hero component to ensure access to onPrimaryAction prop.
 */}
 
 // TODO: Integrate A/B testing logic for CTA text, color, and placement
