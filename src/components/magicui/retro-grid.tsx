@@ -1,4 +1,4 @@
-import { cn } from "../../lib/utils";
+import { cn } from '@/lib/utils';
 
 
 interface RetroGridProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -37,7 +37,7 @@ export function RetroGrid({
   className,
   angle = 65,
   cellSize = 60,
-  opacity = 0.5,
+  opacity = 1,
   lightLineColor = "gray",
   darkLineColor = "gray",
   ...props

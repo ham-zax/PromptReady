@@ -73,13 +73,13 @@ function App() {
 
               {/* Section 6: BeforeAfter (Fades from Purple back to White) */}
               <section className="relative bg-gradient-to-b from-purple-50 to-white">
-                <BeforeAfter />
+                <SocialProof />
               </section>
 
               {/* Section 7: SocialProof (Sits on the clean White background) */}
-              <section className="relative bg-white">
+              {/* <section className="relative bg-white">
                 <SocialProof />
-              </section>
+              </section> */}
 
               {/* Section 8: Pricing (Sits on White, with a gradient overlay fading to dark) */}
               <section className="relative bg-white">

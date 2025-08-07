@@ -28,10 +28,12 @@ const Hero: React.FC<HeroProps> = ({ onPrimaryAction }) => {
     <section className="relative overflow-hidden">
       {/* Optional soft brand glow to anchor hero */}
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(1200px_600px_at_50%_-200px,rgba(59,130,246,0.12),transparent_70%)]" />
+
       {/* Subtle retro grid background */}
-      <div className="pointer-events-none absolute inset-x-0 top-[6%] z-0 h-[560px] scale-125 [mask-image:linear-gradient(to_bottom,white_0%,transparent_80%)]">
+      <div className="pointer-events-none absolute inset-x-0 top-[6%] z-0 h-[500px] w-full overflow-hidden">
         <RetroGrid />
       </div>
+
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
         {/* Top copy */}
@@ -110,7 +112,7 @@ const Hero: React.FC<HeroProps> = ({ onPrimaryAction }) => {
           </div> */}
 
           {/* Micro FAQ near CTA */}
-         {/*  <div className="mx-auto mb-12 max-w-3xl text-left text-sm text-slate-700">
+          {/*  <div className="mx-auto mb-12 max-w-3xl text-left text-sm text-slate-700">
             <dl className="grid grid-cols-1 gap-4 sm:grid-cols-3">
               <div>
                 <dt className="mb-1 text-xs uppercase tracking-wide text-slate-500">Is it private?</dt>
