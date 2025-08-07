@@ -41,12 +41,12 @@ function App() {
         <meta name="twitter:site" content="@yourtwitterhandle" />
       </Helmet>
       <div className="min-h-screen bg-white">
-        {/* Pass a string to identify the source of the click */}
-        <Hero onPrimaryAction={() => handlePrimaryAction('Hero')} />
+  {/* Use the consistent 'onPrimaryAction' prop everywhere */}
+  <Hero onPrimaryAction={() => handlePrimaryAction('Hero')} />
   <ProblemSolution onPrimaryAction={() => handlePrimaryAction('ProblemSolution')} />
         <Features />
         <HowItWorks />
-        <Pricing onPrimaryAction={() => handlePrimaryAction('Pricing')} />
+  <Pricing onPrimaryAction={() => handlePrimaryAction('Pricing')} />
         <SocialProof />
         <Footer />
       </div>
