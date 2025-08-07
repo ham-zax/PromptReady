@@ -1,16 +1,20 @@
+
 import React from 'react';
-import { Lock, Zap, Award, ArrowRight, Star, Wand2, Play } from 'lucide-react';
-import { Globe } from "./magicui/globe";
-import { ShineBorder } from "./magicui/shine-border";
-import { BorderBeam } from './magicui/border-beam';
-import { Pointer } from './magicui/pointer';
+import { Lock, Zap, Award, ArrowRight, Wand2, Play } from 'lucide-react';
+import { Globe } from './magicui/globe';
 import { ShadcnWaitlistCard } from './ShadcnWaitlistCard';
-import { motion } from 'framer-motion';
+import { motion, Transition } from 'framer-motion';
 
 interface HeroProps {
   onPrimaryAction: () => void;
 }
- 
+
+const spring: Transition = {
+  type: 'spring',
+  stiffness: 300,
+  damping: 26,
+};
+
 const Hero: React.FC<HeroProps> = ({ onPrimaryAction }) => {
   React.useEffect(() => {
     console.log('[Startup] Hero.tsx: Hero mounted');
@@ -18,221 +22,187 @@ const Hero: React.FC<HeroProps> = ({ onPrimaryAction }) => {
       console.log('[Startup] Hero.tsx: Hero unmounted');
     };
   }, []);
+
   return (
-    <section className="relative bg-white overflow-hidden">
-      {/* Globe background element */}
-      <div className="absolute top-[7%] left-0 right-0 h-[600px] z-0 [mask-image:linear-gradient(to_bottom,white_0%,transparent_80%)] pointer-events-none scale-125">
-        <Globe className="w-full h-full" />
+    <section className="relative overflow-hidden bg-white">
+      {/* Subtle globe background */}
+      <div className="pointer-events-none absolute inset-x-0 top-[6%] z-0 h-[560px] scale-125 [mask-image:linear-gradient(to_bottom,white_0%,transparent_80%)]">
+        <Globe className="h-full w-full" />
       </div>
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
+
+      <div className="relative z-10 mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-20">
+        {/* Top copy */}
         <div className="text-center">
-  <div className="mb-8">
-          <motion.div
-            className="flex justify-center flex-wrap gap-4 mb-8"
-            initial="hidden"
-            animate="visible"
-            variants={{
-              visible: {
-                transition: {
-                  staggerChildren: 0.12
-                }
-              }
-            }}
-          >
-            
-            <motion.div
-              className="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-full text-sm font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
-              variants={{
-                hidden: { opacity: 0, y: 24 },
-                visible: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 400, damping: 24 } }
-              }}
+          <div className="mb-8 flex flex-wrap justify-center gap-3">
+            <motion.span
+              className="inline-flex items-center gap-2 rounded-full bg-blue-600 px-4 py-2 text-xs font-semibold text-white shadow-sm"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ ...spring, delay: 0.05 }}
             >
-              <Lock className="w-4 h-4 mr-2" />
-              100% Client-Side Privacy
-            </motion.div>
-            <motion.div
-              className="inline-flex items-center px-6 py-3 bg-green-600 text-white rounded-full text-sm font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
-              variants={{
-                hidden: { opacity: 0, y: 24 },
-                visible: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 400, damping: 24 } }
-              }}
+              <Lock className="h-4 w-4" />
+              Client‑side privacy
+            </motion.span>
+            <motion.span
+              className="inline-flex items-center gap-2 rounded-full bg-emerald-600 px-4 py-2 text-xs font-semibold text-white shadow-sm"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ ...spring, delay: 0.12 }}
             >
-              <Zap className="w-4 h-4 mr-2" />
-              Lightning Fast
-            </motion.div>
-            <motion.div
-              className="inline-flex items-center px-6 py-3 bg-purple-600 text-white rounded-full text-sm font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
-              variants={{
-                hidden: { opacity: 0, y: 24 },
-                visible: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 400, damping: 24 } }
-              }}
+              <Zap className="h-4 w-4" />
+              Blazingly fast
+            </motion.span>
+            <motion.span
+              className="inline-flex items-center gap-2 rounded-full bg-violet-600 px-4 py-2 text-xs font-semibold text-white shadow-sm"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ ...spring, delay: 0.18 }}
             >
-              <Award className="w-4 h-4 mr-2" />
-              Manifest V3 Compliant
-            </motion.div>
-          </motion.div>
+              <Award className="h-4 w-4" />
+              Manifest V3 ready
+            </motion.span>
+          </div>
+
           <motion.h1
-            className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight"
-            initial={{ opacity: 0, y: 32 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ type: "spring", stiffness: 300, damping: 30, delay: 0.1 }}
-          >
-            Stop Copying Clutter. Get Instantly AI-Ready Content.
-          </motion.h1>
-          <motion.p
-            className="text-2xl font-semibold text-gray-800 mb-4"
+            className="mb-4 text-5xl font-bold leading-tight text-slate-900 sm:text-6xl lg:text-7xl"
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ type: "spring", stiffness: 300, damping: 30, delay: 0.2 }}
+            transition={{ ...spring, delay: 0.1 }}
           >
-            The one-click extension for developers, writers, and researchers that transforms any webpage into perfectly structured text for your LLM, saving you 2+ hours weekly.
+            Copy clean, AI‑ready text. Instantly.
+          </motion.h1>
+
+          <motion.p
+            className="mx-auto mb-8 max-w-3xl text-lg font-medium text-slate-700 sm:text-xl"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ ...spring, delay: 0.18 }}
+          >
+            One‑click extension that turns any page into structured, distraction‑free text for ChatGPT, Claude, or your LLM workflow — with private, on‑device parsing.
           </motion.p>
-          
-          <div className="flex justify-center mb-12 mt-12">
+
+          <div className="mb-12 flex justify-center">
             <ShadcnWaitlistCard onPrimaryAction={onPrimaryAction} />
           </div>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 mb-10 max-w-4xl mx-auto relative">
-            {/* Standard Card */}
-            <div className="relative bg-gradient-to-br from-white to-blue-200 border border-blue-100 rounded-l-2xl rounded-r-none p-8 flex flex-col justify-center items-start z-10">
-              <div className="flex items-center mb-4">
-                <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-blue-100 mr-3">
-                  <Star className="w-6 h-6 text-blue-600" />
-                </span>
-                <span className="text-xl font-bold text-blue-600">Standard</span>
-              </div>
-              <h4 className="text-lg font-semibold text-blue-700 mb-2">Offline & Private</h4>
-              
-              <ul className="list-disc list-inside text-gray-800 space-y-2 text-base mb-4">
-                <li>
-                  <span className="font-semibold">Instant Parsing:</span> Transforms webpage clutter into structured, readable text in milliseconds.
-                </li>
-                <li>
-                  <span className="font-semibold">100% Client-Side Privacy:</span> This standard mode runs entirely on your device. Your data never leaves your machine.
-                </li>
-              </ul>
-              <Pointer>
-                <motion.div
-                  animate={{
-                    scale: [0.8, 1.1, 0.8],
-                    rotate: [0, 10, -10, 0],
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                >
-                  <div className="text-2xl">👆</div>
-                </motion.div>
-              </Pointer>
-            </div>
-            {/* Dotted Separator */}
-            <div className="hidden lg:block absolute left-1/2 top-8 bottom-8 w-0.5 z-0" aria-hidden="true">
-              <div className="h-full border-l-2 border-dotted border-gray-300"></div>
-            </div>
-            {/* Optional AI Card */}
-            <div className="relative bg-gradient-to-br from-purple-200 to-white border border-purple-100 rounded-r-2xl rounded-l-none p-8 flex flex-col justify-center items-start z-10">
-              <div className="flex items-center mb-4">
-                <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-purple-100 mr-3">
-                  <Wand2 className="w-6 h-6 text-purple-600" />
-                </span>
-                <span className="text-xl font-bold text-purple-600">Optional AI</span>
-              </div>
-              <h4 className="text-lg font-semibold text-purple-700 mb-2">Cloud-Powered</h4>
-              <ul className="list-disc list-inside text-gray-800 space-y-2 text-base mb-4">
-                <li>
-                  <span className="font-semibold">Perfect Formatting:</span> Go beyond simple parsing. Use our secure API to get perfectly structured content for any LLM.
-                </li>
-                <li>
-                  <span className="font-semibold">Advanced Features:</span> Unlock auto-summaries, custom formatting, and more.
-                </li>
-              </ul>
-              <Pointer>
-                <motion.div
-                  animate={{
-                    scale: [0.9, 1.2, 0.9],
-                    rotate: [0, -5, 5, 0],
-                  }}
-                  transition={{
-                    duration: 1.8,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: 0.5,
-                  }}
-                >
-                  <div className="text-2xl">✨</div>
-                </motion.div>
-              </Pointer>
-            </div>
-          </div>
-          <div className="flex justify-center mb-6">
-            <a
-              href="#browser-mockup"
-              className="inline-flex items-center px-5 py-2 bg-blue-50 text-blue-700 rounded-full text-base font-semibold shadow hover:bg-blue-100 transition-all duration-200"
-              style={{ textDecoration: 'none' }}
-            >
-              <ArrowRight className="w-4 h-4 mr-2" />
-              Watch a Quick Demo
-            </a>
-          </div>
         </div>
-        <div className="mb-12">
-          <div className="max-w-5xl mx-auto">
-            <div className="text-center mb-8">
+
+        {/* Modes */}
+        <div className="mx-auto mb-12 grid max-w-4xl grid-cols-1 gap-4 md:grid-cols-2">
+          <motion.div
+            className="relative rounded-2xl border border-slate-200 bg-gradient-to-b from-white to-slate-50 p-6 shadow-sm"
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ ...spring, delay: 0.05 }}
+          >
+            <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-slate-100 px-3 py-1 text-sm font-semibold text-slate-700">
+              <Lock className="h-4 w-4 text-slate-600" />
+              Local mode
             </div>
-            <div className="browser-mockup floating-card max-w-4xl mx-auto">
+            <h4 className="mb-2 text-lg font-semibold text-slate-900">Offline & private</h4>
+            <ul className="space-y-2 text-slate-700">
+              <li>
+                Instant parsing that strips ads, pop‑ups, and chrome from any page — keeps only the content that matters.
+              </li>
+              <li>
+                100% client‑side. Nothing leaves your machine.
+              </li>
+            </ul>
+          </motion.div>
+
+          <motion.div
+            className="relative rounded-2xl border border-violet-200 bg-gradient-to-b from-white to-violet-50 p-6 shadow-sm"
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ ...spring, delay: 0.12 }}
+          >
+            <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-violet-100 px-3 py-1 text-sm font-semibold text-violet-700">
+              <Wand2 className="h-4 w-4 text-violet-700" />
+              Cloud extras
+            </div>
+            <h4 className="mb-2 text-lg font-semibold text-slate-900">Optional AI formatting</h4>
+            <ul className="space-y-2 text-slate-700">
+              <li>
+                Perfect, LLM‑ready structure via our secure API when you want more than basic parsing.
+              </li>
+              <li>
+                Extras: auto‑summaries, custom templates, and export.
+              </li>
+            </ul>
+          </motion.div>
+        </div>
+
+        {/* Demo anchor */}
+        <div className="mb-10 flex justify-center">
+          <a
+            href="#demo"
+            aria-label="Watch a 30 second demo"
+            className="inline-flex items-center gap-2 rounded-full bg-blue-50 px-5 py-2 text-base font-semibold text-blue-700 transition-colors duration-200 hover:bg-blue-100"
+          >
+            <ArrowRight className="h-4 w-4" />
+            Watch a 30s demo
+          </a>
+        </div>
+
+        {/* Before / After mockup */}
+        <div className="mb-12">
+          <div className="mx-auto max-w-5xl">
+            <div className="browser-mockup floating-card mx-auto max-w-4xl">
               <div className="browser-header">
                 <div className="browser-dot bg-red-500"></div>
                 <div className="browser-dot bg-yellow-500"></div>
                 <div className="browser-dot bg-green-500"></div>
-                <div className="ml-4 bg-gray-200 rounded-full px-4 py-1 text-sm text-gray-600 font-medium">
-                  example-article.com
+                <div className="ml-4 rounded-full bg-gray-200 px-4 py-1 text-sm font-medium text-gray-700">
+                  example‑article.com
                 </div>
                 <div className="ml-auto">
-                  <div className="inline-flex items-center px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-medium">
-                    <Wand2 className="w-3 h-3 mr-1" />
-                    PromptReady Active
+                  <div className="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-xs font-medium text-blue-700">
+                    <Wand2 className="mr-1 h-3 w-3" />
+                    PromptReady On
                   </div>
                 </div>
               </div>
-              <div className="p-8">
-                <div className="grid md:grid-cols-2 gap-8">
+
+              <div className="p-6 sm:p-8">
+                <div className="grid gap-8 md:grid-cols-2">
                   <div className="space-y-4">
-                    <h4 className="font-bold text-red-800 text-lg flex items-center">
-                      <span className="w-3 h-3 bg-red-500 rounded-full mr-2"></span>
-                      Before: Messy Copy
+                    <h4 className="flex items-center text-lg font-bold text-rose-800">
+                      <span className="mr-2 h-3 w-3 rounded-full bg-rose-500"></span>
+                      Before: messy copy
                     </h4>
                     <div className="space-y-3 text-sm">
-                      <div className="bg-red-100 border border-red-300 p-3 rounded-lg">
-                        <div className="text-red-700 font-medium">🎯 LIMITED TIME OFFER! 50% OFF!</div>
+                      <div className="rounded-lg border border-rose-300 bg-rose-50 p-3">
+                        <div className="font-medium text-rose-700">Limited‑time offer! 50% off!</div>
                       </div>
-                      <div className="text-gray-700 leading-relaxed">
-                        Important article content about AI and machine learning trends in 2024...
+                      <p className="leading-relaxed text-slate-700">
+                        Important article content about AI and ML trends in 2024…
+                      </p>
+                      <div className="rounded-lg border border-amber-300 bg-amber-50 p-3">
+                        <div className="font-medium text-amber-700">Subscribe to our newsletter</div>
                       </div>
-                      <div className="bg-yellow-100 border border-yellow-300 p-3 rounded-lg">
-                        <div className="text-yellow-700 font-medium">📧 Subscribe to our newsletter!</div>
-                      </div>
-                      <div className="text-gray-700 leading-relaxed">
-                        More valuable content mixed with promotional elements...
-                      </div>
-                      <div className="bg-gray-100 border border-gray-300 p-3 rounded-lg">
-                        <div className="text-gray-600 text-xs">Footer • Privacy Policy • Terms of Service</div>
+                      <p className="leading-relaxed text-slate-700">
+                        More valuable content mixed with promotional elements…
+                      </p>
+                      <div className="rounded-lg border border-slate-300 bg-slate-50 p-3">
+                        <div className="text-xs text-slate-600">Footer • Privacy • Terms</div>
                       </div>
                     </div>
                   </div>
+
                   <div className="space-y-4">
-                    <h4 className="font-bold text-green-800 text-lg flex items-center">
-                      <span className="w-3 h-3 bg-green-500 rounded-full mr-2"></span>
-                      After: PromptReady
+                    <h4 className="flex items-center text-lg font-bold text-emerald-800">
+                      <span className="mr-2 h-3 w-3 rounded-full bg-emerald-500"></span>
+                      After: AI‑ready
                     </h4>
                     <div className="space-y-3 text-sm">
-                      <div className="font-semibold text-gray-900 text-lg">
+                      <div className="text-lg font-semibold text-slate-900">
                         # AI and Machine Learning Trends in 2024
                       </div>
-                      <div className="text-gray-700 leading-relaxed space-y-2">
-                        <p>Clean, structured content ready for AI processing.</p>
-                        <p>No ads, no distractions, just pure information.</p>
-                        <p>Perfectly formatted for ChatGPT, Claude, or any LLM.</p>
+                      <div className="space-y-2 leading-relaxed text-slate-700">
+                        <p>Clean, structured content. No ads. No pop‑ups.</p>
+                        <p>Perfect for ChatGPT, Claude, or any LLM.</p>
+                        <p>Copy once. Paste anywhere.</p>
                       </div>
                     </div>
                   </div>
@@ -241,37 +211,41 @@ const Hero: React.FC<HeroProps> = ({ onPrimaryAction }) => {
             </div>
           </div>
         </div>
-        <div id="browser-mockup" className="mb-12">
-          <div className="browser-mockup floating-card max-w-4xl mx-auto">
+
+        {/* Video/demo */}
+        <div id="demo" className="mb-12">
+          <div className="browser-mockup floating-card mx-auto max-w-4xl">
             <div className="browser-header">
               <div className="browser-dot bg-red-500"></div>
               <div className="browser-dot bg-yellow-500"></div>
               <div className="browser-dot bg-green-500"></div>
-              <div className="ml-4 bg-blue-100 rounded-full px-4 py-1 text-sm font-medium">
-                🎬 Quick Demo (30s)
+              <div className="ml-4 rounded-full bg-blue-100 px-4 py-1 text-sm font-medium text-blue-800">
+                🎬 Quick demo (30s)
               </div>
             </div>
-            <div
-              className="aspect-video bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 flex items-center justify-center cursor-pointer hover:bg-gradient-to-br hover:from-blue-200 hover:via-purple-200 hover:to-pink-200 transition-all duration-300 group"
+
+            <button
+              type="button"
+              aria-label="Play demo video"
               onClick={() => {
                 console.log('🎬 VIDEO_CLICK: User clicked video demo placeholder');
-                alert('Video demo coming soon! This click shows user interest in seeing the product in action.');
+                alert('Video demo coming soon! Click recorded.');
               }}
+              className="group flex aspect-video w-full items-center justify-center bg-gradient-to-br from-blue-50 via-violet-50 to-pink-50 transition-all duration-300 hover:from-blue-100 hover:via-violet-100 hover:to-pink-100"
             >
               <div className="text-center">
-                <div className="bg-white rounded-full p-6 mb-4 shadow-2xl inline-block group-hover:scale-110 transition-transform duration-300">
-                  <Play className="w-12 h-12 text-blue-600" />
+                <div className="mb-4 inline-block rounded-full bg-white p-6 shadow-2xl transition-transform duration-300 group-hover:scale-110">
+                  <Play className="h-12 w-12 text-blue-600" />
                 </div>
-                <p className="text-gray-800 font-bold text-lg mb-2">Watch: Install → Copy Clean Text → Paste Anywhere</p>
-                <p className="text-blue-600 font-semibold">Coming after validation • Click to show interest!</p>
+                <p className="mb-1 text-lg font-bold text-slate-900">Install → Copy clean text → Paste anywhere</p>
+                <p className="font-semibold text-blue-700">Public demo soon — click to show interest</p>
               </div>
-            </div>
+            </button>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
   );
-}
+};
 
 export default Hero;
