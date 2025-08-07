@@ -1,9 +1,8 @@
 // src/components/SocialProof.tsx
 
 import React from "react";
+import { ShieldCheck, Code2 } from "lucide-react";
 import Testimonials from "./Testimonials";
-// We'll use icons that represent quality and security
-import { ShieldCheck, Code2 } from "lucide-react"; 
 
 const SocialProof: React.FC = () => (
   <section className="py-20 lg:py-32 bg-saffron-900 relative overflow-hidden">
@@ -24,10 +23,10 @@ const SocialProof: React.FC = () => (
         {/* --- END REFACTORED BADGES --- */}
         
         <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 my-6">
-          Don't Just Take Our Word for It.
+          Help Us Build Trust—Share Your Feedback!
         </h2>
         <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-          Here's what early testers are saying about how PromptReady transforms their workflow.
+          We're just launching and would love your honest feedback. Be among the first to shape PromptReady and see your testimonial featured here.
         </p>
       </div>
 
