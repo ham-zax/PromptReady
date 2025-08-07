@@ -29,32 +29,31 @@ function App() {
     <>
       <Helmet>
         {/* --- Standard SEO Meta Tags --- */}
-        <title>PromptReady: Instant, AI-Ready Web Content</title>
-        <meta name="description" content="Stop the manual copy-paste-cleanse cycle. PromptReady is a one-click browser extension that turns any web page into perfect, private context for your LLM." />
+        <title>PromptReady: Get Instantly AI-Ready Content</title>
+        <meta name="description" content="Tired of messy copy-pasting? PromptReady is the one-click extension that instantly cleans any webpage into perfect, private context for your LLM." />
         <link rel="canonical" href="https://promptready.vercel.app/" />
 
-        {/* --- Open Graph Tags for Social Sharing (Facebook, WhatsApp, LinkedIn, etc.) --- */}
-        {/* Basic OG Tags */}
+        {/* --- Open Graph Tags with Conversion-Oriented Copy --- */}
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="PromptReady: Instant, AI-Ready Web Content" />
-        <meta property="og:description" content="Stop the manual copy-paste-cleanse cycle. PromptReady turns any web page into perfect context for your LLM." />
-        <meta property="og:url" content="https://promptready.vercel.app/" />
-
-        {/* ✨ ENHANCED OG Tags ✨ */}
         <meta property="og:site_name" content="PromptReady" />
+        <meta property="og:url" content="https://promptready.vercel.app/" />
         <meta property="og:locale" content="en_US" />
 
-        {/* Image Tags - CRITICAL for Previews */}
+        {/* ✨ Optimized Billboard Text ✨ */}
+        <meta property="og:title" content="Get Instantly AI-Ready Content with PromptReady" />
+        <meta property="og:description" content="Tired of messy copy-pasting? PromptReady is the one-click extension that instantly cleans any webpage into perfect, private context for your LLM." />
+
+        {/* Image Tags */}
         <meta property="og:image" content="https://promptready.vercel.app/og-image.png" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:image:alt" content="PromptReady Logo and Headline: Skip the Manual Cleanup. Get Instantly AI-Ready Content." />
 
-        {/* --- Twitter Card Tags --- */}
+        {/* --- Twitter Card Tags (inherits from OG, but we specify for clarity) --- */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@YourActualTwitterHandle" />
-        <meta name="twitter:title" content="PromptReady: Instant, AI-Ready Web Content" />
-        <meta name="twitter:description" content="Stop the manual copy-paste-cleanse cycle. PromptReady turns any web page into perfect context for your LLM." />
+        <meta name="twitter:title" content="Get Instantly AI-Ready Content with PromptReady" />
+        <meta name="twitter:description" content="Tired of messy copy-pasting? PromptReady is the one-click extension that instantly cleans any webpage into perfect, private context for your LLM." />
         <meta name="twitter:image" content="https://promptready.vercel.app/og-image.png" />
       </Helmet>
 
