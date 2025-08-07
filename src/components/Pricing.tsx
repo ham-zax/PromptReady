@@ -6,19 +6,19 @@ interface PricingProps {
 }
  
 const Pricing: React.FC<PricingProps> = ({ onPrimaryAction }) => (
-  <section className="py-16 lg:py-24 bg-white">
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+  <section className="py-8 sm:py-16 lg:py-24 bg-white">
+    <div className="max-w-md sm:max-w-2xl lg:max-w-4xl mx-auto px-2 sm:px-4 lg:px-8 text-center">
+      <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 sm:mb-4">
         Ready to Reclaim Your Time?
       </h2>
-      <p className="text-lg text-gray-600 mb-8">
+      <p className="text-base sm:text-lg text-gray-600 mb-6 sm:mb-8">
         Get early access to new features, help shape the product, and enjoy exclusive updates.
       </p>
-      <div className="bg-green-50 rounded-2xl p-8 mb-8 border">
+      <div className="bg-green-50 rounded-xl sm:rounded-2xl p-4 sm:p-8 mb-6 sm:mb-8 border">
         <div className="text-center">
-          <div className="text-3xl font-bold text-green-600 mb-2">FREE FOREVER</div>
-          <p className="text-lg text-gray-700 mb-4">Instant clean text extraction, offline processing, basic AI features</p>
-          <div className="inline-flex items-center px-4 py-2 bg-white rounded-full text-sm font-medium text-gray-700 shadow-md">
+          <div className="text-2xl sm:text-3xl font-bold text-green-600 mb-1 sm:mb-2">FREE FOREVER</div>
+          <p className="text-base sm:text-lg text-gray-700 mb-3 sm:mb-4">Instant clean text extraction, offline processing, basic AI features</p>
+          <div className="inline-flex items-center px-3 sm:px-4 py-1.5 sm:py-2 bg-white rounded-full text-xs sm:text-sm font-medium text-gray-700 shadow-md">
             <Award className="w-4 h-4 mr-2 text-green-600" />
             Enterprise-Ready • Privacy-First • Manifest V3
           </div>
@@ -26,12 +26,12 @@ const Pricing: React.FC<PricingProps> = ({ onPrimaryAction }) => (
       </div>
       <button
         onClick={onPrimaryAction}
-        className="bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200 transform hover:scale-105 shadow-lg"
-      tabIndex={0}
-      aria-label="Get Early Access – Limited Beta Spots!"
-    >
+        className="w-full sm:w-auto bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 text-white px-5 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold text-base sm:text-lg transition-all duration-200 transform hover:scale-105 shadow-lg"
+        tabIndex={0}
+        aria-label="Get Early Access – Limited Beta Spots!"
+      >
         Get Early Access
-        <span className="block text-xs text-blue-100 font-medium mt-2">Limited beta spots • No credit card required</span>
+        <span className="block text-xs text-blue-100 font-medium mt-1 sm:mt-2">Limited beta spots • No credit card required</span>
       </button>
     </div>
   </section>
