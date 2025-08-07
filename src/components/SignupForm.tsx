@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { CheckCircle, Clock } from 'lucide-react';
+import { trackWaitlistSubmit } from '../hooks/useAnalytics';
 
 const SignupForm: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -12,9 +13,12 @@ const SignupForm: React.FC = () => {
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 1000));
     setSignupStatus('success');
+    trackWaitlistSubmit({ method: 'inline_form' });
     setEmail('');
     setName('');
-    setTimeout(() => setSignupStatus('idle'), 3000);
+    // Route to thank you with SPA push and notify listeners
+    window.history.pushState({}, '', '/thank-you');
+    window.dispatchEvent(new PopStateEvent('popstate'));
   };
 
   return (

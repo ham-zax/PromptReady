@@ -3,12 +3,37 @@
 import { track as vercelTrack } from '@vercel/analytics';
 
 /**
+ * Minimal PostHog shim — sends events to PostHog if available on window.
+ */
+const posthogCapture = (eventName: string, payload: Record<string, any>) => {
+  try {
+    const w = window as any;
+    if (w && w.posthog && typeof w.posthog.capture === 'function') {
+      w.posthog.capture(eventName, payload);
+    }
+  } catch (e) {
+    // no-op
+  }
+};
+
+/**
  * A simple utility function to log analytics events.
- * This can be expanded to send data to any service (Google Analytics, Plausible, etc.).
+ * Expandable to any service (PostHog, Umami, Vercel, etc.).
  * @param eventName - The name of the event to track.
  * @param payload - A data object associated with the event.
  */
-export const trackEvent = (eventName: string, payload: Record<string, any>) => {
-  console.log(`[Analytics] Event: ${eventName}`, payload);
-  vercelTrack(eventName, payload); // Send event to Vercel Analytics
+export const trackEvent = (eventName: string, payload: Record<string, any> = {}) => {
+  try {
+    console.log(`[Analytics] Event: ${eventName}`, payload);
+    vercelTrack(eventName, payload);
+    posthogCapture(eventName, payload);
+  } catch (e) {
+    // swallow analytics errors
+  }
 };
+
+// Convenience helpers for common events
+export const trackHeroCtaClick = (extra: Record<string, any> = {}) => trackEvent('hero_cta_click', extra);
+export const trackDemoPlay = (extra: Record<string, any> = {}) => trackEvent('demo_play', extra);
+export const trackWaitlistSubmit = (extra: Record<string, any> = {}) => trackEvent('waitlist_submit', extra);
+export const trackLiveCleanUsed = (extra: Record<string, any> = {}) => trackEvent('live_clean_used', extra);

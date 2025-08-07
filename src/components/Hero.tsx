@@ -4,6 +4,7 @@ import { Lock, Zap, Award, ArrowRight, Wand2, Play } from 'lucide-react';
 import { Globe } from './magicui/globe';
 import { ShadcnWaitlistCard } from './ShadcnWaitlistCard';
 import { motion, Transition } from 'framer-motion';
+import { trackDemoPlay, trackHeroCtaClick } from '../hooks/useAnalytics';
 
 interface HeroProps {
   onPrimaryAction: () => void;
@@ -30,7 +31,7 @@ const Hero: React.FC<HeroProps> = ({ onPrimaryAction }) => {
         <Globe className="h-full w-full" />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-20">
+      <div className="relative z-10 mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
         {/* Top copy */}
         <div className="text-center">
           <div className="mb-8 flex flex-wrap justify-center gap-3">
@@ -73,7 +74,7 @@ const Hero: React.FC<HeroProps> = ({ onPrimaryAction }) => {
           </motion.h1>
 
           <motion.p
-            className="mx-auto mb-8 max-w-3xl text-lg font-medium text-slate-700 sm:text-xl"
+            className="mx-auto mb-6 max-w-4xl text-lg font-medium text-slate-700 sm:text-xl"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ ...spring, delay: 0.18 }}
@@ -81,15 +82,54 @@ const Hero: React.FC<HeroProps> = ({ onPrimaryAction }) => {
             One‑click extension that turns any page into structured, distraction‑free text for ChatGPT, Claude, or your LLM workflow — with private, on‑device parsing.
           </motion.p>
 
-          <div className="mb-12 flex justify-center">
+          {/* Primary CTA directly under headline (mirrors main action) */}
+          <div className="mb-6 flex justify-center">
+            <button
+              onClick={() => {
+                trackHeroCtaClick({ placement: 'hero_button' });
+                onPrimaryAction();
+              }}
+              className="inline-flex items-center gap-2 rounded-full bg-blue-600 px-6 py-3 text-base font-semibold text-white shadow-lg transition-colors hover:bg-blue-700"
+            >
+              Join the early access
+              <ArrowRight className="h-4 w-4" />
+            </button>
+          </div>
+
+          {/* Supporting credibility/badges */}
+          <div className="mx-auto mb-8 max-w-2xl text-center text-sm text-slate-600">
+            Privacy-first by design.
+            <div className="mt-3 text-xs uppercase tracking-wide text-slate-500">Chrome (soon) • Firefox (planned) • Edge (planned)</div>
+          </div>
+
+          {/* Keep a single primary action overall, but allow email card as alternate entry */}
+          <div className="mb-10 flex justify-center">
             <ShadcnWaitlistCard onPrimaryAction={onPrimaryAction} />
           </div>
+
+          {/* Micro FAQ near CTA */}
+         {/*  <div className="mx-auto mb-12 max-w-3xl text-left text-sm text-slate-700">
+            <dl className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+              <div>
+                <dt className="mb-1 text-xs uppercase tracking-wide text-slate-500">Is it private?</dt>
+                <dd>All default parsing runs on‑device; nothing leaves your machine.</dd>
+              </div>
+              <div>
+                <dt className="mb-1 text-xs uppercase tracking-wide text-slate-500">Paywalled sites?</dt>
+                <dd>Works on most public pages; support for paywalled PDFs coming.</dd>
+              </div>
+              <div>
+                <dt className="mb-1 text-xs uppercase tracking-wide text-slate-500">Pricing</dt>
+                <dd>Free local mode. Optional AI features planned from $5–$9/mo.</dd>
+              </div>
+            </dl>
+          </div> */}
         </div>
 
         {/* Modes */}
         <div className="mx-auto mb-12 grid max-w-4xl grid-cols-1 gap-4 md:grid-cols-2">
           <motion.div
-            className="relative rounded-2xl border border-slate-200 bg-gradient-to-b from-white to-slate-50 p-6 shadow-sm"
+            className="relative rounded-2xl border border-slate-200 bg-gradient-to-b from-white to-slate-200 p-6 shadow-sm"
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-80px' }}
@@ -228,6 +268,7 @@ const Hero: React.FC<HeroProps> = ({ onPrimaryAction }) => {
               type="button"
               aria-label="Play demo video"
               onClick={() => {
+                trackDemoPlay({ placement: 'hero_demo' });
                 console.log('🎬 VIDEO_CLICK: User clicked video demo placeholder');
                 alert('Video demo coming soon! Click recorded.');
               }}

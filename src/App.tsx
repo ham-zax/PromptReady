@@ -8,16 +8,22 @@ import Features from './components/Features';
 import HowItWorks from './components/HowItWorks';
 import Pricing from './components/Pricing';
 import Footer from './components/Footer';
-import { trackEvent } from './hooks/useAnalytics';
+import { trackEvent, trackHeroCtaClick } from './hooks/useAnalytics';
 import { Analytics } from '@vercel/analytics/react';
+import ThankYou from './pages/ThankYou';
 
 // Centralized waitlist URL
 const WAITLIST_URL = "https://waitlister.me/p/promptready"; // TODO: Replace with actual URL
 
 function App() {
+  const [currentPath, setCurrentPath] = React.useState<string>(typeof window !== 'undefined' ? window.location.pathname : '/');
+
   React.useEffect(() => {
     console.log('[Startup] App.tsx: App mounted');
+    const onPop = () => setCurrentPath(window.location.pathname);
+    window.addEventListener('popstate', onPop);
     return () => {
+      window.removeEventListener('popstate', onPop);
       console.log('[Startup] App.tsx: App unmounted');
     };
   }, []);
@@ -30,6 +36,9 @@ function App() {
     // Opens the link in a new tab for better user experience
     window.open(WAITLIST_URL, '_blank', 'noopener,noreferrer');
   };
+
+  // Simple no-router page switch for /thank-you
+  const isThankYou = currentPath === '/thank-you';
 
   return (
     <>
@@ -64,17 +73,44 @@ function App() {
       </Helmet>
 
       <Analytics />
-      {/* Use a <main> tag for better accessibility and semantic structure */}
-      <main>
-        {/* Persuasive narrative funnel order */}
-        <Hero onPrimaryAction={() => handlePrimaryAction('Hero')} />
-        <ProblemSolution onPrimaryAction={() => handlePrimaryAction('ProblemSolution')} />
-        <Features />
-        <HowItWorks />
-        <SocialProof />
-        <Pricing onPrimaryAction={() => handlePrimaryAction('Pricing')} />
-        <Footer />
-      </main>
+
+      {isThankYou ? (
+        <ThankYou />
+      ) : (
+        <>
+          {/* Sticky mobile CTA so action is always visible */}
+          <div className="fixed inset-x-0 bottom-3 z-50 mx-auto w-[92%] sm:hidden">
+            <button
+              onClick={() => {
+                trackHeroCtaClick({ placement: 'sticky_mobile' });
+                handlePrimaryAction('StickyMobile');
+              }}
+              className="w-full rounded-full bg-blue-600 px-5 py-3 text-center font-semibold text-white shadow-lg"
+            >
+              Join the early access
+            </button>
+          </div>
+
+          {/* Use a <main> tag for better accessibility and semantic structure */}
+          <main>
+            {/* Persuasive narrative funnel order */}
+            <Hero onPrimaryAction={() => handlePrimaryAction('Hero')} />
+            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+              <div className="my-12 border-t border-slate-100" />
+            </div>
+            <ProblemSolution onPrimaryAction={() => handlePrimaryAction('ProblemSolution')} />
+          
+            <Features />
+          
+            <HowItWorks />
+          
+            <SocialProof />
+          
+            <Pricing onPrimaryAction={() => handlePrimaryAction('Pricing')} />
+            <Footer />
+          </main>
+        </>
+      )}
     </>
   );
 }
