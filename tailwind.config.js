@@ -4,6 +4,15 @@ export default {
     content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}', './src/components/**/*.{js,ts,jsx,tsx}'],
   theme: {
   	extend: {
+  		animation: {
+  			shimmer: 'shimmer 2s linear infinite',
+  		},
+  		keyframes: {
+  			shimmer: {
+  				from: { backgroundPosition: '200% 0' },
+  				to: { backgroundPosition: '-200% 0' },
+  			},
+  		},
   		colors: {
   			charcoal: {
   				'100': '#080e11',

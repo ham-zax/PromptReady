@@ -32,7 +32,9 @@ export const ComparativeDisplay: React.FC<ComparativeDisplayProps> = ({
           <Sparkles className="w-5 h-5 mr-2" />
           <span>After</span>
         </div>
-        <div className="font-sans text-green-900">
+        <div
+          className="font-sans text-green-900 relative overflow-hidden before:content-[''] before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-green-200/60 before:to-transparent before:animate-shimmer before:bg-[length:200%_100%] before:pointer-events-none"
+        >
           {afterContent}
         </div>
       </div>
