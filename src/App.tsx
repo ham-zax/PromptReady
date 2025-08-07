@@ -6,14 +6,12 @@ import Features from './components/Features';
 import HowItWorks from './components/HowItWorks';
 import Pricing from './components/Pricing';
 import Footer from './components/Footer';
-import useAnalytics from './hooks/useAnalytics';
+import { trackEvent } from './hooks/useAnalytics';
 
 // Centralized waitlist URL
 const WAITLIST_URL = "https://waitlister.me/p/promptready"; // TODO: Replace with actual URL
 
 function App() {
-  const trackEvent = useAnalytics();
-
   // Centralized Action Handler for waitlist redirect
   const handlePrimaryAction = () => {
     trackEvent('primary_cta_click', {
@@ -26,7 +24,7 @@ function App() {
   return (
     <div className="min-h-screen bg-white">
       <Hero scrollToSignup={handlePrimaryAction} />
-      <ProblemSolution />
+      <ProblemSolution onTryNow={handlePrimaryAction} />
       <Features />
       <HowItWorks />
       <Pricing scrollToSignup={handlePrimaryAction} />

@@ -1,66 +1,38 @@
 // src/components/ui/ComparativeDisplay.tsx
-import React, { ReactNode } from "react";
-import { Wand2, Trash2 } from "lucide-react";
 
-export interface ComparativeDisplayProps {
-  beforeTitle: string;
-  beforeContent: ReactNode;
-  afterTitle: string;
-  afterContent: ReactNode;
+import React from 'react';
+import { Trash2, Sparkles } from 'lucide-react'; // A more "magical" icon for the "After" state
+
+interface ComparativeDisplayProps {
+  beforeContent: React.ReactNode;
+  afterContent: React.ReactNode;
 }
 
 export const ComparativeDisplay: React.FC<ComparativeDisplayProps> = ({
-  beforeTitle,
   beforeContent,
-  afterTitle,
   afterContent,
 }) => {
   return (
-    <div
-      style={{
-        display: "flex",
-        gap: "2rem",
-        width: "100%",
-        alignItems: "flex-start",
-      }}
-    >
-      {/* Before (Messy) */}
-      <div
-        style={{
-          flex: 1,
-          background: "#fff0f0",
-          border: "2px dashed #e57373",
-          borderRadius: "12px",
-          padding: "1.5rem",
-          boxShadow: "0 2px 8px 0 #e5737322",
-          position: "relative",
-        }}
-      >
-        <div style={{ display: "flex", alignItems: "center", marginBottom: "1rem" }}>
-          <Trash2 size={20} color="#e57373" style={{ marginRight: 8 }} />
-          <span style={{ fontWeight: 700, color: "#e57373" }}>{beforeTitle}</span>
+    // Use a responsive grid layout
+    <div className="grid md:grid-cols-2 gap-6 lg:gap-8 w-full max-w-5xl mx-auto">
+      {/* Before Column */}
+      <div className="bg-red-50/60 border-2 border-dashed border-red-300 rounded-xl p-6 min-h-[10rem] flex flex-col justify-center">
+        <div className="flex items-center text-red-600 font-bold mb-3">
+          <Trash2 className="w-5 h-5 mr-2" />
+          <span>Before</span>
         </div>
-        <div style={{ color: "#b71c1c", fontFamily: "monospace", fontSize: "1rem" }}>
+        <div className="font-mono text-red-900/80">
           {beforeContent}
         </div>
       </div>
-      {/* After (Clean) */}
-      <div
-        style={{
-          flex: 1,
-          background: "#f0fff7",
-          border: "2px solid #4caf50",
-          borderRadius: "12px",
-          padding: "1.5rem",
-          boxShadow: "0 2px 8px 0 #4caf5022",
-          position: "relative",
-        }}
-      >
-        <div style={{ display: "flex", alignItems: "center", marginBottom: "1rem" }}>
-          <Wand2 size={20} color="#4caf50" style={{ marginRight: 8 }} />
-          <span style={{ fontWeight: 700, color: "#388e3c" }}>{afterTitle}</span>
+
+      {/* After Column */}
+      <div className="bg-green-50/60 border-2 border-solid border-green-400 rounded-xl p-6 min-h-[10rem] flex flex-col justify-center shadow-lg shadow-green-500/10">
+        <div className="flex items-center text-green-700 font-bold mb-3">
+          <Sparkles className="w-5 h-5 mr-2" />
+          <span>After</span>
         </div>
-        <div style={{ color: "#1b5e20", fontFamily: "sans-serif", fontSize: "1rem" }}>
+        <div className="font-sans text-green-900">
           {afterContent}
         </div>
       </div>

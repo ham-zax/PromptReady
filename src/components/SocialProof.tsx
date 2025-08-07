@@ -1,7 +1,6 @@
 import React from "react";
 import Testimonials from "./Testimonials";
-import SignupForm from "./SignupForm";
-import { Users } from "lucide-react";
+import { Users, BadgeCheck } from "lucide-react";
 
 const SocialProof: React.FC = () => (
   <section className="py-20 lg:py-32 bg-gray-50 relative overflow-hidden">
@@ -12,9 +11,11 @@ const SocialProof: React.FC = () => (
           <div className="text-center mb-20">
             <div className="inline-flex items-center px-4 py-2 bg-green-100 text-green-800 rounded-full text-sm font-semibold mb-6">
               <Users className="w-4 h-4 mr-2" aria-label="Loved by Developers" />
-              Loved by Developers
-              {/* Visual trust badge */}
-              <img src="/assets/trust-badge.png" alt="Trusted by Industry Leaders" className="ml-3 h-6 inline-block" />
+              Loved by Developers              
+            </div>
+            <div className="inline-flex items-center px-4 py-2 bg-green-100 text-green-800 rounded-full text-sm font-semibold mb-6 ml-8">
+              <BadgeCheck className="w-4 h-4 mr-2" aria-label="Trusted by Industry Leaders" />
+              Trusted by Industry Leaders
             </div>
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
               Don't Just Take Our Word for It.
