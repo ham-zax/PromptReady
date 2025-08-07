@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import Hero from './components/Hero';
@@ -14,19 +13,26 @@ import { Analytics } from '@vercel/analytics/react';
 import ThankYou from './pages/ThankYou';
 import VideoDemo from './components/VideoDemo';
 
-// Centralized waitlist URL
-const WAITLIST_URL = "https://waitlister.me/p/promptready"; // TODO: Replace with actual URL
+const WAITLIST_URL = "https://waitlister.me/p/promptready";
 
 function App() {
-  const [currentPath, setCurrentPath] = React.useState<string>(typeof window !== 'undefined' ? window.location.pathname : '/');
+  const [currentPath, setCurrentPath] = React.useState<string>(
+    typeof window !== 'undefined' ? window.location.pathname : '/'
+  );
 
   React.useEffect(() => {
-    console.log('[Startup] App.tsx: App mounted');
-    const onPop = () => setCurrentPath(window.location.pathname);
-    window.addEventListener('popstate', onPop);
+    const onLocationChange = () => {
+      setCurrentPath(window.location.pathname);
+    };
+
+    window.addEventListener('popstate', onLocationChange);
+    window.addEventListener('pushstate', onLocationChange as any); // graceful if pushstate custom event exists
+    window.addEventListener('replacestate', onLocationChange as any);
+
     return () => {
-      window.removeEventListener('popstate', onPop);
-      console.log('[Startup] App.tsx: App unmounted');
+      window.removeEventListener('popstate', onLocationChange);
+      window.removeEventListener('pushstate', onLocationChange as any);
+      window.removeEventListener('replacestate', onLocationChange as any);
     };
   }, []);
   // Centralized Action Handler for waitlist redirect
@@ -39,39 +45,14 @@ function App() {
     window.open(WAITLIST_URL, '_blank', 'noopener,noreferrer');
   };
 
-  // Simple no-router page switch for /thank-you
   const isThankYou = currentPath === '/thank-you';
 
   return (
     <>
       <Helmet>
-        {/* --- Standard SEO Meta Tags --- */}
-        <title>PromptReady: Get Instantly AI-Ready Content</title>
-        <meta name="description" content="Tired of messy copy-pasting? PromptReady is the one-click extension that instantly cleans any webpage into perfect, private context for your LLM." />
-        <link rel="canonical" href="https://promptready.vercel.app/" />
-
-        {/* --- Open Graph Tags with Conversion-Oriented Copy --- */}
-        <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="PromptReady" />
-        <meta property="og:url" content="https://promptready.vercel.app/" />
-        <meta property="og:locale" content="en_US" />
-
-        {/* ✨ Optimized Billboard Text ✨ */}
-        <meta property="og:title" content="Get Instantly AI-Ready Content with PromptReady" />
-        <meta property="og:description" content="Tired of messy copy-pasting? PromptReady is the one-click extension that instantly cleans any webpage into perfect, private context for your LLM." />
-
-        {/* Image Tags */}
-        <meta property="og:image" content="https://promptready.vercel.app/og-image.png" />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        <meta property="og:image:alt" content="PromptReady Logo and Headline: Skip the Manual Cleanup. Get Instantly AI-Ready Content." />
-
-        {/* --- Twitter Card Tags (inherits from OG, but we specify for clarity) --- */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="@YourActualTwitterHandle" />
-        <meta name="twitter:title" content="Get Instantly AI-Ready Content with PromptReady" />
-        <meta name="twitter:description" content="Tired of messy copy-pasting? PromptReady is the one-click extension that instantly cleans any webpage into perfect, private context for your LLM." />
-        <meta name="twitter:image" content="https://promptready.vercel.app/og-image.png" />
+        <title>PromptReady — AI prompt workflows for teams</title>
+        <meta name="description" content="PromptReady helps teams create, share, and optimize AI prompts inside familiar workflows." />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Helmet>
 
       <Analytics />
@@ -80,49 +61,67 @@ function App() {
         <ThankYou />
       ) : (
         <>
-          {/* Sticky mobile CTA so action is always visible */}
           <div className="fixed inset-x-0 bottom-3 z-50 mx-auto w-[92%] sm:hidden">
-            <button
-              onClick={() => {
-                trackHeroCtaClick({ placement: 'sticky_mobile' });
-                handlePrimaryAction('StickyMobile');
-              }}
-              className="w-full rounded-full bg-blue-600 px-5 py-3 text-center font-semibold text-white shadow-lg"
-            >
-              Join the early access
-            </button>
+            <div className="bg-white/95 backdrop-blur-md border border-slate-200 rounded-lg p-3 shadow-lg flex items-center justify-between">
+              <div>
+                <div className="text-sm font-medium">Join the waitlist</div>
+                <div className="text-xs text-slate-500">Get early access and updates</div>
+              </div>
+              <button
+                onClick={() => handlePrimaryAction('StickyMobileCTA')}
+                className="ml-4 inline-flex items-center rounded-md bg-sky-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-sky-500 focus:outline-none"
+              >
+                Join
+              </button>
+            </div>
           </div>
 
-          {/* Use a <main> tag for better accessibility and semantic structure */}
           <main>
-            {/* Option A — zebra backgrounds with auto dividers */}
-
-            <div className="[&>section]:relative [&>section]:isolate [&>section]:before:content-[''] [&>section]:before:absolute [&>section]:before:inset-y-0 [&>section]:before:left-1/2 [&>section]:before:-translate-x-1/2 [&>section]:before:w-screen [&>section]:before:-z-10 [&>section]:before:[mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] [&>section:nth-of-type(odd)]:before:bg-gradient-to-b [&>section:nth-of-type(odd)]:before:from-purple-100 [&>section:nth-of-type(odd)]:before:to-purple-50 [&>section:nth-of-type(even)]:before:bg-gradient-to-b [&>section:nth-of-type(even)]:before:from-white [&>section:nth-of-type(even)]:before:to-purple-50 [&>section:not(:first-child)]:after:content-[''] [&>section:not(:first-child)]:after:absolute [&>section:not(:first-child)]:after:inset-x-0 [&>section:not(:first-child)]:after:top-0 [&>section:not(:first-child)]:after:h-px [&>section:not(:first-child)]:after:bg-gradient-to-r [&>section:not(:first-child)]:after:from-transparent [&>section:not(:first-child)]:after:via-slate-200/80 [&>section:not(:first-child)]:after:to-transparent">
-              <section>
+            <div className="bg-white">
+              
+              {/* Section 1: Hero (White) */}
+              <section className="relative">
                 <Hero onPrimaryAction={() => handlePrimaryAction('Hero')} />
               </section>
-              <section>
+              
+              {/* Section 2: VideoDemo (Transitions from White to Light Blue) */}
+              <section className="relative bg-gradient-to-b from-white via-blue-50 to-blue-100">
                 <VideoDemo />
               </section>
-              <section>
+
+              {/* Section 3: BeforeAfter (Stays in Light Blue) */}
+              <section className="relative ">
                 <BeforeAfter />
               </section>
-              <section>
+
+              {/* Section 4: ProblemSolution (Transitions from Light Blue to Light Purple for accent) */}
+              <section className="relative bg-gradient-to-b from-white via-blue-50 to-purple-100">
                 <ProblemSolution onPrimaryAction={() => handlePrimaryAction('ProblemSolution')} />
               </section>
-              <section>
+              
+              {/* Section 5: Features (Stays in Light Purple) */}
+              <section className="relative bg-purple-100">
                 <Features />
               </section>
-              <section>
+
+              {/* Section 6: HowItWorks (Transitions from Purple back to White) */}
+              <section className="relative bg-gradient-to-b from-purple-100 via-purple-50 to-white">
                 <HowItWorks />
               </section>
-              <section>
+
+              {/* Section 7: SocialProof (Stays in White) */}
+              <section className="relative bg-white">
                 <SocialProof />
               </section>
-              <section>
+
+              {/* Section 8: Pricing (Stays in White, subtle transition to dark footer) */}
+              <section className="relative bg-slate-200">
+                <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-slate-900 to-transparent -z-10"></div>
                 <Pricing onPrimaryAction={() => handlePrimaryAction('Pricing')} />
               </section>
-              <section className="bg-slate-950 text-slate-100">
+
+              {/* Section 9: Footer (Dark background) */}
+              <section className="relative bg-slate-900 text-slate-100">
                 <Footer />
               </section>
             </div>

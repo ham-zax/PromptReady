@@ -5,7 +5,7 @@ import { Clock, Mail, Shield, Sparkles, Circle } from 'lucide-react';
 
 export const ProductDemoCard: React.FC = () => {
   return (
-    <div className="w-full max-w-4xl mx-auto bg-white rounded-xl shadow-2xl border border-gray-200">
+    <div className="w-full max-w-4xl mx-auto rounded-xl shadow-2xl border border-gray-200">
       {/* Browser Header */}
       <div className="flex items-center p-3 border-b border-gray-200">
         <div className="flex items-center gap-1.5">

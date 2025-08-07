@@ -6,7 +6,7 @@ interface PricingProps {
 }
  
 const Pricing: React.FC<PricingProps> = ({ onPrimaryAction }) => (
-  <section className="py-8 sm:py-16 lg:py-24 bg-white">
+  <section className="py-8 sm:py-16 lg:py-24">
     <div className="max-w-md sm:max-w-2xl lg:max-w-4xl mx-auto px-2 sm:px-4 lg:px-8 text-center">
       <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 sm:mb-4">
         Ready to Reclaim Your Time?

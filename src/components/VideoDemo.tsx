@@ -5,7 +5,7 @@ import { ArrowRight, Play } from 'lucide-react';
 const VideoDemo: React.FC = () => {
   return (
 
-    <section className="py-20 lg:py-24">
+    <section className="py-8 lg:py-24">
 
       {/* Demo anchor */}
       <div className="mb-10 flex justify-center">
@@ -19,7 +19,7 @@ const VideoDemo: React.FC = () => {
         </a>
       </div>
       {/* Video/demo */}
-      <div id="demo" className="mb-12">
+      <div id="demo">
         <div className="browser-mockup floating-card mx-auto max-w-4xl">
           <div className="browser-header">
             <div className="browser-dot bg-red-500"></div>

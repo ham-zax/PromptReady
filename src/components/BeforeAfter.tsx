@@ -8,10 +8,10 @@ const BeforeAfter: React.FC = () => {
       <div className="mx-auto max-w-5xl">
         <div className="browser-mockup floating-card mx-auto max-w-4xl">
           <div className="browser-header">
-            <div className="browser-dot bg-red-500"></div>
-            <div className="browser-dot bg-yellow-500"></div>
-            <div className="browser-dot bg-green-500"></div>
-            <div className="ml-4 rounded-full bg-gray-200 px-4 py-1 text-sm font-medium text-gray-700">
+            <div className="browser-dot bg-red-500 hidden sm:inline-block"></div>
+            <div className="browser-dot bg-yellow-500 hidden sm:inline-block"></div>
+            <div className="browser-dot bg-green-500 hidden sm:inline-block"></div>
+            <div className="sm:ml-4 rounded-full bg-gray-200 px-4 py-1 text-sm font-medium text-gray-700">
               example‑article.com
             </div>
             <div className="ml-auto">

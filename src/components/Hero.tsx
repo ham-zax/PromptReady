@@ -105,9 +105,9 @@ const Hero: React.FC<HeroProps> = ({ onPrimaryAction }) => {
           </div>
 
           {/* Keep a single primary action overall, but allow email card as alternate entry */}
-          <div className="mb-10 flex justify-center">
+          {/* <div className="mb-10 flex justify-center">
             <ShadcnWaitlistCard onPrimaryAction={onPrimaryAction} />
-          </div>
+          </div> */}
 
           {/* Micro FAQ near CTA */}
          {/*  <div className="mx-auto mb-12 max-w-3xl text-left text-sm text-slate-700">
