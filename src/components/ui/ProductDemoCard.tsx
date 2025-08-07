@@ -9,9 +9,9 @@ export const ProductDemoCard: React.FC = () => {
       {/* Browser Header */}
       <div className="flex items-center p-3 border-b border-gray-200">
         <div className="flex items-center gap-1.5">
-          <div className="w-3 h-3 rounded-full bg-red-500"></div>
-          <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-          <div className="w-3 h-3 rounded-full bg-green-500"></div>
+          <div className="w-3 h-3 rounded-full bg-red-500 hidden md:block"></div>
+          <div className="w-3 h-3 rounded-full bg-yellow-500 hidden md:block"></div>
+          <div className="w-3 h-3 rounded-full bg-green-500 hidden md:block"></div>
         </div>
         <div className="flex-grow text-center">
           <div className="bg-gray-100 rounded-lg px-4 py-1 text-sm text-gray-500 inline-block">

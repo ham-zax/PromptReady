@@ -1,18 +1,24 @@
-// src/hooks/useTestimonialCarousel.ts
-import { useState, useEffect } from 'react';
+ // src/hooks/useTestimonialCarousel.ts
+import { useState, useEffect, useCallback } from 'react';
 
-const useTestimonialCarousel = (testimonialCount: number) => {
+const useTestimonialCarousel = (testimonialCount: number, interval = 5000) => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentTestimonial(prev => (prev + 1) % testimonialCount);
-    }, 5000); // Rotate every 5 seconds
-
-    return () => clearInterval(interval);
+  const next = useCallback(() => {
+    setCurrentTestimonial(prev => (prev + 1) % testimonialCount);
   }, [testimonialCount]);
 
-  return { currentTestimonial, setCurrentTestimonial };
+  const prev = useCallback(() => {
+    setCurrentTestimonial(prev => (prev - 1 + testimonialCount) % testimonialCount);
+  }, [testimonialCount]);
+
+  useEffect(() => {
+    if (!interval) return;
+    const timer = setInterval(next, interval);
+    return () => clearInterval(timer);
+  }, [interval, next]);
+
+  return { currentTestimonial, setCurrentTestimonial, next, prev };
 };
 
 export default useTestimonialCarousel;

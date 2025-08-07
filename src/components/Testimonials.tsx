@@ -1,91 +1,92 @@
 import React from "react";
+import { useSwipeable } from "react-swipeable";
 import useTestimonialCarousel from "../hooks/useTestimonialCarousel";
-import { testimonials } from "../data/testimonialsData";
+import { testimonials, Testimonial } from "../data/testimonialsData";
 import { Star } from "lucide-react";
 
-const Testimonials: React.FC = () => {
-  const { currentTestimonial, setCurrentTestimonial } = useTestimonialCarousel(testimonials.length);
-  const testimonial = testimonials[currentTestimonial];
+// The StarRating component is where we'll fix the "5.0★" issue.
+const StarRating = ({ rating }: { rating: number }) => {
+  const fullStars = Math.floor(rating);
+  const hasHalfStar = rating % 1 !== 0;
 
   return (
-    <div className="testimonial-carousel max-w-5xl mx-auto mb-16 px-4">
-      <div className="testimonial-track" style={{ transform: `translateX(-${currentTestimonial * 100}%)` }}>
-        {/* Testimonial 1 */}
-        <div className="testimonial-slide px-4">
-          <div className="bg-white p-8 md:p-12 rounded-3xl shadow-2xl border border-gray-100 max-w-4xl mx-auto">
-            <div className="flex items-center justify-center mb-8">
-              <div className="flex text-yellow-400 mr-3 gap-1">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 fill-current" />
-                ))}
-              </div>
-              <span className="text-lg font-semibold text-gray-700">5.0★</span>
-            </div>
-            <blockquote className="text-xl md:text-2xl text-gray-800 font-medium text-center mb-10 leading-relaxed max-w-3xl mx-auto">
-              "Saves me hours weekly on research! The offline mode is incredibly fast and the AI features are game-changing for content creation."
-            </blockquote>
-            <div className="text-center space-y-2">
-              <div className="text-gray-800 font-semibold text-lg">Alex Chen</div>
-              <div className="text-sm text-gray-500">Senior Developer, Reddit</div>
-            </div>
-          </div>
-        </div>
+    <div className="flex items-center gap-4"> {/* Increased gap for more space */}
+      {/* The star icons */}
+      <div className="flex gap-0.5 text-yellow-400">
+        {[...Array(fullStars)].map((_, i) => (
+          <Star key={`full-${i}`} className="h-5 w-5 fill-current" />
+        ))}
+        {hasHalfStar && <Star key="half" className="h-5 w-5 fill-current opacity-50" />}
+      </div>
+      
+      {/* --- THE FIX --- */}
+      {/* 
+        - The star is now an inline element, not a separate icon.
+        - `align-baseline` ensures it sits perfectly with the text.
+        - `text-slate-500` makes it a subtle part of the rating text.
+      */}
+      <div className="text-lg font-medium text-slate-700">
+        {rating.toFixed(1)}
+        <Star className="inline-block h-4 w-4 ml-1 fill-slate-400 text-slate-400 align-baseline" />
+      </div>
+    </div>
+  );
+};
 
-        {/* Testimonial 2 */}
-        <div className="testimonial-slide px-4">
-          <div className="bg-white p-8 md:p-12 rounded-3xl shadow-2xl border border-gray-100 max-w-4xl mx-auto">
-            <div className="flex items-center justify-center mb-8">
-              <div className="flex text-yellow-400 mr-3 gap-1">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 fill-current" />
-                ))}
-              </div>
-              <span className="text-lg font-semibold text-gray-700">5.0★</span>
-            </div>
-            <blockquote className="text-xl md:text-2xl text-gray-800 font-medium text-center mb-10 leading-relaxed max-w-3xl mx-auto">
-              "Privacy-first approach is exactly what our team needed. No more worrying about sensitive data being processed externally."
-            </blockquote>
-            <div className="text-center space-y-2">
-              <div className="text-gray-800 font-semibold text-lg">Sarah Mitchell</div>
-              <div className="text-sm text-gray-500">IT Security Manager, Enterprise Corp</div>
-            </div>
-          </div>
-        </div>
+const Testimonials: React.FC = () => {
+  const { currentTestimonial, setCurrentTestimonial, next, prev } = useTestimonialCarousel(testimonials.length);
 
-        {/* Testimonial 3 */}
-        <div className="testimonial-slide px-4">
-          <div className="bg-white p-8 md:p-12 rounded-3xl shadow-2xl border border-gray-100 max-w-4xl mx-auto">
-            <div className="flex items-center justify-center mb-8">
-              <div className="flex text-yellow-400 mr-3 gap-1">
-                {[...Array(4)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 fill-current" />
-                ))}
-                <Star className="w-5 h-5 fill-current opacity-50" />
+  const handlers = useSwipeable({
+    onSwipedLeft: () => next(),
+    onSwipedRight: () => prev(),
+    preventScrollOnSwipe: true,
+    trackMouse: true,
+  });
+
+  return (
+    <div className="mx-auto max-w-3xl px-4">
+      <div {...handlers} className="grid grid-cols-1 grid-rows-1">
+        {testimonials.map((testimonial, index) => (
+          <div
+            key={testimonial.id}
+            className={`col-start-1 row-start-1 transition-opacity duration-300 ease-in-out ${
+              currentTestimonial === index ? 'opacity-100' : 'opacity-0 pointer-events-none'
+            }`}
+          >
+            {/* The actual testimonial card with refined styling */}
+            <div className="mx-auto rounded-xl border border-slate-200 bg-white p-8 shadow-sm">
+              {/* Increased bottom margin for better spacing */}
+              <div className="flex justify-center mb-8">
+                <StarRating rating={testimonial.stars} />
               </div>
-              <span className="text-lg font-semibold text-gray-700">4.5★</span>
-            </div>
-            <blockquote className="text-xl md:text-2xl text-gray-800 font-medium text-center mb-10 leading-relaxed max-w-3xl mx-auto">
-              "Finally, clean copies without the junk! Perfect for feeding content to ChatGPT and Claude. This is a must-have tool."
-            </blockquote>
-            <div className="text-center space-y-2">
-              <div className="text-gray-800 font-semibold text-lg">Marcus Johnson</div>
-              <div className="text-sm text-gray-500">Content Creator, YouTube</div>
+              
+              {/* Refined typography for the quote */}
+              <blockquote className="text-center text-xl font-medium leading-relaxed text-slate-800">
+                "{testimonial.quote}"
+              </blockquote>
+              
+              {/* Increased top margin and refined author typography */}
+              <div className="mt-8 text-center">
+                <div className="font-semibold text-slate-900">{testimonial.author}</div>
+                <div className="text-sm text-slate-500">{testimonial.title}</div>
+              </div>
             </div>
           </div>
-        </div>
+        ))}
       </div>
 
       {/* Carousel indicators */}
-      <div className="flex justify-center items-center space-x-3 mt-12">
-        {[0, 1, 2].map((index) => (
+      <div className="mt-8 flex items-center justify-center space-x-2">
+        {testimonials.map((_, index) => (
           <button
             key={index}
-            className={`rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-300 ${currentTestimonial === index
-                ? 'bg-blue-600 w-12 h-4'
-                : 'bg-gray-300 hover:bg-gray-400 w-4 h-4'
-              }`}
             onClick={() => setCurrentTestimonial(index)}
             aria-label={`Go to testimonial ${index + 1}`}
+            className={`h-2 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 ${
+              currentTestimonial === index
+                ? 'w-8 bg-blue-600'
+                : 'w-2 bg-slate-300 hover:bg-slate-400'
+            }`}
           />
         ))}
       </div>
