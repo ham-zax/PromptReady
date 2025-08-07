@@ -17,7 +17,7 @@ const Hero: React.FC<HeroProps> = ({ onPrimaryAction }) => (
     </div>
     <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
       <div className="text-center">
-        <div className="mb-8">
+  <div className="mb-8">
           <div className="flex justify-center flex-wrap gap-4 mb-8 animate-slide-up">
             <div className="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-full text-sm font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
               <Lock className="w-4 h-4 mr-2" />
@@ -44,11 +44,21 @@ const Hero: React.FC<HeroProps> = ({ onPrimaryAction }) => (
           <div className="flex justify-center mb-12 animate-slide-up" style={{ animationDelay: '0.8s' }}>
             <ShadcnWaitlistCard onPrimaryAction={onPrimaryAction} />
           </div>
+          <div className="flex justify-center mb-6 animate-slide-up" style={{ animationDelay: '0.9s' }}>
+            <a
+              href="#how-it-works"
+              className="inline-flex items-center px-5 py-2 bg-blue-50 text-blue-700 rounded-full text-base font-semibold shadow hover:bg-blue-100 transition-all duration-200"
+              style={{ textDecoration: 'none' }}
+            >
+              <ArrowRight className="w-4 h-4 mr-2" />
+              Watch a Quick Demo
+            </a>
+          </div>
         </div>
         <div className="mb-12 animate-slide-up" style={{ animationDelay: '1s' }}>
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-8">
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">See How It Works</h3>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">Watch a Quick Demo</h3>
             </div>
             <div className="browser-mockup floating-card max-w-4xl mx-auto">
               <div className="browser-header">

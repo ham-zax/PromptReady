@@ -2,4 +2,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://your-custom-domain.com/sitemap.xml
+Sitemap: https://promptready.vercel.app/sitemap.xml
