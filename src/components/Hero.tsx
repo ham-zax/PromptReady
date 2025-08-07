@@ -1,6 +1,9 @@
 import React from 'react';
 import { Lock, Zap, Award, ArrowRight, Star, Sparkles, Play } from 'lucide-react';
 import { Globe } from "./magicui/globe";
+import { ShineBorder } from "./magicui/shine-border";
+import { BorderBeam } from './magicui/border-beam';
+import { ShadcnWaitlistCard } from './ShadcnWaitlistCard';
 
 interface HeroProps {
   scrollToSignup: () => void;
@@ -29,42 +32,23 @@ const Hero: React.FC<HeroProps> = ({ scrollToSignup }) => (
               Manifest V3 Compliant
             </div>
           </div>
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight animate-slide-up" style={{animationDelay: '0.2s'}}>
+          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight animate-slide-up" style={{ animationDelay: '0.2s' }}>
             Stop Wasting Time on{' '}
             <span className="text-red-700 font-bold">
               Messy Web Copies
             </span>
           </h1>
-          <p className="text-2xl font-semibold text-gray-800 mb-4 animate-slide-up" style={{animationDelay: '0.4s'}}>
+          <p className="text-2xl font-semibold text-gray-800 mb-4 animate-slide-up" style={{ animationDelay: '0.4s' }}>
             PromptReady Delivers Perfect, LLM-Ready Text in 1 Click
           </p>
-          <p className="text-xl text-gray-600 mb-10 max-w-4xl mx-auto leading-relaxed animate-slide-up" style={{animationDelay: '0.6s'}}>
+          <p className="text-xl text-gray-600 mb-10 max-w-4xl mx-auto leading-relaxed animate-slide-up" style={{ animationDelay: '0.6s' }}>
             Save 2+ hours weekly copying web content. Get clean, AI-ready text instantly—works offline or with optional AI enhancement for perfect formatting.
           </p>
-          <div className="flex justify-center mb-12 animate-slide-up" style={{animationDelay: '0.8s'}}>
-            <div
-              className="w-full max-w-md bg-white p-8 rounded-2xl shadow-xl flex flex-col items-start"
-              aria-label="Conversion Block"
-            >
-              <p className="text-gray-600 font-medium mb-4 text-left">
-                Be the first to experience perfectly clean web copy.
-              </p>
-              <button
-                onClick={scrollToSignup}
-                className="bg-blue-600 text-white py-3 px-5 rounded-lg w-full text-left font-semibold flex items-center justify-between"
-                tabIndex={0}
-                aria-label="Join the Waitlist for Early Access"
-              >
-                <span>Join the Waitlist for Early Access</span>
-                <ArrowRight className="w-6 h-6 ml-2" />
-              </button>
-              <p className="text-sm text-gray-500 mt-3 text-left">
-                No credit card required • Get exclusive launch-day updates
-              </p>
-            </div>
+          <div className="flex justify-center mb-12 animate-slide-up" style={{ animationDelay: '0.8s' }}>
+            <ShadcnWaitlistCard scrollToSignup={scrollToSignup} />
           </div>
         </div>
-        <div className="mb-12 animate-slide-up" style={{animationDelay: '1s'}}>
+        <div className="mb-12 animate-slide-up" style={{ animationDelay: '1s' }}>
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-8">
               <h3 className="text-2xl font-bold text-gray-900 mb-4">See How It Works</h3>
@@ -130,7 +114,7 @@ const Hero: React.FC<HeroProps> = ({ scrollToSignup }) => (
             </div>
           </div>
         </div>
-        <div className="mb-12 animate-slide-up" style={{animationDelay: '1.2s'}}>
+        <div className="mb-12 animate-slide-up" style={{ animationDelay: '1.2s' }}>
           <div className="browser-mockup floating-card max-w-4xl mx-auto">
             <div className="browser-header">
               <div className="browser-dot bg-red-500"></div>
@@ -164,7 +148,7 @@ const Hero: React.FC<HeroProps> = ({ scrollToSignup }) => (
 
 export default Hero;
 
-{/* Sticky CTA for mobile */}
+{/* Sticky CTA for mobile */ }
 {/*
   Sticky CTA for mobile moved inside the Hero component to ensure access to scrollToSignup prop.
 */}

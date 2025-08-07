@@ -27,12 +27,6 @@ const SocialProof: React.FC = () => (
             </p>
           </div>
         <Testimonials />
-        {/* Trusted logos */}
-        <div className="flex justify-center gap-6 mb-12">
-          <img src="/assets/logo1.png" alt="Acme Corp" className="h-8" />
-          <img src="/assets/logo2.png" alt="BetaSoft" className="h-8" />
-          <img src="/assets/logo3.png" alt="DevHub" className="h-8" />
-        </div>
         
           {/* Stats Section */}
           <div className="grid md:grid-cols-4 gap-8 mb-16">

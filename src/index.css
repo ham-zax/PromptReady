@@ -9,29 +9,29 @@
     background-image: radial-gradient(circle, rgba(59, 130, 246, 0.1) 1px, transparent 1px);
     background-size: 24px 24px;
   }
-  
+
   .bg-mesh-gradient {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     background-size: 400% 400%;
     animation: mesh-shift 8s ease-in-out infinite;
   }
-  
+
   .animate-fade-in {
     animation: fade-in 0.6s ease-out;
   }
-  
+
   .animate-slide-up {
     animation: slide-up 0.8s ease-out;
   }
-  
+
   .animate-float {
     animation: float 3s ease-in-out infinite;
   }
-  
+
   .animate-pulse-slow {
     animation: pulse-slow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
-  
+
   .browser-mockup {
     background: #ffffff;
     border-radius: 12px;
@@ -39,7 +39,7 @@
     border: 1px solid #e2e8f0;
     overflow: hidden;
   }
-  
+
   .browser-header {
     background: #f8fafc;
     border-bottom: 1px solid #e2e8f0;
@@ -48,13 +48,13 @@
     align-items: center;
     gap: 8px;
   }
-  
+
   .browser-dot {
     width: 12px;
     height: 12px;
     border-radius: 50%;
   }
-  
+
   .mode-toggle {
     position: relative;
     display: inline-block;
@@ -66,12 +66,12 @@
     transition: all 0.3s ease;
     border: 2px solid #e2e8f0;
   }
-  
+
   .mode-toggle.active {
     background: linear-gradient(135deg, #3b82f6, #1d4ed8);
     border-color: #1d4ed8;
   }
-  
+
   .mode-toggle::before {
     content: '';
     position: absolute;
@@ -84,33 +84,33 @@
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   }
-  
+
   .mode-toggle.active::before {
     transform: translateX(72px);
   }
-  
+
   .floating-card {
     transform: translateY(0);
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   }
-  
+
   .floating-card:hover {
     transform: translateY(-8px);
     box-shadow: 0 32px 64px -12px rgba(0, 0, 0, 0.25);
   }
-  
+
   .testimonial-carousel {
     overflow: hidden;
     position: relative;
     padding: 0 1rem;
   }
-  
+
   .testimonial-track {
     display: flex;
     transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     will-change: transform;
   }
-  
+
   .testimonial-slide {
     min-width: 100%;
     flex-shrink: 0;
@@ -118,7 +118,7 @@
     align-items: center;
     justify-content: center;
   }
-  
+
   .testimonial-slide > div {
     width: 100%;
     min-height: 400px;
@@ -126,11 +126,11 @@
     flex-direction: column;
     justify-content: center;
   }
-  
+
   .glow-effect {
     position: relative;
   }
-  
+
   .glow-effect::before {
     content: '';
     position: absolute;
@@ -141,11 +141,11 @@
     opacity: 0;
     transition: opacity 0.3s ease;
   }
-  
+
   .glow-effect:hover::before {
     opacity: 1;
   }
-  
+
   @keyframes fade-in {
     from {
       opacity: 0;
@@ -156,7 +156,7 @@
       transform: translateY(0);
     }
   }
-  
+
   @keyframes slide-up {
     from {
       opacity: 0;
@@ -167,7 +167,7 @@
       transform: translateY(0);
     }
   }
-  
+
   @keyframes float {
     0%, 100% {
       transform: translateY(0px);
@@ -176,7 +176,7 @@
       transform: translateY(-10px);
     }
   }
-  
+
   @keyframes pulse-slow {
     0%, 100% {
       opacity: 1;
@@ -185,7 +185,7 @@
       opacity: 0.7;
     }
   }
-  
+
   @keyframes mesh-shift {
     0%, 100% {
       background-position: 0% 50%;
@@ -200,24 +200,24 @@
   html {
     scroll-behavior: smooth;
   }
-  
+
   body {
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     font-feature-settings: "rlig" 1, "calt" 1;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-  
+
   h1, h2, h3, h4, h5, h6 {
     line-height: 1.2;
     font-weight: 700;
     letter-spacing: -0.025em;
   }
-  
+
   p {
     line-height: 1.6;
   }
-  
+
   button {
     font-weight: 600;
   }
@@ -274,6 +274,9 @@
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
   }
+  .theme {
+    --animate-shine: shine var(--duration) infinite linear;
+  }
 }
 
 /* Enhanced scrollbar */
@@ -313,5 +316,19 @@ input:focus-visible {
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@theme inline {
+  @keyframes shine {
+  0% {
+    background-position: 0% 0%;
+    }
+  50% {
+    background-position: 100% 100%;
+    }
+  to {
+    background-position: 0% 0%;
+    }
   }
 }
