@@ -43,7 +43,7 @@ function App() {
       <div className="min-h-screen bg-white">
         {/* Pass a string to identify the source of the click */}
         <Hero onPrimaryAction={() => handlePrimaryAction('Hero')} />
-        <ProblemSolution onTryNow={() => handlePrimaryAction('ProblemSolution')} />
+  <ProblemSolution onPrimaryAction={() => handlePrimaryAction('ProblemSolution')} />
         <Features />
         <HowItWorks />
         <Pricing onPrimaryAction={() => handlePrimaryAction('Pricing')} />

@@ -1,5 +1,7 @@
 // src/hooks/useAnalytics.ts
 
+import { track as vercelTrack } from '@vercel/analytics';
+
 /**
  * A simple utility function to log analytics events.
  * This can be expanded to send data to any service (Google Analytics, Plausible, etc.).
@@ -8,5 +10,5 @@
  */
 export const trackEvent = (eventName: string, payload: Record<string, any>) => {
   console.log(`[Analytics] Event: ${eventName}`, payload);
-  // Example: window.gtag('event', eventName, payload);
+  vercelTrack(eventName, payload); // Send event to Vercel Analytics
 };

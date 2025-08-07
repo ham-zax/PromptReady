@@ -5,10 +5,10 @@ import { ComparativeDisplay } from "./ui/ComparativeDisplay";
 import { Button } from './ui/button';
 
 interface ProblemSolutionProps {
-  onTryNow: () => void;
+  onPrimaryAction: () => void;
 }
 
-const ProblemSolution: React.FC<ProblemSolutionProps> = ({ onTryNow }) => {
+const ProblemSolution: React.FC<ProblemSolutionProps> = ({ onPrimaryAction }) => {
   return (
     <section className="py-20 lg:py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -41,7 +41,7 @@ const ProblemSolution: React.FC<ProblemSolutionProps> = ({ onTryNow }) => {
         />
         
         <div className="mt-16 text-center">
-            <Button onClick={onTryNow} size="lg" className="px-10 py-6 text-lg shadow-lg">
+            <Button onClick={onPrimaryAction} size="lg" className="px-10 py-6 text-lg shadow-lg">
               Try PromptReady Now
             </Button>
             <p className="mt-4 text-sm text-gray-500">
