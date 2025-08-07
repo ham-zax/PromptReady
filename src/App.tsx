@@ -8,23 +8,25 @@ import Pricing from './components/Pricing';
 import Footer from './components/Footer';
 import useAnalytics from './hooks/useAnalytics';
 
+// Centralized waitlist URL
+const WAITLIST_URL = "https://waitlister.me/p/promptready"; // TODO: Replace with actual URL
+
 function App() {
   useAnalytics();
-
-  const scrollToSignup = () => {
-    const el = document.getElementById('signup');
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    }
+  
+  // Centralized Action Handler for waitlist redirect
+  const handlePrimaryAction = () => {
+    // TODO: Add analytics tracking here
+    window.location.href = WAITLIST_URL;
   };
-
+  
   return (
     <div className="min-h-screen bg-white">
-      <Hero scrollToSignup={scrollToSignup} />
+      <Hero scrollToSignup={handlePrimaryAction} />
       <ProblemSolution />
       <Features />
       <HowItWorks />
-      <Pricing scrollToSignup={scrollToSignup} />
+      <Pricing scrollToSignup={handlePrimaryAction} />
       <SocialProof />
       <Footer />
     </div>

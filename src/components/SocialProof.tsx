@@ -26,7 +26,7 @@ const SocialProof: React.FC = () => (
         <Testimonials />
         
           {/* Stats Section */}
-          <div className="grid md:grid-cols-4 gap-8 mb-16">
+          {/* <div className="grid md:grid-cols-4 gap-8 mb-16">
             <div className="text-center">
               <div className="text-4xl font-bold text-gray-800 mb-2" aria-label="500+ Beta Users">500+</div>
               <div className="text-gray-600">Beta Users</div>
@@ -43,8 +43,8 @@ const SocialProof: React.FC = () => (
               <div className="text-4xl font-bold text-gray-800 mb-2" aria-label="100% Privacy Protected">100%</div>
               <div className="text-gray-600">Privacy Protected</div>
             </div>
-          </div>
-        <SignupForm />
+          </div> */}
+        {/* <SignupForm /> */}
     </div>
     </div>
 
