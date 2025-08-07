@@ -93,21 +93,31 @@ function App() {
 
           {/* Use a <main> tag for better accessibility and semantic structure */}
           <main>
-            {/* Persuasive narrative funnel order */}
-            <Hero onPrimaryAction={() => handlePrimaryAction('Hero')} />
-            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-              <div className="my-12 border-t border-slate-100" />
+            {/* Option A — zebra backgrounds with auto dividers */}
+            
+<div className="[&>section]:relative [&>section]:isolate [&>section]:before:content-[''] [&>section]:before:absolute [&>section]:before:inset-y-0 [&>section]:before:left-1/2 [&>section]:before:-translate-x-1/2 [&>section]:before:w-screen [&>section]:before:-z-10 [&>section]:before:[mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] [&>section:nth-of-type(odd)]:before:bg-gradient-to-b [&>section:nth-of-type(odd)]:before:from-purple-100 [&>section:nth-of-type(odd)]:before:to-purple-50 [&>section:nth-of-type(even)]:before:bg-gradient-to-b [&>section:nth-of-type(even)]:before:from-white [&>section:nth-of-type(even)]:before:to-purple-50 [&>section:not(:first-child)]:after:content-[''] [&>section:not(:first-child)]:after:absolute [&>section:not(:first-child)]:after:inset-x-0 [&>section:not(:first-child)]:after:top-0 [&>section:not(:first-child)]:after:h-px [&>section:not(:first-child)]:after:bg-gradient-to-r [&>section:not(:first-child)]:after:from-transparent [&>section:not(:first-child)]:after:via-slate-200/80 [&>section:not(:first-child)]:after:to-transparent">
+              <section>
+                <Hero onPrimaryAction={() => handlePrimaryAction('Hero')} />
+              </section>
+              <section>
+                <ProblemSolution onPrimaryAction={() => handlePrimaryAction('ProblemSolution')} />
+              </section>
+              <section>
+                <Features />
+              </section>
+              <section>
+                <HowItWorks />
+              </section>
+              <section>
+                <SocialProof />
+              </section>
+              <section>
+                <Pricing onPrimaryAction={() => handlePrimaryAction('Pricing')} />
+              </section>
+              <section className="bg-slate-950 text-slate-100">
+                <Footer />
+              </section>
             </div>
-            <ProblemSolution onPrimaryAction={() => handlePrimaryAction('ProblemSolution')} />
-          
-            <Features />
-          
-            <HowItWorks />
-          
-            <SocialProof />
-          
-            <Pricing onPrimaryAction={() => handlePrimaryAction('Pricing')} />
-            <Footer />
           </main>
         </>
       )}

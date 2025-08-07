@@ -26,6 +26,8 @@ const Hero: React.FC<HeroProps> = ({ onPrimaryAction }) => {
 
   return (
     <section className="relative overflow-hidden bg-white">
+      {/* Optional soft brand glow to anchor hero */}
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(1200px_600px_at_50%_-200px,rgba(59,130,246,0.12),transparent_70%)]" />
       {/* Subtle globe background */}
       <div className="pointer-events-none absolute inset-x-0 top-[6%] z-0 h-[560px] scale-125 [mask-image:linear-gradient(to_bottom,white_0%,transparent_80%)]">
         <Globe className="h-full w-full" />
