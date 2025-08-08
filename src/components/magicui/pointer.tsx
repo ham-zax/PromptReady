@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils';
 import { AnimatePresence, HTMLMotionProps, motion, useMotionValue } from 'motion/react';
 import { useEffect, useRef, useState } from 'react';
 
-interface PointerProps extends Omit<HTMLMotionProps<'div'>, 'ref'> {}
+type PointerProps = Omit<HTMLMotionProps<'div'>, 'ref'>;
 
 /**
  * A custom pointer component that displays an animated cursor.

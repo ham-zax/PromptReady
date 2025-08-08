@@ -1,7 +1,6 @@
 import { ArrowRight } from 'lucide-react';
 import { Button } from './ui/button';
 import { Card, CardContent } from './ui/card';
-import { BorderBeam } from './magicui/border-beam';
 
 interface ShadcnWaitlistCardProps {
   onPrimaryAction: () => void;

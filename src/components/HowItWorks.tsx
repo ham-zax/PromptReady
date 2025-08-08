@@ -42,7 +42,7 @@ const HowItWorks: React.FC = () => (
       <div className="mb-16 text-center">
         <h2 className="mb-6 text-4xl font-bold text-gray-900 lg:text-5xl">From chaos to clarity</h2>
         <p className="mx-auto max-w-3xl text-xl leading-relaxed text-gray-600">
-          PromptReady doesn’t just copy text — it intelligently refines it, removing clutter and
+          PromptReady doesn't just copy text — it intelligently refines it, removing clutter and
           revealing the valuable content underneath.
         </p>
       </div>

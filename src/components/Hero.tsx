@@ -81,7 +81,7 @@ const Hero: React.FC<HeroProps> = ({ onPrimaryAction }) => {
             transition={{ ...spring, delay: 0.18 }}
           >
             One-click extension that turns any page into structured, distraction-free text for
-            ChatGPT, Claude, or your LLM workflow — with private, on-device parsing.
+            ChatGPT, Claude, or your LLM workflow — with private, on-device parsing.
           </motion.p>
 
           {/* Primary CTA directly under headline (mirrors main action) */}

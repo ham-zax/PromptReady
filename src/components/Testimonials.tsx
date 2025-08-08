@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSwipeable } from 'react-swipeable';
 import useTestimonialCarousel from '../hooks/useTestimonialCarousel';
-import { testimonials, Testimonial } from '../data/testimonialsData';
+import { testimonials } from '../data/testimonialsData';
 import { Star } from 'lucide-react';
 
 // The StarRating component is where we'll fix the "5.0★" issue.
