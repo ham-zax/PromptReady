@@ -1,7 +1,44 @@
 # Logo Implementation Guide
 
 ## Overview
-The PromptReady logo has been strategically implemented throughout the landing flow to enhance brand recognition and create a cohesive visual experience. A reusable Logo component was created to ensure consistency and maintainability.## SEO and Accessibility
+The PromptReady logo has been strategically implemented throughout the landing flow to enhance brand recognition and create a cohesive visual experience. A reusable Logo component was created to ensure consistency and maintainability.
+
+## Logo Component (`src/components/ui/Logo.tsx`)
+
+### Features
+- **Multiple Sizes**: `sm`, `md`, `lg`, `xl` variants
+- **Flexible Display**: Option to show/hide text alongside logo
+- **Clickable Option**: Can be configured as a link to homepage
+- **Background Styles**: `none`, `subtle`, `card` variants
+- **Color Variants**: Light and dark text options
+- **Logo Color Variants**: Automatic dark/light logo selection with white logo support
+- **Theme Awareness**: Auto-detects appropriate logo color based on background
+- **Responsive Design**: Adapts to different screen sizes
+
+### Logo Color Solution
+The component now supports both dark and light logo variants:
+- **Dark Logo**: `src/assets/logo.svg` (black) for light backgrounds
+- **Light Logo**: `src/assets/logo-white.svg` (white) for dark backgrounds
+- **Auto Detection**: Automatically chooses appropriate logo based on theme or text color
+- **CSS Fallback**: Uses CSS filters as backup for color inversion
+
+### Usage Examples
+
+```tsx
+// Basic logo with auto color detection
+<Logo size="md" />
+
+// Clickable logo for navigation
+<Logo size="lg" clickable />
+
+// Logo with explicit light color for dark backgrounds
+<Logo size="xl" textColor="light" theme="dark" />
+
+// Logo with subtle background
+<Logo size="md" background="subtle" />
+```
+
+## SEO and Accessibility
 
 ### SEO Benefits
 - **Brand Signals**: Consistent logo placement reinforces brand identity
