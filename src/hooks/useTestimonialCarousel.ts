@@ -1,15 +1,15 @@
- // src/hooks/useTestimonialCarousel.ts
+// src/hooks/useTestimonialCarousel.ts
 import { useState, useEffect, useCallback } from 'react';
 
 const useTestimonialCarousel = (testimonialCount: number, interval = 5000) => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
 
   const next = useCallback(() => {
-    setCurrentTestimonial(prev => (prev + 1) % testimonialCount);
+    setCurrentTestimonial((prev) => (prev + 1) % testimonialCount);
   }, [testimonialCount]);
 
   const prev = useCallback(() => {
-    setCurrentTestimonial(prev => (prev - 1 + testimonialCount) % testimonialCount);
+    setCurrentTestimonial((prev) => (prev - 1 + testimonialCount) % testimonialCount);
   }, [testimonialCount]);
 
   useEffect(() => {

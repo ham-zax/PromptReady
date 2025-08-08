@@ -33,7 +33,10 @@ export const trackEvent = (eventName: string, payload: Record<string, any> = {})
 };
 
 // Convenience helpers for common events
-export const trackHeroCtaClick = (extra: Record<string, any> = {}) => trackEvent('hero_cta_click', extra);
+export const trackHeroCtaClick = (extra: Record<string, any> = {}) =>
+  trackEvent('hero_cta_click', extra);
 export const trackDemoPlay = (extra: Record<string, any> = {}) => trackEvent('demo_play', extra);
-export const trackWaitlistSubmit = (extra: Record<string, any> = {}) => trackEvent('waitlist_submit', extra);
-export const trackLiveCleanUsed = (extra: Record<string, any> = {}) => trackEvent('live_clean_used', extra);
+export const trackWaitlistSubmit = (extra: Record<string, any> = {}) =>
+  trackEvent('waitlist_submit', extra);
+export const trackLiveCleanUsed = (extra: Record<string, any> = {}) =>
+  trackEvent('live_clean_used', extra);

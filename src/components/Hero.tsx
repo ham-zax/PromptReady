@@ -1,10 +1,8 @@
-
 import React from 'react';
-import { Lock, Zap, Award, ArrowRight, Wand2, Play } from 'lucide-react';
+import { Lock, Zap, Award, ArrowRight, Wand2 } from 'lucide-react';
 import { RetroGrid } from './magicui/retro-grid';
-import { ShadcnWaitlistCard } from './ShadcnWaitlistCard';
 import { motion, Transition } from 'framer-motion';
-import { trackDemoPlay, trackHeroCtaClick } from '../hooks/useAnalytics';
+import { trackHeroCtaClick } from '../hooks/useAnalytics';
 
 interface HeroProps {
   onPrimaryAction: () => void;
@@ -18,9 +16,9 @@ const spring: Transition = {
 
 const Hero: React.FC<HeroProps> = ({ onPrimaryAction }) => {
   React.useEffect(() => {
-    console.log('[Startup] Hero.tsx: Hero mounted');
+    if (import.meta.env.DEV) console.log('[Startup] Hero.tsx: Hero mounted');
     return () => {
-      console.log('[Startup] Hero.tsx: Hero unmounted');
+      if (import.meta.env.DEV) console.log('[Startup] Hero.tsx: Hero unmounted');
     };
   }, []);
 
@@ -30,10 +28,9 @@ const Hero: React.FC<HeroProps> = ({ onPrimaryAction }) => {
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(1200px_600px_at_50%_-200px,rgba(59,130,246,0.12),transparent_70%)]" />
 
       {/* Subtle retro grid background */}
-      <div className="pointer-events-none absolute inset-x-0 top-[6%] z-0 h-[500px] w-full overflow-hidden">
+      <div className="pointer-events-none absolute inset-x-0 top-[6%] z-0 h-[500px] w-full overflow-hidden bg-transparent">
         <RetroGrid />
       </div>
-
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
         {/* Top copy */}
@@ -83,7 +80,8 @@ const Hero: React.FC<HeroProps> = ({ onPrimaryAction }) => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ ...spring, delay: 0.18 }}
           >
-            One‑click extension that turns any page into structured, distraction‑free text for ChatGPT, Claude, or your LLM workflow — with private, on‑device parsing.
+            One‑click extension that turns any page into structured, distraction‑free text for
+            ChatGPT, Claude, or your LLM workflow — with private, on‑device parsing.
           </motion.p>
 
           {/* Primary CTA directly under headline (mirrors main action) */}
@@ -102,8 +100,10 @@ const Hero: React.FC<HeroProps> = ({ onPrimaryAction }) => {
 
           {/* Supporting credibility/badges */}
           <div className="mx-auto mb-8 max-w-2xl text-center text-sm text-slate-600">
-            Privacy-first by design.
-            <div className="mt-3 text-xs uppercase tracking-wide text-slate-500">Chrome (soon) • Firefox (planned) • Edge (planned)</div>
+            Privacy‑first by design.
+            <div className="mt-3 text-xs uppercase tracking-wide text-slate-500">
+              Chrome (soon) • Firefox (planned) • Edge (planned)
+            </div>
           </div>
 
           {/* Keep a single primary action overall, but allow email card as alternate entry */}
@@ -143,14 +143,13 @@ const Hero: React.FC<HeroProps> = ({ onPrimaryAction }) => {
               <Lock className="h-4 w-4 text-slate-600" />
               Local mode
             </div>
-            <h4 className="mb-2 text-lg font-semibold text-slate-900">Offline & private</h4>
+            <h2 className="mb-2 text-lg font-semibold text-slate-900">Offline and private</h2>
             <ul className="space-y-2 text-slate-700">
               <li>
-                Instant parsing that strips ads, pop‑ups, and chrome from any page — keeps only the content that matters.
+                Instant parsing that strips ads, pop‑ups, and chrome from any page — keeps only the
+                content that matters.
               </li>
-              <li>
-                100% client‑side. Nothing leaves your machine.
-              </li>
+              <li>100% client‑side. Nothing leaves your machine.</li>
             </ul>
           </motion.div>
 
@@ -165,21 +164,18 @@ const Hero: React.FC<HeroProps> = ({ onPrimaryAction }) => {
               <Wand2 className="h-4 w-4 text-violet-700" />
               Cloud extras
             </div>
-            <h4 className="mb-2 text-lg font-semibold text-slate-900">Optional AI formatting</h4>
+            <h2 className="mb-2 text-lg font-semibold text-slate-900">Optional AI formatting</h2>
             <ul className="space-y-2 text-slate-700">
               <li>
-                Perfect, LLM‑ready structure via our secure API when you want more than basic parsing.
+                Perfect, LLM‑ready structure via our secure API when you want more than basic
+                parsing.
               </li>
-              <li>
-                Extras: auto‑summaries, custom templates, and export.
-              </li>
+              <li>Extras: auto‑summaries, custom templates, and export.</li>
             </ul>
           </motion.div>
         </div>
 
         {/* Before / After mockup moved to App as <BeforeAfter /> */}
-
-
       </div>
     </section>
   );

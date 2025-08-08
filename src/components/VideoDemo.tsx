@@ -4,11 +4,9 @@ import { ArrowRight, Play } from 'lucide-react';
 
 const VideoDemo: React.FC = () => {
   return (
-
     <section className="py-8 lg:py-24">
-
       {/* Demo anchor */}
-      <div className="mb-10 justify-center flex">
+      <div className="mb-10 flex justify-center">
         <a
           href="#demo"
           aria-label="Watch a 30 second demo"
@@ -44,8 +42,12 @@ const VideoDemo: React.FC = () => {
               <div className="mb-4 inline-block rounded-full bg-white p-6 shadow-2xl transition-transform duration-300 group-hover:scale-110">
                 <Play className="h-12 w-12 text-blue-600" />
               </div>
-              <p className="mb-1 text-lg font-bold text-slate-900">Install → Copy clean text → Paste anywhere</p>
-              <p className="font-semibold text-blue-700">Public demo soon — click to show interest</p>
+              <p className="mb-1 text-lg font-bold text-slate-900">
+                Install → Copy clean text → Paste anywhere
+              </p>
+              <p className="font-semibold text-blue-700">
+                Public demo soon — click to show interest
+              </p>
             </div>
           </button>
         </div>
@@ -55,4 +57,3 @@ const VideoDemo: React.FC = () => {
 };
 
 export default VideoDemo;
-

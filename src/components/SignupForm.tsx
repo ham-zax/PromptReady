@@ -11,7 +11,7 @@ const SignupForm: React.FC = () => {
     e.preventDefault();
     setSignupStatus('submitting');
     // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     setSignupStatus('success');
     trackWaitlistSubmit({ method: 'inline_form' });
     setEmail('');
@@ -22,24 +22,22 @@ const SignupForm: React.FC = () => {
   };
 
   return (
-    <div id="signup" className="max-w-2xl mx-auto">
-      <div className="bg-white rounded-2xl shadow-xl p-8 border">
-        <div className="text-center mb-8">
-          <h3 className="text-2xl font-bold text-gray-900 mb-2">
-            Get Exclusive Early Access
-          </h3>
+    <div id="signup" className="mx-auto max-w-2xl">
+      <div className="rounded-2xl border bg-white p-8 shadow-xl">
+        <div className="mb-8 text-center">
+          <h3 className="mb-2 text-2xl font-bold text-gray-900">Get Exclusive Early Access</h3>
           <p className="text-gray-600">
             Join the waitlist and be the first to experience PromptReady.
           </p>
-          <div className="mt-4 inline-flex items-center px-4 py-2 bg-red-100 text-red-800 rounded-full text-sm font-medium animate-pulse">
-            <Clock className="w-4 h-4 mr-2" />
+          <div className="mt-4 inline-flex animate-pulse items-center rounded-full bg-red-100 px-4 py-2 text-sm font-medium text-red-800">
+            <Clock className="mr-2 h-4 w-4" />
             Limited Spots – Sign Up Before We Launch!
           </div>
         </div>
         <form onSubmit={handleSignup} className="space-y-6">
-          <div className="grid md:grid-cols-2 gap-4">
+          <div className="grid gap-4 md:grid-cols-2">
             <div>
-              <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="name" className="mb-2 block text-sm font-medium text-gray-700">
                 Full Name
               </label>
               <input
@@ -48,12 +46,12 @@ const SignupForm: React.FC = () => {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 required
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                className="w-full rounded-lg border border-gray-300 px-4 py-3 transition-all focus:border-transparent focus:ring-2 focus:ring-blue-500"
                 placeholder="Enter your full name"
               />
             </div>
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="email" className="mb-2 block text-sm font-medium text-gray-700">
                 Email Address
               </label>
               <input
@@ -62,7 +60,7 @@ const SignupForm: React.FC = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                className="w-full rounded-lg border border-gray-300 px-4 py-3 transition-all focus:border-transparent focus:ring-2 focus:ring-blue-500"
                 placeholder="Enter your email"
               />
             </div>
@@ -70,16 +68,16 @@ const SignupForm: React.FC = () => {
           <button
             type="submit"
             disabled={signupStatus === 'submitting'}
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200 transform hover:scale-105 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+            className="w-full transform rounded-lg bg-blue-600 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-200 hover:scale-105 hover:bg-blue-700 disabled:transform-none disabled:cursor-not-allowed disabled:opacity-50"
           >
             {signupStatus === 'submitting' ? (
               <span className="flex items-center justify-center">
-                <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                <div className="mr-2 h-5 w-5 animate-spin rounded-full border-b-2 border-white"></div>
                 Joining Waitlist...
               </span>
             ) : signupStatus === 'success' ? (
               <span className="flex items-center justify-center">
-                <CheckCircle className="w-5 h-5 mr-2" />
+                <CheckCircle className="mr-2 h-5 w-5" />
                 Successfully Added to Waitlist!
               </span>
             ) : (

@@ -1,6 +1,5 @@
 import { cn } from '@/lib/utils';
 
-
 interface RetroGridProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Additional CSS classes to apply to the grid container
@@ -38,22 +37,22 @@ export function RetroGrid({
   angle = 65,
   cellSize = 60,
   opacity = 1,
-  lightLineColor = "gray",
-  darkLineColor = "gray",
+  lightLineColor = 'gray',
+  darkLineColor = 'gray',
   ...props
 }: RetroGridProps) {
   const gridStyles = {
-    "--grid-angle": `${angle}deg`,
-    "--cell-size": `${cellSize}px`,
-    "--opacity": opacity,
-    "--light-line": lightLineColor,
-    "--dark-line": darkLineColor,
+    '--grid-angle': `${angle}deg`,
+    '--cell-size': `${cellSize}px`,
+    '--opacity': opacity,
+    '--light-line': lightLineColor,
+    '--dark-line': darkLineColor,
   } as React.CSSProperties;
 
   return (
     <div
       className={cn(
-        "pointer-events-none absolute size-full overflow-hidden [perspective:200px]",
+        'pointer-events-none absolute size-full overflow-hidden [perspective:200px]',
         `opacity-[var(--opacity)]`,
         className,
       )}

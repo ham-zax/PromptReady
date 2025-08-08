@@ -10,7 +10,9 @@ const ThankYou: React.FC = () => {
     <section className="relative bg-white">
       <div className="relative z-10 mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
         <div className="mb-8 text-center">
-          <h1 className="mb-3 text-4xl font-bold tracking-tight text-slate-900">You're on the list — thank you!</h1>
+          <h1 className="mb-3 text-4xl font-bold tracking-tight text-slate-900">
+            You're on the list — thank you!
+          </h1>
           <p className="mx-auto max-w-2xl text-slate-600">
             Two quick ways to help shape PromptReady while we build:
           </p>
@@ -21,15 +23,21 @@ const ThankYou: React.FC = () => {
             href={INTERVIEW_URL}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={() => trackEvent('thankyou_interview_click', { destination_url: INTERVIEW_URL })}
+            onClick={() =>
+              trackEvent('thankyou_interview_click', { destination_url: INTERVIEW_URL })
+            }
             className="group rounded-2xl border border-slate-200 bg-gradient-to-b from-white to-slate-50 p-6 shadow-sm transition hover:border-blue-300 hover:shadow-md"
           >
-            <div className="mb-2 text-xs uppercase tracking-wide text-slate-500">Get early access</div>
+            <div className="mb-2 text-xs uppercase tracking-wide text-slate-500">
+              Get early access
+            </div>
             <div className="mb-1 flex items-center gap-2 text-lg font-semibold text-slate-900">
               <Calendar className="h-5 w-5 text-blue-600" />
               15‑minute interview
             </div>
-            <p className="text-sm text-slate-600">Share your workflow and get prioritized access.</p>
+            <p className="text-sm text-slate-600">
+              Share your workflow and get prioritized access.
+            </p>
           </a>
 
           <a
@@ -39,7 +47,9 @@ const ThankYou: React.FC = () => {
             onClick={() => trackEvent('thankyou_feedback_click', { destination_url: FEEDBACK_URL })}
             className="group rounded-2xl border border-slate-200 bg-gradient-to-b from-white to-slate-50 p-6 shadow-sm transition hover:border-blue-300 hover:shadow-md"
           >
-            <div className="mb-2 text-xs uppercase tracking-wide text-slate-500">Share feedback</div>
+            <div className="mb-2 text-xs uppercase tracking-wide text-slate-500">
+              Share feedback
+            </div>
             <div className="mb-1 flex items-center gap-2 text-lg font-semibold text-slate-900">
               <MessageSquare className="h-5 w-5 text-blue-600" />
               2‑minute survey
@@ -49,7 +59,10 @@ const ThankYou: React.FC = () => {
         </div>
 
         <div className="mt-8 text-center">
-          <a href="/" className="inline-flex items-center gap-2 text-sm font-semibold text-blue-700 hover:text-blue-800">
+          <a
+            href="/"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-blue-700 hover:text-blue-800"
+          >
             <ArrowLeft className="h-4 w-4" />
             Back to home
           </a>
@@ -60,4 +73,3 @@ const ThankYou: React.FC = () => {
 };
 
 export default ThankYou;
-

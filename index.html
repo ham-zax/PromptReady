@@ -1,11 +1,10 @@
 <!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<head>
-  <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
     <!--
       ================================================================================
       === STATIC META TAGS FOR SEO & SOCIAL SHARING (PRAGMATIC PATCH) ===
@@ -16,14 +15,14 @@
 
     <!-- --- Standard SEO Meta Tags --- -->
     <title>PromptReady: Get Instantly AI-Ready Content</title>
-    <meta name="description" content="Tired of messy copy-pasting? PromptReady is the one-click extension that instantly cleans any webpage into perfect, private context for your LLM." />
+    <meta
+      name="description"
+      content="Tired of messy copy-pasting? PromptReady is the one-click extension that instantly cleans any webpage into perfect, private context for your LLM."
+    />
     <link rel="canonical" href="https://promptready.vercel.app/" />
     <!-- Publisher and robots meta tags added for search engines -->
     <meta name="publisher" content="PromptReady" />
     <meta name="robots" content="index,follow" />
-    
-    <!-- --- Favicon --- -->
-    <link rel="icon" type="image/svg+xml" href="/logo.svg" /> <!-- Assuming your logo.svg is in the public folder -->
 
     <!-- --- Open Graph Tags (Facebook, WhatsApp, LinkedIn) --- -->
     <meta property="og:type" content="website" />
@@ -31,204 +30,210 @@
     <meta property="og:url" content="https://promptready.vercel.app/" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:title" content="Get Instantly AI-Ready Content with PromptReady" />
-    <meta property="og:description" content="Tired of messy copy-pasting? PromptReady is the one-click extension that instantly cleans any webpage into perfect, private context for your LLM." />
+    <meta
+      property="og:description"
+      content="Tired of messy copy-pasting? PromptReady is the one-click extension that instantly cleans any webpage into perfect, private context for your LLM."
+    />
     <meta property="og:image" content="https://promptready.vercel.app/og-image.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="PromptReady Logo and Headline: Skip the Manual Cleanup. Get Instantly AI-Ready Content." />
+    <meta
+      property="og:image:alt"
+      content="PromptReady Logo and Headline: Skip the Manual Cleanup. Get Instantly AI-Ready Content."
+    />
 
     <!-- --- Twitter Card Tags --- -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@YourActualTwitterHandle" />
     <meta name="twitter:title" content="Get Instantly AI-Ready Content with PromptReady" />
-    <meta name="twitter:description" content="Tired of messy copy-pasting? PromptReady is the one-click extension that instantly cleans any webpage into perfect, private context for your LLM." />
+    <meta
+      name="twitter:description"
+      content="Tired of messy copy-pasting? PromptReady is the one-click extension that instantly cleans any webpage into perfect, private context for your LLM."
+    />
     <meta name="twitter:image" content="https://promptready.vercel.app/og-image.png" />
-  <title>PromptReady Landing Page</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-    rel="stylesheet">
-  <style>
-    .min-h-screen {
-      min-height: 100vh;
-    }
-
-    .bg-white {
-      background-color: #ffffff;
-    }
-
-    .relative {
-      position: relative;
-    }
-
-    .bg-gradient-to-br {
-      background-image: linear-gradient(to bottom right, var(--tw-gradient-stops));
-    }
-
-    .from-blue-50 {
-      --tw-gradient-from: #eff6ff;
-      --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(239, 246, 255, 0));
-    }
-
-    .via-white {
-      --tw-gradient-from: #ffffff;
-      --tw-gradient-to: #eff6ff;
-      --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
-    }
-
-    .to-blue-50 {
-      --tw-gradient-to: #eff6ff;
-    }
-
-    .overflow-hidden {
-      overflow: hidden;
-    }
-
-    .absolute {
-      position: absolute;
-    }
-
-    .inset-0 {
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-    }
-
-    .bg-grid-pattern {
-      background-image: radial-gradient(circle, rgba(59, 130, 246, 0.1) 1px, transparent 1px);
-      background-size: 24px 24px;
-    }
-
-    .opacity-5 {
-      opacity: 0.05;
-    }
-
-    .max-w-7xl {
-      max-width: 80rem;
-    }
-
-    .mx-auto {
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .px-4 {
-      padding-left: 1rem;
-      padding-right: 1rem;
-    }
-
-    .sm\:px-6 {
-      padding-left: 1.5rem;
-      padding-right: 1.5rem;
-    }
-
-    .lg\:px-8 {
-      padding-left: 2rem;
-      padding-right: 2rem;
-    }
-
-    .py-12 {
-      padding-top: 3rem;
-      padding-bottom: 3rem;
-    }
-
-    .lg\:py-20 {
-      padding-top: 5rem;
-      padding-bottom: 5rem;
-    }
-
-    .text-center {
-      text-align: center;
-    }
-
-    .mb-8 {
-      margin-bottom: 2rem;
-    }
-
-    .flex {
-      display: flex;
-    }
-
-    .justify-center {
-      justify-content: center;
-    }
-
-    .flex-wrap {
-      flex-wrap: wrap;
-    }
-
-    .gap-4 {
-      gap: 1rem;
-    }
-
-    .mb-6 {
-      margin-bottom: 1.5rem;
-    }
-
-    .animate-fade-in {
-      animation: fade-in 0.6s ease-out;
-    }
-
-    @keyframes fade-in {
-      from {
-        opacity: 0;
-        transform: translateY(-10px);
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      .min-h-screen {
+        min-height: 100vh;
       }
 
-      to {
-        opacity: 1;
-        transform: translateY(0);
+      .bg-white {
+        background-color: #ffffff;
       }
-    }
-  </style>
-  <!-- Google Optimize Snippet -->
-  <script async src="https://www.googleoptimize.com/optimize.js?id=GTM-OPT-XXXXXX"></script>
 
-  <!-- Structured data (JSON-LD) for SEO: Organization, WebSite, SoftwareApplication -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
+      .relative {
+        position: relative;
+      }
+
+      .bg-gradient-to-br {
+        background-image: linear-gradient(to bottom right, var(--tw-gradient-stops));
+      }
+
+      .from-blue-50 {
+        --tw-gradient-from: #eff6ff;
+        --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(239, 246, 255, 0));
+      }
+
+      .via-white {
+        --tw-gradient-from: #ffffff;
+        --tw-gradient-to: #eff6ff;
+        --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+      }
+
+      .to-blue-50 {
+        --tw-gradient-to: #eff6ff;
+      }
+
+      .overflow-hidden {
+        overflow: hidden;
+      }
+
+      .absolute {
+        position: absolute;
+      }
+
+      .inset-0 {
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+      }
+
+      .bg-grid-pattern {
+        background-image: radial-gradient(circle, rgba(59, 130, 246, 0.1) 1px, transparent 1px);
+        background-size: 24px 24px;
+      }
+
+      .opacity-5 {
+        opacity: 0.05;
+      }
+
+      .max-w-7xl {
+        max-width: 80rem;
+      }
+
+      .mx-auto {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .px-4 {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+
+      .sm\:px-6 {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+      }
+
+      .lg\:px-8 {
+        padding-left: 2rem;
+        padding-right: 2rem;
+      }
+
+      .py-12 {
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+      }
+
+      .lg\:py-20 {
+        padding-top: 5rem;
+        padding-bottom: 5rem;
+      }
+
+      .text-center {
+        text-align: center;
+      }
+
+      .mb-8 {
+        margin-bottom: 2rem;
+      }
+
+      .flex {
+        display: flex;
+      }
+
+      .justify-center {
+        justify-content: center;
+      }
+
+      .flex-wrap {
+        flex-wrap: wrap;
+      }
+
+      .gap-4 {
+        gap: 1rem;
+      }
+
+      .mb-6 {
+        margin-bottom: 1.5rem;
+      }
+
+      .animate-fade-in {
+        animation: fade-in 0.6s ease-out;
+      }
+
+      @keyframes fade-in {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+    <!-- Google Optimize Snippet -->
+    <script async src="https://www.googleoptimize.com/optimize.js?id=GTM-OPT-XXXXXX"></script>
+
+    <!-- Structured data (JSON-LD) for SEO: Organization, WebSite, SoftwareApplication -->
+    <script type="application/ld+json">
       {
-        "@type": "Organization",
-        "name": "PromptReady",
-        "url": "https://promptready.vercel.app/",
-        "logo": "https://promptready.vercel.app/og-image.png",
-        "sameAs": [
-          "https://twitter.com/YourActualTwitterHandle"
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "name": "PromptReady",
+            "url": "https://promptready.vercel.app/",
+            "logo": "https://promptready.vercel.app/og-image.png",
+            "sameAs": ["https://twitter.com/YourActualTwitterHandle"]
+          },
+          {
+            "@type": "WebSite",
+            "name": "PromptReady",
+            "url": "https://promptready.vercel.app/",
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": "https://promptready.vercel.app/?s={search_term_string}",
+              "query-input": "required name=search_term_string"
+            }
+          },
+          {
+            "@type": "SoftwareApplication",
+            "name": "PromptReady",
+            "url": "https://promptready.vercel.app/",
+            "applicationCategory": "BrowserApplication",
+            "operatingSystem": "All",
+            "offers": {
+              "@type": "Offer",
+              "url": "https://waitlister.me/p/promptready"
+            }
+          }
         ]
-      },
-      {
-        "@type": "WebSite",
-        "name": "PromptReady",
-        "url": "https://promptready.vercel.app/",
-        "potentialAction": {
-          "@type": "SearchAction",
-          "target": "https://promptready.vercel.app/?s={search_term_string}",
-          "query-input": "required name=search_term_string"
-        }
-      },
-      {
-        "@type": "SoftwareApplication",
-        "name": "PromptReady",
-        "url": "https://promptready.vercel.app/",
-        "applicationCategory": "BrowserApplication",
-        "operatingSystem": "All",
-        "offers": {
-          "@type": "Offer",
-          "url": "https://waitlister.me/p/promptready"
-        }
       }
-    ]
-  }
-  </script>
-</head>
+    </script>
+  </head>
 
-<body>
-  <div id="root"></div>
-  <script type="module" src="/src/main.tsx"></script>
-</body>
-
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>

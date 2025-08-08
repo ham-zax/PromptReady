@@ -3,15 +3,14 @@ import { Wand2 } from 'lucide-react';
 
 const BeforeAfter: React.FC = () => {
   return (
-   
     <section className="py-20 lg:py-24">
       <div className="mx-auto max-w-5xl">
         <div className="browser-mockup floating-card mx-auto max-w-4xl">
           <div className="browser-header">
-            <div className="browser-dot bg-red-500 hidden sm:inline-block"></div>
-            <div className="browser-dot bg-yellow-500 hidden sm:inline-block"></div>
-            <div className="browser-dot bg-green-500 hidden sm:inline-block"></div>
-            <div className="sm:ml-4 rounded-full bg-gray-200 px-4 py-1 text-sm font-medium text-gray-700">
+            <div className="browser-dot hidden bg-red-500 sm:inline-block"></div>
+            <div className="browser-dot hidden bg-yellow-500 sm:inline-block"></div>
+            <div className="browser-dot hidden bg-green-500 sm:inline-block"></div>
+            <div className="rounded-full bg-gray-200 px-4 py-1 text-sm font-medium text-gray-700 sm:ml-4">
               example‑article.com
             </div>
             <div className="ml-auto">
@@ -73,4 +72,3 @@ const BeforeAfter: React.FC = () => {
 };
 
 export default BeforeAfter;
-

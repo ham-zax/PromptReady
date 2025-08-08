@@ -1,7 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import Hero from './components/Hero';
-import BeforeAfter from './components/BeforeAfter';
 import ProblemSolution from './components/ProblemSolution';
 import SocialProof from './components/SocialProof';
 import Features from './components/Features';
@@ -13,11 +12,11 @@ import { Analytics } from '@vercel/analytics/react';
 import ThankYou from './pages/ThankYou';
 import VideoDemo from './components/VideoDemo';
 
-const WAITLIST_URL = "https://waitlister.me/p/promptready";
+const WAITLIST_URL = 'https://waitlister.me/p/promptready';
 
 function App() {
-  const [currentPath, setCurrentPath] = React.useState<string>(
-    typeof window !== 'undefined' ? window.location.pathname : '/'
+  const [currentPath] = React.useState<string>(
+    typeof window !== 'undefined' ? window.location.pathname : '/',
   );
 
   // ... (React hooks and handlers remain the same) ...
@@ -33,9 +32,7 @@ function App() {
 
   return (
     <>
-      <Helmet>
-        {/* ... */}
-      </Helmet>
+      <Helmet>{/* ... */}</Helmet>
       <Analytics />
       {isThankYou ? (
         <ThankYou />
@@ -45,14 +42,13 @@ function App() {
           <main>
             {/* The base background for the entire page */}
             <div className="bg-white">
-
               {/* Section 1: Hero (White) */}
-              <section className="relative">
+              <section className="relative bg-gradient-to-b from-white to-blue-50">
                 <Hero onPrimaryAction={() => handlePrimaryAction('Hero')} />
               </section>
 
               {/* Section 2: VideoDemo (Smoothly fades from White to a light Blue) */}
-              <section className="relative bg-gradient-to-b from-white to-blue-50">
+              <section className="to-bg-white relative bg-gradient-to-b from-blue-50">
                 <VideoDemo />
               </section>
 
@@ -84,7 +80,7 @@ function App() {
               {/* Section 8: Pricing (Sits on White, with a gradient overlay fading to dark) */}
               <section className="relative bg-white">
                 {/* This div creates the fade-to-dark effect BEFORE the footer */}
-                <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-slate-900 to-transparent -z-10" />
+                <div className="absolute inset-x-0 bottom-0 -z-10 h-48 bg-gradient-to-t from-slate-900 to-transparent" />
                 <Pricing onPrimaryAction={() => handlePrimaryAction('Pricing')} />
               </section>
 
@@ -92,7 +88,6 @@ function App() {
               <section className="relative bg-slate-900 text-slate-100">
                 <Footer />
               </section>
-
             </div>
           </main>
         </>

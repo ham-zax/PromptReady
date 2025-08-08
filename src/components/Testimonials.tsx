@@ -1,8 +1,8 @@
-import React from "react";
-import { useSwipeable } from "react-swipeable";
-import useTestimonialCarousel from "../hooks/useTestimonialCarousel";
-import { testimonials, Testimonial } from "../data/testimonialsData";
-import { Star } from "lucide-react";
+import React from 'react';
+import { useSwipeable } from 'react-swipeable';
+import useTestimonialCarousel from '../hooks/useTestimonialCarousel';
+import { testimonials, Testimonial } from '../data/testimonialsData';
+import { Star } from 'lucide-react';
 
 // The StarRating component is where we'll fix the "5.0★" issue.
 const StarRating = ({ rating }: { rating: number }) => {
@@ -10,7 +10,9 @@ const StarRating = ({ rating }: { rating: number }) => {
   const hasHalfStar = rating % 1 !== 0;
 
   return (
-    <div className="flex items-center gap-4"> {/* Increased gap for more space */}
+    <div className="flex items-center gap-4">
+      {' '}
+      {/* Increased gap for more space */}
       {/* The star icons */}
       <div className="flex gap-0.5 text-yellow-400">
         {[...Array(fullStars)].map((_, i) => (
@@ -18,7 +20,6 @@ const StarRating = ({ rating }: { rating: number }) => {
         ))}
         {hasHalfStar && <Star key="half" className="h-5 w-5 fill-current opacity-50" />}
       </div>
-      
       {/* --- THE FIX --- */}
       {/* 
         - The star is now an inline element, not a separate icon.
@@ -27,14 +28,16 @@ const StarRating = ({ rating }: { rating: number }) => {
       */}
       <div className="text-lg font-medium text-slate-700">
         {rating.toFixed(1)}
-        <Star className="inline-block h-4 w-4 ml-1 fill-slate-400 text-slate-400 align-baseline" />
+        <Star className="ml-1 inline-block h-4 w-4 fill-slate-400 align-baseline text-slate-400" />
       </div>
     </div>
   );
 };
 
 const Testimonials: React.FC = () => {
-  const { currentTestimonial, setCurrentTestimonial, next, prev } = useTestimonialCarousel(testimonials.length);
+  const { currentTestimonial, setCurrentTestimonial, next, prev } = useTestimonialCarousel(
+    testimonials.length,
+  );
 
   const handlers = useSwipeable({
     onSwipedLeft: () => next(),
@@ -50,21 +53,21 @@ const Testimonials: React.FC = () => {
           <div
             key={testimonial.id}
             className={`col-start-1 row-start-1 transition-opacity duration-300 ease-in-out ${
-              currentTestimonial === index ? 'opacity-100' : 'opacity-0 pointer-events-none'
+              currentTestimonial === index ? 'opacity-100' : 'pointer-events-none opacity-0'
             }`}
           >
             {/* The actual testimonial card with refined styling */}
             <div className="mx-auto rounded-xl border border-slate-200 bg-white p-8 shadow-sm">
               {/* Increased bottom margin for better spacing */}
-              <div className="flex justify-center mb-8">
+              <div className="mb-8 flex justify-center">
                 <StarRating rating={testimonial.stars} />
               </div>
-              
+
               {/* Refined typography for the quote */}
               <blockquote className="text-center text-xl font-medium leading-relaxed text-slate-800">
                 "{testimonial.quote}"
               </blockquote>
-              
+
               {/* Increased top margin and refined author typography */}
               <div className="mt-8 text-center">
                 <div className="font-semibold text-slate-900">{testimonial.author}</div>
