@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
 import { ArrowLeft, Home, Search } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import Logo from '../components/ui/Logo';
 
 const NotFoundPage: React.FC = () => {
   return (
@@ -20,6 +21,16 @@ const NotFoundPage: React.FC = () => {
 
       <main className="min-h-screen bg-gradient-to-b from-white to-blue-50 flex items-center justify-center">
         <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8 text-center">
+          {/* Logo */}
+          <motion.div
+            className="mb-8 flex justify-center"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.05 }}
+          >
+            <Logo size="lg" />
+          </motion.div>
+
           <motion.div
             className="mb-8"
             initial={{ opacity: 0, y: 20 }}
@@ -29,7 +40,7 @@ const NotFoundPage: React.FC = () => {
             <div className="mx-auto mb-6 flex h-24 w-24 items-center justify-center rounded-full bg-blue-100">
               <Search className="h-12 w-12 text-blue-600" />
             </div>
-            
+
             <h1 className="mb-4 text-6xl font-bold text-slate-900">404</h1>
             <h2 className="mb-4 text-2xl font-semibold text-slate-900">Page Not Found</h2>
             <p className="text-lg text-slate-700">

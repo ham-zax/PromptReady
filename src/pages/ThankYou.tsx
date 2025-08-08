@@ -1,6 +1,7 @@
 import React from 'react';
 import { Calendar, MessageSquare, ArrowLeft } from 'lucide-react';
 import { trackEvent } from '../hooks/useAnalytics';
+import Logo from '../components/ui/Logo';
 
 const INTERVIEW_URL = 'https://cal.com/your-handle/15min'; // TODO: replace with your Calendly/Cal.com link
 const FEEDBACK_URL = 'https://forms.gle/your-form-id'; // TODO: replace with your Typeform or Google Forms link
@@ -10,6 +11,11 @@ const ThankYou: React.FC = () => {
     <section className="relative bg-white">
       <div className="relative z-10 mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
         <div className="mb-8 text-center">
+          {/* Logo */}
+          <div className="mb-6 flex justify-center">
+            <Logo size="xl" />
+          </div>
+
           <h1 className="mb-3 text-4xl font-bold tracking-tight text-slate-900">
             You're on the list — thank you!
           </h1>

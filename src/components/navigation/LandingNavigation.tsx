@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
 import { ArrowRight, Menu, X } from 'lucide-react';
-import logoSvg from '../../assets/logo.svg';
+import Logo from '../ui/Logo';
 
 interface LandingNavigationProps {
   onPrimaryAction: (sourceComponent: string) => void;
@@ -25,10 +25,7 @@ const LandingNavigation: React.FC<LandingNavigationProps> = ({ onPrimaryAction }
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2">
-            <img src={logoSvg} alt="PromptReady" className="h-8 w-8" />
-            <span className="text-xl font-bold text-slate-900">PromptReady</span>
-          </Link>
+          <Logo size="lg" clickable />
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">

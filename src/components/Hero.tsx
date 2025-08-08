@@ -4,6 +4,7 @@ import { RetroGrid } from './magicui/retro-grid';
 import { motion, Transition } from 'framer-motion';
 import { trackHeroCtaClick } from '../hooks/useAnalytics';
 import { Link } from 'react-router-dom';
+import Logo from './ui/Logo';
 
 interface HeroProps {
   onPrimaryAction: () => void;
@@ -65,6 +66,16 @@ const Hero: React.FC<HeroProps> = ({ onPrimaryAction }) => {
               Manifest V3 ready
             </motion.span>
           </div>
+
+          {/* Subtle logo watermark */}
+          <motion.div
+            className="mb-6 flex justify-center"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ ...spring, delay: 0.05 }}
+          >
+            <Logo size="md" background="subtle" />
+          </motion.div>
 
           <motion.h1
             className="mb-4 text-5xl font-bold leading-tight text-slate-900 sm:text-6xl lg:text-7xl"

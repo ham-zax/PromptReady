@@ -1,13 +1,13 @@
 import React from 'react';
-import { Copy, Globe } from 'lucide-react';
+import { Globe } from 'lucide-react';
+import Logo from './ui/Logo';
 
 const Footer: React.FC = () => (
   <footer className="bg-gray-900 py-12 text-gray-300">
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div className="text-center">
-        <div className="mb-6 flex items-center justify-center">
-          <Copy className="mr-3 h-8 w-8 text-blue-400" />
-          <span className="text-2xl font-bold text-white">PromptReady</span>
+        <div className="mb-6 flex justify-center">
+          <Logo size="xl" textColor="light" theme="dark" />
         </div>
         <div className="mb-6">
           <div className="inline-flex items-center rounded-full bg-gray-800 px-4 py-2 text-sm font-medium">

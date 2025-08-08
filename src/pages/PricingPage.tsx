@@ -1,8 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
-import { ArrowLeft, ArrowRight, Check, Star } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { ArrowRight, Check, Star } from 'lucide-react';
+import Logo from '../components/ui/Logo';
 
 // Import components
 import Pricing from '../components/Pricing';
@@ -37,41 +37,20 @@ const PricingPage: React.FC<PricingPageProps> = ({ onPrimaryAction }) => {
 
       <main>
         <div className="bg-white">
-          {/* Navigation Header */}
-          <nav className="relative bg-white border-b border-slate-200">
-            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-              <div className="flex h-16 items-center justify-between">
-                <Link 
-                  to="/" 
-                  className="inline-flex items-center gap-2 text-sm font-semibold text-slate-700 hover:text-slate-900 transition-colors"
-                >
-                  <ArrowLeft className="h-4 w-4" />
-                  Back to Home
-                </Link>
-                
-                <div className="flex items-center gap-4">
-                  <Link 
-                    to="/demo" 
-                    className="text-sm font-medium text-slate-700 hover:text-slate-900 transition-colors"
-                  >
-                    Demo
-                  </Link>
-                  <button
-                    onClick={() => onPrimaryAction('PricingPage-Header')}
-                    className="inline-flex items-center gap-2 rounded-full bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-blue-700"
-                  >
-                    Join Waitlist
-                    <ArrowRight className="h-4 w-4" />
-                  </button>
-                </div>
-              </div>
-            </div>
-          </nav>
-
           {/* Pricing Hero Section */}
           <section className="relative bg-gradient-to-b from-white to-blue-50 py-16 lg:py-24">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
               <div className="text-center">
+                {/* Logo */}
+                <motion.div
+                  className="mb-6 flex justify-center"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.05 }}
+                >
+                  <Logo size="md" background="subtle" />
+                </motion.div>
+
                 <motion.div
                   className="mb-6 inline-flex items-center gap-2 rounded-full bg-green-100 px-4 py-2 text-sm font-semibold text-green-700"
                   initial={{ opacity: 0, y: 20 }}
