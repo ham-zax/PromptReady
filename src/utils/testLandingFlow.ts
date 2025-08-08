@@ -1,6 +1,16 @@
 // Test utility for landing flow functionality
 // This can be run in the browser console to test the flow
 
+// Type definitions for window extensions
+declare global {
+  interface Window {
+    posthog?: {
+      capture?: (name: string, props?: Record<string, unknown>) => void;
+    };
+    testLandingFlow?: () => void;
+  }
+}
+
 export const testLandingFlow = () => {
   console.log('🚀 Testing Landing Flow Implementation...');
   
@@ -31,7 +41,7 @@ export const testLandingFlow = () => {
     }
     
     // Check for PostHog
-    if ((window as any).posthog) {
+    if (window.posthog) {
       console.log('✅ PostHog is loaded');
     } else {
       console.log('⚠️ PostHog not detected');
@@ -109,4 +119,4 @@ if (import.meta.env.DEV) {
 }
 
 // Make available globally for manual testing
-(window as any).testLandingFlow = testLandingFlow;
+window.testLandingFlow = testLandingFlow;

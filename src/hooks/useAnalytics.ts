@@ -1,9 +1,7 @@
 // src/hooks/useAnalytics.ts
 
 import { track as vercelTrack } from '@vercel/analytics';
-
-type AnalyticsValue = string | number | boolean;
-type AnalyticsPayload = Record<string, AnalyticsValue>;
+import type { AnalyticsPayload } from '../types';
 
 /**
  * Minimal PostHog shim — sends events to PostHog if available on window.
@@ -16,7 +14,7 @@ const posthogCapture = (eventName: string, payload: AnalyticsPayload) => {
     if (w?.posthog?.capture) {
       w.posthog.capture(eventName, payload);
     }
-  } catch (e) {
+  } catch {
     // no-op
   }
 };
@@ -31,12 +29,11 @@ export const trackEvent = (eventName: string, payload: AnalyticsPayload = {}) =>
   try {
     if (import.meta && import.meta.env && import.meta.env.DEV) {
       // Dev-only log to avoid noise in production
-      // eslint-disable-next-line no-console
       console.log(`[Analytics] Event: ${eventName}`, payload);
     }
     vercelTrack(eventName, payload);
     posthogCapture(eventName, payload);
-  } catch (e) {
+  } catch {
     // swallow analytics errors
   }
 };

@@ -2,9 +2,7 @@ import React from 'react';
 import { Calendar, MessageSquare, ArrowLeft } from 'lucide-react';
 import { trackEvent } from '../hooks/useAnalytics';
 import Logo from '../components/ui/Logo';
-
-const INTERVIEW_URL = 'https://cal.com/your-handle/15min'; // TODO: replace with your Calendly/Cal.com link
-const FEEDBACK_URL = 'https://forms.gle/your-form-id'; // TODO: replace with your Typeform or Google Forms link
+import { env } from '../config';
 
 const ThankYou: React.FC = () => {
   return (
@@ -26,11 +24,11 @@ const ThankYou: React.FC = () => {
 
         <div className="grid gap-4 sm:grid-cols-2">
           <a
-            href={INTERVIEW_URL}
+            href={env.INTERVIEW_URL}
             target="_blank"
             rel="noopener noreferrer"
             onClick={() =>
-              trackEvent('thankyou_interview_click', { destination_url: INTERVIEW_URL })
+              trackEvent('thankyou_interview_click', { destination_url: env.INTERVIEW_URL })
             }
             className="group rounded-2xl border border-slate-200 bg-gradient-to-b from-white to-slate-50 p-6 shadow-sm transition hover:border-blue-300 hover:shadow-md"
           >
@@ -47,10 +45,10 @@ const ThankYou: React.FC = () => {
           </a>
 
           <a
-            href={FEEDBACK_URL}
+            href={env.FEEDBACK_URL}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={() => trackEvent('thankyou_feedback_click', { destination_url: FEEDBACK_URL })}
+            onClick={() => trackEvent('thankyou_feedback_click', { destination_url: env.FEEDBACK_URL })}
             className="group rounded-2xl border border-slate-200 bg-gradient-to-b from-white to-slate-50 p-6 shadow-sm transition hover:border-blue-300 hover:shadow-md"
           >
             <div className="mb-2 text-xs uppercase tracking-wide text-slate-500">

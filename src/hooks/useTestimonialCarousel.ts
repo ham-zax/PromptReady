@@ -1,8 +1,19 @@
 // src/hooks/useTestimonialCarousel.ts
 import { useState, useEffect, useCallback } from 'react';
+import { animations } from '../config';
 
-const useTestimonialCarousel = (testimonialCount: number, interval = 5000) => {
-  const [currentTestimonial, setCurrentTestimonial] = useState(0);
+interface UseTestimonialCarouselReturn {
+  currentTestimonial: number;
+  setCurrentTestimonial: (index: number) => void;
+  next: () => void;
+  prev: () => void;
+}
+
+const useTestimonialCarousel = (
+  testimonialCount: number,
+  interval: number = animations.durations.carousel
+): UseTestimonialCarouselReturn => {
+  const [currentTestimonial, setCurrentTestimonial] = useState<number>(0);
 
   const next = useCallback(() => {
     setCurrentTestimonial((prev) => (prev + 1) % testimonialCount);
@@ -14,7 +25,7 @@ const useTestimonialCarousel = (testimonialCount: number, interval = 5000) => {
 
   useEffect(() => {
     if (!interval) return;
-    const timer = setInterval(next, interval);
+    const timer: NodeJS.Timeout = setInterval(next, interval);
     return () => clearInterval(timer);
   }, [interval, next]);
 

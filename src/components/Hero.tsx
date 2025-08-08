@@ -1,20 +1,14 @@
 import React from 'react';
-import { Lock, Zap, Award, ArrowRight, Wand2, Play } from 'lucide-react';
 import { RetroGrid } from './magicui/retro-grid';
-import { motion, Transition } from 'framer-motion';
-import { trackHeroCtaClick } from '../hooks/useAnalytics';
-import { Link } from 'react-router-dom';
-import Logo from './ui/Logo';
+import HeroBadges from './Hero/HeroBadges';
+import HeroContent from './Hero/HeroContent';
+import HeroActions from './Hero/HeroActions';
+import HeroModes from './Hero/HeroModes';
+import { animations } from '../config';
 
 interface HeroProps {
   onPrimaryAction: () => void;
 }
-
-const spring: Transition = {
-  type: 'spring',
-  stiffness: 300,
-  damping: 26,
-};
 
 const Hero: React.FC<HeroProps> = ({ onPrimaryAction }) => {
   React.useEffect(() => {
@@ -37,94 +31,11 @@ const Hero: React.FC<HeroProps> = ({ onPrimaryAction }) => {
       <div className="relative z-10 mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
         {/* Top copy */}
         <div className="text-center">
-          <div className="mb-8 flex flex-wrap justify-center gap-3">
-            <motion.span
-              className="inline-flex items-center gap-2 rounded-full bg-blue-600 px-4 py-2 text-xs font-semibold text-white shadow-sm"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ ...spring, delay: 0.05 }}
-            >
-              <Lock className="h-4 w-4" />
-              Client-side privacy
-            </motion.span>
-            <motion.span
-              className="inline-flex items-center gap-2 rounded-full bg-emerald-600 px-4 py-2 text-xs font-semibold text-white shadow-sm"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ ...spring, delay: 0.12 }}
-            >
-              <Zap className="h-4 w-4" />
-              Blazingly fast
-            </motion.span>
-            <motion.span
-              className="inline-flex items-center gap-2 rounded-full bg-violet-600 px-4 py-2 text-xs font-semibold text-white shadow-sm"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ ...spring, delay: 0.18 }}
-            >
-              <Award className="h-4 w-4" />
-              Manifest V3 ready
-            </motion.span>
-          </div>
+          <HeroBadges spring={animations.spring} />
 
-          {/* Subtle logo watermark */}
-          <motion.div
-            className="mb-6 flex justify-center"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ ...spring, delay: 0.05 }}
-          >
-            <Logo size="lg" background="subtle" />
-          </motion.div>
+          <HeroContent spring={animations.spring} />
 
-          <motion.h1
-            className="mb-4 text-5xl font-bold leading-tight text-slate-900 sm:text-6xl lg:text-7xl"
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ ...spring, delay: 0.1 }}
-          >
-            Copy clean, AI-ready text. Instantly.
-          </motion.h1>
-
-          <motion.p
-            className="mx-auto mb-6 max-w-4xl text-lg font-medium text-slate-700 sm:text-xl"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ ...spring, delay: 0.18 }}
-          >
-            One-click extension that turns any page into structured, distraction-free text for
-            ChatGPT, Claude, or your LLM workflow — with private, on-device parsing.
-          </motion.p>
-
-          {/* Primary CTA and secondary actions */}
-          <div className="mb-6 flex flex-col sm:flex-row gap-4 justify-center">
-            <button
-              onClick={() => {
-                trackHeroCtaClick({ placement: 'hero_button' });
-                onPrimaryAction();
-              }}
-              className="inline-flex items-center gap-2 rounded-full bg-blue-600 px-6 py-3 text-base font-semibold text-white shadow-lg transition-colors hover:bg-blue-700"
-            >
-              Join the early access
-              <ArrowRight className="h-4 w-4" />
-            </button>
-
-            <Link
-              to="/demo"
-              className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-6 py-3 text-base font-semibold text-slate-700 shadow-sm transition-colors hover:bg-slate-50"
-            >
-              <Play className="h-4 w-4" />
-              Watch Demo
-            </Link>
-          </div>
-
-          {/* Supporting credibility/badges */}
-          <div className="mx-auto mb-8 max-w-2xl text-center text-sm text-slate-600">
-            Privacy-first by design.
-            <div className="mt-3 text-xs uppercase tracking-wide text-slate-500">
-              Chrome (soon) • Firefox (planned) • Edge (planned)
-            </div>
-          </div>
+          <HeroActions onPrimaryAction={onPrimaryAction} />
 
           {/* Keep a single primary action overall, but allow email card as alternate entry */}
           {/* <div className="mb-10 flex justify-center">
@@ -150,50 +61,7 @@ const Hero: React.FC<HeroProps> = ({ onPrimaryAction }) => {
           </div> */}
         </div>
 
-        {/* Modes */}
-        <div className="mx-auto mb-12 grid max-w-4xl grid-cols-1 gap-4 md:grid-cols-2">
-          <motion.div
-            className="relative rounded-2xl border border-slate-200 bg-gradient-to-b from-white to-slate-200 p-6 shadow-sm"
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-80px' }}
-            transition={{ ...spring, delay: 0.05 }}
-          >
-            <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-slate-100 px-3 py-1 text-sm font-semibold text-slate-700">
-              <Lock className="h-4 w-4 text-slate-600" />
-              Local mode
-            </div>
-            <h2 className="mb-2 text-lg font-semibold text-slate-900">Offline and private</h2>
-            <ul className="space-y-2 text-slate-700">
-              <li>
-                Instant parsing that strips ads, pop-ups, and chrome from any page — keeps only the
-                content that matters.
-              </li>
-              <li>100% client-side. Nothing leaves your machine.</li>
-            </ul>
-          </motion.div>
-
-          <motion.div
-            className="relative rounded-2xl border border-violet-200 bg-gradient-to-b from-white to-violet-50 p-6 shadow-sm"
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-80px' }}
-            transition={{ ...spring, delay: 0.12 }}
-          >
-            <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-violet-100 px-3 py-1 text-sm font-semibold text-violet-700">
-              <Wand2 className="h-4 w-4 text-violet-700" />
-              Cloud extras
-            </div>
-            <h2 className="mb-2 text-lg font-semibold text-slate-900">Optional AI formatting</h2>
-            <ul className="space-y-2 text-slate-700">
-              <li>
-                Perfect, LLM-ready structure via our secure API when you want more than basic
-                parsing.
-              </li>
-              <li>Extras: auto-summaries, custom templates, and export.</li>
-            </ul>
-          </motion.div>
-        </div>
+        <HeroModes spring={animations.spring} />
 
         {/* Before / After mockup moved to App as <BeforeAfter /> */}
       </div>

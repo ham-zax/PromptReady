@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
 import { ArrowRight, Menu, X } from 'lucide-react';
 import Logo from '../ui/Logo';
+import type { NavigationItem } from '../../types';
 
 interface LandingNavigationProps {
   onPrimaryAction: (sourceComponent: string) => void;
@@ -12,7 +13,7 @@ const LandingNavigation: React.FC<LandingNavigationProps> = ({ onPrimaryAction }
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const location = useLocation();
 
-  const navigationItems = [
+  const navigationItems: NavigationItem[] = [
     { name: 'Home', path: '/', id: 'home' },
     { name: 'Demo', path: '/demo', id: 'demo' },
     { name: 'Pricing', path: '/pricing', id: 'pricing' },

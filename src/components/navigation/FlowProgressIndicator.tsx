@@ -62,7 +62,6 @@ const FlowProgressIndicator: React.FC = () => {
             const Icon = step.icon;
             const isActive = index === currentStepIndex;
             const isCompleted = index < currentStepIndex;
-            const isUpcoming = index > currentStepIndex;
 
             return (
               <div key={step.id} className="flex items-center">
