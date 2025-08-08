@@ -48,7 +48,7 @@ const PricingPage: React.FC<PricingPageProps> = ({ onPrimaryAction }) => {
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.05 }}
                 >
-                  <Logo size="md" background="subtle" />
+                  <Logo size="lg" background="subtle" />
                 </motion.div>
 
                 <motion.div

@@ -74,7 +74,7 @@ const Hero: React.FC<HeroProps> = ({ onPrimaryAction }) => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ ...spring, delay: 0.05 }}
           >
-            <Logo size="md" background="subtle" />
+            <Logo size="lg" background="subtle" />
           </motion.div>
 
           <motion.h1

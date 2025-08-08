@@ -22,6 +22,16 @@ The component now supports both dark and light logo variants:
 - **Auto Detection**: Automatically chooses appropriate logo based on theme or text color
 - **CSS Fallback**: Uses CSS filters as backup for color inversion
 
+### Typography Configuration
+The PromptReady text uses consistent typography across all sizes:
+- **Font Weight**: 300 (font-light) for elegant, modern appearance
+- **Size Scaling**: Proportional text sizing based on logo size
+- **Size Mapping**:
+  - `sm`: 18px (text-lg) for compact contexts
+  - `md`: 28px (text-3xl) for standard usage
+  - `lg`: 28px (text-3xl) for navigation and headers
+  - `xl`: 36px (text-4xl) for prominent display
+
 ### Usage Examples
 
 ```tsx
