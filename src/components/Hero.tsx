@@ -1,8 +1,9 @@
 import React from 'react';
-import { Lock, Zap, Award, ArrowRight, Wand2 } from 'lucide-react';
+import { Lock, Zap, Award, ArrowRight, Wand2, Play } from 'lucide-react';
 import { RetroGrid } from './magicui/retro-grid';
 import { motion, Transition } from 'framer-motion';
 import { trackHeroCtaClick } from '../hooks/useAnalytics';
+import { Link } from 'react-router-dom';
 
 interface HeroProps {
   onPrimaryAction: () => void;
@@ -84,8 +85,8 @@ const Hero: React.FC<HeroProps> = ({ onPrimaryAction }) => {
             ChatGPT, Claude, or your LLM workflow — with private, on-device parsing.
           </motion.p>
 
-          {/* Primary CTA directly under headline (mirrors main action) */}
-          <div className="mb-6 flex justify-center">
+          {/* Primary CTA and secondary actions */}
+          <div className="mb-6 flex flex-col sm:flex-row gap-4 justify-center">
             <button
               onClick={() => {
                 trackHeroCtaClick({ placement: 'hero_button' });
@@ -96,6 +97,14 @@ const Hero: React.FC<HeroProps> = ({ onPrimaryAction }) => {
               Join the early access
               <ArrowRight className="h-4 w-4" />
             </button>
+
+            <Link
+              to="/demo"
+              className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-6 py-3 text-base font-semibold text-slate-700 shadow-sm transition-colors hover:bg-slate-50"
+            >
+              <Play className="h-4 w-4" />
+              Watch Demo
+            </Link>
           </div>
 
           {/* Supporting credibility/badges */}
