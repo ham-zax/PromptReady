@@ -36,7 +36,7 @@ const Logo: React.FC<LogoProps> = ({
   const sizeConfig = {
     sm: {
       logo: 'h-5 w-5',
-      text: 'text-sm font-light',
+      text: 'text-lg font-light', // 18px for small contexts
       gap: 'gap-2'
     },
     md: {
@@ -51,8 +51,8 @@ const Logo: React.FC<LogoProps> = ({
     },
     xl: {
       logo: 'h-12 w-12',
-      text: 'text-3xl font-light', // 28px equivalent
-      gap: 'gap-3'
+      text: 'text-4xl font-light', // 36px for extra large contexts
+      gap: 'gap-4'
     }
   };
 
