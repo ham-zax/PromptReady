@@ -18,6 +18,9 @@
     <title>PromptReady: Get Instantly AI-Ready Content</title>
     <meta name="description" content="Tired of messy copy-pasting? PromptReady is the one-click extension that instantly cleans any webpage into perfect, private context for your LLM." />
     <link rel="canonical" href="https://promptready.vercel.app/" />
+    <!-- Publisher and robots meta tags added for search engines -->
+    <meta name="publisher" content="PromptReady" />
+    <meta name="robots" content="index,follow" />
     
     <!-- --- Favicon --- -->
     <link rel="icon" type="image/svg+xml" href="/logo.svg" /> <!-- Assuming your logo.svg is in the public folder -->
@@ -182,6 +185,45 @@
   </style>
   <!-- Google Optimize Snippet -->
   <script async src="https://www.googleoptimize.com/optimize.js?id=GTM-OPT-XXXXXX"></script>
+
+  <!-- Structured data (JSON-LD) for SEO: Organization, WebSite, SoftwareApplication -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "name": "PromptReady",
+        "url": "https://promptready.vercel.app/",
+        "logo": "https://promptready.vercel.app/og-image.png",
+        "sameAs": [
+          "https://twitter.com/YourActualTwitterHandle"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "name": "PromptReady",
+        "url": "https://promptready.vercel.app/",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://promptready.vercel.app/?s={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "PromptReady",
+        "url": "https://promptready.vercel.app/",
+        "applicationCategory": "BrowserApplication",
+        "operatingSystem": "All",
+        "offers": {
+          "@type": "Offer",
+          "url": "https://waitlister.me/p/promptready"
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 
 <body>
