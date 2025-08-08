@@ -33,7 +33,7 @@ const ThankYou: React.FC = () => {
             </div>
             <div className="mb-1 flex items-center gap-2 text-lg font-semibold text-slate-900">
               <Calendar className="h-5 w-5 text-blue-600" />
-              15‑minute interview
+              15-minute interview
             </div>
             <p className="text-sm text-slate-600">
               Share your workflow and get prioritized access.
@@ -52,7 +52,7 @@ const ThankYou: React.FC = () => {
             </div>
             <div className="mb-1 flex items-center gap-2 text-lg font-semibold text-slate-900">
               <MessageSquare className="h-5 w-5 text-blue-600" />
-              2‑minute survey
+              2-minute survey
             </div>
             <p className="text-sm text-slate-600">Tell us what you need most to make this great.</p>
           </a>

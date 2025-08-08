@@ -43,7 +43,7 @@ const Hero: React.FC<HeroProps> = ({ onPrimaryAction }) => {
               transition={{ ...spring, delay: 0.05 }}
             >
               <Lock className="h-4 w-4" />
-              Client‑side privacy
+              Client-side privacy
             </motion.span>
             <motion.span
               className="inline-flex items-center gap-2 rounded-full bg-emerald-600 px-4 py-2 text-xs font-semibold text-white shadow-sm"
@@ -71,7 +71,7 @@ const Hero: React.FC<HeroProps> = ({ onPrimaryAction }) => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ ...spring, delay: 0.1 }}
           >
-            Copy clean, AI‑ready text. Instantly.
+            Copy clean, AI-ready text. Instantly.
           </motion.h1>
 
           <motion.p
@@ -80,8 +80,8 @@ const Hero: React.FC<HeroProps> = ({ onPrimaryAction }) => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ ...spring, delay: 0.18 }}
           >
-            One‑click extension that turns any page into structured, distraction‑free text for
-            ChatGPT, Claude, or your LLM workflow — with private, on‑device parsing.
+            One-click extension that turns any page into structured, distraction-free text for
+            ChatGPT, Claude, or your LLM workflow — with private, on-device parsing.
           </motion.p>
 
           {/* Primary CTA directly under headline (mirrors main action) */}
@@ -100,7 +100,7 @@ const Hero: React.FC<HeroProps> = ({ onPrimaryAction }) => {
 
           {/* Supporting credibility/badges */}
           <div className="mx-auto mb-8 max-w-2xl text-center text-sm text-slate-600">
-            Privacy‑first by design.
+            Privacy-first by design.
             <div className="mt-3 text-xs uppercase tracking-wide text-slate-500">
               Chrome (soon) • Firefox (planned) • Edge (planned)
             </div>
@@ -116,7 +116,7 @@ const Hero: React.FC<HeroProps> = ({ onPrimaryAction }) => {
             <dl className="grid grid-cols-1 gap-4 sm:grid-cols-3">
               <div>
                 <dt className="mb-1 text-xs uppercase tracking-wide text-slate-500">Is it private?</dt>
-                <dd>All default parsing runs on‑device; nothing leaves your machine.</dd>
+                <dd>All default parsing runs on-device; nothing leaves your machine.</dd>
               </div>
               <div>
                 <dt className="mb-1 text-xs uppercase tracking-wide text-slate-500">Paywalled sites?</dt>
@@ -124,7 +124,7 @@ const Hero: React.FC<HeroProps> = ({ onPrimaryAction }) => {
               </div>
               <div>
                 <dt className="mb-1 text-xs uppercase tracking-wide text-slate-500">Pricing</dt>
-                <dd>Free local mode. Optional AI features planned from $5–$9/mo.</dd>
+                <dd>Free local mode. Optional AI features planned from $5-$9/mo.</dd>
               </div>
             </dl>
           </div> */}
@@ -146,10 +146,10 @@ const Hero: React.FC<HeroProps> = ({ onPrimaryAction }) => {
             <h2 className="mb-2 text-lg font-semibold text-slate-900">Offline and private</h2>
             <ul className="space-y-2 text-slate-700">
               <li>
-                Instant parsing that strips ads, pop‑ups, and chrome from any page — keeps only the
+                Instant parsing that strips ads, pop-ups, and chrome from any page — keeps only the
                 content that matters.
               </li>
-              <li>100% client‑side. Nothing leaves your machine.</li>
+              <li>100% client-side. Nothing leaves your machine.</li>
             </ul>
           </motion.div>
 
@@ -167,10 +167,10 @@ const Hero: React.FC<HeroProps> = ({ onPrimaryAction }) => {
             <h2 className="mb-2 text-lg font-semibold text-slate-900">Optional AI formatting</h2>
             <ul className="space-y-2 text-slate-700">
               <li>
-                Perfect, LLM‑ready structure via our secure API when you want more than basic
+                Perfect, LLM-ready structure via our secure API when you want more than basic
                 parsing.
               </li>
-              <li>Extras: auto‑summaries, custom templates, and export.</li>
+              <li>Extras: auto-summaries, custom templates, and export.</li>
             </ul>
           </motion.div>
         </div>

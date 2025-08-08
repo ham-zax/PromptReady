@@ -31,7 +31,7 @@ const SignupForm: React.FC = () => {
           </p>
           <div className="mt-4 inline-flex animate-pulse items-center rounded-full bg-red-100 px-4 py-2 text-sm font-medium text-red-800">
             <Clock className="mr-2 h-4 w-4" />
-            Limited Spots – Sign Up Before We Launch!
+            Limited Spots - Sign Up Before We Launch!
           </div>
         </div>
         <form onSubmit={handleSignup} className="space-y-6">

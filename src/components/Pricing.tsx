@@ -32,7 +32,7 @@ const Pricing: React.FC<PricingProps> = ({ onPrimaryAction }) => (
         onClick={onPrimaryAction}
         className="w-full transform rounded-lg bg-blue-700 px-5 py-3 text-base font-semibold text-white shadow-lg transition-all duration-200 hover:scale-105 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 sm:w-auto sm:px-8 sm:py-4 sm:text-lg"
         tabIndex={0}
-        aria-label="Get Early Access – Limited Beta Spots!"
+        aria-label="Get Early Access - Limited Beta Spots!"
       >
         Get Early Access
         <span className="mt-1 block text-xs font-medium text-blue-100 sm:mt-2">

@@ -11,7 +11,7 @@ const BeforeAfter: React.FC = () => {
             <div className="browser-dot hidden bg-yellow-500 sm:inline-block"></div>
             <div className="browser-dot hidden bg-green-500 sm:inline-block"></div>
             <div className="rounded-full bg-gray-200 px-4 py-1 text-sm font-medium text-gray-700 sm:ml-4">
-              example‑article.com
+              example-article.com
             </div>
             <div className="ml-auto">
               <div className="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-xs font-medium text-blue-700">
@@ -30,7 +30,7 @@ const BeforeAfter: React.FC = () => {
                 </h4>
                 <div className="space-y-3 text-sm">
                   <div className="rounded-lg border border-rose-300 bg-rose-50 p-3">
-                    <div className="font-medium text-rose-700">Limited‑time offer! 50% off!</div>
+                    <div className="font-medium text-rose-700">Limited-time offer! 50% off!</div>
                   </div>
                   <p className="leading-relaxed text-slate-700">
                     Important article content about AI and ML trends in 2024…
@@ -50,14 +50,14 @@ const BeforeAfter: React.FC = () => {
               <div className="space-y-4">
                 <h4 className="flex items-center text-lg font-bold text-emerald-800">
                   <span className="mr-2 h-3 w-3 rounded-full bg-emerald-500"></span>
-                  After: AI‑ready
+                  After: AI-ready
                 </h4>
                 <div className="space-y-3 text-sm">
                   <div className="text-lg font-semibold text-slate-900">
                     # AI and Machine Learning Trends in 2024
                   </div>
                   <div className="space-y-2 leading-relaxed text-slate-700">
-                    <p>Clean, structured content. No ads. No pop‑ups.</p>
+                    <p>Clean, structured content. No ads. No pop-ups.</p>
                     <p>Perfect for ChatGPT, Claude, or any LLM.</p>
                     <p>Copy once. Paste anywhere.</p>
                   </div>
