@@ -1,7 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
-import { ArrowRight, Menu, X, Copy } from 'lucide-react';
+import { ArrowRight, Menu, X } from 'lucide-react';
+import logoSvg from '../../assets/logo.svg';
 
 interface LandingNavigationProps {
   onPrimaryAction: (sourceComponent: string) => void;
@@ -20,12 +21,12 @@ const LandingNavigation: React.FC<LandingNavigationProps> = ({ onPrimaryAction }
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <nav className="relative bg-white/95 backdrop-blur-sm border-b border-slate-200 sticky top-0 z-50">
+    <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-slate-200">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
-            <Copy className="h-8 w-8 text-blue-600" />
+            <img src={logoSvg} alt="PromptReady" className="h-8 w-8" />
             <span className="text-xl font-bold text-slate-900">PromptReady</span>
           </Link>
 
