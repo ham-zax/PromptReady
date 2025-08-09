@@ -42,12 +42,12 @@ const DemoPage: React.FC<DemoPageProps> = ({ onPrimaryAction }) => {
       <main>
         <div className="bg-white">
           {/* Demo Hero Section */}
-          <section className="relative bg-gradient-to-b from-white to-blue-50 py-16">
+          <section className="relative bg-gradient-to-b from-white to-blue-50 py-8 sm:py-16">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
               <div className="text-center">
                 {/* Logo */}
                 <motion.div
-                  className="mb-6 flex justify-center"
+                  className="mb-6 justify-center hidden sm:flex"
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.05 }}
