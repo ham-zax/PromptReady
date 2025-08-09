@@ -93,7 +93,7 @@ const FAQ: React.FC = () => {
           <p className="text-lg text-slate-700">Everything you need to know about PromptReady.</p>
         </div>
 
-        <Accordion type="single" collapsible>
+        <Accordion type="single" collapsible defaultValue="local-first">
           {items.map((item) => (
             <AccordionItem key={item.key} value={item.key}>
               <AccordionTrigger className="text-left text-base text-slate-900">

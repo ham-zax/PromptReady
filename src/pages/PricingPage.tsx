@@ -42,7 +42,7 @@ const PricingPage: React.FC<PricingPageProps> = ({ onPrimaryAction }) => {
       <main>
         <div className="bg-white">
           {/* Pricing Hero Section */}
-          <section className="relative bg-gradient-to-b from-white to-blue-50 py-16 lg:py-24">
+          <section className="relative bg-gradient-to-b from-white to-blue-50 py-16">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
               <div className="text-center">
                 {/* Logo */}
