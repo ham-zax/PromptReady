@@ -22,16 +22,19 @@ const PricingPage: React.FC<PricingPageProps> = ({ onPrimaryAction }) => {
       transition={{ duration: 0.4 }}
     >
       <Helmet>
-        <title>PromptReady Pricing - Free Forever Core Features</title>
+        <title>PromptReady Pricing — Free core local features • Pro $3/mo</title>
         <meta 
           name="description" 
-          content="PromptReady pricing plans. Free forever core features with optional premium AI enhancements. No credit card required." 
+          content="Free forever core local features. Pro adds Prompt‑Ready Bundles and optional BYOK validation using your key (OpenRouter or manual base URL/model). No credit card required." 
         />
-        <meta property="og:title" content="PromptReady Pricing - Free Forever Core Features" />
+        <meta property="og:title" content="PromptReady Pricing — Free core local features • Pro $3/mo" />
         <meta 
           property="og:description" 
-          content="PromptReady pricing plans. Free forever core features with optional premium AI enhancements. No credit card required." 
+          content="Free forever core local features. Pro adds Prompt‑Ready Bundles and optional BYOK validation using your key (OpenRouter or manual base URL/model)." 
         />
+        <meta property="og:image" content="/og-image.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content="/og-image.png" />
         <link rel="canonical" href="https://promptready.vercel.app/pricing" />
       </Helmet>
 
@@ -115,7 +118,7 @@ const PricingPage: React.FC<PricingPageProps> = ({ onPrimaryAction }) => {
                     <ul className="space-y-2 text-slate-700">
                       <li className="flex items-center gap-2">
                         <Check className="h-4 w-4 text-green-600" />
-                        One-click text cleaning
+                        One‑click clean & structure
                       </li>
                       <li className="flex items-center gap-2">
                         <Check className="h-4 w-4 text-green-600" />
@@ -123,7 +126,7 @@ const PricingPage: React.FC<PricingPageProps> = ({ onPrimaryAction }) => {
                       </li>
                       <li className="flex items-center gap-2">
                         <Check className="h-4 w-4 text-green-600" />
-                        Basic formatting options
+                        Markdown/JSON export
                       </li>
                       <li className="flex items-center gap-2">
                         <Check className="h-4 w-4 text-green-600" />
@@ -137,7 +140,7 @@ const PricingPage: React.FC<PricingPageProps> = ({ onPrimaryAction }) => {
                       <div className="rounded-full bg-blue-100 p-2">
                         <Star className="h-5 w-5 text-blue-600" />
                       </div>
-                      <h3 className="text-lg font-semibold text-slate-900">Premium AI</h3>
+                      <h3 className="text-lg font-semibold text-slate-900">Pro (BYOK)</h3>
                     </div>
                     <ul className="space-y-2 text-slate-700">
                       <li className="flex items-center gap-2">
@@ -146,15 +149,15 @@ const PricingPage: React.FC<PricingPageProps> = ({ onPrimaryAction }) => {
                       </li>
                       <li className="flex items-center gap-2">
                         <Check className="h-4 w-4 text-blue-600" />
-                        AI-powered summaries
+                        Prompt‑Ready Bundles editor
                       </li>
                       <li className="flex items-center gap-2">
                         <Check className="h-4 w-4 text-blue-600" />
-                        Custom templates
+                        Optional BYOK validation (OpenRouter or manual base URL)
                       </li>
                       <li className="flex items-center gap-2">
                         <Check className="h-4 w-4 text-blue-600" />
-                        Advanced export options
+                        Model selection and usage controls
                       </li>
                     </ul>
                   </div>

@@ -23,16 +23,19 @@ const DemoPage: React.FC<DemoPageProps> = ({ onPrimaryAction }) => {
       transition={{ duration: 0.4 }}
     >
       <Helmet>
-        <title>PromptReady Demo - See How It Works</title>
+        <title>PromptReady Demo — One‑click clean Markdown from any page</title>
         <meta 
           name="description" 
-          content="Watch PromptReady in action. See how our one-click extension transforms messy web content into clean, AI-ready text." 
+          content="See PromptReady turn messy selections into AI‑ready Markdown/JSON with citations. Privacy‑first, runs locally. Pro adds optional BYOK validation using your key." 
         />
-        <meta property="og:title" content="PromptReady Demo - See How It Works" />
+        <meta property="og:title" content="PromptReady Demo — One‑click clean Markdown from any page" />
         <meta 
           property="og:description" 
-          content="Watch PromptReady in action. See how our one-click extension transforms messy web content into clean, AI-ready text." 
+          content="See PromptReady turn messy selections into AI‑ready Markdown/JSON with citations. Privacy‑first, runs locally." 
         />
+        <meta property="og:image" content="/og-image.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content="/og-image.png" />
         <link rel="canonical" href="https://promptready.vercel.app/demo" />
       </Helmet>
 
