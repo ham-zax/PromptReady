@@ -80,8 +80,8 @@ const DemoPage: React.FC<DemoPageProps> = ({ onPrimaryAction }) => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 }}
                 >
-                  Watch how PromptReady transforms cluttered web content into clean, structured text 
-                  that's perfect for your AI workflows. No more copy-paste-clean cycles.
+                  Turn any selection into AI‑ready Markdown or JSON — code fences, tables, and citations preserved.
+                  Privacy‑first, runs locally. Pro adds optional validation with your own API key.
                 </motion.p>
 
                 <motion.div
@@ -109,7 +109,7 @@ const DemoPage: React.FC<DemoPageProps> = ({ onPrimaryAction }) => {
             </div>
           </section>
 
-          {/* Video Demo Section */}
+           {/* Video Demo Section */}
           <section className="relative bg-gradient-to-b from-blue-50 to-white">
             <VideoDemo />
           </section>

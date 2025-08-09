@@ -7,6 +7,7 @@ import Logo from '../components/ui/Logo';
 // Import components
 import Pricing from '../components/Pricing';
 import Features from '../components/Features';
+import FAQ from '../components/FAQ';
 import Footer from '../components/Footer';
 
 interface PricingPageProps {
@@ -70,7 +71,7 @@ const PricingPage: React.FC<PricingPageProps> = ({ onPrimaryAction }) => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2 }}
                 >
-                  Simple, Transparent Pricing
+                  Free forever for core. Pro is just $3/mo.
                 </motion.h1>
                 
                 <motion.p
@@ -79,8 +80,8 @@ const PricingPage: React.FC<PricingPageProps> = ({ onPrimaryAction }) => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 }}
                 >
-                  Start with our powerful free tier that covers all essential text cleaning features. 
-                  Upgrade only when you need advanced AI enhancements.
+                  Start free. Clean, structure, and export on‑device with full privacy. 
+                  Upgrade anytime to Pro for Prompt‑Ready Bundles and optional BYOK validation using your key.
                 </motion.p>
 
                 <motion.div
@@ -122,7 +123,7 @@ const PricingPage: React.FC<PricingPageProps> = ({ onPrimaryAction }) => {
                       </li>
                       <li className="flex items-center gap-2">
                         <Check className="h-4 w-4 text-green-600" />
-                        100% client-side privacy
+                        100% client‑side privacy
                       </li>
                       <li className="flex items-center gap-2">
                         <Check className="h-4 w-4 text-green-600" />
@@ -130,7 +131,11 @@ const PricingPage: React.FC<PricingPageProps> = ({ onPrimaryAction }) => {
                       </li>
                       <li className="flex items-center gap-2">
                         <Check className="h-4 w-4 text-green-600" />
-                        Unlimited usage
+                        Cite‑first footer (URL + timestamp)
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <Check className="h-4 w-4 text-green-600" />
+                        Code & Docs mode
                       </li>
                     </ul>
                   </div>
@@ -140,7 +145,7 @@ const PricingPage: React.FC<PricingPageProps> = ({ onPrimaryAction }) => {
                       <div className="rounded-full bg-blue-100 p-2">
                         <Star className="h-5 w-5 text-blue-600" />
                       </div>
-                      <h3 className="text-lg font-semibold text-slate-900">Pro (BYOK)</h3>
+                      <h3 className="text-lg font-semibold text-slate-900">Pro (BYOK) — $3/mo or $29/yr</h3>
                     </div>
                     <ul className="space-y-2 text-slate-700">
                       <li className="flex items-center gap-2">
@@ -153,11 +158,15 @@ const PricingPage: React.FC<PricingPageProps> = ({ onPrimaryAction }) => {
                       </li>
                       <li className="flex items-center gap-2">
                         <Check className="h-4 w-4 text-blue-600" />
-                        Optional BYOK validation (OpenRouter or manual base URL)
+                        Optional BYOK validation (OpenRouter or custom base URL/model)
                       </li>
                       <li className="flex items-center gap-2">
                         <Check className="h-4 w-4 text-blue-600" />
                         Model selection and usage controls
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <Check className="h-4 w-4 text-blue-600" />
+                        Power‑user options & early features
                       </li>
                     </ul>
                   </div>
@@ -176,48 +185,7 @@ const PricingPage: React.FC<PricingPageProps> = ({ onPrimaryAction }) => {
             <Features />
           </section>
 
-          {/* FAQ Section */}
-          <section className="relative bg-white py-16 lg:py-24">
-            <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-              <div className="text-center mb-12">
-                <h2 className="mb-4 text-3xl font-bold text-slate-900 lg:text-4xl">
-                  Frequently Asked Questions
-                </h2>
-                <p className="text-lg text-slate-700">
-                  Everything you need to know about PromptReady pricing.
-                </p>
-              </div>
-
-              <div className="space-y-6">
-                <div className="rounded-lg border border-slate-200 bg-white p-6">
-                  <h3 className="mb-2 text-lg font-semibold text-slate-900">
-                    Is the free version really free forever?
-                  </h3>
-                  <p className="text-slate-700">
-                    Yes! Our core text cleaning features will always be free. We believe everyone should have access to clean, AI-ready text without barriers.
-                  </p>
-                </div>
-
-                <div className="rounded-lg border border-slate-200 bg-white p-6">
-                  <h3 className="mb-2 text-lg font-semibold text-slate-900">
-                    What's the difference between free and premium?
-                  </h3>
-                  <p className="text-slate-700">
-                    The free version handles all essential text cleaning locally on your device. Premium adds AI-powered features like smart summaries, custom templates, and advanced export options.
-                  </p>
-                </div>
-
-                <div className="rounded-lg border border-slate-200 bg-white p-6">
-                  <h3 className="mb-2 text-lg font-semibold text-slate-900">
-                    Can I cancel my premium subscription anytime?
-                  </h3>
-                  <p className="text-slate-700">
-                    Absolutely. You can cancel anytime and you'll continue to have access to premium features until the end of your billing period. Then you'll automatically return to the free tier.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </section>
+          <FAQ />
 
           {/* Final CTA */}
           <section className="relative bg-slate-900 py-16 lg:py-24 text-white">

@@ -12,6 +12,7 @@ import HowItWorks from '../components/HowItWorks';
 import Pricing from '../components/Pricing';
 import Footer from '../components/Footer';
 import VideoDemo from '../components/VideoDemo';
+import FAQ from '../components/FAQ';
 
 interface HomePageProps {
   onPrimaryAction: (sourceComponent: string) => void;
@@ -97,7 +98,12 @@ const HomePage: React.FC<HomePageProps> = ({ onPrimaryAction }) => {
             <Pricing onPrimaryAction={() => onPrimaryAction('Pricing')} />
           </section>
 
-          {/* Section 9: Footer (Solid dark background) */}
+          {/* Section 9: FAQ */}
+          <section className="relative bg-white">
+            <FAQ />
+          </section>
+
+          {/* Section 10: Footer (Solid dark background) */}
           <section className="relative bg-slate-900 text-slate-100">
             <Footer />
           </section>
