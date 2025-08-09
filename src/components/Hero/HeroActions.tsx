@@ -19,7 +19,7 @@ const HeroActions: React.FC<HeroActionsProps> = ({ onPrimaryAction }) => {
           }}
           className="inline-flex items-center gap-2 rounded-full bg-blue-600 px-6 py-3 text-base font-semibold text-white shadow-lg transition-colors hover:bg-blue-700"
         >
-          Join the early access
+          Get Early Access
           <ArrowRight className="h-4 w-4" />
         </button>
 
@@ -28,16 +28,15 @@ const HeroActions: React.FC<HeroActionsProps> = ({ onPrimaryAction }) => {
           className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-6 py-3 text-base font-semibold text-slate-700 shadow-sm transition-colors hover:bg-slate-50"
         >
           <Play className="h-4 w-4" />
-          Watch Demo
+          Watch 60-sec Demo
         </Link>
       </div>
 
-      {/* Supporting credibility/badges */}
-      <div className="mx-auto mb-8 max-w-2xl text-center text-sm text-slate-600">
-        Privacy-first by design.
-        <div className="mt-3 text-xs uppercase tracking-wide text-slate-500">
-          Chrome (soon) • Firefox (planned) • Edge (planned)
-        </div>
+      {/* Micro proof chips */}
+      <div className="mx-auto mb-8 flex max-w-2xl flex-wrap justify-center gap-2 text-sm text-slate-700">
+        <span className="rounded-full bg-slate-100 px-3 py-1">Preserves code fences</span>
+        <span className="rounded-full bg-slate-100 px-3 py-1">Citations included</span>
+        <span className="rounded-full bg-slate-100 px-3 py-1">Privacy‑first, local</span>
       </div>
     </>
   );

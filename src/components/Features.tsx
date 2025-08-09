@@ -6,7 +6,7 @@ const Features: React.FC = () => (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div className="mb-16 text-center">
         <h2 className="mb-4 text-3xl font-bold text-gray-900 lg:text-4xl">
-          The Tools We Built to Save You Hours
+          Benefits that save you time (and sanity)
         </h2>
         <p className="mx-auto max-w-2xl text-lg text-gray-600">
           Every feature is designed to eliminate a frustrating step in your workflow, giving you
@@ -21,10 +21,8 @@ const Features: React.FC = () => (
               <div className="text-xs font-medium text-yellow-700">Instant Parsing</div>
             </div>
           </div>
-          <h3 className="mb-3 text-xl font-semibold text-gray-900">Instant Results</h3>
-          <p className="leading-relaxed text-gray-600">
-            Get clean text in under 100ms, even offline
-          </p>
+          <h3 className="mb-3 text-xl font-semibold text-gray-900">Save time</h3>
+          <p className="leading-relaxed text-gray-600">Cut 30–90 seconds of clean‑up on every paste.</p>
         </div>
         <div className="rounded-xl border bg-white p-4 shadow-lg transition-shadow hover:border-blue-200 hover:shadow-xl">
           <div className="mb-6 flex aspect-video items-center justify-center rounded-lg bg-purple-200 p-4">
@@ -33,10 +31,8 @@ const Features: React.FC = () => (
               <div className="text-xs font-medium text-purple-700">AI Enhancement</div>
             </div>
           </div>
-          <h3 className="mb-3 text-xl font-semibold text-gray-900">Smart AI Features</h3>
-          <p className="leading-relaxed text-gray-600">
-            Auto-generate summaries and perfect LLM formatting
-          </p>
+          <h3 className="mb-3 text-xl font-semibold text-gray-900">Preserve structure</h3>
+          <p className="leading-relaxed text-gray-600">Headings, lists, tables, and code fences intact.</p>
         </div>
         <div className="rounded-xl border bg-white p-4 shadow-lg transition-shadow hover:border-blue-200 hover:shadow-xl">
           <div className="mb-6 flex aspect-video items-center justify-center rounded-lg bg-blue-200 p-4">
@@ -45,10 +41,8 @@ const Features: React.FC = () => (
               <div className="text-xs font-medium text-blue-700">Customization</div>
             </div>
           </div>
-          <h3 className="mb-3 text-xl font-semibold text-gray-900">Personalized Formatting</h3>
-          <p className="leading-relaxed text-gray-600">
-            Adjust headings, lists & more with one click
-          </p>
+          <h3 className="mb-3 text-xl font-semibold text-gray-900">Cite confidently</h3>
+          <p className="leading-relaxed text-gray-600">Canonical URL + timestamp in every export.</p>
         </div>
         <div className="rounded-xl border bg-white p-4 shadow-lg transition-shadow hover:border-blue-200 hover:shadow-xl">
           <div className="mb-6 flex aspect-video items-center justify-center rounded-lg bg-green-200 p-4">
@@ -57,10 +51,8 @@ const Features: React.FC = () => (
               <div className="text-xs font-medium text-green-700">Privacy First</div>
             </div>
           </div>
-          <h3 className="mb-3 text-xl font-semibold text-gray-900">Privacy & Speed</h3>
-          <p className="leading-relaxed text-gray-600">
-            All processing locally for maximum security & performance
-          </p>
+          <h3 className="mb-3 text-xl font-semibold text-gray-900">Privacy‑first</h3>
+          <p className="leading-relaxed text-gray-600">All processing runs locally; nothing leaves your device.</p>
         </div>
       </div>
       <div className="mt-12 text-center">

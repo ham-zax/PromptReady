@@ -20,7 +20,7 @@ const Pricing: React.FC<PricingProps> = ({ onPrimaryAction }) => (
             FREE FOREVER
           </div>
           <p className="mb-3 text-base text-gray-700 sm:mb-4 sm:text-lg">
-            Instant clean text extraction, offline processing, basic AI features
+            Instant clean text extraction, offline processing, core local features
           </p>
           <div className="inline-flex items-center rounded-full bg-white px-3 py-1.5 text-xs font-medium text-gray-700 shadow-md sm:px-4 sm:py-2 sm:text-sm">
             <Award className="mr-2 h-4 w-4 text-green-600" />

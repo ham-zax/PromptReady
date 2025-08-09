@@ -43,11 +43,9 @@ const ProblemSolution: React.FC<ProblemSolutionProps> = ({ onPrimaryAction }) =>
 
         <div className="mt-16 text-center">
           <Button onClick={onPrimaryAction} size="lg" className="px-10 py-6 text-lg shadow-lg">
-            Try PromptReady Now
+            Get Early Access
           </Button>
-          <p className="mt-4 text-sm text-gray-500">
-            Experience all features instantly—no signup required.
-          </p>
+          <p className="mt-4 text-sm text-gray-500">Limited beta • No credit card required</p>
         </div>
       </div>
     </section>

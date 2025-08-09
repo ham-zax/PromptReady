@@ -12,7 +12,7 @@ const Footer: React.FC = () => (
         <div className="mb-6">
           <div className="inline-flex items-center rounded-full bg-gray-800 px-4 py-2 text-sm font-medium">
             <Globe className="mr-2 h-4 w-4 text-blue-400" />
-            Available in 10+ Languages
+            Built for Developers & Researchers
           </div>
         </div>
         <p className="mb-6 text-gray-400">

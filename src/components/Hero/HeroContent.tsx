@@ -25,7 +25,7 @@ const HeroContent: React.FC<HeroContentProps> = ({ spring }) => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ ...spring, delay: 0.1 }}
       >
-        Copy clean, AI-ready text. Instantly.
+        One-click clean Markdown from any page.
       </motion.h1>
 
       <motion.p
@@ -34,8 +34,8 @@ const HeroContent: React.FC<HeroContentProps> = ({ spring }) => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ ...spring, delay: 0.18 }}
       >
-        One-click extension that turns any page into structured, distraction-free text for
-        ChatGPT, Claude, or your LLM workflow — with private, on-device parsing.
+        Turn any selection into AI-ready Markdown/JSON — code fences, tables, and citations preserved.
+        Runs locally. Pro adds optional validation with your key.
       </motion.p>
     </>
   );
