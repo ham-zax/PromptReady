@@ -58,7 +58,7 @@ const Features: React.FC = () => (
       <div className="mt-12 text-center">
         <div className="inline-flex items-center rounded-full border bg-blue-50 px-6 py-3 text-sm font-medium text-gray-700">
           <Sparkles className="mr-2 h-4 w-4 text-blue-600" />
-          Freemium Model: Start Free, Upgrade for Pro Features Like Advanced Summaries
+          Smart Hybrid Engine (Pro): Local cleaning + optional AI validation with your key
         </div>
       </div>
     </div>
