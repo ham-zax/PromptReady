@@ -1,12 +1,24 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { fileURLToPath } from 'url';
-import PluginCritical from 'rollup-plugin-critical';
+import { beasties } from 'vite-plugin-beasties';
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     react(),
+    beasties({
+      // Critical CSS configuration
+      options: {
+        preload: 'swap', // Use swap strategy for better performance
+        inlineFonts: false, // Don't inline fonts to keep bundle size smaller
+        preloadFonts: true, // Preload critical fonts
+        pruneSource: true, // Remove inlined CSS from external stylesheets
+        mergeStylesheets: true, // Merge inlined styles into single tag
+        compress: true, // Compress critical CSS
+        logLevel: 'info'
+      }
+    }),
   ],
   resolve: {
     alias: {
@@ -61,26 +73,7 @@ export default defineConfig({
             return undefined;
           }
         },
-      },
-      plugins: [
-        PluginCritical({
-          criticalUrl: 'https://promptready.app/',
-          criticalBase: './dist/',
-          criticalPages: [
-            { uri: '', template: 'index' },
-            { uri: 'demo', template: 'demo/index' },
-            { uri: 'pricing', template: 'pricing/index' }
-          ],
-          criticalConfig: {
-            inline: false,
-            extract: false,
-            width: 1200,
-            height: 1200,
-            penthouse: { blockJSRequests: false }
-          }
-        })
-      ],
-      treeshake: {
+      },      treeshake: {
         moduleSideEffects: (id) => {
           return id.includes('.css') || id.includes('posthog-js');
         },
