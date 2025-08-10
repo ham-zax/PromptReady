@@ -40,11 +40,11 @@ const HomePage: React.FC<HomePageProps> = ({ onPrimaryAction }) => {
           content="Turn any selection into AI-ready Markdown/JSON — code fences, tables, and citations preserved. Runs locally. Pro adds optional validation with your key." 
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://promptready.vercel.app/" />
+        <meta property="og:url" content="https://promptready.app/" />
         <meta property="og:image" content="/og-image.png" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content="/og-image.png" />
-        <link rel="canonical" href="https://promptready.vercel.app/" />
+        <link rel="canonical" href="https://promptready.app/" />
       </Helmet>
 
       <main>

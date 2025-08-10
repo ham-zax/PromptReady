@@ -18,7 +18,7 @@ const env = {
   FEEDBACK_URL: import.meta.env.VITE_FEEDBACK_URL || 'https://forms.gle/your-form-id',
   
   // Site URLs
-  SITE_URL: import.meta.env.VITE_SITE_URL || 'https://promptready.vercel.app',
+  SITE_URL: import.meta.env.VITE_SITE_URL || 'https://promptready.app',
   
   // Analytics
   ANALYTICS_ENABLED: import.meta.env.VITE_ANALYTICS_ENABLED === 'true',

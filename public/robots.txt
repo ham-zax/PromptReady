@@ -11,7 +11,7 @@ Allow: /thank-you
 Disallow: /404
 
 # Sitemap location
-Sitemap: https://promptready.vercel.app/sitemap.xml
+Sitemap: https://promptready.app/sitemap.xml
 
 # Crawl delay (optional - helps with server load)
 Crawl-delay: 1
