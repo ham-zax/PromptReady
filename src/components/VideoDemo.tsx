@@ -291,7 +291,7 @@ Community Info Section r/microsaas Joined Software as a Service businesses run b
       {/* Mobile: beautiful demo showcase */}
       <div className="md:hidden mx-auto max-w-sm px-4">
         {/* Hero demo card */}
-        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-50 to-indigo-100 p-6 shadow-xl">
+        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-50 to-indigo-100 p-6 shadow-lg">
           {/* Header */}
           <div className="mb-4 text-center">
             <div className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-sm font-medium text-slate-700 backdrop-blur-sm">
@@ -389,7 +389,7 @@ Community Info Section r/microsaas Joined Software as a Service businesses run b
             />
           ))}
         </div>
-        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 shadow-2xl border border-white/20 backdrop-blur-sm">
+        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 shadow-lg border border-white/20 backdrop-blur-sm">
           <div className="browser-header px-4 bg-white/80 backdrop-blur-md border-b border-white/30">
             <div className="browser-dot bg-red-400 shadow-sm"></div>
             <div className="browser-dot bg-yellow-400 shadow-sm"></div>
@@ -414,7 +414,7 @@ Community Info Section r/microsaas Joined Software as a Service businesses run b
                 className={`rounded-full px-4 py-2 text-sm font-semibold shadow-lg transition-all duration-200 flex items-center gap-2 ${
                   step.id === 'clean' 
                     ? 'bg-gradient-to-r from-blue-600 to-blue-700 text-white ring-2 ring-blue-300 scale-105' 
-                    : 'bg-white/90 text-slate-700 hover:bg-white hover:shadow-xl hover:scale-105 border border-white/50 backdrop-blur-sm'
+                    : 'bg-white/90 text-slate-700 hover:bg-white hover:shadow-lg hover:scale-105 border border-white/50 backdrop-blur-sm'
                 }`}
               >
                 {step.id === 'clean' && (
@@ -433,7 +433,7 @@ Community Info Section r/microsaas Joined Software as a Service businesses run b
             <div className="relative md:flex md:items-start md:gap-6">
               {/* Left: Reddit-style content (beautiful design) */}
               <motion.div
-                className={`relative flex-1 rounded-2xl border border-white/30 bg-white/60 backdrop-blur-sm p-6 shadow-xl transition-all duration-300 ${
+                className={`relative flex-1 rounded-2xl border border-white/30 bg-white/60 backdrop-blur-sm p-6 shadow-lg transition-all duration-300 ${
                   flashEffect ? 'ring-2 ring-blue-400 bg-blue-50/80 scale-[1.02]' : ''
                 }`}
                 initial={{ opacity: 0, y: 24 }}
@@ -492,7 +492,7 @@ Community Info Section r/microsaas Joined Software as a Service businesses run b
 
               {/* Right: Extension UI (beautiful design) */}
                <motion.div
-                 className="mt-4 w-full rounded-2xl border border-white/30 bg-white/80 backdrop-blur-md p-4 shadow-xl md:mt-0 md:w-[380px] ring-1 ring-black/5"
+                 className="mt-4 w-full rounded-2xl border border-white/30 bg-white/80 backdrop-blur-md p-4 shadow-lg md:mt-0 md:w-[380px] ring-1 ring-black/5"
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-100px' }}
@@ -598,14 +598,14 @@ Community Info Section r/microsaas Joined Software as a Service businesses run b
 
             {/* Bottom: Before Raw vs After Clean (beautiful two columns) */}
             <div className="mt-8 grid gap-6 md:grid-cols-2">
-              <div className={`rounded-2xl border border-white/30 bg-white/60 backdrop-blur-sm p-6 shadow-xl ring-1 ring-black/5 transition-all duration-300 ${flashEffect ? 'ring-2 ring-blue-400 bg-blue-50/80 scale-[1.02]' : ''}`}>
+              <div className={`rounded-2xl border border-white/30 bg-white/60 backdrop-blur-sm p-6 shadow-lg ring-1 ring-black/5 transition-all duration-300 ${flashEffect ? 'ring-2 ring-blue-400 bg-blue-50/80 scale-[1.02]' : ''}`}>
                 <div className="mb-3 flex items-center gap-2">
                   <div className="h-2 w-2 rounded-full bg-red-500"></div>
                   <div className="text-sm font-semibold text-slate-700">Before: Raw copy</div>
                 </div>
                 <pre className="max-h-72 overflow-auto whitespace-pre-wrap text-[13px] leading-relaxed text-slate-800 font-mono bg-slate-50/50 rounded-lg p-3">{RAW_REDDIT_TEXT}</pre>
               </div>
-              <div className={`rounded-2xl border border-white/30 bg-white/60 backdrop-blur-sm p-6 shadow-xl ring-1 ring-black/5 transition-all duration-300 ${flashEffect ? 'ring-2 ring-emerald-400 bg-emerald-50/80 scale-[1.02]' : ''}`}>
+              <div className={`rounded-2xl border border-white/30 bg-white/60 backdrop-blur-sm p-6 shadow-lg ring-1 ring-black/5 transition-all duration-300 ${flashEffect ? 'ring-2 ring-emerald-400 bg-emerald-50/80 scale-[1.02]' : ''}`}>
                 <div className="mb-3 flex items-center gap-2">
                   <div className="h-2 w-2 rounded-full bg-emerald-500"></div>
                   <div className="text-sm font-semibold text-emerald-700">After: Clean Markdown</div>

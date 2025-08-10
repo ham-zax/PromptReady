@@ -56,14 +56,6 @@ const HomePage: React.FC<HomePageProps> = ({ onPrimaryAction }) => {
           {/* Section 2: Micro Before/After proof */}
           <section className="relative bg-gradient-to-b from-blue-50">
             <BeforeAfter />
-            <div className="mt-4 flex justify-center pb-2">
-              <button
-                onClick={() => onPrimaryAction('BeforeAfterCTA')}
-                className="inline-flex items-center gap-2 rounded-full bg-blue-600 px-6 py-3 text-base font-semibold text-white shadow-lg transition-colors hover:bg-blue-700"
-              >
-                Get Early Access
-              </button>
-            </div>
           </section>
 
           {/* Section 3: VideoDemo (Smoothly fades from White to a light Blue) */}

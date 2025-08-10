@@ -14,7 +14,7 @@ const Pricing: React.FC<PricingProps> = ({ onPrimaryAction }) => (
       <p className="mb-6 text-base text-gray-600 sm:mb-8 sm:text-lg">
         Get early access to new features, help shape the product, and enjoy exclusive updates.
       </p>
-      <div className="group mb-6 rounded-2xl border border-white/30 bg-gradient-to-br from-emerald-50 to-green-100 backdrop-blur-sm p-6 shadow-2xl ring-1 ring-black/5 transition-all duration-300 hover:scale-105 hover:shadow-2xl sm:mb-8 sm:rounded-3xl sm:p-10">
+      <div className="group mb-6 rounded-2xl border border-white/30 bg-gradient-to-br from-emerald-50 to-green-100 backdrop-blur-sm p-6 shadow-lg ring-1 ring-black/5 transition-all duration-300 hover:scale-105 hover:shadow-lg sm:mb-8 sm:rounded-3xl sm:p-10">
         <div className="text-center">
           <div className="mb-2 text-3xl font-bold text-emerald-600 sm:mb-3 sm:text-4xl">
             FREE FOREVER
@@ -30,7 +30,7 @@ const Pricing: React.FC<PricingProps> = ({ onPrimaryAction }) => (
       </div>
       <button
         onClick={onPrimaryAction}
-        className="group w-full transform rounded-2xl bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-4 text-lg font-semibold text-white shadow-2xl shadow-blue-500/25 transition-all duration-200 hover:from-blue-700 hover:to-blue-800 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/30 focus:outline-none focus:ring-4 focus:ring-blue-300 sm:w-auto sm:px-10 sm:py-5 sm:text-xl"
+        className="group w-full transform rounded-2xl bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-4 text-lg font-semibold text-white shadow-lg shadow-blue-500/25 transition-all duration-200 hover:from-blue-700 hover:to-blue-800 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/30 focus:outline-none focus:ring-4 focus:ring-blue-300 sm:w-auto sm:px-10 sm:py-5 sm:text-xl"
         tabIndex={0}
         aria-label="Get Early Access - Limited Beta Spots!"
       >

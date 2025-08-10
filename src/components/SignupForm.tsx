@@ -23,7 +23,7 @@ const SignupForm: React.FC = () => {
 
   return (
     <div id="signup" className="mx-auto max-w-2xl">
-      <div className="rounded-2xl border bg-white p-8 shadow-xl">
+      <div className="rounded-2xl border bg-white p-8 shadow-lg">
         <div className="mb-8 text-center">
           <h3 className="mb-2 text-2xl font-bold text-gray-900">Get Exclusive Early Access</h3>
           <p className="text-gray-600">

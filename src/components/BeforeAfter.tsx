@@ -5,6 +5,17 @@ const BeforeAfter: React.FC = () => {
   return (
     <section className="py-20 lg:py-24">
       <div className="mx-auto max-w-5xl">
+        {/* Section Header */}
+        <div className="mb-16 text-center">
+          <h2 className="mb-4 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
+            Tired of the Manual Copy-Paste-Cleanse Cycle?
+          </h2>
+          <p className="mx-auto max-w-2xl text-lg text-slate-600">
+            Ever copy text only to end up with a mess? We know the frustration of cleaning up chaos
+            just to get your work done.
+          </p>
+        </div>
+
         <div className="browser-mockup floating-card mx-auto max-w-4xl">
           <div className="browser-header">
             <div className="browser-dot hidden bg-red-500 sm:inline-block"></div>

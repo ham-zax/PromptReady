@@ -57,7 +57,7 @@ const LandingNavigation: React.FC<LandingNavigationProps> = ({ onPrimaryAction }
           <div className="hidden md:flex items-center gap-4">
             <button
               onClick={() => onPrimaryAction('Navigation')}
-              className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-2.5 text-sm font-semibold text-white shadow-xl shadow-blue-500/20 transition-all duration-200 hover:from-blue-700 hover:to-blue-800 hover:scale-105 hover:shadow-xl hover:shadow-blue-500/25"
+              className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-2.5 text-sm font-semibold text-white shadow-lg shadow-blue-500/20 transition-all duration-200 hover:from-blue-700 hover:to-blue-800 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/25"
             >
               Join Waitlist
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
@@ -102,7 +102,7 @@ const LandingNavigation: React.FC<LandingNavigationProps> = ({ onPrimaryAction }
                   onPrimaryAction('Navigation-Mobile');
                   setIsMenuOpen(false);
                 }}
-                className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-blue-600 to-blue-700 px-4 py-3 text-base font-semibold text-white shadow-xl shadow-blue-500/20 transition-all duration-200 hover:from-blue-700 hover:to-blue-800"
+                className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-blue-600 to-blue-700 px-4 py-3 text-base font-semibold text-white shadow-lg shadow-blue-500/20 transition-all duration-200 hover:from-blue-700 hover:to-blue-800"
               >
                 Join Waitlist
                 <ArrowRight className="h-4 w-4" />

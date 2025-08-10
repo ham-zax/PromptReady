@@ -11,7 +11,7 @@ export function ShadcnWaitlistCard({ onPrimaryAction }: ShadcnWaitlistCardProps)
     // THE FIX: A new wrapper div that acts as the positioning context.
     <div className="relative w-full max-w-md">
       {/* The Card is now a simple child, with no positioning classes needed. */}
-      <Card className="shadow-xl">
+      <Card className="shadow-lg">
         <CardContent className="flex flex-col items-start gap-4 p-8">
           <p className="text-lg text-muted-foreground">
             Be the first to experience perfectly clean web copy.
