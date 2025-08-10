@@ -17,7 +17,7 @@ if (env.DEV) {
   import('./utils/testLandingFlow');
   import('./utils/testFeatureFlags');
   import('./utils/testAnalyticsEvents');
-  import('./utils/canonicalUrl'); // This will auto-log canonical URL info
+  // canonicalUrl is already statically imported above, no need for dynamic import
 }
 
 function App() {
