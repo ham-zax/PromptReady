@@ -1,7 +1,8 @@
 import React from 'react';
-import { ArrowRight, Play } from 'lucide-react';
+import { ArrowRight, Play, Bug } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { trackHeroCtaClick } from '../../hooks/useAnalytics';
+import { trackHeroCtaClick, trackEvent } from '../../hooks/useAnalytics';
+import { env } from '../../config';
 
 interface HeroActionsProps {
   onPrimaryAction: () => void;

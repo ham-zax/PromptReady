@@ -1,21 +1,23 @@
 // src/hooks/useAnalytics.ts
 
 import { track as vercelTrack } from '@vercel/analytics';
+import posthog from 'posthog-js';
 import type { AnalyticsPayload } from '../types';
+import { env } from '../config';
 
 /**
- * Minimal PostHog shim — sends events to PostHog if available on window.
+ * PostHog event capture with proper error handling
  */
 const posthogCapture = (eventName: string, payload: AnalyticsPayload) => {
   try {
-    const w = window as unknown as {
-      posthog?: { capture?: (name: string, props?: AnalyticsPayload) => void };
-    };
-    if (w?.posthog?.capture) {
-      w.posthog.capture(eventName, payload);
+    // Only capture if analytics are enabled and PostHog is initialized
+    if (env.ANALYTICS_ENABLED && env.POSTHOG_KEY && posthog.__loaded) {
+      posthog.capture(eventName, payload);
     }
-  } catch {
-    // no-op
+  } catch (error) {
+    if (env.DEV) {
+      console.warn('[PostHog] Failed to capture event:', eventName, error);
+    }
   }
 };
 

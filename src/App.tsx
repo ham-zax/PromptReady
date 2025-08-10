@@ -5,6 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 import { Helmet } from 'react-helmet-async';
 import { trackEvent } from './hooks/useAnalytics';
+import { usePostHog } from './hooks/usePostHog';
 import { Analytics } from '@vercel/analytics/react';
 import { Toaster } from '@/components/ui/sonner';
 import LandingFlowRouter from './router/LandingFlowRouter';
@@ -16,6 +17,9 @@ if (env.DEV) {
 }
 
 function App() {
+  // Initialize PostHog analytics
+  usePostHog();
+
   // Initialize Lenis smooth scrolling once at app mount
   React.useEffect(() => {
     const lenis = new Lenis();
