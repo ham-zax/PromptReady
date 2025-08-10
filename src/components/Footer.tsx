@@ -21,10 +21,10 @@ const Footer: React.FC = () => (
     ></div>
 
     <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-      <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
+      <div className="grid grid-cols-1 gap-12 lg:grid-cols-3">
 
-        {/* Logo, tagline, and testimonial section */}
-        <div className="lg:col-span-1">
+        {/* Logo, tagline, and testimonial section - 66% width */}
+        <div className="lg:col-span-2">
           <div className="mb-4">
             <Logo size="lg" textColor="dark" theme="light" />
           </div>
