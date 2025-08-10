@@ -287,9 +287,9 @@ Community Info Section r/microsaas Joined Software as a Service businesses run b
       </div>
 
       {/* Interactive Auto Demo */}
-      <div id="demo" ref={demoRef} className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 min-h-screen flex items-center">
-        {/* Step indicator */}
-        <div className="fixed left-4 top-1/2 -translate-y-1/2 z-10 flex flex-col gap-2">
+      <div id="demo" ref={demoRef} className="mx-auto max-w-6xl px-3 sm:px-4 lg:px-8 min-h-screen md:flex md:items-center">
+        {/* Step indicator (hidden on mobile) */}
+        <div className="hidden md:flex fixed left-4 top-1/2 -translate-y-1/2 z-10 flex-col gap-2">
           {steps.map((_, idx) => (
             <div
               key={idx}
@@ -300,16 +300,16 @@ Community Info Section r/microsaas Joined Software as a Service businesses run b
           ))}
         </div>
         <div className="browser-mockup floating-card mx-auto max-w-6xl">
-          <div className="browser-header">
+          <div className="browser-header px-3 sm:px-4">
             <div className="browser-dot bg-red-500"></div>
             <div className="browser-dot bg-yellow-500"></div>
             <div className="browser-dot bg-green-500"></div>
-            <div className="ml-4 rounded-full bg-blue-100 px-4 py-1 text-sm font-medium text-blue-800">
+            <div className="ml-2 sm:ml-4 rounded-full bg-blue-100 px-3 sm:px-4 py-0.5 sm:py-1 text-xs sm:text-sm font-medium text-blue-800">
               ⚡ Scroll to explore the demo
             </div>
             {/* Step progress indicator in center */}
-            <div className="flex-1 flex justify-center">
-              <div className="rounded-full bg-white/95 px-4 py-2 text-sm font-medium text-slate-700 shadow-lg border border-slate-200 backdrop-blur-sm">
+            <div className="flex-1 hidden md:flex justify-center">
+              <div className="rounded-full bg-white/95 px-4 py-1.5 text-sm font-medium text-slate-700 shadow-sm border border-slate-200 backdrop-blur-sm">
                 Step {stepIndex + 1} / {steps.length} — {step.title.replace(/^\d+\)\s*/, '')}
               </div>
             </div>
@@ -318,7 +318,7 @@ Community Info Section r/microsaas Joined Software as a Service businesses run b
               <button
                 aria-label="Click extension"
                 onClick={onExtensionClick}
-                className={`rounded-full px-3 py-1 text-xs font-semibold shadow-sm transition-colors ${
+                className={`rounded-full px-3 py-1 text-xs sm:text-[13px] font-semibold shadow-sm transition-colors ${
                   step.id === 'clean' ? 'bg-blue-700 text-white' : 'bg-white text-slate-700 hover:bg-slate-50'
                 }`}
               >
@@ -397,8 +397,8 @@ Community Info Section r/microsaas Joined Software as a Service businesses run b
               </motion.div>
 
               {/* Right: Extension UI (narrow like a browser extension) */}
-              <motion.div
-                className="mt-6 w-full rounded-lg border border-slate-200 bg-white p-4 shadow-sm md:mt-0 md:w-[360px]"
+               <motion.div
+                 className="mt-4 w-full rounded-lg border border-slate-200 bg-white p-3 shadow-sm md:mt-0 md:w-[360px] md:p-4"
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-100px' }}
