@@ -1,5 +1,10 @@
 import React from 'react';
-import { ArrowRight, CheckCircle, Bell, ChevronDown } from 'lucide-react';
+import { ArrowRight, ChevronDown, Loader2, Check } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { toast } from 'sonner';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+gsap.registerPlugin(ScrollTrigger);
 import { trackDemoPlay, trackUserEngagement } from '../hooks/useAnalytics';
 
 type DemoStep = {
@@ -46,28 +51,21 @@ const REDDIT_STEPS: DemoStep[] = [
     title: '1) Open a Reddit thread',
     description:
       'Select the discussion you want to capture. PromptReady understands comment structure.',
-    durationMs: 1800,
-  },
-  {
-    id: 'clean',
-    title: '2) Click the extension',
-    description:
-      'Removes votes, ads, and clutter while preserving authors and comment nesting.',
     durationMs: 2000,
   },
   {
-    id: 'structure',
-    title: '3) Processing…',
+    id: 'clean',
+    title: '2) Click the extension & process',
     description:
-      'Creates a clean outline with proper threading and adds source citation.',
-    durationMs: 2200,
+      'Removes votes, ads, and clutter while preserving authors and comment nesting.',
+    durationMs: 2500,
   },
   {
     id: 'export',
-    title: '4) Your Result: Perfect Thread Outline',
+    title: '3) Perfect Thread Outline',
     description:
       'Structured discussion ready for your notes. All context preserved.',
-    durationMs: 2400,
+    durationMs: 2500,
   },
 ];
 
@@ -108,7 +106,7 @@ const useAutoDemo = (scenario: Scenario) => {
   const next = () => setStepIndex((i) => (i + 1) % steps.length);
   const prev = () => setStepIndex((i) => (i - 1 + steps.length) % steps.length);
 
-  return { step, stepIndex, isPlaying, play, pause, restart, next, prev, steps };
+  return { step, stepIndex, isPlaying, play, pause, restart, next, prev, steps, setStepIndex };
 };
 
 interface DemoPageProps {
@@ -116,8 +114,8 @@ interface DemoPageProps {
 }
 
 const VideoDemo: React.FC<DemoPageProps> = ({ onPrimaryAction }) => {
-  const { step, pause, next } = useAutoDemo('reddit');
-  const [toast, setToast] = React.useState<string | null>(null);
+  const { step, stepIndex, pause, next, setStepIndex, steps } = useAutoDemo('reddit');
+
   const [flashEffect, setFlashEffect] = React.useState(false);
 
   // Options for the refined extension UI
@@ -186,34 +184,91 @@ Community Info Section r/microsaas Joined Software as a Service businesses run b
     // Visual feedback effect
     setFlashEffect(true);
     setTimeout(() => setFlashEffect(false), 300);
-    // Drive the refined flow: click -> process -> export
+    // Drive the simplified flow: click -> process -> export
     pause();
     if (step.id === 'export') return;
     if (step.id === 'select') {
-      next(); // to clean/open
+      next(); // to clean/process
       setTimeout(() => {
-        next(); // to structure
-        setTimeout(() => {
-          next(); // to export
-        }, 700);
-      }, 250);
+        next(); // to export
+      }, 800);
     } else if (step.id === 'clean') {
-      next(); // to structure
-      setTimeout(() => next(), 700); // to export
-    } else if (step.id === 'structure') {
       next(); // to export
     }
   };
 
+  // Scroll-driven narrative: GSAP pinned section
+  const demoRef = React.useRef<HTMLDivElement | null>(null);
+
+  // GSAP pinned timeline - stops demo in viewport, scrubs through steps
   React.useEffect(() => {
-    if (step.id === 'structure') {
-      setToast('Processing selection…');
+    if (!demoRef.current) return;
+    
+    const demoEl = demoRef.current;
+    const NAVBAR_OFFSET_PX = 65;
+    
+    // Create scroll trigger with shorter scroll distance
+    const scrollTrigger = ScrollTrigger.create({
+      trigger: demoEl,
+      start: 'top top',
+      end: `+=${window.innerHeight * 1.5}`, // Reduced to 1.5 viewport heights
+      pin: true,
+      pinSpacing: true,
+      scrub: 0.5, // Add some smoothing
+      snap: 1 / (steps.length - 1),
+      invalidateOnRefresh: true,
+      onToggle: (self: any) => {
+        demoEl.style.marginTop = self.isActive ? `${NAVBAR_OFFSET_PX}px` : '0px';
+      },
+      onUpdate: (self: any) => {
+        const progress = self.progress;
+        const newIdx = Math.round(progress * (steps.length - 1));
+        if (newIdx !== stepIndex) {
+          setStepIndex(newIdx);
+        }
+      },
+      onEnter: () => {
+        // Dismiss any existing toasts when entering demo section
+        toast.dismiss();
+        // Reset to first step when entering
+        setStepIndex(0);
+      },
+      onLeave: () => {
+        // Dismiss all toasts when leaving the demo section (scrolling down)
+        toast.dismiss();
+      },
+      onLeaveBack: () => {
+        // Dismiss all toasts when leaving the demo section (scrolling up)
+        toast.dismiss();
+        // Reset to first step when scrolling back up
+        setStepIndex(0);
+      },
+      onEnterBack: () => {
+        // Dismiss toasts first, then show appropriate one when coming back
+        toast.dismiss();
+        setTimeout(() => {
+          const currentStep = steps[stepIndex];
+          if (currentStep.id === 'clean') {
+            toast.loading('Processing selection…');
+          } else if (currentStep.id === 'export') {
+            toast.success('Copied: cleaned Markdown ready');
+          }
+        }, 100);
+      },
+    });
+    // Ensure initial margin for navbar offset if already active
+    if ((scrollTrigger as any).isActive) demoEl.style.marginTop = `${NAVBAR_OFFSET_PX}px`;
+    
+    return () => {
+      scrollTrigger.kill();
+    };
+  }, [steps.length]);
+
+  React.useEffect(() => {
+    if (step.id === 'clean') {
+      toast.loading('Processing selection…');
     } else if (step.id === 'export') {
-      setToast('Copied: cleaned Markdown ready');
-      const t = setTimeout(() => setToast(null), 1500);
-      return () => clearTimeout(t);
-    } else {
-      setToast(null);
+      toast.success('Copied: cleaned Markdown ready');
     }
   }, [step.id]);
 
@@ -232,16 +287,33 @@ Community Info Section r/microsaas Joined Software as a Service businesses run b
       </div>
 
       {/* Interactive Auto Demo */}
-      <div id="demo" className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div id="demo" ref={demoRef} className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 min-h-screen flex items-center">
+        {/* Step indicator */}
+        <div className="fixed left-4 top-1/2 -translate-y-1/2 z-10 flex flex-col gap-2">
+          {steps.map((_, idx) => (
+            <div
+              key={idx}
+              className={`w-2 h-8 rounded-full transition-colors ${
+                idx <= stepIndex ? 'bg-blue-600' : 'bg-slate-300'
+              }`}
+            />
+          ))}
+        </div>
         <div className="browser-mockup floating-card mx-auto max-w-6xl">
           <div className="browser-header">
             <div className="browser-dot bg-red-500"></div>
             <div className="browser-dot bg-yellow-500"></div>
             <div className="browser-dot bg-green-500"></div>
             <div className="ml-4 rounded-full bg-blue-100 px-4 py-1 text-sm font-medium text-blue-800">
-              ⚡ Interactive demo (auto‑play)
+              ⚡ Scroll to explore the demo
             </div>
-            <div className="ml-auto flex items-center gap-2 pr-2">
+            {/* Step progress indicator in center */}
+            <div className="flex-1 flex justify-center">
+              <div className="rounded-full bg-white/95 px-4 py-2 text-sm font-medium text-slate-700 shadow-lg border border-slate-200 backdrop-blur-sm">
+                Step {stepIndex + 1} / {steps.length} — {step.title.replace(/^\d+\)\s*/, '')}
+              </div>
+            </div>
+            <div className="flex items-center gap-2 pr-2">
               {/* Simulated extension button only */}
               <button
                 aria-label="Click extension"
@@ -256,16 +328,7 @@ Community Info Section r/microsaas Joined Software as a Service businesses run b
             {/* Scenario switch */}
             {/* Scenario switch removed (reddit only) */}
             {/* Toast */}
-            {toast && (
-              <div className="pointer-events-none absolute right-3 top-3 flex items-center gap-2 rounded-full bg-white/95 px-3 py-1 text-xs font-medium text-slate-700 shadow-sm">
-                {step.id === 'export' ? (
-                  <CheckCircle className="h-3.5 w-3.5 text-emerald-600" />
-                ) : (
-                  <Bell className="h-3.5 w-3.5 text-blue-600" />
-                )}
-                {toast}
-              </div>
-            )}
+
           </div>
 
           <div className="p-6 sm:p-8">
@@ -275,10 +338,13 @@ Community Info Section r/microsaas Joined Software as a Service businesses run b
             {/* Scene: Reddit content + Narrow Extension UI */}
             <div className="relative md:flex md:items-start md:gap-6">
               {/* Left: Reddit-style content (previous format) */}
-              <div
+              <motion.div
                 className={`relative flex-1 rounded-lg border border-slate-200 bg-white p-4 shadow-sm transition-all duration-300 ${
                   flashEffect ? 'ring-2 ring-blue-400 bg-blue-50' : ''
                 }`}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-100px' }}
               >
                 {/* No initial overlay */}
                 <div className="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-500">Reddit thread</div>
@@ -328,10 +394,15 @@ Community Info Section r/microsaas Joined Software as a Service businesses run b
                 {step.id === 'select' && (
                   <div className="pointer-events-none absolute inset-3 rounded-md ring-4 ring-blue-400/60" />
                 )}
-              </div>
+              </motion.div>
 
               {/* Right: Extension UI (narrow like a browser extension) */}
-              <div className="mt-6 w-full rounded-lg border border-slate-200 bg-white p-4 shadow-sm md:mt-0 md:w-[360px]">
+              <motion.div
+                className="mt-6 w-full rounded-lg border border-slate-200 bg-white p-4 shadow-sm md:mt-0 md:w-[360px]"
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-100px' }}
+              >
                 <div className="mb-3 flex items-center justify-between">
                   <div className="text-base font-bold text-slate-800">PromptReady</div>
                   <div className="text-[11px] rounded-full bg-slate-100 px-2.5 py-0.5 text-slate-600">Extension</div>
@@ -339,11 +410,30 @@ Community Info Section r/microsaas Joined Software as a Service businesses run b
                 <div className="space-y-4 text-sm">
                   <button
                     onClick={onExtensionClick}
-                    className={`w-full rounded-[10px] px-4 py-3 text-sm font-semibold text-white shadow-sm transition-colors ${
-                      step.id === 'clean' ? 'bg-blue-700' : 'bg-blue-600 hover:bg-blue-700'
+                    disabled={step.id === 'clean'}
+                    aria-busy={step.id === 'clean'}
+                    aria-live="polite"
+                    className={`w-full rounded-[10px] px-4 py-3 text-sm font-semibold text-white shadow-sm transition-colors flex items-center justify-center gap-2 ${
+                      step.id === 'clean'
+                        ? 'bg-blue-700 ring-2 ring-blue-300 shadow-blue-500/40 cursor-not-allowed'
+                        : step.id === 'export'
+                        ? 'bg-emerald-600 hover:bg-emerald-700'
+                        : 'bg-blue-600 hover:bg-blue-700'
                     }`}
                   >
-                    Copy Clean Markdown
+                    {step.id === 'clean' && (
+                      <>
+                        <Loader2 className="h-4 w-4 animate-spin" />
+                        Processing…
+                      </>
+                    )}
+                    {step.id === 'export' && (
+                      <>
+                        <Check className="h-4 w-4" />
+                        Copied!
+                      </>
+                    )}
+                    {step.id === 'select' && 'Copy Clean Markdown'}
                   </button>
 
                   <div className="rounded-[12px] border border-slate-200 bg-slate-50/50 p-3">
@@ -396,11 +486,11 @@ Community Info Section r/microsaas Joined Software as a Service businesses run b
                     )}
                   </div>
 
-                  {step.id === 'structure' && (
-                    <div className="flex items-center gap-2 text-slate-600">
-                      <span className="h-2 w-2 animate-pulse rounded-full bg-blue-600" /> Processing…
-                    </div>
-                  )}
+                   {step.id === 'clean' && (
+                     <div className="flex items-center gap-2 text-slate-600">
+                       <Loader2 className="h-4 w-4 animate-spin" /> Cleaning and structuring…
+                     </div>
+                   )}
 
                   {step.id === 'export' && showDownloadActions && (
                     <div className="flex flex-wrap gap-2">
@@ -409,7 +499,7 @@ Community Info Section r/microsaas Joined Software as a Service businesses run b
                     </div>
                   )}
                 </div>
-              </div>
+              </motion.div>
             </div>
 
             {/* Bottom: Before Raw vs After Clean (two columns) */}
@@ -424,20 +514,6 @@ Community Info Section r/microsaas Joined Software as a Service businesses run b
               </div>
             </div>
 
-            {/* Output preview (CTA) */}
-            {step.id === 'export' && (
-              <div className="mt-6 rounded-lg border border-slate-200 bg-slate-50 p-4">
-                <div className="text-center">
-                  <button
-                    onClick={() => onPrimaryAction?.('demo_output_cta')}
-                    className="inline-flex items-center gap-2 rounded-full bg-blue-600 px-6 py-3 text-base font-semibold text-white shadow-lg transition-colors hover:bg-blue-700"
-                  >
-                    Get Early Access
-                    <ArrowRight className="h-4 w-4" />
-                  </button>
-                </div>
-              </div>
-            )}
             {/* Controls removed for cleaner browser-like demo */}
           </div>
         </div>
