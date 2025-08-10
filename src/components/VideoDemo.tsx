@@ -279,10 +279,10 @@ Community Info Section r/microsaas Joined Software as a Service businesses run b
       {/* Section Header */}
       <div className="mb-16 px-4 text-center">
         <h2 className="mb-4 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
-          See the Transformation
+          Watch It Work
         </h2>
         <p className="mx-auto max-w-2xl text-lg text-slate-600">
-          From messy web content to clean Markdown. Instantly.
+          Messy web content becomes clean Markdown. One click.
         </p>
       </div>
 
