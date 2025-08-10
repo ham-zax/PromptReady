@@ -7,6 +7,9 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 import { trackDemoPlay, trackUserEngagement } from '../hooks/useAnalytics';
 
+// Deduplicate processing toast across re-renders/scroll events
+const PROCESSING_TOAST_ID = 'video-demo-processing';
+
 type DemoStep = {
   id: string;
   title: string;
@@ -205,10 +208,10 @@ Community Info Section r/microsaas Joined Software as a Service businesses run b
     const isDesktop = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(min-width: 768px)').matches;
     if (!isDesktop) return;
     if (!demoRef.current) return;
-    
+
     const demoEl = demoRef.current;
     const NAVBAR_OFFSET_PX = 65;
-    
+
     // Create scroll trigger with shorter scroll distance
     const scrollTrigger = ScrollTrigger.create({
       trigger: demoEl,
@@ -251,7 +254,7 @@ Community Info Section r/microsaas Joined Software as a Service businesses run b
         setTimeout(() => {
           const currentStep = steps[stepIndex];
           if (currentStep.id === 'clean') {
-            toast.loading('Processing selection…');
+            toast.loading('Processing selection…', { id: PROCESSING_TOAST_ID, duration: Infinity });
           } else if (currentStep.id === 'export') {
             toast.success('Copied: cleaned Markdown ready');
           }
@@ -260,7 +263,7 @@ Community Info Section r/microsaas Joined Software as a Service businesses run b
     });
     // Ensure initial margin for navbar offset if already active
     if ((scrollTrigger as any).isActive) demoEl.style.marginTop = `${NAVBAR_OFFSET_PX}px`;
-    
+
     return () => {
       scrollTrigger.kill();
     };
@@ -268,11 +271,24 @@ Community Info Section r/microsaas Joined Software as a Service businesses run b
 
   React.useEffect(() => {
     if (step.id === 'clean') {
-      toast.loading('Processing selection…');
-    } else if (step.id === 'export') {
-      toast.success('Copied: cleaned Markdown ready');
+      // Show a single persistent processing toast; do not spawn duplicates on scroll/rerender
+      toast.loading('Processing selection…', { id: PROCESSING_TOAST_ID, duration: Infinity });
+    } else {
+      // Ensure any processing toast is dismissed when not in the clean step
+      toast.dismiss(PROCESSING_TOAST_ID);
+      if (step.id === 'export') {
+        toast.success('Copied: cleaned Markdown ready');
+      }
     }
   }, [step.id]);
+
+
+  // Cleanup any lingering processing toast on unmount (helps on mobile route/scroll remounts)
+  React.useEffect(() => {
+    return () => {
+      toast.dismiss(PROCESSING_TOAST_ID);
+    };
+  }, []);
 
   return (
     <section className="py-8 lg:py-24">
@@ -297,7 +313,7 @@ Community Info Section r/microsaas Joined Software as a Service businesses run b
               See the Magic in Action
             </div>
           </div>
-          
+
           {/* Before/After showcase */}
           <div className="space-y-3">
             <div className="rounded-lg bg-white/70 p-3 backdrop-blur-sm">
@@ -311,13 +327,13 @@ Community Info Section r/microsaas Joined Software as a Service businesses run b
                 <br />Upvote 765 Downvote 116 Go to comments Share...
               </div>
             </div>
-            
+
             <div className="flex justify-center">
               <div className="rounded-full bg-white/80 p-2">
                 <ArrowRight className="h-4 w-4 text-blue-600" />
               </div>
             </div>
-            
+
             <div className="rounded-lg bg-white/90 p-3 backdrop-blur-sm border border-emerald-200">
               <div className="mb-2 flex items-center gap-2">
                 <div className="h-1.5 w-1.5 rounded-full bg-emerald-500"></div>
@@ -332,7 +348,7 @@ Community Info Section r/microsaas Joined Software as a Service businesses run b
               </div>
             </div>
           </div>
-          
+
           {/* CTA Button */}
           <button
             onClick={onExtensionClick}
@@ -365,7 +381,7 @@ Community Info Section r/microsaas Joined Software as a Service businesses run b
             )}
           </button>
         </div>
-        
+
         {/* Subtle feature hints */}
         <div className="mt-4 flex justify-center gap-4 text-xs text-slate-500">
           <span>✨ Instant</span>
@@ -410,8 +426,8 @@ Community Info Section r/microsaas Joined Software as a Service businesses run b
                 aria-label="Click extension"
                 onClick={onExtensionClick}
                 className={`rounded-full px-4 py-2 text-sm font-semibold shadow-lg transition-all duration-200 flex items-center gap-2 ${
-                  step.id === 'clean' 
-                    ? 'bg-gradient-to-r from-blue-600 to-blue-700 text-white ring-2 ring-blue-300 scale-105' 
+                  step.id === 'clean'
+                    ? 'bg-gradient-to-r from-blue-600 to-blue-700 text-white ring-2 ring-blue-300 scale-105'
                     : 'bg-white/90 text-slate-700 hover:bg-white hover:shadow-lg hover:scale-105 border border-white/50 backdrop-blur-sm'
                 }`}
               >
