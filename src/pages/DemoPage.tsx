@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet-async';
 import { Play, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Logo from '../components/ui/Logo';
+import { usePageSEO } from '../hooks/useSEO';
 
 // Import components
 import HowItWorks from '../components/HowItWorks';
@@ -17,6 +18,9 @@ interface DemoPageProps {
 }
 
 const DemoPage: React.FC<DemoPageProps> = ({ onPrimaryAction }) => {
+  // Get dynamic SEO configuration with proper canonical URLs
+  const seo = usePageSEO('demo');
+
   return (
     <motion.div
       initial={{ opacity: 0, x: 20 }}
@@ -25,20 +29,17 @@ const DemoPage: React.FC<DemoPageProps> = ({ onPrimaryAction }) => {
       transition={{ duration: 0.4 }}
     >
       <Helmet>
-        <title>PromptReady Demo — One‑click clean Markdown from any page</title>
-        <meta 
-          name="description" 
-          content="See PromptReady turn messy selections into AI‑ready Markdown/JSON with citations. Privacy‑first, runs locally. Pro adds optional BYOK validation using your key." 
-        />
-        <meta property="og:title" content="PromptReady Demo — One‑click clean Markdown from any page" />
-        <meta 
-          property="og:description" 
-          content="See PromptReady turn messy selections into AI‑ready Markdown/JSON with citations. Privacy‑first, runs locally." 
-        />
-        <meta property="og:image" content="/og-image.png" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:image" content="/og-image.png" />
-        <link rel="canonical" href="https://promptready.app/demo" />
+        <title>{seo.title}</title>
+        <meta name="description" content={seo.description} />
+        <meta property="og:title" content={seo.ogTitle} />
+        <meta property="og:description" content={seo.ogDescription} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={seo.ogUrl} />
+        <meta property="og:image" content={seo.ogImage} />
+        <meta name="twitter:card" content={seo.twitterCard} />
+        <meta name="twitter:image" content={seo.twitterImage} />
+        <link rel="canonical" href={seo.canonicalUrl} />
+        {seo.noindex && <meta name="robots" content="noindex,nofollow" />}
       </Helmet>
 
       <main>

@@ -10,12 +10,14 @@ import { Analytics } from '@vercel/analytics/react';
 import { Toaster } from '@/components/ui/sonner';
 import LandingFlowRouter from './router/LandingFlowRouter';
 import { env, seo } from './config';
+import { getCurrentCanonicalUrl } from './utils/canonicalUrl';
 
 // Import test utilities in development
 if (env.DEV) {
   import('./utils/testLandingFlow');
   import('./utils/testFeatureFlags');
   import('./utils/testAnalyticsEvents');
+  import('./utils/canonicalUrl'); // This will auto-log canonical URL info
 }
 
 function App() {
@@ -82,7 +84,7 @@ function App() {
         <meta property="og:description" content={seo.ogDescription} />
         <meta property="og:type" content={seo.ogType} />
         <meta property="og:url" content={seo.ogUrl} />
-        <link rel="canonical" href={seo.canonicalUrl} />
+        <link rel="canonical" href={getCurrentCanonicalUrl()} />
       </Helmet>
       <Analytics />
 

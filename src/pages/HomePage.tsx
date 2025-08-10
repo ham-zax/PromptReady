@@ -17,6 +17,9 @@ import FAQ from '../components/FAQ';
 import ScrollTracker from '../components/analytics/ScrollTracker';
 import SectionTracker from '../components/analytics/SectionTracker';
 
+// Import SEO hook
+import { usePageSEO } from '../hooks/useSEO';
+
 // Lazy load heavy components
 const VideoDemo = React.lazy(() => import('../components/VideoDemo'));
 
@@ -25,6 +28,9 @@ interface HomePageProps {
 }
 
 const HomePage: React.FC<HomePageProps> = ({ onPrimaryAction }) => {
+  // Get dynamic SEO configuration with proper canonical URLs
+  const seo = usePageSEO('home');
+
   return (
     <ScrollTracker milestones={[25, 50, 75, 90, 100]}>
       <motion.div
@@ -34,22 +40,17 @@ const HomePage: React.FC<HomePageProps> = ({ onPrimaryAction }) => {
         transition={{ duration: 0.3 }}
       >
       <Helmet>
-        <title>PromptReady — One-click clean Markdown from any page</title>
-        <meta 
-          name="description" 
-          content="Turn any selection into AI-ready Markdown/JSON — code fences, tables, and citations preserved. Runs locally. Pro adds optional validation with your key." 
-        />
-        <meta property="og:title" content="PromptReady — One-click clean Markdown from any page" />
-        <meta 
-          property="og:description" 
-          content="Turn any selection into AI-ready Markdown/JSON — code fences, tables, and citations preserved. Runs locally. Pro adds optional validation with your key." 
-        />
+        <title>{seo.title}</title>
+        <meta name="description" content={seo.description} />
+        <meta property="og:title" content={seo.ogTitle} />
+        <meta property="og:description" content={seo.ogDescription} />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://promptready.app/" />
-        <meta property="og:image" content="/og-image.png" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:image" content="/og-image.png" />
-        <link rel="canonical" href="https://promptready.app/" />
+        <meta property="og:url" content={seo.ogUrl} />
+        <meta property="og:image" content={seo.ogImage} />
+        <meta name="twitter:card" content={seo.twitterCard} />
+        <meta name="twitter:image" content={seo.twitterImage} />
+        <link rel="canonical" href={seo.canonicalUrl} />
+        {seo.noindex && <meta name="robots" content="noindex,nofollow" />}
       </Helmet>
 
       <main>

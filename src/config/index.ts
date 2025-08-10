@@ -71,15 +71,15 @@ export const ui = {
   },
 } as const;
 
-// SEO configuration
+// SEO configuration (legacy - use useSEO hook for dynamic canonical URLs)
 export const seo = {
   title: 'PromptReady - Copy clean, AI-ready text. Instantly.',
   description: 'One-click extension that turns any page into structured, distraction-free text for ChatGPT, Claude, or your LLM workflow — with private, on-device parsing.',
   ogTitle: 'PromptReady - Copy clean, AI-ready text. Instantly.',
   ogDescription: 'One-click extension that turns any page into structured, distraction-free text for ChatGPT, Claude, or your LLM workflow — with private, on-device parsing.',
   ogType: 'website',
-  ogUrl: env.SITE_URL,
-  canonicalUrl: env.SITE_URL,
+  ogUrl: 'https://promptready.app', // Always use production domain
+  canonicalUrl: 'https://promptready.app', // Always use production domain
 } as const;
 
 // Export environment variables
