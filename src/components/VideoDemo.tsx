@@ -276,16 +276,14 @@ Community Info Section r/microsaas Joined Software as a Service businesses run b
 
   return (
     <section className="py-8 lg:py-24">
-      {/* Demo anchor */}
-      <div className="mb-10 flex justify-center">
-        <a
-          href="#demo"
-          aria-label="Interactive demo"
-          className="inline-flex items-center gap-2 rounded-full bg-blue-50 px-5 py-2 text-base font-semibold text-blue-700 transition-colors duration-200 hover:bg-blue-100"
-        >
-          <ArrowRight className="h-4 w-4" />
-          Try the interactive demo
-        </a>
+      {/* Section Header */}
+      <div className="mb-16 px-4 text-center">
+        <h2 className="mb-4 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
+          See the Transformation
+        </h2>
+        <p className="mx-auto max-w-2xl text-lg text-slate-600">
+          From messy web content to clean Markdown. Instantly.
+        </p>
       </div>
 
       {/* Mobile: beautiful demo showcase */}
@@ -296,7 +294,7 @@ Community Info Section r/microsaas Joined Software as a Service businesses run b
           <div className="mb-4 text-center">
             <div className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-sm font-medium text-slate-700 backdrop-blur-sm">
               <span className="h-2 w-2 rounded-full bg-green-500"></span>
-              Live Demo
+              See the Magic in Action
             </div>
           </div>
           
@@ -305,7 +303,7 @@ Community Info Section r/microsaas Joined Software as a Service businesses run b
             <div className="rounded-lg bg-white/70 p-3 backdrop-blur-sm">
               <div className="mb-2 flex items-center gap-2">
                 <div className="h-1.5 w-1.5 rounded-full bg-red-500"></div>
-                <span className="text-xs font-medium text-slate-600">Raw Reddit mess</span>
+                <span className="text-xs font-medium text-slate-600">Before: The Raw Copy-Paste</span>
               </div>
               <div className="text-xs text-slate-700 font-mono leading-tight">
                 Skip to main content Did you see this tweet by Sam Altman? : r/microsaas...
@@ -323,7 +321,7 @@ Community Info Section r/microsaas Joined Software as a Service businesses run b
             <div className="rounded-lg bg-white/90 p-3 backdrop-blur-sm border border-emerald-200">
               <div className="mb-2 flex items-center gap-2">
                 <div className="h-1.5 w-1.5 rounded-full bg-emerald-500"></div>
-                <span className="text-xs font-medium text-emerald-700">Clean Markdown</span>
+                <span className="text-xs font-medium text-emerald-700">After: Your Instant Result</span>
               </div>
               <div className="text-xs text-slate-700 font-mono leading-tight">
                 **Original Post** (u/Intelligent_Play_719)
@@ -395,7 +393,7 @@ Community Info Section r/microsaas Joined Software as a Service businesses run b
             <div className="browser-dot bg-yellow-400 shadow-sm"></div>
             <div className="browser-dot bg-green-400 shadow-sm"></div>
             <div className="ml-4 rounded-full bg-gradient-to-r from-blue-500 to-indigo-600 px-4 py-1 text-sm font-medium text-white shadow-lg">
-              ⚡ Interactive Demo
+              ⚡ From Raw Mess to Perfect Markdown
             </div>
             {/* Step progress indicator in center */}
             <div className="flex-1 hidden md:flex justify-center">
@@ -601,14 +599,14 @@ Community Info Section r/microsaas Joined Software as a Service businesses run b
               <div className={`rounded-2xl border border-white/30 bg-white/60 backdrop-blur-sm p-6 shadow-lg ring-1 ring-black/5 transition-all duration-300 ${flashEffect ? 'ring-2 ring-blue-400 bg-blue-50/80 scale-[1.02]' : ''}`}>
                 <div className="mb-3 flex items-center gap-2">
                   <div className="h-2 w-2 rounded-full bg-red-500"></div>
-                  <div className="text-sm font-semibold text-slate-700">Before: Raw copy</div>
+                  <div className="text-sm font-semibold text-slate-700">Before: The Raw Copy-Paste</div>
                 </div>
                 <pre className="max-h-72 overflow-auto whitespace-pre-wrap text-[13px] leading-relaxed text-slate-800 font-mono bg-slate-50/50 rounded-lg p-3">{RAW_REDDIT_TEXT}</pre>
               </div>
               <div className={`rounded-2xl border border-white/30 bg-white/60 backdrop-blur-sm p-6 shadow-lg ring-1 ring-black/5 transition-all duration-300 ${flashEffect ? 'ring-2 ring-emerald-400 bg-emerald-50/80 scale-[1.02]' : ''}`}>
                 <div className="mb-3 flex items-center gap-2">
                   <div className="h-2 w-2 rounded-full bg-emerald-500"></div>
-                  <div className="text-sm font-semibold text-emerald-700">After: Clean Markdown</div>
+                  <div className="text-sm font-semibold text-emerald-700">After: Your Instant Result</div>
                 </div>
                 <pre className={`max-h-72 overflow-auto text-[13px] leading-relaxed text-slate-800 font-mono bg-emerald-50/50 rounded-lg p-3 ${preserveLineBreaks ? 'whitespace-pre' : 'whitespace-pre-wrap'}`}>{buildCleanMarkdown()}</pre>
               </div>
