@@ -6,7 +6,6 @@ gsap.registerPlugin(ScrollTrigger);
 import { Helmet } from 'react-helmet-async';
 import { trackEvent } from './hooks/useAnalytics';
 import { usePostHog } from './hooks/usePostHog';
-import { Analytics } from '@vercel/analytics/react';
 import { Toaster } from '@/components/ui/sonner';
 import LandingFlowRouter from './router/LandingFlowRouter';
 import { env, seo } from './config';
@@ -94,7 +93,6 @@ function App() {
             : 'noindex,nofollow'
         } />
       </Helmet>
-      <Analytics />
 
               {/* Landing Flow Router handles all routing and page transitions */}
         <LandingFlowRouter onPrimaryAction={handlePrimaryAction} />
