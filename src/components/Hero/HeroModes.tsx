@@ -10,7 +10,7 @@ const HeroModes: React.FC<HeroModesProps> = ({ spring }) => {
   return (
     <div className="mx-auto mb-12 grid max-w-4xl grid-cols-1 gap-4 md:grid-cols-2">
       <motion.div
-        className="relative rounded-2xl border border-slate-200 bg-gradient-to-b from-white to-slate-200 p-6 shadow-sm"
+        className="relative rounded-2xl border border-slate-200 bg-gradient-to-b from-white to-slate-200 p-6 shadow-md"
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-80px' }}
@@ -31,7 +31,7 @@ const HeroModes: React.FC<HeroModesProps> = ({ spring }) => {
       </motion.div>
 
       <motion.div
-        className="relative rounded-2xl border border-violet-200 bg-gradient-to-b from-white to-violet-50 p-6 shadow-sm"
+        className="relative rounded-2xl border border-violet-200 bg-gradient-to-b from-white to-violet-50 p-6 shadow-md"
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-80px' }}

@@ -9,8 +9,8 @@ import { cn } from '@/lib/utils'; // Make sure you have this utility function
 const beforeVariants = cva('border-2 border-dashed rounded-xl p-6 flex flex-col', {
   variants: {
     variant: {
-      'red-green': 'bg-red-50/60 border-red-200/80',
-      'blue-purple': 'bg-blue-50/60 border-blue-200/80',
+      'red-green': 'bg-red-50/60 border-red-200/80 shadow-md',
+      'blue-purple': 'bg-blue-50/60 border-blue-200/80 shadow-md',
     },
   },
   defaultVariants: {

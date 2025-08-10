@@ -57,7 +57,7 @@ const Testimonials: React.FC = () => {
             }`}
           >
             {/* The actual testimonial card with refined styling */}
-            <div className="mx-auto rounded-xl border border-slate-200 bg-white p-8 shadow-sm">
+            <div className="mx-auto rounded-xl border border-slate-200 bg-white p-8 shadow-lg">
               {/* Increased bottom margin for better spacing */}
               <div className="mb-8 flex justify-center">
                 <StarRating rating={testimonial.stars} />
