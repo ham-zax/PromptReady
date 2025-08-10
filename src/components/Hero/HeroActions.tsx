@@ -71,6 +71,21 @@ const HeroActions: React.FC<HeroActionsProps> = ({ onPrimaryAction }) => {
         <span className="rounded-full bg-white/60 backdrop-blur-sm px-4 py-2 text-slate-700 shadow-lg ring-1 ring-black/5">📝 Citations included</span>
         <span className="rounded-full bg-white/60 backdrop-blur-sm px-4 py-2 text-slate-700 shadow-lg ring-1 ring-black/5">🔒 Privacy‑first, local</span>
       </div>
+
+      {/* Temporary analytics test button - remove after testing */}
+      {import.meta.env.DEV && (
+        <div className="mb-4 flex justify-center">
+          <button
+            onClick={() => {
+              trackHeroCtaClick({ test: 'analytics_debug', timestamp: Date.now() });
+              console.log('[DEBUG] Test analytics event fired');
+            }}
+            className="rounded bg-red-500 px-4 py-2 text-white text-sm hover:bg-red-600"
+          >
+            🔧 Test Analytics (Dev Only)
+          </button>
+        </div>
+      )}
     </>
   );
 };

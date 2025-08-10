@@ -17,14 +17,20 @@
       "source": "/(.*)",
       "if": "equals(system.env.VERCEL_GIT_COMMIT_REF, 'main')",
       "headers": [
-        { "key": "X-Robots-Tag", "value": "index, follow" }
+        {
+          "key": "X-Robots-Tag",
+          "value": "index, follow"
+        }
       ]
     },
     {
       "source": "/(.*)",
       "if": "not(equals(system.env.VERCEL_GIT_COMMIT_REF, 'main'))",
       "headers": [
-        { "key": "X-Robots-Tag", "value": "noindex, nofollow" }
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
       ]
     }
   ]
