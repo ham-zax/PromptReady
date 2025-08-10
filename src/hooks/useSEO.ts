@@ -24,14 +24,21 @@ interface SEOResult extends Required<Omit<SEOConfig, 'ogTitle' | 'ogDescription'
 /**
  * Hook to generate proper SEO meta tags with canonical URLs
  * Automatically handles canonical URLs for all deployment environments
+ * Includes conditional robots directive based on environment
  */
 export const useSEO = (config: SEOConfig): SEOResult => {
   const location = useLocation();
-  
+
   // Generate canonical URL for current page
   const canonicalUrl = config.canonicalUrl || getCanonicalUrl(location.pathname);
   const ogUrl = config.ogUrl || getSocialUrl(location.pathname);
-  
+
+  // Determine if this should be indexed based on environment
+  const shouldIndex =
+    import.meta.env.VITE_VERCEL_GIT_COMMIT_REF === 'main' ||
+    import.meta.env.PROD ||
+    window.location.hostname === 'promptready.app';
+
   return {
     title: config.title,
     description: config.description,
@@ -42,7 +49,7 @@ export const useSEO = (config: SEOConfig): SEOResult => {
     twitterImage: config.twitterImage || config.ogImage || '/og-image.png',
     canonicalUrl,
     ogUrl,
-    noindex: config.noindex || false,
+    noindex: config.noindex !== undefined ? config.noindex : !shouldIndex,
   };
 };
 

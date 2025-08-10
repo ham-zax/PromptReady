@@ -85,6 +85,14 @@ function App() {
         <meta property="og:type" content={seo.ogType} />
         <meta property="og:url" content={seo.ogUrl} />
         <link rel="canonical" href={getCurrentCanonicalUrl()} />
+        {/* Conditional robots meta tag based on environment */}
+        <meta name="robots" content={
+          import.meta.env.VITE_VERCEL_GIT_COMMIT_REF === 'main' ||
+          import.meta.env.PROD ||
+          window.location.hostname === 'promptready.app'
+            ? 'index,follow'
+            : 'noindex,nofollow'
+        } />
       </Helmet>
       <Analytics />
 
