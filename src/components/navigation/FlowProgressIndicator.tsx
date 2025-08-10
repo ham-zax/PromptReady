@@ -1,10 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Home, Play, DollarSign, CheckCircle } from 'lucide-react';
 
 const FlowProgressIndicator: React.FC = () => {
   const location = useLocation();
+  const navigate = useNavigate();
 
   const steps = [
     { 
@@ -28,10 +29,10 @@ const FlowProgressIndicator: React.FC = () => {
       icon: DollarSign,
       description: 'Choose your plan'
     },
-    { 
-      id: 'signup', 
-      path: '/thank-you', 
-      label: 'Join', 
+    {
+      id: 'signup',
+      path: '/',
+      label: 'Join',
       icon: CheckCircle,
       description: 'Get early access'
     },
@@ -43,6 +44,20 @@ const FlowProgressIndicator: React.FC = () => {
   };
 
   const currentStepIndex = getCurrentStepIndex();
+
+  // Handle step navigation
+  const handleStepClick = (step: typeof steps[0], index: number) => {
+    // Allow navigation to completed steps or the next step
+    if (index <= currentStepIndex + 1) {
+      // Special handling for the Join step - redirect to waitlist
+      if (step.id === 'signup') {
+        const waitlistUrl = import.meta.env.VITE_WAITLIST_URL || 'https://waitlister.me/p/promptready';
+        window.open(waitlistUrl, '_blank');
+      } else {
+        navigate(step.path);
+      }
+    }
+  };
 
   // Only show on specific pages
   const shouldShow = ['/demo', '/pricing'].includes(location.pathname);
@@ -63,17 +78,22 @@ const FlowProgressIndicator: React.FC = () => {
             const isActive = index === currentStepIndex;
             const isCompleted = index < currentStepIndex;
 
+            const isClickable = index <= currentStepIndex + 1;
+
             return (
               <div key={step.id} className="flex items-center">
-                <div className="flex items-center gap-2">
+                <div
+                  className={`flex items-center gap-2 ${isClickable ? 'cursor-pointer' : 'cursor-not-allowed'}`}
+                  onClick={() => handleStepClick(step, index)}
+                >
                   <div
-                    className={`relative flex h-8 w-8 items-center justify-center rounded-full transition-colors ${
+                    className={`relative flex h-8 w-8 items-center justify-center rounded-full transition-all duration-200 ${
                       isActive
                         ? 'bg-blue-600 text-white'
                         : isCompleted
                         ? 'bg-green-600 text-white'
                         : 'bg-slate-200 text-slate-600'
-                    }`}
+                    } ${isClickable ? 'hover:scale-105' : 'opacity-60'}`}
                   >
                     <Icon className="h-4 w-4" />
                     {isActive && (
@@ -88,9 +108,9 @@ const FlowProgressIndicator: React.FC = () => {
                   
                   <div className="hidden sm:block">
                     <div
-                      className={`text-xs font-medium ${
+                      className={`text-xs font-medium transition-colors ${
                         isActive ? 'text-blue-600' : isCompleted ? 'text-green-600' : 'text-slate-600'
-                      }`}
+                      } ${isClickable ? 'hover:text-blue-500' : ''}`}
                     >
                       {step.label}
                     </div>
