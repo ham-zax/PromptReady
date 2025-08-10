@@ -1,6 +1,5 @@
 // src/hooks/useAnalytics.ts
 
-import { track as vercelTrack } from '@vercel/analytics';
 import posthog from 'posthog-js';
 import type { AnalyticsPayload } from '../types';
 import { env } from '../config';
@@ -35,25 +34,7 @@ const posthogCapture = (eventName: string, payload: AnalyticsPayload) => {
 };
 
 /**
- * Clean payload for Vercel Analytics (remove undefined values)
- */
-const cleanPayloadForVercel = (payload: AnalyticsPayload) => {
-  const cleaned: Record<string, string | number | boolean> = {};
-  for (const [key, value] of Object.entries(payload)) {
-    if (value !== undefined && value !== null) {
-      if (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') {
-        cleaned[key] = value;
-      } else if (typeof value === 'object') {
-        cleaned[key] = JSON.stringify(value);
-      }
-    }
-  }
-  return cleaned;
-};
-
-/**
- * A simple utility function to log analytics events.
- * Expandable to any service (PostHog, Umami, Vercel, etc.).
+ * A simple utility function to log analytics events using PostHog.
  * @param eventName - The name of the event to track.
  * @param payload - A data object associated with the event.
  */
@@ -64,11 +45,7 @@ export const trackEvent = (eventName: string, payload: AnalyticsPayload = {}) =>
       console.log(`[Analytics] Event: ${eventName}`, payload);
     }
 
-    // Send to Vercel Analytics with cleaned payload
-    const cleanedPayload = cleanPayloadForVercel(payload);
-    vercelTrack(eventName, cleanedPayload);
-
-    // Send to PostHog with original payload
+    // Send to PostHog
     posthogCapture(eventName, payload);
   } catch {
     // swallow analytics errors
