@@ -1,28 +1,15 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { fileURLToPath } from 'url';
-import { beasties } from 'vite-plugin-beasties';
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     react(),
-    beasties({
-      // Critical CSS configuration
-      options: {
-        preload: 'swap', // Use swap strategy for better performance
-        inlineFonts: false, // Don't inline fonts to keep bundle size smaller
-        preloadFonts: true, // Preload critical fonts
-        pruneSource: false, // Avoid pruning to prevent ENOENT on hashed CSS in CF build
-        mergeStylesheets: false, // Avoid stylesheet merging to reduce file re-writes
-        compress: true, // Compress critical CSS
-        logLevel: 'info'
-      }
-    }),
   ],
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
   optimizeDeps: {
@@ -34,7 +21,6 @@ export default defineConfig({
     sourcemap: 'hidden',
     reportCompressedSize: false,
     chunkSizeWarningLimit: 600,
-
     rollupOptions: {
       output: {
         // Aligned chunking strategy: static imports get manual chunks, dynamic imports get automatic splitting
@@ -46,11 +32,10 @@ export default defineConfig({
               'react-router', 'react-router-dom',    // Router (static imports)
               'react-helmet-async',                  // SEO (static import)
               '@vercel/analytics',                   // Analytics (static import)
-              'clsx', 'tailwind-merge',             // Utils (static imports)
-              'sonner',                             // Toast (static import)
-              'lucide-react'                        // Icons (static imports)
+              'clsx', 'tailwind-merge',              // Utils (static imports)
+              'sonner',                              // Toast (static import)
+              'lucide-react'                         // Icons (static imports)
             ];
-
             const packageName = id.split('node_modules/')[1]?.split('/')[0];
 
             // React ecosystem gets its own chunk
@@ -73,35 +58,6 @@ export default defineConfig({
             return undefined;
           }
         },
-      },
-      treeshake: {
-        moduleSideEffects: (id) => {
-          return id.includes('.css') || id.includes('posthog-js');
-        },
-        propertyReadSideEffects: false,
-        tryCatchDeoptimization: false,
-      },
-      external: (id) => {
-        // Exclude PostHog survey modules from bundling (even more aggressive)
-        if (id.includes('posthog-js')) {
-          const excludedModules = [
-            '/surveys',
-            '/toolbar',
-            '/session-recording',
-            '/heatmaps',
-            '/experiments',
-            '/web-experiments',
-            '/exception-autocapture',
-            '/dead-clicks-autocapture',
-            '/surveys-extension',
-            '/extensions/surveys',
-          ];
-
-          if (excludedModules.some(module => id.includes(module))) {
-            return true;
-          }
-        }
-        return false;
       },
     },
   },
