@@ -389,36 +389,40 @@ Community Info Section r/microsaas Joined Software as a Service businesses run b
             />
           ))}
         </div>
-        <div className="browser-mockup floating-card mx-auto max-w-6xl">
-          <div className="browser-header px-3 sm:px-4">
-            <div className="browser-dot bg-red-500"></div>
-            <div className="browser-dot bg-yellow-500"></div>
-            <div className="browser-dot bg-green-500"></div>
-            <div className="ml-2 sm:ml-4 rounded-full bg-blue-100 px-3 sm:px-4 py-0.5 sm:py-1 text-xs sm:text-sm font-medium text-blue-800">
-              ⚡ Scroll to explore the demo
+        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 shadow-2xl border border-white/20 backdrop-blur-sm">
+          <div className="browser-header px-4 bg-white/80 backdrop-blur-md border-b border-white/30">
+            <div className="browser-dot bg-red-400 shadow-sm"></div>
+            <div className="browser-dot bg-yellow-400 shadow-sm"></div>
+            <div className="browser-dot bg-green-400 shadow-sm"></div>
+            <div className="ml-4 rounded-full bg-gradient-to-r from-blue-500 to-indigo-600 px-4 py-1 text-sm font-medium text-white shadow-lg">
+              ⚡ Interactive Demo
             </div>
             {/* Step progress indicator in center */}
             <div className="flex-1 hidden md:flex justify-center">
-              <div className="rounded-full bg-white/95 px-4 py-1.5 text-sm font-medium text-slate-700 shadow-sm border border-slate-200 backdrop-blur-sm">
-                Step {stepIndex + 1} / {steps.length} — {step.title.replace(/^\d+\)\s*/, '')}
+              <div className="rounded-full bg-white/95 px-6 py-2 text-sm font-semibold text-slate-700 shadow-lg border border-white/50 backdrop-blur-sm ring-1 ring-black/5">
+                <span className="inline-flex items-center gap-2">
+                  <span className="h-2 w-2 rounded-full bg-blue-500 animate-pulse"></span>
+                  Step {stepIndex + 1} / {steps.length} — {step.title.replace(/^\d+\)\s*/, '')}
+                </span>
               </div>
             </div>
             <div className="flex items-center gap-2 pr-2">
-              {/* Simulated extension button only */}
+              {/* Beautiful extension button */}
               <button
                 aria-label="Click extension"
                 onClick={onExtensionClick}
-                className={`rounded-full px-3 py-1 text-xs sm:text-[13px] font-semibold shadow-sm transition-colors ${
-                  step.id === 'clean' ? 'bg-blue-700 text-white' : 'bg-white text-slate-700 hover:bg-slate-50'
+                className={`rounded-full px-4 py-2 text-sm font-semibold shadow-lg transition-all duration-200 flex items-center gap-2 ${
+                  step.id === 'clean' 
+                    ? 'bg-gradient-to-r from-blue-600 to-blue-700 text-white ring-2 ring-blue-300 scale-105' 
+                    : 'bg-white/90 text-slate-700 hover:bg-white hover:shadow-xl hover:scale-105 border border-white/50 backdrop-blur-sm'
                 }`}
               >
+                {step.id === 'clean' && (
+                  <div className="h-3 w-3 animate-spin rounded-full border-2 border-white/30 border-t-white"></div>
+                )}
                 Clean in browser
               </button>
             </div>
-            {/* Scenario switch */}
-            {/* Scenario switch removed (reddit only) */}
-            {/* Toast */}
-
           </div>
 
           <div className="p-6 sm:p-8">
@@ -427,10 +431,10 @@ Community Info Section r/microsaas Joined Software as a Service businesses run b
             {/* Scene */}
             {/* Scene: Reddit content + Narrow Extension UI */}
             <div className="relative md:flex md:items-start md:gap-6">
-              {/* Left: Reddit-style content (previous format) */}
+              {/* Left: Reddit-style content (beautiful design) */}
               <motion.div
-                className={`relative flex-1 rounded-lg border border-slate-200 bg-white p-4 shadow-sm transition-all duration-300 ${
-                  flashEffect ? 'ring-2 ring-blue-400 bg-blue-50' : ''
+                className={`relative flex-1 rounded-2xl border border-white/30 bg-white/60 backdrop-blur-sm p-6 shadow-xl transition-all duration-300 ${
+                  flashEffect ? 'ring-2 ring-blue-400 bg-blue-50/80 scale-[1.02]' : ''
                 }`}
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -486,9 +490,9 @@ Community Info Section r/microsaas Joined Software as a Service businesses run b
                 )}
               </motion.div>
 
-              {/* Right: Extension UI (narrow like a browser extension) */}
+              {/* Right: Extension UI (beautiful design) */}
                <motion.div
-                 className="mt-4 w-full rounded-lg border border-slate-200 bg-white p-3 shadow-sm md:mt-0 md:w-[360px] md:p-4"
+                 className="mt-4 w-full rounded-2xl border border-white/30 bg-white/80 backdrop-blur-md p-4 shadow-xl md:mt-0 md:w-[380px] ring-1 ring-black/5"
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-100px' }}
@@ -503,12 +507,12 @@ Community Info Section r/microsaas Joined Software as a Service businesses run b
                     disabled={step.id === 'clean'}
                     aria-busy={step.id === 'clean'}
                     aria-live="polite"
-                    className={`w-full rounded-[10px] px-4 py-3 text-sm font-semibold text-white shadow-sm transition-colors flex items-center justify-center gap-2 ${
+                    className={`w-full rounded-xl px-4 py-3 text-sm font-semibold text-white shadow-lg transition-all duration-200 flex items-center justify-center gap-2 ${
                       step.id === 'clean'
-                        ? 'bg-blue-700 ring-2 ring-blue-300 shadow-blue-500/40 cursor-not-allowed'
+                        ? 'bg-gradient-to-r from-blue-600 to-blue-700 ring-2 ring-blue-300 shadow-blue-500/40 cursor-not-allowed scale-95'
                         : step.id === 'export'
-                        ? 'bg-emerald-600 hover:bg-emerald-700'
-                        : 'bg-blue-600 hover:bg-blue-700'
+                        ? 'bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 scale-105 shadow-emerald-500/30'
+                        : 'bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 hover:scale-105 shadow-blue-500/30'
                     }`}
                   >
                     {step.id === 'clean' && (
@@ -526,7 +530,7 @@ Community Info Section r/microsaas Joined Software as a Service businesses run b
                     {step.id === 'select' && 'Copy Clean Markdown'}
                   </button>
 
-                  <div className="rounded-[12px] border border-slate-200 bg-slate-50/50 p-3">
+                  <div className="rounded-xl border border-white/30 bg-white/40 backdrop-blur-sm p-3 shadow-inner">
                     <div className="mb-2 flex items-center justify-between">
                       <div className="text-base font-semibold text-slate-800">Customize</div>
                       <button
@@ -536,8 +540,8 @@ Community Info Section r/microsaas Joined Software as a Service businesses run b
                         Options <ChevronDown className={`h-4 w-4 transition-transform ${optionsOpen ? 'rotate-180' : ''}`} />
                       </button>
                     </div>
-                    {optionsOpen && (
-                      <div className="rounded-lg border border-slate-200 bg-white p-3">
+                                          {optionsOpen && (
+                        <div className="rounded-xl border border-white/50 bg-white/90 backdrop-blur-sm p-3 shadow-lg ring-1 ring-black/5">
                         <div className="mb-2 text-[12px] font-semibold text-slate-500">OUTPUT FORMAT</div>
                         <div className="space-y-2">
                           <label className="flex items-center gap-2 text-slate-700">
@@ -592,15 +596,21 @@ Community Info Section r/microsaas Joined Software as a Service businesses run b
               </motion.div>
             </div>
 
-            {/* Bottom: Before Raw vs After Clean (two columns) */}
-            <div className="mt-6 grid gap-4 md:grid-cols-2">
-              <div className={`rounded-lg border border-slate-200 bg-white p-4 shadow-sm ${flashEffect ? 'ring-2 ring-blue-400 bg-blue-50' : ''}`}>
-                <div className="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-500">Before: Raw copy</div>
-                <pre className="max-h-72 overflow-auto whitespace-pre-wrap text-[13px] leading-relaxed text-slate-800 font-mono">{RAW_REDDIT_TEXT}</pre>
+            {/* Bottom: Before Raw vs After Clean (beautiful two columns) */}
+            <div className="mt-8 grid gap-6 md:grid-cols-2">
+              <div className={`rounded-2xl border border-white/30 bg-white/60 backdrop-blur-sm p-6 shadow-xl ring-1 ring-black/5 transition-all duration-300 ${flashEffect ? 'ring-2 ring-blue-400 bg-blue-50/80 scale-[1.02]' : ''}`}>
+                <div className="mb-3 flex items-center gap-2">
+                  <div className="h-2 w-2 rounded-full bg-red-500"></div>
+                  <div className="text-sm font-semibold text-slate-700">Before: Raw copy</div>
+                </div>
+                <pre className="max-h-72 overflow-auto whitespace-pre-wrap text-[13px] leading-relaxed text-slate-800 font-mono bg-slate-50/50 rounded-lg p-3">{RAW_REDDIT_TEXT}</pre>
               </div>
-              <div className={`rounded-lg border border-slate-200 bg-white p-4 shadow-sm ${flashEffect ? 'ring-2 ring-blue-400 bg-blue-50' : ''}`}>
-                <div className="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-500">After: Clean Markdown</div>
-                <pre className={`max-h-72 overflow-auto text-[13px] leading-relaxed text-slate-800 font-mono ${preserveLineBreaks ? 'whitespace-pre' : 'whitespace-pre-wrap'}`}>{buildCleanMarkdown()}</pre>
+              <div className={`rounded-2xl border border-white/30 bg-white/60 backdrop-blur-sm p-6 shadow-xl ring-1 ring-black/5 transition-all duration-300 ${flashEffect ? 'ring-2 ring-emerald-400 bg-emerald-50/80 scale-[1.02]' : ''}`}>
+                <div className="mb-3 flex items-center gap-2">
+                  <div className="h-2 w-2 rounded-full bg-emerald-500"></div>
+                  <div className="text-sm font-semibold text-emerald-700">After: Clean Markdown</div>
+                </div>
+                <pre className={`max-h-72 overflow-auto text-[13px] leading-relaxed text-slate-800 font-mono bg-emerald-50/50 rounded-lg p-3 ${preserveLineBreaks ? 'whitespace-pre' : 'whitespace-pre-wrap'}`}>{buildCleanMarkdown()}</pre>
               </div>
             </div>
 
