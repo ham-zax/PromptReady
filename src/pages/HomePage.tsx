@@ -13,6 +13,10 @@ import Pricing from '../components/Pricing';
 import Footer from '../components/Footer';
 import FAQ from '../components/FAQ';
 
+// Import analytics components
+import ScrollTracker from '../components/analytics/ScrollTracker';
+import SectionTracker from '../components/analytics/SectionTracker';
+
 // Lazy load heavy components
 const VideoDemo = React.lazy(() => import('../components/VideoDemo'));
 
@@ -22,12 +26,13 @@ interface HomePageProps {
 
 const HomePage: React.FC<HomePageProps> = ({ onPrimaryAction }) => {
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.3 }}
-    >
+    <ScrollTracker milestones={[25, 50, 75, 90, 100]}>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.3 }}
+      >
       <Helmet>
         <title>PromptReady — One-click clean Markdown from any page</title>
         <meta 
@@ -51,26 +56,34 @@ const HomePage: React.FC<HomePageProps> = ({ onPrimaryAction }) => {
         {/* The base background for the entire page */}
         <div className="bg-white">
           {/* Section 1: Hero (White) */}
-          <section className="relative bg-gradient-to-b from-white to-blue-50">
-            <Hero onPrimaryAction={() => onPrimaryAction('Hero')} />
-          </section>
+          <SectionTracker sectionName="hero" sectionId="hero-section">
+            <section className="relative bg-gradient-to-b from-white to-blue-50">
+              <Hero onPrimaryAction={() => onPrimaryAction('Hero')} />
+            </section>
+          </SectionTracker>
 
           {/* Section 2: Micro Before/After proof */}
-          <section className="relative bg-gradient-to-b from-blue-50">
-            <BeforeAfter />
-          </section>
+          <SectionTracker sectionName="before-after" sectionId="before-after-section">
+            <section className="relative bg-gradient-to-b from-blue-50">
+              <BeforeAfter />
+            </section>
+          </SectionTracker>
 
           {/* Section 3: VideoDemo (Smoothly fades from White to a light Blue) */}
-          <section className="to-bg-white relative bg-gradient-to-b from-blue-50">
-            <React.Suspense fallback={<div className="h-96 flex items-center justify-center">Loading demo...</div>}>
-              <VideoDemo />
-            </React.Suspense>
-          </section>
+          <SectionTracker sectionName="video-demo" sectionId="video-demo-section">
+            <section className="to-bg-white relative bg-gradient-to-b from-blue-50">
+              <React.Suspense fallback={<div className="h-96 flex items-center justify-center">Loading demo...</div>}>
+                <VideoDemo />
+              </React.Suspense>
+            </section>
+          </SectionTracker>
 
           {/* Section 4: HowItWorks (Sits on the light Blue background) */}
-          <section className="relative bg-blue-50">
-            <HowItWorks />
-          </section>
+          <SectionTracker sectionName="how-it-works" sectionId="how-it-works-section">
+            <section className="relative bg-blue-50">
+              <HowItWorks />
+            </section>
+          </SectionTracker>
 
           {/* Section 5: ProblemSolution (Fades from light Blue to our accent Purple) */}
           <section className="relative bg-gradient-to-b from-blue-50 to-purple-50">
@@ -104,6 +117,7 @@ const HomePage: React.FC<HomePageProps> = ({ onPrimaryAction }) => {
         </div>
       </main>
     </motion.div>
+    </ScrollTracker>
   );
 };
 

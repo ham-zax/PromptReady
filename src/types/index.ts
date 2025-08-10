@@ -12,8 +12,8 @@ export interface NavigationItem {
 }
 
 // Analytics types
-export type AnalyticsValue = string | number | boolean;
-export type AnalyticsPayload = Record<string, AnalyticsValue>;
+export type AnalyticsValue = string | number | boolean | null | undefined;
+export type AnalyticsPayload = Record<string, AnalyticsValue | Record<string, AnalyticsValue> | AnalyticsValue[]>;
 
 // Component prop types
 export interface BaseComponentProps {

@@ -2,17 +2,47 @@ import React from 'react';
 import { ArrowRight, Play } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { trackHeroCtaClick } from '../../hooks/useAnalytics';
+import { useFeatureFlag, FEATURE_FLAGS, FEATURE_FLAG_VALUES, trackFeatureFlagInteraction } from '../../hooks/useFeatureFlags';
 
 interface HeroActionsProps {
   onPrimaryAction: () => void;
 }
 
 const HeroActions: React.FC<HeroActionsProps> = ({ onPrimaryAction }) => {
+  // Get feature flag for CTA variant
+  const ctaVariant = useFeatureFlag(FEATURE_FLAGS.HERO_CTA_VARIANT, { fallback: 'control' });
+
+  // Define CTA text based on variant
+  const getCtaText = () => {
+    switch (ctaVariant) {
+      case FEATURE_FLAG_VALUES[FEATURE_FLAGS.HERO_CTA_VARIANT].VARIANT_A:
+        return 'Join the Waitlist';
+      case FEATURE_FLAG_VALUES[FEATURE_FLAGS.HERO_CTA_VARIANT].VARIANT_B:
+        return 'Get Early Access';
+      case FEATURE_FLAG_VALUES[FEATURE_FLAGS.HERO_CTA_VARIANT].VARIANT_C:
+        return 'Start Free Trial';
+      default:
+        return 'Get Early Access'; // Control/default
+    }
+  };
+
   // Memoize click handler to prevent unnecessary re-renders
   const handlePrimaryClick = React.useCallback(() => {
-    trackHeroCtaClick({ placement: 'hero_button' });
+    // Track the feature flag interaction
+    trackFeatureFlagInteraction(
+      FEATURE_FLAGS.HERO_CTA_VARIANT,
+      ctaVariant,
+      'cta_click',
+      { placement: 'hero_button', cta_text: getCtaText() }
+    );
+
+    trackHeroCtaClick({
+      placement: 'hero_button',
+      cta_variant: ctaVariant || 'control',
+      cta_text: getCtaText()
+    });
     onPrimaryAction();
-  }, [onPrimaryAction]);
+  }, [onPrimaryAction, ctaVariant]);
 
   return (
     <>
@@ -22,7 +52,7 @@ const HeroActions: React.FC<HeroActionsProps> = ({ onPrimaryAction }) => {
           onClick={handlePrimaryClick}
           className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-600 to-blue-700 px-8 py-4 text-lg font-semibold text-white shadow-lg shadow-blue-500/25 transition-all duration-200 hover:from-blue-700 hover:to-blue-800 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/30 motion-safe:transform-gpu"
         >
-          Get Early Access
+          {getCtaText()}
           <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-0.5" />
         </button>
 

@@ -11,9 +11,11 @@ import { Toaster } from '@/components/ui/sonner';
 import LandingFlowRouter from './router/LandingFlowRouter';
 import { env, seo } from './config';
 
-// Import test utility in development
+// Import test utilities in development
 if (env.DEV) {
   import('./utils/testLandingFlow');
+  import('./utils/testFeatureFlags');
+  import('./utils/testAnalyticsEvents');
 }
 
 function App() {
