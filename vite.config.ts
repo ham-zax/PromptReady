@@ -13,8 +13,8 @@ export default defineConfig({
         preload: 'swap', // Use swap strategy for better performance
         inlineFonts: false, // Don't inline fonts to keep bundle size smaller
         preloadFonts: true, // Preload critical fonts
-        pruneSource: true, // Remove inlined CSS from external stylesheets
-        mergeStylesheets: true, // Merge inlined styles into single tag
+        pruneSource: false, // Avoid pruning to prevent ENOENT on hashed CSS in CF build
+        mergeStylesheets: false, // Avoid stylesheet merging to reduce file re-writes
         compress: true, // Compress critical CSS
         logLevel: 'info'
       }
@@ -50,30 +50,31 @@ export default defineConfig({
               'sonner',                             // Toast (static import)
               'lucide-react'                        // Icons (static imports)
             ];
-            
+
             const packageName = id.split('node_modules/')[1]?.split('/')[0];
-            
+
             // React ecosystem gets its own chunk
             if (packageName && ['react', 'react-dom', 'scheduler'].includes(packageName)) {
               return 'vendor-react';
             }
-            
+
             // Router gets its own chunk
             if (packageName && ['react-router', 'react-router-dom'].includes(packageName)) {
               return 'vendor-router';
             }
-            
+
             // Other static imports go to vendor-utils
             if (packageName && staticImports.includes(packageName)) {
               return 'vendor-utils';
             }
-            
+
             // Everything else (including dynamic imports like gsap, framer-motion, lenis)
             // Let Vite handle automatically - no manual chunking
             return undefined;
           }
         },
-      },      treeshake: {
+      },
+      treeshake: {
         moduleSideEffects: (id) => {
           return id.includes('.css') || id.includes('posthog-js');
         },
@@ -95,13 +96,13 @@ export default defineConfig({
             '/surveys-extension',
             '/extensions/surveys',
           ];
-          
+
           if (excludedModules.some(module => id.includes(module))) {
             return true;
           }
         }
         return false;
-      }
+      },
     },
   },
   // Performance optimizations
