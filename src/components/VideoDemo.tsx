@@ -200,8 +200,10 @@ Community Info Section r/microsaas Joined Software as a Service businesses run b
   // Scroll-driven narrative: GSAP pinned section
   const demoRef = React.useRef<HTMLDivElement | null>(null);
 
-  // GSAP pinned timeline - stops demo in viewport, scrubs through steps
+  // GSAP pinned timeline - stops demo in viewport, scrubs through steps (desktop only)
   React.useEffect(() => {
+    const isDesktop = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(min-width: 768px)').matches;
+    if (!isDesktop) return;
     if (!demoRef.current) return;
     
     const demoEl = demoRef.current;
@@ -286,8 +288,96 @@ Community Info Section r/microsaas Joined Software as a Service businesses run b
         </a>
       </div>
 
-      {/* Interactive Auto Demo */}
-      <div id="demo" ref={demoRef} className="mx-auto max-w-6xl px-3 sm:px-4 lg:px-8 min-h-screen md:flex md:items-center">
+      {/* Mobile: beautiful demo showcase */}
+      <div className="md:hidden mx-auto max-w-sm px-4">
+        {/* Hero demo card */}
+        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-50 to-indigo-100 p-6 shadow-xl">
+          {/* Header */}
+          <div className="mb-4 text-center">
+            <div className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-sm font-medium text-slate-700 backdrop-blur-sm">
+              <span className="h-2 w-2 rounded-full bg-green-500"></span>
+              Live Demo
+            </div>
+          </div>
+          
+          {/* Before/After showcase */}
+          <div className="space-y-3">
+            <div className="rounded-lg bg-white/70 p-3 backdrop-blur-sm">
+              <div className="mb-2 flex items-center gap-2">
+                <div className="h-1.5 w-1.5 rounded-full bg-red-500"></div>
+                <span className="text-xs font-medium text-slate-600">Raw Reddit mess</span>
+              </div>
+              <div className="text-xs text-slate-700 font-mono leading-tight">
+                Skip to main content Did you see this tweet by Sam Altman? : r/microsaas...
+                <br />r/microsaas Current search is within r/microsaas Remove...
+                <br />Upvote 765 Downvote 116 Go to comments Share...
+              </div>
+            </div>
+            
+            <div className="flex justify-center">
+              <div className="rounded-full bg-white/80 p-2">
+                <ArrowRight className="h-4 w-4 text-blue-600" />
+              </div>
+            </div>
+            
+            <div className="rounded-lg bg-white/90 p-3 backdrop-blur-sm border border-emerald-200">
+              <div className="mb-2 flex items-center gap-2">
+                <div className="h-1.5 w-1.5 rounded-full bg-emerald-500"></div>
+                <span className="text-xs font-medium text-emerald-700">Clean Markdown</span>
+              </div>
+              <div className="text-xs text-slate-700 font-mono leading-tight">
+                **Original Post** (u/Intelligent_Play_719)
+                <br />I've been telling my team this for months...
+                <br />
+                <br />## Top Comments
+                <br />**u/distalx** (↑ 129)
+              </div>
+            </div>
+          </div>
+          
+          {/* CTA Button */}
+          <button
+            onClick={onExtensionClick}
+            disabled={step.id === 'clean'}
+            className={`mt-4 w-full rounded-xl px-4 py-3 text-sm font-semibold text-white shadow-lg transition-all flex items-center justify-center gap-2 ${
+              step.id === 'clean'
+                ? 'bg-blue-600 scale-95'
+                : step.id === 'export'
+                ? 'bg-emerald-500 scale-105'
+                : 'bg-blue-600 hover:bg-blue-700 active:scale-95'
+            }`}
+          >
+            {step.id === 'clean' && (
+              <>
+                <div className="h-4 w-4 animate-spin rounded-full border-2 border-white/30 border-t-white"></div>
+                Processing...
+              </>
+            )}
+            {step.id === 'export' && (
+              <>
+                <Check className="h-4 w-4" />
+                Perfect! ✨
+              </>
+            )}
+            {step.id === 'select' && (
+              <>
+                Try PromptReady Magic
+                <ArrowRight className="h-4 w-4" />
+              </>
+            )}
+          </button>
+        </div>
+        
+        {/* Subtle feature hints */}
+        <div className="mt-4 flex justify-center gap-4 text-xs text-slate-500">
+          <span>✨ Instant</span>
+          <span>🔒 Private</span>
+          <span>📝 Perfect</span>
+        </div>
+      </div>
+
+      {/* Interactive Auto Demo (desktop only) */}
+      <div id="demo" ref={demoRef} className="hidden md:flex md:items-center mx-auto max-w-6xl px-3 sm:px-4 lg:px-8 min-h-screen">
         {/* Step indicator (hidden on mobile) */}
         <div className="hidden md:flex fixed left-4 top-1/2 -translate-y-1/2 z-10 flex-col gap-2">
           {steps.map((_, idx) => (
