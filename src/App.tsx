@@ -41,8 +41,17 @@ function App() {
   };
 
   return (
-    <>
-      <Helmet>
+    <div className="min-h-screen bg-gradient-to-br from-[#f3f3f3] via-white to-purple-50/30 relative">
+      {/* Dot pattern overlay */}
+      <div className="pointer-events-none absolute inset-0 -z-10 opacity-30">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(0,0,0,0.15)_1px,transparent_0)] bg-[length:20px_20px]" />
+      </div>
+      
+      {/* Bleeding gradient overlay */}
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-transparent via-transparent to-purple-100/40" />
+      
+      <div className="relative z-10">
+        <Helmet>
         <title>{seo.title}</title>
         <meta name="description" content={seo.description} />
         <meta property="og:title" content={seo.ogTitle} />
@@ -53,12 +62,13 @@ function App() {
       </Helmet>
       <Analytics />
 
-      {/* Landing Flow Router handles all routing and page transitions */}
-      <LandingFlowRouter onPrimaryAction={handlePrimaryAction} />
-      
-      {/* Toast notifications */}
-      <Toaster />
-    </>
+              {/* Landing Flow Router handles all routing and page transitions */}
+        <LandingFlowRouter onPrimaryAction={handlePrimaryAction} />
+        
+        {/* Toast notifications */}
+        <Toaster />
+      </div>
+    </div>
   );
 }
 
