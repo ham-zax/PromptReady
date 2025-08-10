@@ -148,9 +148,7 @@ const DemoPage: React.FC<DemoPageProps> = ({ onPrimaryAction }) => {
           </section>
 
           {/* Footer */}
-          <section className="relative bg-slate-900 text-slate-100">
-            <Footer />
-          </section>
+          <Footer />
         </div>
       </main>
     </motion.div>

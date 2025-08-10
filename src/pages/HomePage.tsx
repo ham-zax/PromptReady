@@ -103,10 +103,8 @@ const HomePage: React.FC<HomePageProps> = ({ onPrimaryAction }) => {
             <FAQ />
           </section>
 
-          {/* Section 10: Footer (Solid dark background) */}
-          <section className="relative bg-slate-900 text-slate-100">
-            <Footer />
-          </section>
+          {/* Section 10: Footer */}
+          <Footer />
         </div>
       </main>
     </motion.div>
