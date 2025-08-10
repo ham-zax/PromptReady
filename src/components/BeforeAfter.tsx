@@ -35,22 +35,22 @@ const BeforeAfter: React.FC = () => {
           <div className="p-6 sm:p-8">
             <div className="grid gap-8 md:grid-cols-2">
               <div className="space-y-4">
-                <h4 className="flex items-center text-lg font-bold text-rose-800">
+                <h3 className="flex items-center text-lg font-bold text-rose-800">
                   <span className="mr-2 h-3 w-3 rounded-full bg-rose-500"></span>
                   Before: messy copy
-                </h4>
+                </h3>
                 <div className="space-y-3 text-sm">
                   <div className="rounded-lg border border-rose-300 bg-rose-50 p-3">
                     <div className="font-medium text-rose-700">Limited-time offer! 50% off!</div>
                   </div>
                   <p className="leading-relaxed text-slate-700">
-                    Important article content about AI and ML trends in 2024…
+                    Important article content about AI and ML trends in 2024...
                   </p>
                   <div className="rounded-lg border border-amber-300 bg-amber-50 p-3">
                     <div className="font-medium text-amber-700">Subscribe to our newsletter</div>
                   </div>
                   <p className="leading-relaxed text-slate-700">
-                    More valuable content mixed with promotional elements…
+                    More valuable content mixed with promotional elements...
                   </p>
                   <div className="rounded-lg border border-slate-300 bg-slate-50 p-3">
                     <div className="text-xs text-slate-600">Footer • Privacy • Terms</div>
@@ -59,14 +59,12 @@ const BeforeAfter: React.FC = () => {
               </div>
 
               <div className="space-y-4">
-                <h4 className="flex items-center text-lg font-bold text-emerald-800">
+                <h3 className="flex items-center text-lg font-bold text-emerald-800">
                   <span className="mr-2 h-3 w-3 rounded-full bg-emerald-500"></span>
                   After: AI-ready
-                </h4>
+                </h3>
                 <div className="space-y-3 text-sm">
-                  <div className="text-lg font-semibold text-slate-900">
-                    # AI and Machine Learning Trends in 2024
-                  </div>
+                  <div className="text-lg font-semibold text-slate-900"># AI and Machine Learning Trends in 2024</div>
                   <div className="space-y-2 leading-relaxed text-slate-700">
                     <p>Clean, structured content. No ads. No pop-ups.</p>
                     <p>Perfect for ChatGPT, Claude, or any LLM.</p>

@@ -27,7 +27,7 @@ const beforeExample = (
 // Define the content for the "After" state
 const afterExample = (
   <div className="space-y-3">
-    <h4 className="text-lg font-bold text-slate-900">AI and machine learning trends in 2024</h4>
+    <h3 className="text-lg font-bold text-slate-900">AI and machine learning trends in 2024</h3>
     <ul className="list-inside list-disc space-y-1.5 text-base leading-relaxed">
       <li>Clean, structured content ready for AI processing.</li>
       <li>No ads, no distractions, just pure information.</li>

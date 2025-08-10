@@ -1,17 +1,11 @@
-# /public/robots.txt
-# PromptReady Landing Flow - SEO Configuration
-
 User-agent: *
 Allow: /
 Allow: /demo
 Allow: /pricing
 Allow: /thank-you
 
-# Disallow 404 page from indexing
 Disallow: /404
 
-# Sitemap location
 Sitemap: https://promptready.app/sitemap.xml
 
-# Crawl delay (optional - helps with server load)
 Crawl-delay: 1
