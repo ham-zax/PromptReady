@@ -11,8 +11,10 @@ import Features from '../components/Features';
 import HowItWorks from '../components/HowItWorks';
 import Pricing from '../components/Pricing';
 import Footer from '../components/Footer';
-import VideoDemo from '../components/VideoDemo';
 import FAQ from '../components/FAQ';
+
+// Lazy load heavy components
+const VideoDemo = React.lazy(() => import('../components/VideoDemo'));
 
 interface HomePageProps {
   onPrimaryAction: (sourceComponent: string) => void;
@@ -60,7 +62,9 @@ const HomePage: React.FC<HomePageProps> = ({ onPrimaryAction }) => {
 
           {/* Section 3: VideoDemo (Smoothly fades from White to a light Blue) */}
           <section className="to-bg-white relative bg-gradient-to-b from-blue-50">
-            <VideoDemo />
+            <React.Suspense fallback={<div className="h-96 flex items-center justify-center">Loading demo...</div>}>
+              <VideoDemo />
+            </React.Suspense>
           </section>
 
           {/* Section 4: HowItWorks (Sits on the light Blue background) */}
