@@ -105,9 +105,10 @@ const ScrollTracker: React.FC<ScrollTrackerProps> = ({
         clearTimeout(scrollTimeout);
       }
     };
-  }, [location.pathname, milestones, trackScrollMilestone, trackSectionView]);
+  }, [location.pathname, milestones, trackScrollMilestone, trackSectionView]); // FIXED: Added missing dependencies
 
   return <>{children}</>;
 };
 
 export default ScrollTracker;
+

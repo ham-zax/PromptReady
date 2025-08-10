@@ -1,9 +1,13 @@
 // src/hooks/useEnhancedAnalytics.ts
 
+import { useCallback, useMemo } from 'react';
 import { usePostHog } from 'posthog-js/react';
 import { trackEvent } from './useAnalytics';
 import { useFeatureFlags, FEATURE_FLAGS } from './useFeatureFlags';
 import type { AnalyticsPayload } from '../types';
+
+// FIXED: Create a stable reference for the flag keys array to prevent infinite re-renders
+const ALL_FEATURE_FLAG_KEYS = Object.values(FEATURE_FLAGS);
 
 /**
  * Enhanced analytics hook that automatically includes feature flag context
@@ -12,25 +16,27 @@ import type { AnalyticsPayload } from '../types';
 export const useEnhancedAnalytics = () => {
   const posthog = usePostHog();
   
-  // Get all current feature flag values
-  const featureFlags = useFeatureFlags(Object.values(FEATURE_FLAGS), { trackExposure: false });
+  // Get all current feature flag values with stable flag keys reference
+  const featureFlags = useFeatureFlags(ALL_FEATURE_FLAG_KEYS, { trackExposure: false });
 
   /**
    * Track an event with automatic feature flag context
    */
-  const trackWithContext = (eventName: string, payload: AnalyticsPayload = {}) => {
-    // Filter out null values from feature flags and convert to safe format
-    const safeFeatureFlags: Record<string, string> = {};
+  const trackWithContext = useCallback((eventName: string, payload: AnalyticsPayload = {}) => {
+    // FIXED: Flatten feature flags into individual properties instead of nested object
+    // This prevents the "feature_flags object not allowed" error
+    const flagProperties: AnalyticsPayload = {};
     Object.entries(featureFlags).forEach(([key, value]) => {
       if (value !== null && value !== undefined) {
-        safeFeatureFlags[key] = value;
+        // Prefix with ff_ to avoid naming conflicts and make it clear these are feature flags
+        flagProperties[`ff_${key.replace(/-/g, '_')}`] = value;
       }
     });
 
     const enhancedPayload: AnalyticsPayload = {
       ...payload,
-      // Add feature flag context (only non-null values)
-      ...(Object.keys(safeFeatureFlags).length > 0 && { feature_flags: safeFeatureFlags }),
+      // Add flattened feature flag properties
+      ...flagProperties,
       // Add session context (only if available)
       ...(posthog?.get_session_id?.() && { session_id: posthog.get_session_id() }),
       ...(posthog?.get_distinct_id?.() && { distinct_id: posthog.get_distinct_id() }),
@@ -38,12 +44,12 @@ export const useEnhancedAnalytics = () => {
     };
 
     trackEvent(eventName, enhancedPayload);
-  };
+  }, [featureFlags, posthog]);
 
   /**
    * Track A/B test conversion events
    */
-  const trackConversion = (
+  const trackConversion = useCallback((
     conversionType: string,
     value?: number,
     additionalData: AnalyticsPayload = {}
@@ -53,12 +59,12 @@ export const useEnhancedAnalytics = () => {
       conversion_value: value,
       ...additionalData,
     });
-  };
+  }, [trackWithContext]);
 
   /**
    * Track user engagement with specific elements
    */
-  const trackEngagement = (
+  const trackEngagement = useCallback((
     elementType: string,
     action: string,
     elementId?: string,
@@ -70,12 +76,12 @@ export const useEnhancedAnalytics = () => {
       element_id: elementId,
       ...additionalData,
     });
-  };
+  }, [trackWithContext]);
 
   /**
    * Track CTA clicks with variant information
    */
-  const trackCtaClick = (
+  const trackCtaClick = useCallback((
     ctaLocation: string,
     ctaText: string,
     variant?: string,
@@ -87,12 +93,12 @@ export const useEnhancedAnalytics = () => {
       cta_variant: variant,
       ...additionalData,
     });
-  };
+  }, [trackWithContext]);
 
   /**
    * Track video interactions
    */
-  const trackVideoInteraction = (
+  const trackVideoInteraction = useCallback((
     action: 'play' | 'pause' | 'complete' | 'seek',
     videoId: string,
     currentTime?: number,
@@ -107,12 +113,12 @@ export const useEnhancedAnalytics = () => {
       completion_percentage: currentTime && duration ? (currentTime / duration) * 100 : null,
       ...additionalData,
     });
-  };
+  }, [trackWithContext]);
 
   /**
    * Track form interactions
    */
-  const trackFormInteraction = (
+  const trackFormInteraction = useCallback((
     formId: string,
     action: 'start' | 'submit' | 'error' | 'abandon',
     fieldName?: string,
@@ -126,12 +132,12 @@ export const useEnhancedAnalytics = () => {
       error_message: errorMessage,
       ...additionalData,
     });
-  };
+  }, [trackWithContext]);
 
   /**
    * Track scroll depth milestones
    */
-  const trackScrollMilestone = (
+  const trackScrollMilestone = useCallback((
     percentage: number,
     pagePath: string,
     additionalData: AnalyticsPayload = {}
@@ -141,12 +147,12 @@ export const useEnhancedAnalytics = () => {
       page_path: pagePath,
       ...additionalData,
     });
-  };
+  }, [trackWithContext]);
 
   /**
    * Track page section views (when sections come into viewport)
    */
-  const trackSectionView = (
+  const trackSectionView = useCallback((
     sectionName: string,
     sectionId?: string,
     timeToView?: number,
@@ -158,12 +164,12 @@ export const useEnhancedAnalytics = () => {
       time_to_view: timeToView,
       ...additionalData,
     });
-  };
+  }, [trackWithContext]);
 
   /**
    * Track feature usage
    */
-  const trackFeatureUsage = (
+  const trackFeatureUsage = useCallback((
     featureName: string,
     action: string,
     success: boolean = true,
@@ -175,12 +181,12 @@ export const useEnhancedAnalytics = () => {
       success,
       ...additionalData,
     });
-  };
+  }, [trackWithContext]);
 
   /**
    * Track user journey milestones
    */
-  const trackJourneyMilestone = (
+  const trackJourneyMilestone = useCallback((
     milestone: string,
     stepNumber?: number,
     timeFromStart?: number,
@@ -192,12 +198,12 @@ export const useEnhancedAnalytics = () => {
       time_from_start: timeFromStart,
       ...additionalData,
     });
-  };
+  }, [trackWithContext]);
 
   /**
    * Track errors and exceptions
    */
-  const trackError = (
+  const trackError = useCallback((
     errorType: string,
     errorMessage: string,
     errorStack?: string,
@@ -209,12 +215,12 @@ export const useEnhancedAnalytics = () => {
       error_stack: errorStack,
       ...additionalData,
     });
-  };
+  }, [trackWithContext]);
 
   /**
    * Track performance metrics
    */
-  const trackPerformance = (
+  const trackPerformance = useCallback((
     metricName: string,
     value: number,
     unit: string = 'ms',
@@ -226,9 +232,11 @@ export const useEnhancedAnalytics = () => {
       metric_unit: unit,
       ...additionalData,
     });
-  };
+  }, [trackWithContext]);
 
-  return {
+  // FIXED: Memoize the returned object to prevent new object references
+  // This is critical to prevent infinite re-renders in components that use these functions
+  return useMemo(() => ({
     // Core tracking
     trackWithContext,
     
@@ -250,7 +258,22 @@ export const useEnhancedAnalytics = () => {
     
     // PostHog instance for advanced usage
     posthog,
-  };
+  }), [
+    trackWithContext,
+    trackConversion,
+    trackEngagement,
+    trackCtaClick,
+    trackVideoInteraction,
+    trackFormInteraction,
+    trackScrollMilestone,
+    trackSectionView,
+    trackFeatureUsage,
+    trackJourneyMilestone,
+    trackError,
+    trackPerformance,
+    featureFlags,
+    posthog,
+  ]);
 };
 
 export default useEnhancedAnalytics;

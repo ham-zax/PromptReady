@@ -70,7 +70,7 @@ const SectionTracker: React.FC<SectionTrackerProps> = ({
     return () => {
       observer.disconnect();
     };
-  }, [sectionName, sectionId, threshold, trackOnce, trackSectionView]);
+  }, [sectionName, sectionId, threshold, trackOnce, trackSectionView]); // FIXED: Added trackSectionView to dependencies
 
   return (
     <div 
