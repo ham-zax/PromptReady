@@ -22,17 +22,35 @@ function App() {
 
   // Initialize Lenis smooth scrolling once at app mount
   React.useEffect(() => {
-    const lenis = new Lenis();
-
-    // Sync Lenis with ScrollTrigger
-    lenis.on('scroll', ScrollTrigger.update);
-    gsap.ticker.add((time) => {
-      lenis.raf(time * 1000);
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+      touchMultiplier: 0, // Disable smooth scrolling on touch devices for better performance
     });
-    gsap.ticker.lagSmoothing(0);
+
+    // Use requestAnimationFrame instead of gsap.ticker for better performance
+    let rafId: number;
+
+    const raf = (time: number) => {
+      lenis.raf(time);
+      rafId = requestAnimationFrame(raf);
+    };
+
+    rafId = requestAnimationFrame(raf);
+
+    // Sync Lenis with ScrollTrigger using throttled updates
+    let scrollTimeout: NodeJS.Timeout;
+    lenis.on('scroll', () => {
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        ScrollTrigger.update();
+      }, 16); // ~60fps throttling
+    });
 
     return () => {
-      gsap.ticker.remove((time) => lenis.raf(time * 1000));
+      cancelAnimationFrame(rafId);
+      clearTimeout(scrollTimeout);
       lenis.destroy();
     };
   }, []);

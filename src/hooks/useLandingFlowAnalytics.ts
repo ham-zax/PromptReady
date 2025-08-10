@@ -78,39 +78,62 @@ export const useLandingFlowAnalytics = () => {
     setPageStartTime(Date.now());
   }, [location.pathname, navigationType, previousPath, sessionStartTime, pageStartTime]);
 
-  // Track scroll depth
+  // Track scroll depth with performance optimizations
   React.useEffect(() => {
     let maxScrollDepth = 0;
     let scrollTimeout: NodeJS.Timeout;
+    let rafId: number;
+    let isScrolling = false;
+
+    // Cache layout properties to avoid repeated reads
+    let cachedWindowHeight = window.innerHeight;
+    let cachedDocumentHeight = document.documentElement.scrollHeight;
+
+    // Update cached values on resize
+    const updateCachedValues = () => {
+      cachedWindowHeight = window.innerHeight;
+      cachedDocumentHeight = document.documentElement.scrollHeight;
+    };
 
     const handleScroll = () => {
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      const windowHeight = window.innerHeight;
-      const documentHeight = document.documentElement.scrollHeight;
-      
-      const scrollDepth = Math.round(((scrollTop + windowHeight) / documentHeight) * 100);
-      
-      if (scrollDepth > maxScrollDepth) {
-        maxScrollDepth = scrollDepth;
-        
-        // Debounce scroll tracking
-        clearTimeout(scrollTimeout);
-        scrollTimeout = setTimeout(() => {
-          trackEvent('scroll_depth', {
-            page_path: location.pathname,
-            scroll_depth: maxScrollDepth,
-            max_scroll_depth: maxScrollDepth,
-          });
-        }, 1000);
+      if (!isScrolling) {
+        isScrolling = true;
+
+        rafId = requestAnimationFrame(() => {
+          // Read layout properties only once per frame
+          const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+          const scrollDepth = Math.round(((scrollTop + cachedWindowHeight) / cachedDocumentHeight) * 100);
+
+          if (scrollDepth > maxScrollDepth) {
+            maxScrollDepth = scrollDepth;
+
+            // Debounce scroll tracking
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+              trackEvent('scroll_depth', {
+                page_path: location.pathname,
+                scroll_depth: maxScrollDepth,
+                max_scroll_depth: maxScrollDepth,
+              });
+            }, 1000);
+          }
+
+          isScrolling = false;
+        });
       }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    
+    window.addEventListener('resize', updateCachedValues, { passive: true });
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', updateCachedValues);
       clearTimeout(scrollTimeout);
-      
+      if (rafId) {
+        cancelAnimationFrame(rafId);
+      }
+
       // Track final scroll depth on page leave
       if (maxScrollDepth > 0) {
         trackEvent('page_exit', {
