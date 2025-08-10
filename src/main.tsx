@@ -25,4 +25,4 @@ createRoot(document.getElementById('root')!).render(
   </StrictMode>,
 );
 
-if (import.meta.env.DEV) console.log('[Startup] main.tsx: After ReactDOM render'];
+if (import.meta.env.DEV) console.log('[Startup] main.tsx: After ReactDOM render');
