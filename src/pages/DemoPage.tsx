@@ -6,9 +6,11 @@ import { Link } from 'react-router-dom';
 import Logo from '../components/ui/Logo';
 
 // Import components
-import VideoDemo from '../components/VideoDemo';
 import HowItWorks from '../components/HowItWorks';
 import Footer from '../components/Footer';
+
+// Lazy load heavy components
+const VideoDemo = React.lazy(() => import('../components/VideoDemo'));
 
 interface DemoPageProps {
   onPrimaryAction: (sourceComponent: string) => void;
@@ -36,7 +38,7 @@ const DemoPage: React.FC<DemoPageProps> = ({ onPrimaryAction }) => {
         <meta property="og:image" content="/og-image.png" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content="/og-image.png" />
-        <link rel="canonical" href="https://promptready.vercel.app/demo" />
+        <link rel="canonical" href="https://promptready.app/demo" />
       </Helmet>
 
       <main>
@@ -111,7 +113,9 @@ const DemoPage: React.FC<DemoPageProps> = ({ onPrimaryAction }) => {
 
            {/* Video Demo Section */}
           <section className="relative bg-gradient-to-b from-blue-50 to-white">
-            <VideoDemo />
+            <React.Suspense fallback={<div className="h-96 flex items-center justify-center">Loading demo...</div>}>
+              <VideoDemo />
+            </React.Suspense>
           </section>
 
           {/* How It Works Section */}

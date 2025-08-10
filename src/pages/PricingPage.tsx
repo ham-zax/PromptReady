@@ -36,7 +36,7 @@ const PricingPage: React.FC<PricingPageProps> = ({ onPrimaryAction }) => {
         <meta property="og:image" content="/og-image.png" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content="/og-image.png" />
-        <link rel="canonical" href="https://promptready.vercel.app/pricing" />
+        <link rel="canonical" href="https://promptready.app/pricing" />
       </Helmet>
 
       <main>

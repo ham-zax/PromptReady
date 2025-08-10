@@ -51,17 +51,37 @@ export const trackLiveCleanUsed = (extra: AnalyticsPayload = {}) =>
 export const trackLandingFlowStep = (step: string, extra: AnalyticsPayload = {}) =>
   trackEvent('landing_flow_step', { step, ...extra });
 
-export const trackLandingFlowConversion = (fromStep: string, toStep: string, extra: AnalyticsPayload = {}) =>
+export const trackLandingFlowConversion = (
+  fromStep: string,
+  toStep: string,
+  extra: AnalyticsPayload = {}
+) =>
   trackEvent('landing_flow_conversion', { from_step: fromStep, to_step: toStep, ...extra });
 
-export const trackPageTransition = (fromPage: string, toPage: string, extra: AnalyticsPayload = {}) =>
+export const trackPageTransition = (
+  fromPage: string,
+  toPage: string,
+  extra: AnalyticsPayload = {}
+) =>
   trackEvent('page_transition', { from_page: fromPage, to_page: toPage, ...extra });
 
-export const trackNavigationClick = (destination: string, source: string, extra: AnalyticsPayload = {}) =>
+export const trackNavigationClick = (
+  destination: string,
+  source: string,
+  extra: AnalyticsPayload = {}
+) =>
   trackEvent('navigation_click', { destination, source, ...extra });
 
-export const trackFunnelProgress = (funnelStep: string, stepNumber: number, extra: AnalyticsPayload = {}) =>
+export const trackFunnelProgress = (
+  funnelStep: string,
+  stepNumber: number,
+  extra: AnalyticsPayload = {}
+) =>
   trackEvent('funnel_progress', { funnel_step: funnelStep, step_number: stepNumber, ...extra });
 
-export const trackUserEngagement = (action: string, element: string, extra: AnalyticsPayload = {}) =>
+export const trackUserEngagement = (
+  action: string,
+  element: string,
+  extra: AnalyticsPayload = {}
+) =>
   trackEvent('user_engagement', { action, element, ...extra });
