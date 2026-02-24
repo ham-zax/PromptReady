@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Helmet } from '@slorber/react-helmet-async';
+import { Helmet } from 'react-helmet-async';
+import DeferredSection from '../components/performance/DeferredSection';
 
 // Import existing components
 import Hero from '../components/Hero';
@@ -62,22 +63,57 @@ const HomePage: React.FC<HomePageProps> = ({ onPrimaryAction }) => {
             <BeforeAfter />
           </SectionTracker>
 
-          <React.Suspense fallback={<div className="h-32" />}>
-            <SectionTracker sectionName="video-demo" sectionId="video-demo-section">
-              <VideoDemo />
-            </SectionTracker>
+          <DeferredSection placeholderClassName="min-h-[420px] sm:min-h-[520px]">
+            <React.Suspense fallback={<div className="min-h-[420px] sm:min-h-[520px]" />}>
+              <SectionTracker sectionName="video-demo" sectionId="video-demo-section">
+                <VideoDemo />
+              </SectionTracker>
+            </React.Suspense>
+          </DeferredSection>
 
-            <SectionTracker sectionName="how-it-works" sectionId="how-it-works-section">
-              <HowItWorks />
-            </SectionTracker>
+          <DeferredSection placeholderClassName="min-h-[360px] sm:min-h-[440px]">
+            <React.Suspense fallback={<div className="min-h-[360px] sm:min-h-[440px]" />}>
+              <SectionTracker sectionName="how-it-works" sectionId="how-it-works-section">
+                <HowItWorks />
+              </SectionTracker>
+            </React.Suspense>
+          </DeferredSection>
 
-            <ProblemSolution onPrimaryAction={() => onPrimaryAction('ProblemSolution')} />
-            <Features />
-            <SocialProof />
-            <Pricing onPrimaryAction={() => onPrimaryAction('Pricing')} />
-            <FAQ />
-            <Footer />
-          </React.Suspense>
+          <DeferredSection placeholderClassName="min-h-[260px] sm:min-h-[300px]">
+            <React.Suspense fallback={<div className="min-h-[260px] sm:min-h-[300px]" />}>
+              <ProblemSolution onPrimaryAction={() => onPrimaryAction('ProblemSolution')} />
+            </React.Suspense>
+          </DeferredSection>
+
+          <DeferredSection placeholderClassName="min-h-[420px] sm:min-h-[520px]">
+            <React.Suspense fallback={<div className="min-h-[420px] sm:min-h-[520px]" />}>
+              <Features />
+            </React.Suspense>
+          </DeferredSection>
+
+          <DeferredSection placeholderClassName="min-h-[360px] sm:min-h-[440px]">
+            <React.Suspense fallback={<div className="min-h-[360px] sm:min-h-[440px]" />}>
+              <SocialProof />
+            </React.Suspense>
+          </DeferredSection>
+
+          <DeferredSection placeholderClassName="min-h-[360px] sm:min-h-[460px]">
+            <React.Suspense fallback={<div className="min-h-[360px] sm:min-h-[460px]" />}>
+              <Pricing onPrimaryAction={() => onPrimaryAction('Pricing')} />
+            </React.Suspense>
+          </DeferredSection>
+
+          <DeferredSection placeholderClassName="min-h-[280px] sm:min-h-[340px]">
+            <React.Suspense fallback={<div className="min-h-[280px] sm:min-h-[340px]" />}>
+              <FAQ />
+            </React.Suspense>
+          </DeferredSection>
+
+          <DeferredSection placeholderClassName="min-h-[220px] sm:min-h-[260px]">
+            <React.Suspense fallback={<div className="min-h-[220px] sm:min-h-[260px]" />}>
+              <Footer />
+            </React.Suspense>
+          </DeferredSection>
         </main>
       </motion.div>
     </ScrollTracker>

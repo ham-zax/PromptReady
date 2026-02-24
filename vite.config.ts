@@ -18,9 +18,7 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
-  optimizeDeps: {
-    exclude: ['lucide-react'],
-  },
+  optimizeDeps: {},
   build: {
     target: 'es2020',
     minify: 'esbuild', // Use esbuild for faster minification
@@ -34,13 +32,16 @@ export default defineConfig({
           if (id.includes('node_modules/')) {
             // Only chunk STATICALLY imported libraries
             const staticImports = [
-              'react', 'react-dom', 'scheduler',     // Core React (always static)
-              'react-router', 'react-router-dom',    // Router (static imports)
-              '@slorber/react-helmet-async',         // SEO (static import)
-              '@vercel/analytics',                   // Analytics (static import)
-              'clsx', 'tailwind-merge',              // Utils (static imports)
-              'sonner',                              // Toast (static import)
-              'lucide-react'                         // Icons (static imports)
+              'react',
+              'react-dom',
+              'scheduler', // Core React (always static)
+              'react-router',
+              'react-router-dom', // Router (static imports)
+              'react-helmet-async', // SEO (static import)
+              '@vercel/analytics', // Analytics (static import)
+              'clsx',
+              'tailwind-merge', // Utils (static imports)
+              'sonner', // Toast (static import)
             ];
             const modulePath = id.split('node_modules/')[1] ?? '';
             const packageName = modulePath.startsWith('@')

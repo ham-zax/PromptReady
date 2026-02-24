@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Helmet } from '@slorber/react-helmet-async';
+import { Helmet } from 'react-helmet-async';
 import { ArrowRight, Check, Star } from '@/components/ui/Icons';
 import FAQ from '../components/FAQ';
 import Features from '../components/Features';

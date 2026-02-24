@@ -34,18 +34,20 @@ const LandingNavigation: React.FC<LandingNavigationProps> = ({ onPrimaryAction }
 
   React.useEffect(() => {
     let ticking = false;
+    let latestScrollY = 0;
 
     const updateScrolledState = () => {
-      const latest = window.scrollY || document.documentElement.scrollTop || 0;
       setIsScrolled((prev) => {
-        const next = prev ? latest > 30 : latest > 80;
+        const next = prev ? latestScrollY > 30 : latestScrollY > 80;
         return next === prev ? prev : next;
       });
       ticking = false;
     };
 
     const onScroll = () => {
+      // Defer reading layout properties from scroll handler
       if (ticking) return;
+      latestScrollY = window.scrollY || document.documentElement.scrollTop || 0;
       ticking = true;
       window.requestAnimationFrame(updateScrolledState);
     };
@@ -66,7 +68,7 @@ const LandingNavigation: React.FC<LandingNavigationProps> = ({ onPrimaryAction }
   return (
     <motion.nav
       initial={false}
-      className="fixed left-0 right-0 top-3 z-50 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8"
+      className="fixed top-3 right-0 left-0 z-50 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8"
     >
       <div
         className={`mx-auto rounded-full border transition-all duration-300 ${
@@ -80,7 +82,7 @@ const LandingNavigation: React.FC<LandingNavigationProps> = ({ onPrimaryAction }
           <Logo size="lg" clickable textColor="dark" logoColor="dark" className="items-center" />
 
           {/* Desktop Navigation */}
-          <div className="hidden items-center gap-1 rounded-full border border-brand-border bg-brand-surface-soft p-1 md:flex">
+          <div className="border-brand-border bg-brand-surface-soft hidden items-center gap-1 rounded-full border p-1 md:flex">
             {navigationItems.map((item) => (
               <Link
                 key={item.id}
@@ -93,7 +95,7 @@ const LandingNavigation: React.FC<LandingNavigationProps> = ({ onPrimaryAction }
                 }`}
               >
                 {isActive(item.path) && (
-                  <span className="absolute inset-0 rounded-full bg-brand-ink" />
+                  <span className="bg-brand-ink absolute inset-0 rounded-full" />
                 )}
                 <span className="relative z-10">{item.name}</span>
               </Link>
@@ -104,7 +106,7 @@ const LandingNavigation: React.FC<LandingNavigationProps> = ({ onPrimaryAction }
           <div className="hidden items-center md:flex">
             <button
               onClick={() => onPrimaryAction('Navigation')}
-              className="group linear-kicker relative inline-flex items-center gap-2 rounded-full border border-brand-accent-hover bg-brand-accent px-5 py-2 text-[1.25rem] font-normal text-white transition-colors duration-300 hover:bg-brand-accent-hover"
+              className="group linear-kicker border-brand-accent-hover bg-brand-accent hover:bg-brand-accent-hover relative inline-flex items-center gap-2 rounded-full border px-5 py-2 text-[1.25rem] font-normal text-white transition-colors duration-300"
             >
               <span>Join Waitlist</span>
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -114,7 +116,7 @@ const LandingNavigation: React.FC<LandingNavigationProps> = ({ onPrimaryAction }
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="rounded-full p-2 text-brand-muted transition-colors hover:bg-brand-surface-soft md:hidden"
+            className="text-brand-muted hover:bg-brand-surface-soft rounded-full p-2 transition-colors md:hidden"
             aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
           >
             {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -131,7 +133,7 @@ const LandingNavigation: React.FC<LandingNavigationProps> = ({ onPrimaryAction }
               transition={{ duration: 0.2 }}
               className="mt-4 overflow-hidden md:hidden"
             >
-              <div className="flex flex-col gap-2 rounded-2xl border border-brand-border bg-brand-surface p-4 shadow-lg">
+              <div className="border-brand-border bg-brand-surface flex flex-col gap-2 rounded-2xl border p-4 shadow-lg">
                 {navigationItems.map((item) => (
                   <Link
                     key={item.id}
@@ -149,13 +151,13 @@ const LandingNavigation: React.FC<LandingNavigationProps> = ({ onPrimaryAction }
                     {item.name}
                   </Link>
                 ))}
-                <div className="mt-2 border-t border-brand-border pt-4">
+                <div className="border-brand-border mt-2 border-t pt-4">
                   <button
                     onClick={() => {
                       onPrimaryAction('Navigation-Mobile');
                       setIsMenuOpen(false);
                     }}
-                    className="linear-kicker flex w-full items-center justify-center gap-2 rounded-lg bg-brand-accent px-4 py-3 text-[1.35rem] font-normal text-white transition-colors hover:bg-brand-accent-hover"
+                    className="linear-kicker bg-brand-accent hover:bg-brand-accent-hover flex w-full items-center justify-center gap-2 rounded-lg px-4 py-3 text-[1.35rem] font-normal text-white transition-colors"
                   >
                     Join Waitlist
                     <ArrowRight className="h-4 w-4" />

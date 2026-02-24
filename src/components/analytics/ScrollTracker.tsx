@@ -12,103 +12,87 @@ interface ScrollTrackerProps {
 /**
  * Component that tracks scroll depth milestones and section views
  */
-const ScrollTracker: React.FC<ScrollTrackerProps> = ({ 
-  children, 
-  milestones = [25, 50, 75, 90] 
+const ScrollTracker: React.FC<ScrollTrackerProps> = ({
+  children,
+  milestones = [25, 50, 75, 90],
 }) => {
   const location = useLocation();
-  const { trackScrollMilestone, trackSectionView } = useEnhancedAnalytics();
-  
+  const { trackScrollMilestone } = useEnhancedAnalytics();
+
   const trackedMilestones = useRef<Set<number>>(new Set());
-  const trackedSections = useRef<Set<string>>(new Set());
   const pageStartTime = useRef<number>(Date.now());
-  
+
   // Reset tracking when page changes
   useEffect(() => {
     trackedMilestones.current.clear();
-    trackedSections.current.clear();
     pageStartTime.current = Date.now();
   }, [location.pathname]);
 
   useEffect(() => {
-    let rafId: number;
     let scrollTimeout: NodeJS.Timeout;
+    let throttleTimeout: NodeJS.Timeout | null = null;
+    let lastKnownScrollTop = 0;
+    let lastKnownWindowHeight = 0;
+    let lastKnownDocumentHeight = 0;
 
-    const handleScroll = () => {
-      // Throttle scroll events using requestAnimationFrame
-      if (rafId) return;
-      
-      rafId = requestAnimationFrame(() => {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        const windowHeight = window.innerHeight;
-        const documentHeight = document.documentElement.scrollHeight;
-        
-        // Calculate scroll percentage
-        const scrollPercentage = Math.round(
-          ((scrollTop + windowHeight) / documentHeight) * 100
-        );
+    const calculateMilestones = () => {
+      // Calculate scroll percentage using cached layout values
+      if (lastKnownDocumentHeight === 0) return;
 
-        // Track milestone achievements
-        milestones.forEach(milestone => {
-          if (scrollPercentage >= milestone && !trackedMilestones.current.has(milestone)) {
-            trackedMilestones.current.add(milestone);
-            
-            // Debounce milestone tracking
-            clearTimeout(scrollTimeout);
-            scrollTimeout = setTimeout(() => {
-              trackScrollMilestone(milestone, location.pathname, {
-                time_on_page: Date.now() - pageStartTime.current,
-                scroll_speed: 'normal', // Could be calculated based on scroll velocity
-              });
-            }, 500);
-          }
-        });
+      const scrollPercentage = Math.round(
+        ((lastKnownScrollTop + lastKnownWindowHeight) / lastKnownDocumentHeight) * 100,
+      );
 
-        // Track section views using Intersection Observer would be better,
-        // but this provides a fallback for scroll-based section tracking
-        const sections = document.querySelectorAll('[data-section]');
-        sections.forEach(section => {
-          const rect = section.getBoundingClientRect();
-          const sectionName = section.getAttribute('data-section');
-          
-          if (
-            sectionName &&
-            rect.top < windowHeight * 0.5 && // Section is at least 50% visible
-            rect.bottom > windowHeight * 0.5 &&
-            !trackedSections.current.has(sectionName)
-          ) {
-            trackedSections.current.add(sectionName);
-            trackSectionView(
-              sectionName,
-              section.id,
-              Date.now() - pageStartTime.current
-            );
-          }
-        });
+      // Track milestone achievements
+      milestones.forEach((milestone) => {
+        if (scrollPercentage >= milestone && !trackedMilestones.current.has(milestone)) {
+          trackedMilestones.current.add(milestone);
 
-        rafId = 0;
+          // Debounce milestone tracking calls
+          clearTimeout(scrollTimeout);
+          scrollTimeout = setTimeout(() => {
+            trackScrollMilestone(milestone, location.pathname, {
+              time_on_page: Date.now() - pageStartTime.current,
+              scroll_speed: 'normal',
+            });
+          }, 500);
+        }
       });
+      throttleTimeout = null;
     };
 
-    // Add scroll listener
+    const handleScroll = () => {
+      // Avoid querying layout properties in the scroll event directly to prevent forced reflows.
+      // Instead, cache them and defer the math using setTimeout
+      if (throttleTimeout) return;
+
+      // Cache these right before we throttle, but reading them all at once is better than
+      // interleaved reads/writes.
+      lastKnownScrollTop = window.scrollY || document.documentElement.scrollTop;
+      lastKnownWindowHeight = window.innerHeight;
+      lastKnownDocumentHeight = document.documentElement.scrollHeight;
+
+      throttleTimeout = setTimeout(calculateMilestones, 150);
+    };
+
+    // Add scroll listener with passive flag for performance
     window.addEventListener('scroll', handleScroll, { passive: true });
-    
+
     // Initial check
     handleScroll();
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      if (rafId) {
-        cancelAnimationFrame(rafId);
+      if (throttleTimeout) {
+        clearTimeout(throttleTimeout);
       }
       if (scrollTimeout) {
         clearTimeout(scrollTimeout);
       }
     };
-  }, [location.pathname, milestones, trackScrollMilestone, trackSectionView]); // FIXED: Added missing dependencies
+  }, [location.pathname, milestones, trackScrollMilestone]);
 
   return <>{children}</>;
 };
 
 export default ScrollTracker;
-
