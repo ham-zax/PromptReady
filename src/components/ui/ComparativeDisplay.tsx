@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
-import { Trash2, Sparkles, Wand2, ShieldX } from 'lucide-react';
+import { Trash2, Sparkles, Wand2, ShieldX } from '@/components/ui/Icons';
 import { cn } from '@/lib/utils'; // Make sure you have this utility function
 
 // --- Define the variants for the "Before" column ---

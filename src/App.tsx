@@ -4,6 +4,7 @@ import { Helmet } from '@slorber/react-helmet-async';
 import { trackEvent } from './hooks/useAnalytics';
 import { usePostHog } from './hooks/usePostHog';
 import { Toaster } from '@/components/ui/sonner';
+import { SketchyIconProvider } from '@/components/ui/Icons';
 import LandingFlowRouter from './router/LandingFlowRouter';
 import { env, seo } from './config';
 import { getCurrentCanonicalUrl } from './utils/canonicalUrl';
@@ -59,7 +60,8 @@ function App() {
   };
 
   return (
-    <div className="relative min-h-screen overflow-x-clip bg-brand-bg font-sans text-brand-ink">
+    <div className="bg-brand-bg text-brand-ink relative min-h-screen overflow-x-clip font-sans">
+      <SketchyIconProvider />
       <div className="relative z-10">
         <Helmet>
           <title>{seo.title}</title>

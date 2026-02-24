@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Helmet } from '@slorber/react-helmet-async';
-import { ArrowRight, Play } from 'lucide-react';
+import { ArrowRight, Play } from '@/components/ui/Icons';
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
 import HowItWorks from '../components/HowItWorks';

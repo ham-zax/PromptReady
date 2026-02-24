@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { CheckCircle, Clock } from 'lucide-react';
+import { CheckCircle, Clock } from '@/components/ui/Icons';
 import { trackWaitlistSubmit } from '../hooks/useAnalytics';
 
 const SignupForm: React.FC = () => {

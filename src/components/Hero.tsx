@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Sparkles } from 'lucide-react';
+import { Sparkles } from '@/components/ui/Icons';
 import HeroActions from './Hero/HeroActions';
 import HeroBackground from './ui/HeroBackground';
 import ContextAnimation from './ui/ContextAnimation';

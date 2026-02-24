@@ -1,5 +1,5 @@
 import React from 'react';
-import { Star } from 'lucide-react';
+import { Star } from '@/components/ui/Icons';
 import { useSwipeable } from 'react-swipeable';
 import { testimonials } from '../data/testimonialsData';
 import useTestimonialCarousel from '../hooks/useTestimonialCarousel';

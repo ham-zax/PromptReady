@@ -1,5 +1,5 @@
 import React from 'react';
-import { Shield, Wand2 } from 'lucide-react';
+import { Shield, Wand2 } from '@/components/ui/Icons';
 import { motion, Transition } from 'framer-motion';
 
 interface HeroModesProps {

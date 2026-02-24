@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { CheckCircle2, Sparkles } from 'lucide-react';
+import { CheckCircle2, Sparkles } from '@/components/ui/Icons';
 
 interface PricingProps {
   onPrimaryAction: () => void;

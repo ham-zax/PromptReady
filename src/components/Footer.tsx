@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Github, MessageCircle } from 'lucide-react';
+import { ArrowRight, Github, MessageCircle } from '@/components/ui/Icons';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { env } from '../config';

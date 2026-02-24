@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
-import { ArrowRight, Menu, X } from 'lucide-react';
+import { ArrowRight, Menu, X } from '@/components/ui/Icons';
 import Logo from '../ui/Logo';
 import type { NavigationItem } from '../../types';
 

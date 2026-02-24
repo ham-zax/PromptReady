@@ -1,5 +1,5 @@
 import React from 'react';
-import { Copy, CheckCircle, Shield } from 'lucide-react';
+import { Copy, CheckCircle, Shield } from '@/components/ui/Icons';
 
 interface ReviewCardProps {
   features?: {

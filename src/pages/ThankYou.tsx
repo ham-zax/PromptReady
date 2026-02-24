@@ -1,5 +1,5 @@
 import React from 'react';
-import { Calendar, MessageSquare, ArrowLeft } from 'lucide-react';
+import { Calendar, MessageSquare, ArrowLeft } from '@/components/ui/Icons';
 import { trackEvent } from '../hooks/useAnalytics';
 import Logo from '../components/ui/Logo';
 import { env } from '../config';

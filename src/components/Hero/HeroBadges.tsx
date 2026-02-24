@@ -1,5 +1,5 @@
 import React from 'react';
-import { Lock, Zap, Award } from 'lucide-react';
+import { Lock, Zap, Award } from '@/components/ui/Icons';
 import { motion, Transition } from 'framer-motion';
 import { animations } from '../../config';
 

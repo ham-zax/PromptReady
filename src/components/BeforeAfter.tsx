@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { CheckCircle2, Wand2, XCircle } from 'lucide-react';
+import { CheckCircle2, Wand2, XCircle } from '@/components/ui/Icons';
 
 const BeforeAfterBackground = () => {
   const { scrollYProgress } = useScroll();

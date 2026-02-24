@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Home, Play, DollarSign, CheckCircle } from 'lucide-react';
+import { Home, Play, DollarSign, CheckCircle } from '@/components/ui/Icons';
 
 const FlowProgressIndicator: React.FC = () => {
   const location = useLocation();
