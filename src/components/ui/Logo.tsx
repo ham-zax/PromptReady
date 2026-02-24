@@ -27,22 +27,22 @@ const Logo: React.FC<LogoProps> = ({
     sm: {
       logo: 'w-5 h-5 -translate-y-[1px]',
       text: 'linear-kicker text-xl font-normal',
-      gap: 'gap-2',
+      gap: 'gap-1',
     },
     md: {
       logo: 'w-6 h-6 -translate-y-[1px]',
       text: 'linear-kicker text-2xl font-normal',
-      gap: 'gap-3',
+      gap: 'gap-2',
     },
     lg: {
       logo: 'w-8 h-8 -translate-y-[2px]',
       text: 'linear-kicker text-3xl font-normal',
-      gap: 'gap-3',
+      gap: 'gap-2',
     },
     xl: {
       logo: 'w-12 h-12 -translate-y-[3px]',
       text: 'linear-kicker text-5xl font-normal',
-      gap: 'gap-4',
+      gap: 'gap-3',
     },
   };
 

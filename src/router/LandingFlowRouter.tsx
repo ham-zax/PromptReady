@@ -33,48 +33,53 @@ const ScrollToTop: React.FC = () => {
         ) => void;
       };
     };
+    let rafId = 0;
+    let followUpRafId = 0;
 
     const scrollWithLenisOrNative = (target: number | Element) => {
       if (win.__appLenis?.scrollTo) {
         win.__appLenis.scrollTo(target, { immediate: true, force: true });
+        return;
       }
+
       if (typeof target === 'number') {
-        document.documentElement.scrollTop = target;
-        document.body.scrollTop = target;
-        window.scrollTo(0, target);
         window.scrollTo({ top: target, left: 0, behavior: 'auto' });
         return;
       }
-      target.scrollIntoView({ behavior: 'auto', block: 'start' });
-    };
 
-    let followUpTimeout: number | undefined;
+      target.scrollIntoView({ behavior: 'auto', block: 'start', inline: 'nearest' });
+    };
 
     if (location.hash) {
       const anchorId = location.hash.replace('#', '');
 
       // Wait for the new route section to render before scrolling to hash targets.
-      requestAnimationFrame(() => {
+      rafId = requestAnimationFrame(() => {
         const anchor = document.getElementById(anchorId);
         if (anchor) {
           scrollWithLenisOrNative(anchor);
-          followUpTimeout = window.setTimeout(() => scrollWithLenisOrNative(anchor), 60);
           return;
         }
         scrollWithLenisOrNative(0);
-        followUpTimeout = window.setTimeout(() => scrollWithLenisOrNative(0), 60);
+        followUpRafId = requestAnimationFrame(() => {
+          const retryAnchor = document.getElementById(anchorId);
+          if (retryAnchor) {
+            scrollWithLenisOrNative(retryAnchor);
+          }
+        });
       });
+
       return () => {
-        if (followUpTimeout) window.clearTimeout(followUpTimeout);
+        if (rafId) cancelAnimationFrame(rafId);
+        if (followUpRafId) cancelAnimationFrame(followUpRafId);
       };
     }
 
     scrollWithLenisOrNative(0);
-    requestAnimationFrame(() => scrollWithLenisOrNative(0));
-    followUpTimeout = window.setTimeout(() => scrollWithLenisOrNative(0), 60);
+    rafId = requestAnimationFrame(() => scrollWithLenisOrNative(0));
 
     return () => {
-      if (followUpTimeout) window.clearTimeout(followUpTimeout);
+      if (rafId) cancelAnimationFrame(rafId);
     };
   }, [location.pathname, location.hash]);
 

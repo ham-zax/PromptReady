@@ -3,17 +3,13 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import Testimonials from './Testimonials';
 
 const SocialProofBackground = () => {
-  const ref = React.useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"]
-  });
+  const { scrollYProgress } = useScroll();
 
   const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.8, 1, 0.8]);
   const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.2, 0.6, 0.2]);
 
   return (
-    <div ref={ref} className="absolute inset-0 overflow-hidden pointer-events-none -z-10">
+    <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10">
       <motion.div 
         style={{ scale, opacity }} 
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] rounded-[100%] bg-gradient-to-br from-brand-accent/5 via-brand-success/5 to-transparent blur-3xl"

@@ -1,6 +1,6 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { HelmetProvider } from 'react-helmet-async';
+import { HelmetProvider } from '@slorber/react-helmet-async';
 import { PostHogProvider } from 'posthog-js/react';
 import posthog from 'posthog-js';
 import App from './App.tsx';

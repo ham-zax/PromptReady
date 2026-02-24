@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Helmet } from 'react-helmet-async';
+import { Helmet } from '@slorber/react-helmet-async';
 
 // Import existing components
 import Hero from '../components/Hero';

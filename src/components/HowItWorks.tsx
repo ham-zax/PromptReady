@@ -305,17 +305,12 @@ const HowItWorksCard = ({ step, index }: { step: Step; index: number }) => {
   );
 };
 const AnimatedLine = () => {
-  const ref = React.useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ['end end', 'start start'],
-  });
+  const { scrollYProgress } = useScroll();
 
   const pathLength = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
     <div
-      ref={ref}
       className="absolute left-[10%] right-[10%] top-1/2 z-0 hidden h-32 -translate-y-1/2 md:block"
     >
       <svg className="h-full w-full" preserveAspectRatio="none" viewBox="0 0 1000 100" fill="none">

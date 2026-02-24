@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion, useScroll, useMotionValueEvent, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
 import { ArrowRight, Menu, X } from 'lucide-react';
 import Logo from '../ui/Logo';
@@ -13,7 +13,6 @@ const LandingNavigation: React.FC<LandingNavigationProps> = ({ onPrimaryAction }
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [isScrolled, setIsScrolled] = React.useState(false);
   const location = useLocation();
-  const { scrollY } = useScroll();
 
   const forceScrollTop = React.useCallback(() => {
     const win = window as Window & {
@@ -33,9 +32,28 @@ const LandingNavigation: React.FC<LandingNavigationProps> = ({ onPrimaryAction }
     window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
   }, []);
 
-  useMotionValueEvent(scrollY, 'change', (latest) => {
-    setIsScrolled((prev) => (prev ? latest > 30 : latest > 80));
-  });
+  React.useEffect(() => {
+    let ticking = false;
+
+    const updateScrolledState = () => {
+      const latest = window.scrollY || document.documentElement.scrollTop || 0;
+      setIsScrolled((prev) => {
+        const next = prev ? latest > 30 : latest > 80;
+        return next === prev ? prev : next;
+      });
+      ticking = false;
+    };
+
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(updateScrolledState);
+    };
+
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   const navigationItems: NavigationItem[] = [
     { name: 'Home', path: '/', id: 'home' },
@@ -75,12 +93,7 @@ const LandingNavigation: React.FC<LandingNavigationProps> = ({ onPrimaryAction }
                 }`}
               >
                 {isActive(item.path) && (
-                  <motion.div
-                    className="absolute inset-0 rounded-full bg-brand-ink"
-                    layoutId="activeNavBackground"
-                    initial={false}
-                    transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-                  />
+                  <span className="absolute inset-0 rounded-full bg-brand-ink" />
                 )}
                 <span className="relative z-10">{item.name}</span>
               </Link>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Helmet } from 'react-helmet-async';
+import { Helmet } from '@slorber/react-helmet-async';
 import { ArrowLeft, Home, Search } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Logo from '../components/ui/Logo';

@@ -32,10 +32,10 @@ const AnimatedLogo: React.FC<AnimatedLogoProps> = ({ className = '', color = 'cu
 
   return (
     <div className={`flex items-center gap-3 ${className}`}>
-      <motion.svg 
-        xmlns="http://www.w3.org/2000/svg" 
-        viewBox="0 0 60 60" 
-        fill="none" 
+      <motion.svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 60 60"
+        fill="none"
         className={`${sizeMap[size]} text-[${color}]`}
         initial="hidden"
         animate="visible"
@@ -48,15 +48,15 @@ const AnimatedLogo: React.FC<AnimatedLogoProps> = ({ className = '', color = 'cu
         <motion.path stroke={color} strokeWidth="1.5" strokeLinecap="round" d="M7.4 31.6 l5.9 -6.0" variants={draw} custom={4} />
         <motion.path stroke={color} strokeWidth="1.5" strokeLinecap="round" d="M25.1 13.4 l5.9 -6.0" variants={draw} custom={5} />
         <motion.path stroke={color} strokeWidth="1.5" strokeLinecap="round" d="M13.1 11.5 l6.0 5.9" variants={draw} custom={6} />
-        
+
         {/* Cursor path - animated drawing */}
-        <motion.path 
-          stroke={color} 
-          strokeLinecap="round" 
-          strokeLinejoin="round" 
-          strokeWidth="2.5" 
+        <motion.path
+          stroke={color}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2.5"
           d="M24.116 25.572a.931.931 0 0 1 1.225-1.224L55.44 36.575a.94.94 0 0 1-.118 1.781L43.8 41.33a3.763 3.763 0 0 0-2.705 2.7l-2.97 11.523a.94.94 0 0 1-1.782.118L24.116 25.572Z"
-          variants={draw} 
+          variants={draw}
           custom={7}
         />
       </motion.svg>

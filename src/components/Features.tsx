@@ -247,17 +247,13 @@ const FeatureCard: React.FC<{ card: (typeof cards)[0]; index: number }> = ({ car
 };
 
 const FeaturesBackground = () => {
-  const ref = React.useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ['start end', 'end start'],
-  });
+  const { scrollYProgress } = useScroll();
 
   const y = useTransform(scrollYProgress, [0, 1], [0, 200]);
   const rotate = useTransform(scrollYProgress, [0, 1], [0, 45]);
 
   return (
-    <div ref={ref} className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+    <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
       {/* Large background star/sparkle */}
       <motion.svg
         style={{ y, rotate }}

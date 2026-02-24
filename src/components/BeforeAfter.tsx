@@ -3,17 +3,13 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { CheckCircle2, Wand2, XCircle } from 'lucide-react';
 
 const BeforeAfterBackground = () => {
-  const ref = React.useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"]
-  });
+  const { scrollYProgress } = useScroll();
 
   const x1 = useTransform(scrollYProgress, [0, 1], [-50, 100]);
   const rotate = useTransform(scrollYProgress, [0, 1], [-10, 10]);
 
   return (
-    <div ref={ref} className="absolute inset-0 overflow-hidden pointer-events-none -z-10">
+    <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10">
       <motion.svg
         initial={{ opacity: 0, x: -20 }}
         whileInView={{ opacity: 1, x: 0 }}

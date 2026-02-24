@@ -1,12 +1,8 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
 const HeroBackground: React.FC = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ['start start', 'end start'],
-  });
+  const { scrollYProgress } = useScroll();
 
   const y1 = useTransform(scrollYProgress, [0, 1], [0, 200]);
   const y2 = useTransform(scrollYProgress, [0, 1], [0, -100]);
@@ -17,7 +13,7 @@ const HeroBackground: React.FC = () => {
   const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.5, 0]);
 
   return (
-    <div ref={containerRef} className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+    <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
       <motion.div style={{ opacity }} className="relative h-full w-full">
         {/* Animated Hand-drawn Squiggles/Shapes */}
 

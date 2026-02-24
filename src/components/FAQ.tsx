@@ -37,17 +37,13 @@ const items: FAQItem[] = [
 ];
 
 const FAQBackground = () => {
-  const ref = React.useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"]
-  });
+  const { scrollYProgress } = useScroll();
 
   const rotate = useTransform(scrollYProgress, [0, 1], [-20, 20]);
   const y = useTransform(scrollYProgress, [0, 1], [-50, 50]);
 
   return (
-    <div ref={ref} className="absolute inset-0 overflow-hidden pointer-events-none -z-10">
+    <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10">
       <motion.svg 
         style={{ rotate, y }}
         className="absolute top-1/4 right-[10%] w-48 h-48 text-brand-accent/5" 

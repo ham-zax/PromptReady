@@ -1,6 +1,6 @@
 import React from 'react';
 import Lenis from 'lenis';
-import { Helmet } from 'react-helmet-async';
+import { Helmet } from '@slorber/react-helmet-async';
 import { trackEvent } from './hooks/useAnalytics';
 import { usePostHog } from './hooks/usePostHog';
 import { Toaster } from '@/components/ui/sonner';
