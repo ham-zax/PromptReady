@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Helmet } from 'react-helmet-async';
 import DeferredSection from '../components/performance/DeferredSection';
+import SEOHead from '../components/seo/SEOHead';
 
 // Import existing components
 import Hero from '../components/Hero';
@@ -40,19 +40,7 @@ const HomePage: React.FC<HomePageProps> = ({ onPrimaryAction }) => {
         exit={{ opacity: 0 }}
         transition={{ duration: 0.3 }}
       >
-        <Helmet>
-          <title>{seo.title}</title>
-          <meta name="description" content={seo.description} />
-          <meta property="og:title" content={seo.ogTitle} />
-          <meta property="og:description" content={seo.ogDescription} />
-          <meta property="og:type" content="website" />
-          <meta property="og:url" content={seo.ogUrl} />
-          <meta property="og:image" content={seo.ogImage} />
-          <meta name="twitter:card" content={seo.twitterCard} />
-          <meta name="twitter:image" content={seo.twitterImage} />
-          <link rel="canonical" href={seo.canonicalUrl} />
-          {seo.noindex && <meta name="robots" content="noindex,nofollow" />}
-        </Helmet>
+        <SEOHead seo={seo} />
 
         <main className="relative">
           <SectionTracker sectionName="hero" sectionId="hero-section">

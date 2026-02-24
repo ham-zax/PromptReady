@@ -3,10 +3,15 @@ import { Calendar, MessageSquare, ArrowLeft } from '@/components/ui/Icons';
 import { trackEvent } from '../hooks/useAnalytics';
 import Logo from '../components/ui/Logo';
 import { env } from '../config';
+import SEOHead from '../components/seo/SEOHead';
+import { usePageSEO } from '../hooks/useSEO';
 
 const ThankYou: React.FC = () => {
+  const seo = usePageSEO('thankYou');
+
   return (
     <section className="relative bg-brand-bg">
+      <SEOHead seo={seo} />
       <div className="relative z-10 mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
         <div className="mb-8 text-center">
           {/* Logo */}

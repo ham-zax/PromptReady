@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, LayoutGroup } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
 import { ArrowRight, Menu, X } from '@/components/ui/Icons';
 import Logo from '../ui/Logo';
@@ -25,10 +25,8 @@ const LandingNavigation: React.FC<LandingNavigationProps> = ({ onPrimaryAction }
     };
     if (win.__appLenis?.scrollTo) {
       win.__appLenis.scrollTo(0, { immediate: true, force: true });
+      return;
     }
-    document.documentElement.scrollTop = 0;
-    document.body.scrollTop = 0;
-    window.scrollTo(0, 0);
     window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
   }, []);
 
@@ -82,30 +80,32 @@ const LandingNavigation: React.FC<LandingNavigationProps> = ({ onPrimaryAction }
           <Logo size="lg" clickable textColor="dark" logoColor="dark" className="items-center" />
 
           {/* Desktop Navigation */}
-          <div className="border-brand-border bg-brand-surface-soft hidden items-center gap-1 rounded-full border p-1 md:flex">
-            {navigationItems.map((item) => (
-              <Link
-                key={item.id}
-                to={item.path}
-                onClick={forceScrollTop}
-                className={`linear-kicker relative rounded-full px-4 py-1.5 text-[1.35rem] transition-colors ${
-                  isActive(item.path)
-                    ? 'text-white'
-                    : 'text-brand-muted hover:bg-brand-surface hover:text-brand-ink'
-                }`}
-              >
-                {isActive(item.path) && (
-                  <motion.div
-                    className="bg-brand-ink absolute inset-0 rounded-full"
-                    layoutId="activeNavBackground"
-                    initial={false}
-                    transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-                  />
-                )}
-                <span className="relative z-10">{item.name}</span>
-              </Link>
-            ))}
-          </div>
+          <LayoutGroup id="landing-nav-tabs">
+            <div className="border-brand-border bg-brand-surface-soft hidden items-center gap-1 rounded-full border p-1 md:flex">
+              {navigationItems.map((item) => (
+                <Link
+                  key={item.id}
+                  to={item.path}
+                  onClick={forceScrollTop}
+                  className={`linear-kicker relative rounded-full px-4 py-1.5 text-[1.35rem] transition-colors ${
+                    isActive(item.path)
+                      ? 'text-white'
+                      : 'text-brand-muted hover:bg-brand-surface hover:text-brand-ink'
+                  }`}
+                >
+                  {isActive(item.path) && (
+                    <motion.div
+                      className="bg-brand-ink absolute inset-0 rounded-full"
+                      layoutId="activeNavBackground"
+                      initial={false}
+                      transition={{ type: 'spring', stiffness: 340, damping: 34, mass: 0.7 }}
+                    />
+                  )}
+                  <span className="relative z-10">{item.name}</span>
+                </Link>
+              ))}
+            </div>
+          </LayoutGroup>
 
           {/* Desktop CTA */}
           <div className="hidden items-center md:flex">

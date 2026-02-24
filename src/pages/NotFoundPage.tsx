@@ -1,11 +1,14 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Helmet } from 'react-helmet-async';
 import { ArrowLeft, Home, Search } from '@/components/ui/Icons';
 import { Link } from 'react-router-dom';
 import Logo from '../components/ui/Logo';
+import SEOHead from '../components/seo/SEOHead';
+import { usePageSEO } from '../hooks/useSEO';
 
 const NotFoundPage: React.FC = () => {
+  const seo = usePageSEO('notFound');
+
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.95 }}
@@ -13,11 +16,7 @@ const NotFoundPage: React.FC = () => {
       exit={{ opacity: 0, scale: 0.95 }}
       transition={{ duration: 0.3 }}
     >
-      <Helmet>
-        <title>Page Not Found - PromptReady</title>
-        <meta name="description" content="The page you're looking for doesn't exist. Return to PromptReady homepage." />
-        <meta name="robots" content="noindex, nofollow" />
-      </Helmet>
+      <SEOHead seo={seo} />
 
       <main className="flex min-h-screen items-center justify-center bg-brand-bg">
         <div className="mx-auto max-w-2xl px-4 text-center sm:px-6 lg:px-8">

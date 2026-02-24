@@ -1,12 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Helmet } from 'react-helmet-async';
 import { ArrowRight, Check, Star } from '@/components/ui/Icons';
 import FAQ from '../components/FAQ';
 import Features from '../components/Features';
 import Footer from '../components/Footer';
 import Pricing from '../components/Pricing';
 import { usePageSEO } from '../hooks/useSEO';
+import SEOHead from '../components/seo/SEOHead';
 import HeroBackground from '../components/ui/HeroBackground';
 
 interface PricingPageProps {
@@ -23,19 +23,7 @@ const PricingPage: React.FC<PricingPageProps> = ({ onPrimaryAction }) => {
       exit={{ opacity: 0, x: -20 }}
       transition={{ duration: 0.35 }}
     >
-      <Helmet>
-        <title>{seo.title}</title>
-        <meta name="description" content={seo.description} />
-        <meta property="og:title" content={seo.ogTitle} />
-        <meta property="og:description" content={seo.ogDescription} />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content={seo.ogUrl} />
-        <meta property="og:image" content={seo.ogImage} />
-        <meta name="twitter:card" content={seo.twitterCard} />
-        <meta name="twitter:image" content={seo.twitterImage} />
-        <link rel="canonical" href={seo.canonicalUrl} />
-        {seo.noindex && <meta name="robots" content="noindex,nofollow" />}
-      </Helmet>
+      <SEOHead seo={seo} />
 
       <main className="relative">
         <HeroBackground />

@@ -1,13 +1,11 @@
 import React from 'react';
 import Lenis from 'lenis';
-import { Helmet } from 'react-helmet-async';
 import { trackEvent } from './hooks/useAnalytics';
 import { usePostHog } from './hooks/usePostHog';
 import { Toaster } from '@/components/ui/sonner';
 import { SketchyIconProvider } from '@/components/ui/Icons';
 import LandingFlowRouter from './router/LandingFlowRouter';
-import { env, seo } from './config';
-import { getCurrentCanonicalUrl } from './utils/canonicalUrl';
+import { env } from './config';
 
 // Import test utilities in development
 if (env.DEV) {
@@ -63,27 +61,6 @@ function App() {
     <div className="bg-brand-bg text-brand-ink relative min-h-screen overflow-x-clip font-sans">
       <SketchyIconProvider />
       <div className="relative z-10">
-        <Helmet>
-          <title>{seo.title}</title>
-          <meta name="description" content={seo.description} />
-          <meta property="og:title" content={seo.ogTitle} />
-          <meta property="og:description" content={seo.ogDescription} />
-          <meta property="og:type" content={seo.ogType} />
-          <meta property="og:url" content={seo.ogUrl} />
-          <link rel="canonical" href={getCurrentCanonicalUrl()} />
-          {/* Conditional robots meta tag based on environment */}
-          <meta
-            name="robots"
-            content={
-              import.meta.env.VITE_VERCEL_GIT_COMMIT_REF === 'main' ||
-              import.meta.env.PROD ||
-              window.location.hostname === 'promptready.app'
-                ? 'index,follow'
-                : 'noindex,nofollow'
-            }
-          />
-        </Helmet>
-
         {/* Landing Flow Router handles all routing and page transitions */}
         <LandingFlowRouter onPrimaryAction={handlePrimaryAction} />
 

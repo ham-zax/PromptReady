@@ -1,12 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Helmet } from 'react-helmet-async';
 import { ArrowRight, Play } from '@/components/ui/Icons';
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
 import HowItWorks from '../components/HowItWorks';
 import HeroBackground from '../components/ui/HeroBackground';
 import { usePageSEO } from '../hooks/useSEO';
+import SEOHead from '../components/seo/SEOHead';
 
 const VideoDemo = React.lazy(() => import('../components/VideoDemo'));
 
@@ -24,19 +24,7 @@ const DemoPage: React.FC<DemoPageProps> = ({ onPrimaryAction }) => {
       exit={{ opacity: 0, x: -20 }}
       transition={{ duration: 0.35 }}
     >
-      <Helmet>
-        <title>{seo.title}</title>
-        <meta name="description" content={seo.description} />
-        <meta property="og:title" content={seo.ogTitle} />
-        <meta property="og:description" content={seo.ogDescription} />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content={seo.ogUrl} />
-        <meta property="og:image" content={seo.ogImage} />
-        <meta name="twitter:card" content={seo.twitterCard} />
-        <meta name="twitter:image" content={seo.twitterImage} />
-        <link rel="canonical" href={seo.canonicalUrl} />
-        {seo.noindex && <meta name="robots" content="noindex,nofollow" />}
-      </Helmet>
+      <SEOHead seo={seo} />
 
       <main className="relative pb-16 sm:pb-20">
         <HeroBackground />

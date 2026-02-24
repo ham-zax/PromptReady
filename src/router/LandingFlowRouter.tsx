@@ -1,15 +1,14 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { useLocation } from 'react-router-dom';
 
 // Import page components
 import HomePage from '../pages/HomePage';
-
-const DemoPage = React.lazy(() => import('../pages/DemoPage'));
-const PricingPage = React.lazy(() => import('../pages/PricingPage'));
-const ThankYou = React.lazy(() => import('../pages/ThankYou'));
-const NotFoundPage = React.lazy(() => import('../pages/NotFoundPage'));
+import DemoPage from '../pages/DemoPage';
+import PricingPage from '../pages/PricingPage';
+import ThankYou from '../pages/ThankYou';
+import NotFoundPage from '../pages/NotFoundPage';
 
 // Import navigation
 import LandingNavigation from '../components/navigation/LandingNavigation';
@@ -102,9 +101,16 @@ const AnimatedRoutes: React.FC<{ onPrimaryAction: (sourceComponent: string) => v
   }, [location.pathname]);
 
   return (
-    <React.Suspense fallback={<div className="bg-brand-surface min-h-screen" />}>
-      <AnimatePresence mode="wait" initial={false}>
-        <Routes location={location} key={location.pathname}>
+    <AnimatePresence mode="wait" initial={false}>
+      <motion.div
+        key={location.pathname}
+        className="route-transition-shell"
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -8 }}
+        transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <Routes location={location}>
           <Route path="/" element={<HomePage onPrimaryAction={onPrimaryAction} />} />
           <Route path="/demo" element={<DemoPage onPrimaryAction={onPrimaryAction} />} />
           <Route path="/pricing" element={<PricingPage onPrimaryAction={onPrimaryAction} />} />
@@ -113,8 +119,8 @@ const AnimatedRoutes: React.FC<{ onPrimaryAction: (sourceComponent: string) => v
           {/* Redirect any unknown routes to 404 */}
           <Route path="*" element={<Navigate to="/404" replace />} />
         </Routes>
-      </AnimatePresence>
-    </React.Suspense>
+      </motion.div>
+    </AnimatePresence>
   );
 };
 

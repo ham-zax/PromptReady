@@ -3,7 +3,7 @@
 import { useLocation } from 'react-router-dom';
 import { getCanonicalUrl, getSocialUrl } from '../utils/canonicalUrl';
 
-interface SEOConfig {
+export interface SEOConfig {
   title: string;
   description: string;
   ogTitle?: string;
@@ -16,10 +16,19 @@ interface SEOConfig {
   noindex?: boolean;
 }
 
-interface SEOResult extends Required<Omit<SEOConfig, 'ogTitle' | 'ogDescription'>> {
+export interface SEOResult extends Required<Omit<SEOConfig, 'ogTitle' | 'ogDescription'>> {
   ogTitle: string;
   ogDescription: string;
+  twitterTitle: string;
+  twitterDescription: string;
+  robots: 'index,follow' | 'noindex,nofollow';
 }
+
+const toAbsoluteUrl = (value: string): string => {
+  if (/^https?:\/\//i.test(value)) return value;
+  const normalized = value.startsWith('/') ? value : `/${value}`;
+  return getSocialUrl(normalized);
+};
 
 /**
  * Hook to generate proper SEO meta tags with canonical URLs
@@ -34,22 +43,28 @@ export const useSEO = (config: SEOConfig): SEOResult => {
   const ogUrl = config.ogUrl || getSocialUrl(location.pathname);
 
   // Determine if this should be indexed based on environment
+  const hostname = typeof window !== 'undefined' ? window.location.hostname : '';
   const shouldIndex =
     import.meta.env.VITE_VERCEL_GIT_COMMIT_REF === 'main' ||
-    import.meta.env.PROD ||
-    window.location.hostname === 'promptready.app';
+    hostname === 'promptready.app' ||
+    hostname === 'www.promptready.app';
+  const noindex = config.noindex !== undefined ? config.noindex : !shouldIndex;
+  const ogImage = toAbsoluteUrl(config.ogImage || '/og-image.png');
 
   return {
     title: config.title,
     description: config.description,
     ogTitle: config.ogTitle || config.title,
     ogDescription: config.ogDescription || config.description,
-    ogImage: config.ogImage || '/og-image.png',
+    ogImage,
     twitterCard: config.twitterCard || 'summary_large_image',
-    twitterImage: config.twitterImage || config.ogImage || '/og-image.png',
+    twitterImage: toAbsoluteUrl(config.twitterImage || ogImage),
+    twitterTitle: config.ogTitle || config.title,
+    twitterDescription: config.ogDescription || config.description,
     canonicalUrl,
     ogUrl,
-    noindex: config.noindex !== undefined ? config.noindex : !shouldIndex,
+    noindex,
+    robots: noindex ? 'noindex,nofollow' : 'index,follow',
   };
 };
 
