@@ -1,114 +1,13 @@
 import React from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
-import { ClipboardCheck, Code2, Sparkles, Wand2 } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Sparkles } from 'lucide-react';
 import HeroActions from './Hero/HeroActions';
 import HeroBackground from './ui/HeroBackground';
+import ContextAnimation from './ui/ContextAnimation';
 
 interface HeroProps {
   onPrimaryAction: () => void;
 }
-
-type Snippet = {
-  id: string;
-  label: string;
-  code: string;
-  icon: React.ReactNode;
-  tone: string;
-};
-
-const SNIPPETS: Snippet[] = [
-  {
-    id: 'raw',
-    label: 'Raw copy-paste',
-    code: `<div class="ad-banner">50% off this week</div>\n<nav>Home | Categories | Subscribe</nav>\n<h1>How teams ship better prompts</h1>\n<p>Useful content mixed with popups.</p>\n<footer>Cookie policy | Terms</footer>`,
-    icon: <Code2 className="h-4 w-4 text-brand-accent-hover" />,
-    tone: 'text-brand-accent-hover',
-  },
-  {
-    id: 'process',
-    label: 'PromptReady processing',
-    code: `> Analyzing DOM structure...\n> Stripping ads and navigation...\n> Extracting primary article body...\n> Formatting as clean Markdown...\n> Attaching source metadata...`,
-    icon: <Wand2 className="h-4 w-4 text-brand-muted" />,
-    tone: 'text-brand-ink font-semibold',
-  },
-  {
-    id: 'final',
-    label: 'AI-ready output',
-    code: `# How teams ship better prompts\nUseful content with clean structure.\nSource: example.com/article\nCaptured: 2026-02-24T18:40Z`,
-    icon: <ClipboardCheck className="h-4 w-4 text-brand-success" />,
-    tone: 'text-brand-success',
-  },
-];
-
-const CodeTransformation: React.FC = () => {
-  const [step, setStep] = React.useState(0);
-
-  React.useEffect(() => {
-    const timer = setInterval(() => {
-      setStep((prev) => (prev + 1) % SNIPPETS.length);
-    }, 3200);
-
-    return () => clearInterval(timer);
-  }, []);
-
-  const current = SNIPPETS[step];
-
-  return (
-    <div className="relative mx-auto mt-10 w-full max-w-2xl lg:mt-0">
-      <motion.div
-        initial={{ y: 18, opacity: 0.9 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.55, ease: 'easeOut' }}
-        className="relative overflow-hidden rounded-[1.75rem] border border-brand-border bg-brand-surface shadow-[0_22px_56px_-34px_rgba(0,0,0,0.4)]"
-      >
-        <div className="flex items-center justify-between border-b border-brand-border bg-brand-surface-soft px-4 py-3">
-          <div className="flex items-center gap-2">
-            <span className="h-3 w-3 rounded-full bg-brand-accent/70" />
-            <span className="h-3 w-3 rounded-full bg-brand-muted/70" />
-            <span className="h-3 w-3 rounded-full bg-brand-success/70" />
-          </div>
-
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={current.id}
-              initial={{ opacity: 0, y: -8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 8 }}
-              className="flex items-center gap-2 text-xs font-medium tracking-wide text-brand-muted"
-            >
-              {current.icon}
-              <span>{current.label}</span>
-            </motion.div>
-          </AnimatePresence>
-        </div>
-
-        <div className="relative h-[300px] overflow-hidden p-6">
-          {step === 1 && (
-            <motion.div
-              initial={{ top: 0, opacity: 0 }}
-              animate={{ top: '100%', opacity: [0, 1, 1, 0] }}
-              transition={{ duration: 2.1, ease: 'linear' }}
-              className="absolute left-0 right-0 z-10 h-1 bg-brand-accent/40"
-            />
-          )}
-
-          <AnimatePresence mode="wait">
-            <motion.pre
-              key={current.id}
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              transition={{ duration: 0.35 }}
-              className={`linear-mono h-full w-full overflow-y-auto whitespace-pre-wrap text-[11px] leading-[1.5] sm:text-xs ${current.tone}`}
-            >
-              {current.code}
-            </motion.pre>
-          </AnimatePresence>
-        </div>
-      </motion.div>
-    </div>
-  );
-};
 
 const Hero: React.FC<HeroProps> = ({ onPrimaryAction }) => {
   return (
@@ -167,23 +66,23 @@ const Hero: React.FC<HeroProps> = ({ onPrimaryAction }) => {
             text in one click. <strong className="font-semibold text-brand-ink">No cleanup loops.</strong>
           </motion.p>
 
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.5 }}
+            className="mt-10 flex gap-4"
+          >
+            <HeroActions onPrimaryAction={onPrimaryAction} />
+          </motion.div>
         </div>
 
         <motion.div
           initial={{ opacity: 0, x: 30 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.25, duration: 0.6 }}
-          className="relative z-10 flex flex-col"
+          className="relative z-10"
         >
-          <CodeTransformation />
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.35, duration: 0.5 }}
-            className="mx-auto mt-8 w-full max-w-2xl"
-          >
-            <HeroActions onPrimaryAction={onPrimaryAction} />
-          </motion.div>
+          <ContextAnimation />
         </motion.div>
       </div>
     </section>
