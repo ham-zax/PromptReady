@@ -167,23 +167,23 @@ const Hero: React.FC<HeroProps> = ({ onPrimaryAction }) => {
             text in one click. <strong className="font-semibold text-brand-ink">No cleanup loops.</strong>
           </motion.p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.5 }}
-            className="mt-10 flex gap-4"
-          >
-            <HeroActions onPrimaryAction={onPrimaryAction} />
-          </motion.div>
         </div>
 
         <motion.div
           initial={{ opacity: 0, x: 30 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.25, duration: 0.6 }}
-          className="relative z-10"
+          className="relative z-10 flex flex-col"
         >
           <CodeTransformation />
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.35, duration: 0.5 }}
+            className="mx-auto mt-8 w-full max-w-2xl"
+          >
+            <HeroActions onPrimaryAction={onPrimaryAction} />
+          </motion.div>
         </motion.div>
       </div>
     </section>

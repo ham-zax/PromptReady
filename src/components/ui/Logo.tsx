@@ -24,10 +24,10 @@ const Logo: React.FC<LogoProps> = ({
   theme,
 }) => {
   const sizeConfig = {
-    sm: { logo: 'w-5 h-5', text: 'linear-display text-xl font-black', gap: 'gap-2', strokeWidth: '4' },
-    md: { logo: 'w-6 h-6', text: 'linear-display text-2xl font-black', gap: 'gap-3', strokeWidth: '3.5' },
-    lg: { logo: 'w-8 h-8', text: 'linear-display text-3xl font-black', gap: 'gap-3', strokeWidth: '3' },
-    xl: { logo: 'w-12 h-12', text: 'linear-display text-5xl font-black', gap: 'gap-4', strokeWidth: '2.5' },
+    sm: { logo: 'w-5 h-5 -translate-y-[1px]', text: 'linear-kicker text-xl font-normal', gap: 'gap-2' },
+    md: { logo: 'w-6 h-6 -translate-y-[1px]', text: 'linear-kicker text-2xl font-normal', gap: 'gap-3' },
+    lg: { logo: 'w-8 h-8 -translate-y-[2px]', text: 'linear-kicker text-3xl font-normal', gap: 'gap-3' },
+    xl: { logo: 'w-12 h-12 -translate-y-[3px]', text: 'linear-kicker text-5xl font-normal', gap: 'gap-4' },
   };
 
   const textColorConfig = {
@@ -53,24 +53,22 @@ const Logo: React.FC<LogoProps> = ({
   };
 
   const finalLogoColor = getLogoColor();
-  const strokeColor = finalLogoColor === 'light' ? '#ffffff' : '#000000';
+  const fillColor = finalLogoColor === 'light' ? '#ffffff' : '#000000';
 
   const draw = {
-    hidden: { pathLength: 0, opacity: 0 },
+    hidden: { opacity: 0 },
     visible: (i: number) => {
-      const delay = 0.1 + i * 0.1;
+      const delay = 0.1 + i * 0.05;
       return {
-        pathLength: 1,
         opacity: 1,
         transition: {
-          pathLength: { delay, type: "spring", duration: 1.5, bounce: 0 },
-          opacity: { delay, duration: 0.01 }
+          delay,
+          duration: 0.2
         }
       };
     }
   };
 
-  // Convert the text into letter paths or just animate standard text with a handwritten feel
   const textAnimation = {
     hidden: { opacity: 0, y: 10, filter: 'blur(4px)' },
     visible: (i: number) => ({
@@ -83,40 +81,91 @@ const Logo: React.FC<LogoProps> = ({
 
   const logoElement = (
     <div className={`flex items-center ${config.gap} ${backgroundConfig[background]} ${className}`}>
-      <motion.svg 
-        xmlns="http://www.w3.org/2000/svg" 
-        viewBox="0 0 60 60" 
-        fill="none" 
+      <motion.svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 40 40"
         className={`${config.logo} shrink-0 block`}
-        initial="hidden"
-        animate="visible"
+        shapeRendering="crispEdges"
       >
-        {/* Sparkles (paths broken up for animation) - thicker strokes for bold look */}
-        <motion.path stroke={strokeColor} strokeWidth={config.strokeWidth} strokeLinecap="round" d="M1.3 20.1 l8.4 -0.1" variants={draw} custom={0} />
-        <motion.path stroke={strokeColor} strokeWidth={config.strokeWidth} strokeLinecap="round" d="M26.7 19.8 l8.4 -0.1" variants={draw} custom={1} />
-        <motion.path stroke={strokeColor} strokeWidth={config.strokeWidth} strokeLinecap="round" d="M19.8 35.4 l-0.1 -8.4" variants={draw} custom={2} />
-        <motion.path stroke={strokeColor} strokeWidth={config.strokeWidth} strokeLinecap="round" d="M19.5 10 l-0.1 -8.4" variants={draw} custom={3} />
-        <motion.path stroke={strokeColor} strokeWidth={config.strokeWidth} strokeLinecap="round" d="M7.4 31.6 l5.9 -6.0" variants={draw} custom={4} />
-        <motion.path stroke={strokeColor} strokeWidth={config.strokeWidth} strokeLinecap="round" d="M25.1 13.4 l5.9 -6.0" variants={draw} custom={5} />
-        <motion.path stroke={strokeColor} strokeWidth={config.strokeWidth} strokeLinecap="round" d="M13.1 11.5 l6.0 5.9" variants={draw} custom={6} />
-        
-        {/* Cursor path - animated drawing - thicker strokes */}
-        <motion.path 
-          stroke={strokeColor} 
-          strokeLinecap="round" 
-          strokeLinejoin="round" 
-          strokeWidth={Number(config.strokeWidth) + 0.5} 
-          d="M24.116 25.572a.931.931 0 0 1 1.225-1.224L55.44 36.575a.94.94 0 0 1-.118 1.781L43.8 41.33a3.763 3.763 0 0 0-2.705 2.7l-2.97 11.523a.94.94 0 0 1-1.782.118L24.116 25.572Z"
-          variants={draw} 
-          custom={7}
-        />
+        <g fill={fillColor}>
+          {/* Sparkles Top */}
+          <motion.rect x="19" y="0" width="2" height="6" variants={draw} custom={0} initial="hidden" animate="visible" />
+
+          {/* Sparkles Top Right */}
+          <motion.rect x="25" y="4" width="2" height="2" variants={draw} custom={1} initial="hidden" animate="visible" />
+          <motion.rect x="27" y="6" width="2" height="2" variants={draw} custom={1} initial="hidden" animate="visible" />
+          <motion.rect x="29" y="8" width="2" height="2" variants={draw} custom={1} initial="hidden" animate="visible" />
+
+          {/* Sparkles Right */}
+          <motion.rect x="30" y="15" width="6" height="2" variants={draw} custom={2} initial="hidden" animate="visible" />
+
+          {/* Sparkles Left */}
+          <motion.rect x="4" y="15" width="6" height="2" variants={draw} custom={3} initial="hidden" animate="visible" />
+
+          {/* Sparkles Top Left */}
+          <motion.rect x="13" y="4" width="2" height="2" variants={draw} custom={4} initial="hidden" animate="visible" />
+          <motion.rect x="11" y="6" width="2" height="2" variants={draw} custom={4} initial="hidden" animate="visible" />
+          <motion.rect x="9" y="8" width="2" height="2" variants={draw} custom={4} initial="hidden" animate="visible" />
+
+          {/* Mouse Cursor Body (8-bit pointer style) */}
+          <motion.path
+            variants={draw}
+            custom={5}
+            initial="hidden"
+            animate="visible"
+            d="
+            M 18 10
+            h 4
+            v 2 h 2
+            v 2 h 2
+            v 2 h 2
+            v 2 h 2
+            v 2 h 2
+            v 2 h 2
+            v 2
+            h -8
+            v 4 h 2
+            v 4 h 2
+            v 2 h -4
+            v -4 h -2
+            v -4
+            h -6
+            v -18
+            Z"
+          />
+
+          {/* Cursor white inner border to separate from background */}
+          <motion.path
+            variants={draw}
+            custom={5}
+            initial="hidden"
+            animate="visible"
+            fill="none"
+            stroke={finalLogoColor === 'light' ? '#000000' : '#ffffff'}
+            strokeWidth="2"
+            d="
+            M 20 12
+            v 14
+            h 4
+            v 4 h 2
+            v 2 h -2
+            v -4 h -2
+            v -4
+            h 6
+            v -2 h -2
+            v -2 h -2
+            v -2 h -2
+            v -2 h -2
+            Z"
+          />
+        </g>
       </motion.svg>
-      
+
       {showText && (
-        <span className={`flex ${config.text} ${textColorConfig[textColor]} leading-none tracking-tight font-black`}>
+        <span className={`flex ${config.text} ${textColorConfig[textColor]} leading-none tracking-tight`}>
           {"PROMPTREADY".split("").map((letter, i) => (
-            <motion.span 
-              key={i} 
+            <motion.span
+              key={i}
               custom={i}
               initial="hidden"
               animate="visible"
