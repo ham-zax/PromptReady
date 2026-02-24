@@ -45,12 +45,12 @@ const Hero: React.FC<HeroProps> = ({ onPrimaryAction }) => {
                 viewBox="0 0 300 20"
                 preserveAspectRatio="none"
               >
-                <path 
-                  d="M5 15 Q 150 5 295 10 T 290 18 Q 150 8 10 18" 
-                  fill="none" 
-                  stroke="currentColor" 
-                  strokeWidth="4" 
-                  strokeLinecap="round" 
+                <path
+                  d="M5 15 Q 150 5 295 10 T 290 18 Q 150 8 10 18"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                  strokeLinecap="round"
                 />
               </motion.svg>
             </span>
@@ -63,7 +63,9 @@ const Hero: React.FC<HeroProps> = ({ onPrimaryAction }) => {
             className="mt-6 max-w-xl text-lg leading-relaxed text-brand-muted sm:text-xl"
           >
             PromptReady extracts the useful parts, preserves structure, and gives you citation-ready
-            text in one click. <strong className="font-semibold text-brand-ink">No cleanup loops.</strong>
+            text in one click.
+            <br />
+            <strong className="font-semibold text-brand-ink">No cleanup loops.</strong>
           </motion.p>
 
           <motion.div
@@ -83,6 +85,29 @@ const Hero: React.FC<HeroProps> = ({ onPrimaryAction }) => {
           className="relative z-10"
         >
           <ContextAnimation />
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.35, duration: 0.5 }}
+            className="mx-auto mt-12 w-full max-w-2xl px-4 text-xs font-medium text-brand-muted sm:text-sm"
+          >
+            <div className="flex flex-wrap justify-center gap-3 xl:flex-nowrap">
+              <div className="flex w-fit items-center gap-2 rounded-full border border-brand-border bg-brand-surface-soft px-4 py-2 sm:whitespace-nowrap">
+                <span className="h-1.5 w-1.5 rounded-full bg-brand-success" />
+                Preserves code fences
+              </div>
+              <div className="flex w-fit items-center gap-2 rounded-full border border-brand-border bg-brand-surface-soft px-4 py-2 sm:whitespace-nowrap">
+                <span className="h-1.5 w-1.5 rounded-full bg-brand-accent" />
+                Adds clean citations
+              </div>
+              <div className="sm:basis-full sm:flex sm:justify-center xl:basis-auto xl:block">
+                <div className="flex w-fit items-center gap-2 rounded-full border border-brand-border bg-brand-surface-soft px-4 py-2 sm:whitespace-nowrap">
+                  <span className="h-1.5 w-1.5 rounded-full bg-brand-ink" />
+                  Privacy-first local parsing
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>

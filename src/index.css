@@ -95,7 +95,7 @@
   }
 
   .hero-context-svg .hero-scanner {
-    animation: hero-scanner 6s linear infinite;
+    animation: hero-scanner 4.8s linear infinite;
   }
 }
 
@@ -228,16 +228,25 @@
 }
 
 @keyframes hero-scanner {
-  0%,
-  10% {
-    transform: translateX(-100px);
+  0% {
+    transform: translateX(-130px);
+    opacity: 0;
   }
-  45%,
-  90% {
+  6% {
+    transform: translateX(-100px);
+    opacity: 1;
+  }
+  86% {
     transform: translateX(600px);
+    opacity: 1;
+  }
+  94% {
+    transform: translateX(640px);
+    opacity: 0;
   }
   100% {
-    transform: translateX(-100px);
+    transform: translateX(-130px);
+    opacity: 0;
   }
 }
 
