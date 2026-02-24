@@ -5,10 +5,11 @@ import { useLocation } from 'react-router-dom';
 
 // Import page components
 import HomePage from '../pages/HomePage';
-import DemoPage from '../pages/DemoPage';
-import PricingPage from '../pages/PricingPage';
-import ThankYou from '../pages/ThankYou';
-import NotFoundPage from '../pages/NotFoundPage';
+
+const DemoPage = React.lazy(() => import('../pages/DemoPage'));
+const PricingPage = React.lazy(() => import('../pages/PricingPage'));
+const ThankYou = React.lazy(() => import('../pages/ThankYou'));
+const NotFoundPage = React.lazy(() => import('../pages/NotFoundPage'));
 
 // Import navigation
 import LandingNavigation from '../components/navigation/LandingNavigation';
@@ -87,7 +88,9 @@ const ScrollToTop: React.FC = () => {
 };
 
 // Animated route wrapper component
-const AnimatedRoutes: React.FC<{ onPrimaryAction: (sourceComponent: string) => void }> = ({ onPrimaryAction }) => {
+const AnimatedRoutes: React.FC<{ onPrimaryAction: (sourceComponent: string) => void }> = ({
+  onPrimaryAction,
+}) => {
   const location = useLocation();
 
   // Track page views
@@ -100,33 +103,17 @@ const AnimatedRoutes: React.FC<{ onPrimaryAction: (sourceComponent: string) => v
 
   return (
     <AnimatePresence mode="wait" initial={false}>
-      <Routes location={location} key={location.pathname}>
-        <Route 
-          path="/" 
-          element={<HomePage onPrimaryAction={onPrimaryAction} />} 
-        />
-        <Route 
-          path="/demo" 
-          element={<DemoPage onPrimaryAction={onPrimaryAction} />} 
-        />
-        <Route 
-          path="/pricing" 
-          element={<PricingPage onPrimaryAction={onPrimaryAction} />} 
-        />
-        <Route 
-          path="/thank-you" 
-          element={<ThankYou />} 
-        />
-        <Route 
-          path="/404" 
-          element={<NotFoundPage />} 
-        />
-        {/* Redirect any unknown routes to 404 */}
-        <Route 
-          path="*" 
-          element={<Navigate to="/404" replace />} 
-        />
-      </Routes>
+      <React.Suspense fallback={null}>
+        <Routes location={location} key={location.pathname}>
+          <Route path="/" element={<HomePage onPrimaryAction={onPrimaryAction} />} />
+          <Route path="/demo" element={<DemoPage onPrimaryAction={onPrimaryAction} />} />
+          <Route path="/pricing" element={<PricingPage onPrimaryAction={onPrimaryAction} />} />
+          <Route path="/thank-you" element={<ThankYou />} />
+          <Route path="/404" element={<NotFoundPage />} />
+          {/* Redirect any unknown routes to 404 */}
+          <Route path="*" element={<Navigate to="/404" replace />} />
+        </Routes>
+      </React.Suspense>
     </AnimatePresence>
   );
 };

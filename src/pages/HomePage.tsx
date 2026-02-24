@@ -5,13 +5,16 @@ import { Helmet } from '@slorber/react-helmet-async';
 // Import existing components
 import Hero from '../components/Hero';
 import BeforeAfter from '../components/BeforeAfter';
-import ProblemSolution from '../components/ProblemSolution';
-import SocialProof from '../components/SocialProof';
-import Features from '../components/Features';
-import HowItWorks from '../components/HowItWorks';
-import Pricing from '../components/Pricing';
-import Footer from '../components/Footer';
-import FAQ from '../components/FAQ';
+
+// Lazy load below-the-fold components
+const ProblemSolution = React.lazy(() => import('../components/ProblemSolution'));
+const SocialProof = React.lazy(() => import('../components/SocialProof'));
+const Features = React.lazy(() => import('../components/Features'));
+const HowItWorks = React.lazy(() => import('../components/HowItWorks'));
+const Pricing = React.lazy(() => import('../components/Pricing'));
+const Footer = React.lazy(() => import('../components/Footer'));
+const FAQ = React.lazy(() => import('../components/FAQ'));
+const VideoDemo = React.lazy(() => import('../components/VideoDemo'));
 
 // Import analytics components
 import ScrollTracker from '../components/analytics/ScrollTracker';
@@ -19,9 +22,6 @@ import SectionTracker from '../components/analytics/SectionTracker';
 
 // Import SEO hook
 import { usePageSEO } from '../hooks/useSEO';
-
-// Lazy load heavy components
-const VideoDemo = React.lazy(() => import('../components/VideoDemo'));
 
 interface HomePageProps {
   onPrimaryAction: (sourceComponent: string) => void;
@@ -62,22 +62,22 @@ const HomePage: React.FC<HomePageProps> = ({ onPrimaryAction }) => {
             <BeforeAfter />
           </SectionTracker>
 
-          <SectionTracker sectionName="video-demo" sectionId="video-demo-section">
-            <React.Suspense fallback={<div className="flex h-96 items-center justify-center">Loading demo…</div>}>
+          <React.Suspense fallback={<div className="h-32" />}>
+            <SectionTracker sectionName="video-demo" sectionId="video-demo-section">
               <VideoDemo />
-            </React.Suspense>
-          </SectionTracker>
+            </SectionTracker>
 
-          <SectionTracker sectionName="how-it-works" sectionId="how-it-works-section">
-            <HowItWorks />
-          </SectionTracker>
+            <SectionTracker sectionName="how-it-works" sectionId="how-it-works-section">
+              <HowItWorks />
+            </SectionTracker>
 
-          <ProblemSolution onPrimaryAction={() => onPrimaryAction('ProblemSolution')} />
-          <Features />
-          <SocialProof />
-          <Pricing onPrimaryAction={() => onPrimaryAction('Pricing')} />
-          <FAQ />
-          <Footer />
+            <ProblemSolution onPrimaryAction={() => onPrimaryAction('ProblemSolution')} />
+            <Features />
+            <SocialProof />
+            <Pricing onPrimaryAction={() => onPrimaryAction('Pricing')} />
+            <FAQ />
+            <Footer />
+          </React.Suspense>
         </main>
       </motion.div>
     </ScrollTracker>
