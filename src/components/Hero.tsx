@@ -20,7 +20,7 @@ const SNIPPETS: Snippet[] = [
   {
     id: 'raw',
     label: 'Raw copy-paste',
-    code: `<div class="ad-banner">\n  50% off this week\n</div>\n<nav>\n  Home | Categories | Subscribe\n</nav>\n\n<h1>How teams ship better prompts</h1>\n<p>Useful content mixed with popups.</p>\n\n<footer>Cookie policy | Terms</footer>`,
+    code: `<div class="ad-banner">50% off this week</div>\n<nav>Home | Categories | Subscribe</nav>\n<h1>How teams ship better prompts</h1>\n<p>Useful content mixed with popups.</p>\n<footer>Cookie policy | Terms</footer>`,
     icon: <Code2 className="h-4 w-4 text-brand-accent-hover" />,
     tone: 'text-brand-accent-hover',
   },
@@ -34,7 +34,7 @@ const SNIPPETS: Snippet[] = [
   {
     id: 'final',
     label: 'AI-ready output',
-    code: `# How teams ship better prompts\n\nUseful content with clean structure.\n\n---\nSource: example.com/article\nCaptured: 2026-02-24T18:40Z`,
+    code: `# How teams ship better prompts\nUseful content with clean structure.\nSource: example.com/article\nCaptured: 2026-02-24T18:40Z`,
     icon: <ClipboardCheck className="h-4 w-4 text-brand-success" />,
     tone: 'text-brand-success',
   },
@@ -82,7 +82,7 @@ const CodeTransformation: React.FC = () => {
           </AnimatePresence>
         </div>
 
-        <div className="relative h-[340px] overflow-hidden p-6">
+        <div className="relative h-[300px] overflow-hidden p-6">
           {step === 1 && (
             <motion.div
               initial={{ top: 0, opacity: 0 }}
@@ -99,7 +99,7 @@ const CodeTransformation: React.FC = () => {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
               transition={{ duration: 0.35 }}
-              className={`linear-mono h-full w-full overflow-y-auto whitespace-pre-wrap text-xs leading-relaxed sm:text-sm ${current.tone}`}
+              className={`linear-mono h-full w-full overflow-y-auto whitespace-pre-wrap text-[11px] leading-[1.5] sm:text-xs ${current.tone}`}
             >
               {current.code}
             </motion.pre>
