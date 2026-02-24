@@ -24,10 +24,26 @@ const Logo: React.FC<LogoProps> = ({
   theme,
 }) => {
   const sizeConfig = {
-    sm: { logo: 'w-5 h-5 -translate-y-[1px]', text: 'linear-kicker text-xl font-normal', gap: 'gap-2' },
-    md: { logo: 'w-6 h-6 -translate-y-[1px]', text: 'linear-kicker text-2xl font-normal', gap: 'gap-3' },
-    lg: { logo: 'w-8 h-8 -translate-y-[2px]', text: 'linear-kicker text-3xl font-normal', gap: 'gap-3' },
-    xl: { logo: 'w-12 h-12 -translate-y-[3px]', text: 'linear-kicker text-5xl font-normal', gap: 'gap-4' },
+    sm: {
+      logo: 'w-5 h-5 -translate-y-[1px]',
+      text: 'linear-kicker text-xl font-normal',
+      gap: 'gap-2',
+    },
+    md: {
+      logo: 'w-6 h-6 -translate-y-[1px]',
+      text: 'linear-kicker text-2xl font-normal',
+      gap: 'gap-3',
+    },
+    lg: {
+      logo: 'w-8 h-8 -translate-y-[2px]',
+      text: 'linear-kicker text-3xl font-normal',
+      gap: 'gap-3',
+    },
+    xl: {
+      logo: 'w-12 h-12 -translate-y-[3px]',
+      text: 'linear-kicker text-5xl font-normal',
+      gap: 'gap-4',
+    },
   };
 
   const textColorConfig = {
@@ -37,7 +53,8 @@ const Logo: React.FC<LogoProps> = ({
 
   const backgroundConfig = {
     none: '',
-    subtle: 'rounded-full border border-brand-border bg-brand-surface/80 px-3 py-1.5 shadow-sm backdrop-blur-sm',
+    subtle:
+      'rounded-full border border-brand-border bg-brand-surface/80 px-3 py-1.5 shadow-sm backdrop-blur-sm',
     card: 'rounded-full border border-brand-border bg-brand-surface px-4 py-2 shadow-md',
   };
 
@@ -66,8 +83,8 @@ const Logo: React.FC<LogoProps> = ({
       transition: {
         delay: 0.1 + i * 0.05,
         duration: 0.2,
-      }
-    })
+      },
+    }),
   };
 
   const textAnimation = {
@@ -76,8 +93,8 @@ const Logo: React.FC<LogoProps> = ({
       opacity: 1,
       y: 0,
       filter: 'blur(0px)',
-      transition: { delay: 0.4 + i * 0.04, duration: 0.3, ease: "easeOut" }
-    })
+      transition: { delay: 0.4 + i * 0.04, duration: 0.3, ease: 'easeOut' as const },
+    }),
   };
 
   const logoElement = (
@@ -85,36 +102,108 @@ const Logo: React.FC<LogoProps> = ({
       <motion.svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 32 32"
-        className={`${config.logo} shrink-0 block`}
+        className={`${config.logo} block shrink-0`}
         // crispEdges is crucial for pixel art SVGs to prevent blurry anti-aliasing
         shapeRendering="crispEdges"
       >
         <g fill={outlineColor}>
           {/* Top Sparks */}
-          <motion.rect x="11" y="0" width="2" height="5" variants={draw} custom={0} initial="hidden" animate="visible" />
-          <motion.rect x="11" y="6" width="2" height="2" variants={draw} custom={1} initial="hidden" animate="visible" />
+          <motion.rect
+            x="11"
+            y="0"
+            width="2"
+            height="5"
+            variants={draw}
+            custom={0}
+            initial="hidden"
+            animate="visible"
+          />
+          <motion.rect
+            x="11"
+            y="6"
+            width="2"
+            height="2"
+            variants={draw}
+            custom={1}
+            initial="hidden"
+            animate="visible"
+          />
 
           {/* Left Sparks */}
-          <motion.rect x="0" y="11" width="5" height="2" variants={draw} custom={2} initial="hidden" animate="visible" />
-          <motion.rect x="6" y="11" width="2" height="2" variants={draw} custom={3} initial="hidden" animate="visible" />
+          <motion.rect
+            x="0"
+            y="11"
+            width="5"
+            height="2"
+            variants={draw}
+            custom={2}
+            initial="hidden"
+            animate="visible"
+          />
+          <motion.rect
+            x="6"
+            y="11"
+            width="2"
+            height="2"
+            variants={draw}
+            custom={3}
+            initial="hidden"
+            animate="visible"
+          />
 
           {/* Top-Left Diagonal Sparks */}
-          <motion.rect x="4" y="4" width="2" height="2" variants={draw} custom={4} initial="hidden" animate="visible" />
-          <motion.rect x="7" y="7" width="2" height="2" variants={draw} custom={5} initial="hidden" animate="visible" />
+          <motion.rect
+            x="4"
+            y="4"
+            width="2"
+            height="2"
+            variants={draw}
+            custom={4}
+            initial="hidden"
+            animate="visible"
+          />
+          <motion.rect
+            x="7"
+            y="7"
+            width="2"
+            height="2"
+            variants={draw}
+            custom={5}
+            initial="hidden"
+            animate="visible"
+          />
 
           {/* Top-Right Diagonal Sparks */}
-          <motion.rect x="18" y="4" width="2" height="2" variants={draw} custom={6} initial="hidden" animate="visible" />
-          <motion.rect x="15" y="7" width="2" height="2" variants={draw} custom={7} initial="hidden" animate="visible" />
+          <motion.rect
+            x="18"
+            y="4"
+            width="2"
+            height="2"
+            variants={draw}
+            custom={6}
+            initial="hidden"
+            animate="visible"
+          />
+          <motion.rect
+            x="15"
+            y="7"
+            width="2"
+            height="2"
+            variants={draw}
+            custom={7}
+            initial="hidden"
+            animate="visible"
+          />
         </g>
 
         {/* Pixel Cursor Body */}
-        {/* Using a precise polygon creates a perfect pixel outline when strokeWidth is an even number */}
-        <motion.polygon
+        {/* Using a precise orthogonal path creates a perfect pixel outline */}
+        <motion.path
           variants={draw}
           custom={8}
           initial="hidden"
           animate="visible"
-          points="12,12 12,26 16,22 18,28 21,27 18,21 23,21"
+          d="M12 12 v15 h1 v-1 h1 v-1 h1 v-1 h1 v-1 h1 v2 h1 v3 h1 v2 h2 v-1 h1 v-1 h-1 v-2 h-1 v-2 h-1 v-2 h4 v-1 h-1 v-1 h-1 v-1 h-1 v-1 h-1 v-1 h-1 v-1 h-1 v-1 h-1 v-1 h-1 v-1 h-1 v-1 h-1 v-1 Z"
           fill={cursorFillColor}
           stroke={outlineColor}
           strokeWidth="2"
@@ -123,8 +212,10 @@ const Logo: React.FC<LogoProps> = ({
       </motion.svg>
 
       {showText && (
-        <span className={`flex ${config.text} ${textColorConfig[textColor]} leading-none tracking-tight`}>
-          {"PROMPTREADY".split("").map((letter, i) => (
+        <span
+          className={`flex ${config.text} ${textColorConfig[textColor]} leading-none tracking-tight`}
+        >
+          {'PROMPTREADY'.split('').map((letter, i) => (
             <motion.span
               key={i}
               custom={i}
@@ -143,7 +234,7 @@ const Logo: React.FC<LogoProps> = ({
 
   if (clickable) {
     return (
-      <Link to="/" className="inline-flex group">
+      <Link to="/" className="group inline-flex">
         <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
           {logoElement}
         </motion.div>
