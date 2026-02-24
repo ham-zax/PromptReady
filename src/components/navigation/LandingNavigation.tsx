@@ -15,6 +15,24 @@ const LandingNavigation: React.FC<LandingNavigationProps> = ({ onPrimaryAction }
   const location = useLocation();
   const { scrollY } = useScroll();
 
+  const forceScrollTop = React.useCallback(() => {
+    const win = window as Window & {
+      __appLenis?: {
+        scrollTo: (
+          target: number | string | Element,
+          options?: { immediate?: boolean; force?: boolean },
+        ) => void;
+      };
+    };
+    if (win.__appLenis?.scrollTo) {
+      win.__appLenis.scrollTo(0, { immediate: true, force: true });
+    }
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+  }, []);
+
   useMotionValueEvent(scrollY, 'change', (latest) => {
     setIsScrolled((prev) => (prev ? latest > 30 : latest > 80));
   });
@@ -49,6 +67,7 @@ const LandingNavigation: React.FC<LandingNavigationProps> = ({ onPrimaryAction }
               <Link
                 key={item.id}
                 to={item.path}
+                onClick={forceScrollTop}
                 className={`linear-kicker relative rounded-full px-4 py-1.5 text-[1.35rem] transition-colors ${
                   isActive(item.path)
                     ? 'text-white'
@@ -104,7 +123,10 @@ const LandingNavigation: React.FC<LandingNavigationProps> = ({ onPrimaryAction }
                   <Link
                     key={item.id}
                     to={item.path}
-                    onClick={() => setIsMenuOpen(false)}
+                    onClick={() => {
+                      forceScrollTop();
+                      setIsMenuOpen(false);
+                    }}
                     className={`rounded-lg px-4 py-3 text-base font-medium transition-colors ${
                       isActive(item.path)
                         ? 'bg-brand-ink text-white'

@@ -21,6 +21,66 @@ interface LandingFlowRouterProps {
   onPrimaryAction: (sourceComponent: string) => void;
 }
 
+const ScrollToTop: React.FC = () => {
+  const location = useLocation();
+
+  React.useLayoutEffect(() => {
+    const win = window as Window & {
+      __appLenis?: {
+        scrollTo: (
+          target: number | string | Element,
+          options?: { immediate?: boolean; force?: boolean },
+        ) => void;
+      };
+    };
+
+    const scrollWithLenisOrNative = (target: number | Element) => {
+      if (win.__appLenis?.scrollTo) {
+        win.__appLenis.scrollTo(target, { immediate: true, force: true });
+      }
+      if (typeof target === 'number') {
+        document.documentElement.scrollTop = target;
+        document.body.scrollTop = target;
+        window.scrollTo(0, target);
+        window.scrollTo({ top: target, left: 0, behavior: 'auto' });
+        return;
+      }
+      target.scrollIntoView({ behavior: 'auto', block: 'start' });
+    };
+
+    let followUpTimeout: number | undefined;
+
+    if (location.hash) {
+      const anchorId = location.hash.replace('#', '');
+
+      // Wait for the new route section to render before scrolling to hash targets.
+      requestAnimationFrame(() => {
+        const anchor = document.getElementById(anchorId);
+        if (anchor) {
+          scrollWithLenisOrNative(anchor);
+          followUpTimeout = window.setTimeout(() => scrollWithLenisOrNative(anchor), 60);
+          return;
+        }
+        scrollWithLenisOrNative(0);
+        followUpTimeout = window.setTimeout(() => scrollWithLenisOrNative(0), 60);
+      });
+      return () => {
+        if (followUpTimeout) window.clearTimeout(followUpTimeout);
+      };
+    }
+
+    scrollWithLenisOrNative(0);
+    requestAnimationFrame(() => scrollWithLenisOrNative(0));
+    followUpTimeout = window.setTimeout(() => scrollWithLenisOrNative(0), 60);
+
+    return () => {
+      if (followUpTimeout) window.clearTimeout(followUpTimeout);
+    };
+  }, [location.pathname, location.hash]);
+
+  return null;
+};
+
 // Animated route wrapper component
 const AnimatedRoutes: React.FC<{ onPrimaryAction: (sourceComponent: string) => void }> = ({ onPrimaryAction }) => {
   const location = useLocation();
@@ -69,6 +129,7 @@ const AnimatedRoutes: React.FC<{ onPrimaryAction: (sourceComponent: string) => v
 const LandingFlowRouter: React.FC<LandingFlowRouterProps> = ({ onPrimaryAction }) => {
   return (
     <Router>
+      <ScrollToTop />
       <LandingNavigation onPrimaryAction={onPrimaryAction} />
       <AnimatedRoutes onPrimaryAction={onPrimaryAction} />
       <FlowProgressIndicator />

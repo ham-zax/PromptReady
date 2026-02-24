@@ -22,6 +22,7 @@ function App() {
 
   // Initialize Lenis smooth scrolling once at app mount
   React.useEffect(() => {
+    const win = window as Window & { __appLenis?: Lenis };
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const isCoarsePointer = window.matchMedia('(pointer: coarse)').matches;
     if (prefersReducedMotion || isCoarsePointer) return;
@@ -33,6 +34,7 @@ function App() {
       wheelMultiplier: 0.9,
       touchMultiplier: 1,
     });
+    win.__appLenis = lenis;
 
     let rafId = 0;
     const raf = (time: number) => {
@@ -43,6 +45,7 @@ function App() {
     rafId = requestAnimationFrame(raf);
 
     return () => {
+      delete win.__appLenis;
       cancelAnimationFrame(rafId);
       lenis.destroy();
     };
