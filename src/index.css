@@ -1,9 +1,7 @@
 /* Lenis smooth scroll styles */
 @import 'lenis/dist/lenis.css';
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+@config '../tailwind.config.js';
 
 /* Performance optimizations */
 @layer base {
