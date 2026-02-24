@@ -95,7 +95,12 @@ const LandingNavigation: React.FC<LandingNavigationProps> = ({ onPrimaryAction }
                 }`}
               >
                 {isActive(item.path) && (
-                  <span className="bg-brand-ink absolute inset-0 rounded-full" />
+                  <motion.div
+                    className="bg-brand-ink absolute inset-0 rounded-full"
+                    layoutId="activeNavBackground"
+                    initial={false}
+                    transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                  />
                 )}
                 <span className="relative z-10">{item.name}</span>
               </Link>

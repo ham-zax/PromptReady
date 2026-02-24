@@ -102,8 +102,8 @@ const AnimatedRoutes: React.FC<{ onPrimaryAction: (sourceComponent: string) => v
   }, [location.pathname]);
 
   return (
-    <AnimatePresence mode="wait" initial={false}>
-      <React.Suspense fallback={null}>
+    <React.Suspense fallback={<div className="bg-brand-surface min-h-screen" />}>
+      <AnimatePresence mode="wait" initial={false}>
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<HomePage onPrimaryAction={onPrimaryAction} />} />
           <Route path="/demo" element={<DemoPage onPrimaryAction={onPrimaryAction} />} />
@@ -113,8 +113,8 @@ const AnimatedRoutes: React.FC<{ onPrimaryAction: (sourceComponent: string) => v
           {/* Redirect any unknown routes to 404 */}
           <Route path="*" element={<Navigate to="/404" replace />} />
         </Routes>
-      </React.Suspense>
-    </AnimatePresence>
+      </AnimatePresence>
+    </React.Suspense>
   );
 };
 
