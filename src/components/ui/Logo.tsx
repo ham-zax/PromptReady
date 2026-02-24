@@ -73,7 +73,6 @@ const Logo: React.FC<LogoProps> = ({
 
   // High contrast configuration for pixel art readability
   const outlineColor = finalLogoColor === 'light' ? '#ffffff' : '#000000';
-  const cursorFillColor = finalLogoColor === 'light' ? '#0f172a' : '#ffffff'; // Dark interior for dark mode, white for light mode
 
   // Snappy sequence animation
   const draw = {
@@ -197,17 +196,15 @@ const Logo: React.FC<LogoProps> = ({
         </g>
 
         {/* Pixel Cursor Body */}
-        {/* Using a precise orthogonal path creates a perfect pixel outline */}
+        {/* Using a precise orthogonal path without stroke creates a crisp solid pixel shape */}
         <motion.path
           variants={draw}
           custom={8}
           initial="hidden"
           animate="visible"
           d="M12 12 v15 h1 v-1 h1 v-1 h1 v-1 h1 v-1 h1 v2 h1 v3 h1 v2 h2 v-1 h1 v-1 h-1 v-2 h-1 v-2 h-1 v-2 h4 v-1 h-1 v-1 h-1 v-1 h-1 v-1 h-1 v-1 h-1 v-1 h-1 v-1 h-1 v-1 h-1 v-1 h-1 v-1 h-1 v-1 Z"
-          fill={cursorFillColor}
-          stroke={outlineColor}
-          strokeWidth="2"
-          strokeLinejoin="miter"
+          fill={outlineColor}
+          stroke="none"
         />
       </motion.svg>
 
