@@ -82,7 +82,7 @@ const CodeTransformation: React.FC = () => {
           </AnimatePresence>
         </div>
 
-        <div className="relative flex min-h-[260px] items-center p-6">
+        <div className="relative h-[420px] overflow-hidden p-6">
           {step === 1 && (
             <motion.div
               initial={{ top: 0, opacity: 0 }}
@@ -99,7 +99,7 @@ const CodeTransformation: React.FC = () => {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
               transition={{ duration: 0.35 }}
-              className={`linear-mono w-full whitespace-pre-wrap text-sm leading-relaxed sm:text-base ${current.tone}`}
+              className={`linear-mono h-full w-full whitespace-pre-wrap text-sm leading-relaxed sm:text-base ${current.tone}`}
             >
               {current.code}
             </motion.pre>
