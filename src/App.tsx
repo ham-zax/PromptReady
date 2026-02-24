@@ -55,10 +55,10 @@ function App() {
   };
 
   return (
-    <div className="relative min-h-screen overflow-x-clip bg-[#f7f4ed] font-sans text-slate-900">
+    <div className="relative min-h-screen overflow-x-clip bg-[#030712] font-sans text-slate-50">
       <div className="pointer-events-none fixed inset-0 -z-10">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_12%_20%,rgba(244,162,97,0.2),transparent_28%),radial-gradient(circle_at_88%_14%,rgba(42,157,143,0.18),transparent_30%),radial-gradient(circle_at_52%_88%,rgba(38,70,83,0.14),transparent_32%)]" />
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(38,70,83,0.08)_1px,transparent_1px),linear-gradient(to_bottom,rgba(38,70,83,0.08)_1px,transparent_1px)] bg-[size:20px_20px] opacity-30" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_12%_20%,rgba(120,119,198,0.15),transparent_28%),radial-gradient(circle_at_88%_14%,rgba(99,102,241,0.15),transparent_30%),radial-gradient(circle_at_52%_88%,rgba(168,85,247,0.1),transparent_32%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:40px_40px]" />
       </div>
 
       <div className="relative z-10">

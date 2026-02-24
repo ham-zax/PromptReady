@@ -65,14 +65,14 @@ const FlowProgressIndicator: React.FC = () => {
   if (!shouldShow) return null;
 
   return (
-    <div className="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-40">
+    <div className="fixed bottom-3 left-1/2 z-40 -translate-x-1/2 sm:bottom-6">
       <motion.div
-        className="bg-white/95 backdrop-blur-sm border border-slate-200 rounded-full px-6 py-3 shadow-lg"
+        className="scale-95 rounded-full border border-slate-200 bg-white/95 px-4 py-2 shadow-lg backdrop-blur-sm sm:scale-100 sm:px-6 sm:py-3"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5 }}
       >
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2 sm:gap-4">
           {steps.map((step, index) => {
             const Icon = step.icon;
             const isActive = index === currentStepIndex;
@@ -89,16 +89,16 @@ const FlowProgressIndicator: React.FC = () => {
                   <div
                     className={`relative flex h-8 w-8 items-center justify-center rounded-full transition-all duration-200 ${
                       isActive
-                        ? 'bg-blue-600 text-white'
+                        ? 'bg-emerald-500 text-white'
                         : isCompleted
-                        ? 'bg-green-600 text-white'
+                        ? 'bg-emerald-500/85 text-white'
                         : 'bg-slate-200 text-slate-600'
                     } ${isClickable ? 'hover:scale-105' : 'opacity-60'}`}
                   >
                     <Icon className="h-4 w-4" />
                     {isActive && (
                       <motion.div
-                        className="absolute inset-0 rounded-full border-2 border-blue-600"
+                        className="absolute inset-0 rounded-full border-2 border-emerald-400"
                         initial={{ scale: 1 }}
                         animate={{ scale: [1, 1.2, 1] }}
                         transition={{ duration: 2, repeat: Infinity }}
@@ -109,8 +109,12 @@ const FlowProgressIndicator: React.FC = () => {
                   <div className="hidden sm:block">
                     <div
                       className={`text-xs font-medium transition-colors ${
-                        isActive ? 'text-blue-600' : isCompleted ? 'text-green-600' : 'text-slate-600'
-                      } ${isClickable ? 'hover:text-blue-500' : ''}`}
+                        isActive
+                          ? 'text-emerald-600'
+                          : isCompleted
+                            ? 'text-emerald-600'
+                            : 'text-slate-600'
+                      } ${isClickable ? 'hover:text-emerald-500' : ''}`}
                     >
                       {step.label}
                     </div>
@@ -120,7 +124,7 @@ const FlowProgressIndicator: React.FC = () => {
                 {index < steps.length - 1 && (
                   <div
                     className={`mx-3 h-0.5 w-8 transition-colors ${
-                      isCompleted ? 'bg-green-600' : 'bg-slate-200'
+                      isCompleted ? 'bg-emerald-500' : 'bg-slate-200'
                     }`}
                   />
                 )}

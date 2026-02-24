@@ -91,13 +91,13 @@ const VideoDemo: React.FC = () => {
   const currentFrame = current.cleanFrames[Math.min(stepIndex, current.cleanFrames.length - 1)];
 
   return (
-    <section id="demo" className="py-20 sm:py-24">
+    <section id="demo" className="pb-24 pt-20 sm:pb-24 sm:pt-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-10 text-center sm:mb-12">
-          <h2 className="text-3xl font-semibold tracking-tight text-charcoal-500 sm:text-4xl lg:text-5xl">
+          <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl lg:text-5xl">
             See the transformation in one pass
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-slate-700 sm:text-lg">
+          <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-slate-300 sm:text-lg">
             Preview how PromptReady turns noisy web content into clean, source-aware output.
           </p>
         </div>
@@ -115,7 +115,7 @@ const VideoDemo: React.FC = () => {
                 }}
                 className={`rounded-full px-4 py-2 text-sm font-semibold transition-colors ${
                   isActive
-                    ? 'bg-charcoal-500 text-white'
+                    ? 'bg-indigo-500 text-white'
                     : 'border border-slate-200 bg-white text-slate-700 hover:bg-slate-100'
                 }`}
               >
@@ -173,7 +173,7 @@ const VideoDemo: React.FC = () => {
                     key={label}
                     className={`rounded-full px-3 py-1.5 text-xs font-semibold sm:text-sm ${
                       active
-                        ? 'bg-charcoal-500 text-white'
+                        ? 'bg-indigo-500 text-white'
                         : 'border border-slate-200 bg-white text-slate-600'
                     }`}
                   >
@@ -187,7 +187,7 @@ const VideoDemo: React.FC = () => {
               <button
                 onClick={runDemo}
                 disabled={isRunning}
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-charcoal-500 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-charcoal-400 disabled:cursor-not-allowed disabled:opacity-75"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-indigo-500 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-indigo-400 disabled:cursor-not-allowed disabled:opacity-75"
               >
                 {isRunning ? <Loader2 className="h-4 w-4 animate-spin" /> : <Play className="h-4 w-4" />}
                 {isRunning ? 'Running...' : 'Run Demo'}

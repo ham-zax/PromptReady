@@ -47,37 +47,54 @@ const HeroActions: React.FC<HeroActionsProps> = ({ onPrimaryAction }) => {
   }, [onPrimaryAction, ctaVariant, getCtaText]);
 
   return (
-    <>
-      <div className="flex flex-col gap-4 sm:flex-row">
+    <div className="flex w-full flex-col">
+      <div className="flex w-full flex-col gap-4 sm:w-auto sm:flex-row">
         <button
           onClick={handlePrimaryClick}
-          className="group inline-flex items-center justify-center gap-2 rounded-full bg-charcoal-500 px-7 py-3.5 text-base font-semibold text-white shadow-[0_12px_30px_-16px_rgba(38,70,83,0.8)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-charcoal-400"
+          className="group relative inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-base font-semibold text-white transition-all duration-300 hover:scale-105 active:scale-95"
         >
-          {getCtaText()}
-          <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-0.5" />
+          {/* Gradient Background with shimmer on interaction only */}
+          <div className="absolute inset-0 rounded-full bg-gradient-to-r from-indigo-500 via-purple-500 to-indigo-500 bg-[length:200%_auto] group-hover:animate-[shimmer_1.6s_linear]" />
+
+          {/* Button Content */}
+          <div className="relative z-10 flex items-center gap-2">
+            {getCtaText()}
+            <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+          </div>
+
+          {/* Glow effect */}
+          <div className="absolute inset-0 -z-10 rounded-full bg-indigo-500 opacity-30 blur-lg transition-opacity duration-300 group-hover:opacity-50" />
         </button>
 
         <Link
           to="/demo"
-          className="group inline-flex items-center justify-center gap-2 rounded-full border border-charcoal-200 bg-white/90 px-7 py-3.5 text-base font-semibold text-charcoal-500 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-charcoal-400"
+          className="group relative inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-base font-semibold text-white transition-all duration-300 hover:scale-105 active:scale-95"
         >
-          <Play className="h-5 w-5 transition-transform group-hover:scale-110" />
-          Watch 60-sec Demo
+          {/* Glass Background */}
+          <div className="absolute inset-0 rounded-full border border-white/10 bg-white/5 backdrop-blur-md transition-colors group-hover:bg-white/10" />
+
+          <div className="relative z-10 flex items-center gap-2">
+            <Play className="h-5 w-5 text-indigo-400 transition-transform group-hover:scale-110" />
+            <span>Watch 60-sec Demo</span>
+          </div>
         </Link>
       </div>
 
-      <div className="mt-5 flex flex-wrap gap-2.5 text-xs font-medium text-slate-700 sm:text-sm">
-        <span className="rounded-full border border-slate-200 bg-white/80 px-3.5 py-1.5">
+      <div className="mt-8 flex flex-wrap gap-3 text-xs font-medium text-slate-300 sm:text-sm">
+        <div className="flex items-center gap-2 rounded-full border border-white/5 bg-white/5 px-4 py-2 backdrop-blur-sm">
+          <span className="h-1.5 w-1.5 motion-safe:animate-pulse rounded-full bg-emerald-400" />
           Preserves code fences
-        </span>
-        <span className="rounded-full border border-slate-200 bg-white/80 px-3.5 py-1.5">
+        </div>
+        <div className="flex items-center gap-2 rounded-full border border-white/5 bg-white/5 px-4 py-2 backdrop-blur-sm">
+          <span className="h-1.5 w-1.5 rounded-full bg-purple-400" />
           Adds clean citations
-        </span>
-        <span className="rounded-full border border-slate-200 bg-white/80 px-3.5 py-1.5">
+        </div>
+        <div className="flex items-center gap-2 rounded-full border border-white/5 bg-white/5 px-4 py-2 backdrop-blur-sm">
+          <span className="h-1.5 w-1.5 rounded-full bg-indigo-400" />
           Privacy-first local parsing
-        </span>
+        </div>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -37,10 +37,10 @@ const DemoPage: React.FC<DemoPageProps> = ({ onPrimaryAction }) => {
         {seo.noindex && <meta name="robots" content="noindex,nofollow" />}
       </Helmet>
 
-      <main>
-        <section className="px-4 pb-8 pt-14 text-center sm:px-6 sm:pt-18 lg:px-8">
+      <main className="pb-16 sm:pb-20">
+        <section className="px-4 pb-8 pt-24 text-center sm:px-6 sm:pt-32 lg:px-8 lg:pt-36">
           <motion.p
-            className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/80 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-slate-600"
+            className="inline-flex items-center gap-2 rounded-full border border-indigo-400/40 bg-white/90 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-slate-700"
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
           >
@@ -49,7 +49,7 @@ const DemoPage: React.FC<DemoPageProps> = ({ onPrimaryAction }) => {
           </motion.p>
 
           <motion.h1
-            className="mx-auto mt-5 max-w-4xl text-4xl font-semibold leading-tight text-charcoal-500 sm:text-5xl lg:text-6xl"
+            className="mx-auto mt-4 max-w-4xl text-3xl font-semibold leading-tight text-white sm:mt-5 sm:text-5xl lg:text-6xl"
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.08 }}
@@ -58,7 +58,7 @@ const DemoPage: React.FC<DemoPageProps> = ({ onPrimaryAction }) => {
           </motion.h1>
 
           <motion.p
-            className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-slate-700 sm:text-lg"
+            className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-slate-300 sm:mt-5 sm:text-lg"
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.15 }}
@@ -75,7 +75,7 @@ const DemoPage: React.FC<DemoPageProps> = ({ onPrimaryAction }) => {
           >
             <button
               onClick={() => onPrimaryAction('DemoPage-Hero')}
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-charcoal-500 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-charcoal-400 sm:text-base"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-indigo-500 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-indigo-400 sm:text-base"
             >
               Get Early Access
               <ArrowRight className="h-4 w-4" />
@@ -97,15 +97,15 @@ const DemoPage: React.FC<DemoPageProps> = ({ onPrimaryAction }) => {
         <HowItWorks />
 
         <section className="pb-20 pt-10 text-center sm:pt-14">
-          <h2 className="text-3xl font-semibold text-charcoal-500 sm:text-4xl">
+          <h2 className="text-3xl font-semibold text-white sm:text-4xl">
             Ready to use this on your own workflow?
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-slate-700 sm:text-lg">
+          <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-slate-300 sm:text-lg">
             Join the waitlist and get notified as soon as the next release is live.
           </p>
           <button
             onClick={() => onPrimaryAction('DemoPage-CTA')}
-            className="mt-6 inline-flex items-center gap-2 rounded-full bg-charcoal-500 px-8 py-3.5 text-base font-semibold text-white transition-colors hover:bg-charcoal-400"
+            className="mt-6 inline-flex items-center gap-2 rounded-full bg-indigo-500 px-8 py-3.5 text-base font-semibold text-white transition-colors hover:bg-indigo-400"
           >
             Join the Waitlist
             <ArrowRight className="h-4 w-4" />

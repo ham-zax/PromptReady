@@ -22,7 +22,7 @@ const Pricing: React.FC<PricingProps> = ({ onPrimaryAction }) => (
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-3xl font-semibold tracking-tight text-charcoal-500 sm:text-4xl lg:text-5xl"
+          className="text-3xl font-semibold tracking-tight text-white sm:text-4xl lg:text-5xl"
         >
           Simple pricing while in beta
         </motion.h2>
@@ -31,7 +31,7 @@ const Pricing: React.FC<PricingProps> = ({ onPrimaryAction }) => (
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
-          className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-slate-700 sm:text-lg"
+          className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-slate-300 sm:text-lg"
         >
           Core functionality is free today. Join now and lock in early-adopter access.
         </motion.p>
@@ -69,7 +69,7 @@ const Pricing: React.FC<PricingProps> = ({ onPrimaryAction }) => (
 
         <button
           onClick={onPrimaryAction}
-          className="mt-8 w-full rounded-2xl bg-charcoal-500 py-3.5 text-base font-semibold text-white transition-colors duration-200 hover:bg-charcoal-400"
+          className="mt-8 w-full rounded-2xl bg-indigo-500 py-3.5 text-base font-semibold text-white transition-colors duration-200 hover:bg-indigo-400"
         >
           Add to Chrome
         </button>
