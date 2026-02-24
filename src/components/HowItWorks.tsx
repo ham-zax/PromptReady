@@ -1,57 +1,75 @@
-// src/components/HowItWorks.tsx
-
 import React from 'react';
-import { Clock, Mail, Shield } from 'lucide-react';
-import { ComparativeDisplay } from './ui/ComparativeDisplay';
+import { motion } from 'framer-motion';
+import { CopyCheck, MousePointerClick, Zap } from 'lucide-react';
 
-// Define the content for the "Before" state as a separate JSX variable
-const beforeExample = (
-  <div className="space-y-3">
-    <div className="rounded-md bg-red-100/60 p-2 text-red-700">
-      <Clock className="mr-1.5 inline h-4 w-4" />
-      <span>LIMITED TIME OFFER! 50% OFF!</span>
-    </div>
-    <p>Important article content...</p>
-    <div className="rounded-md bg-yellow-100/60 p-2 text-yellow-800">
-      <Mail className="mr-1.5 inline h-4 w-4" />
-      <span>Subscribe to our newsletter!</span>
-    </div>
-    <p>More valuable content...</p>
-    <div className="rounded-md bg-slate-100 p-2 text-xs text-slate-500">
-      <Shield className="mr-1.5 inline h-3 w-3" />
-      <span>Footer • Privacy Policy • Terms</span>
-    </div>
-  </div>
-);
-
-// Define the content for the "After" state
-const afterExample = (
-  <div className="space-y-3">
-    <h3 className="text-lg font-bold text-slate-900">AI and machine learning trends in 2024</h3>
-    <ul className="list-inside list-disc space-y-1.5 text-base leading-relaxed">
-      <li>Clean, structured content ready for AI processing.</li>
-      <li>No ads, no distractions, just pure information.</li>
-      <li>Perfectly formatted for ChatGPT, Claude, or any LLM.</li>
-    </ul>
-  </div>
-);
+const steps = [
+  {
+    title: 'Select your source',
+    description: 'Use the extension button or keyboard shortcut on any page.',
+    icon: <MousePointerClick className="h-6 w-6 text-charcoal-500" />,
+    badge: '01',
+  },
+  {
+    title: 'Clean in one pass',
+    description: 'PromptReady strips clutter and keeps structure that LLMs can parse.',
+    icon: <Zap className="h-6 w-6 text-burnt-sienna-500" />,
+    badge: '02',
+  },
+  {
+    title: 'Paste with confidence',
+    description: 'Get citation-ready Markdown instantly in your clipboard.',
+    icon: <CopyCheck className="h-6 w-6 text-persian-green-500" />,
+    badge: '03',
+  },
+];
 
 const HowItWorks: React.FC = () => (
-  <section id="how-it-works" className="bg-slate-50 py-20 lg:py-32">
+  <section id="how-it-works" className="py-20 sm:py-24">
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div className="mb-16 text-center">
-        <h2 className="mb-6 text-4xl font-bold text-gray-900 lg:text-5xl">From chaos to clarity</h2>
-        <p className="mx-auto max-w-3xl text-xl leading-relaxed text-gray-600">
-          PromptReady doesn't just copy text — it intelligently refines it, removing clutter and
-          revealing the valuable content underneath.
-        </p>
+      <div className="mb-12 text-center sm:mb-14">
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-3xl font-semibold tracking-tight text-charcoal-500 sm:text-4xl lg:text-5xl"
+        >
+          From noisy page to useful prompt in seconds
+        </motion.h2>
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.1 }}
+          className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-slate-700 sm:text-lg"
+        >
+          The flow is intentionally simple so you can stay in your research or coding context.
+        </motion.p>
       </div>
-      {/* Use the new component by passing the content as props */}
-      <ComparativeDisplay
-        variant="blue-purple"
-        beforeContent={beforeExample}
-        afterContent={afterExample}
-      />
+
+      <div className="grid gap-5 md:grid-cols-3">
+        {steps.map((step, index) => (
+          <motion.article
+            key={step.badge}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: index * 0.08 }}
+            className="group relative overflow-hidden rounded-3xl border border-slate-200 bg-white/85 p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+          >
+            <div className="mb-5 flex items-center justify-between">
+              <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-100">
+                {step.icon}
+              </div>
+              <span className="rounded-full border border-slate-200 px-3 py-1 text-xs font-semibold tracking-[0.16em] text-slate-500">
+                {step.badge}
+              </span>
+            </div>
+
+            <h3 className="text-xl font-semibold text-charcoal-500">{step.title}</h3>
+            <p className="mt-3 text-sm leading-relaxed text-slate-700 sm:text-base">{step.description}</p>
+          </motion.article>
+        ))}
+      </div>
     </div>
   </section>
 );

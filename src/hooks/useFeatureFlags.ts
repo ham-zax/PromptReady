@@ -9,15 +9,15 @@ export const FEATURE_FLAGS = {
   // Hero section variants
   HERO_CTA_VARIANT: 'hero-cta-variant',
   HERO_HEADLINE_VARIANT: 'hero-headline-variant',
-  
+
   // Pricing variants
   PRICING_DISPLAY_VARIANT: 'pricing-display-variant',
   PRICING_CTA_VARIANT: 'pricing-cta-variant',
-  
+
   // Demo variants
   DEMO_PLACEMENT_VARIANT: 'demo-placement-variant',
   DEMO_AUTOPLAY_VARIANT: 'demo-autoplay-variant',
-  
+
   // General UI variants
   NAVIGATION_STYLE_VARIANT: 'navigation-style-variant',
   FOOTER_CTA_VARIANT: 'footer-cta-variant',
@@ -75,7 +75,7 @@ export const FEATURE_FLAG_VALUES = {
 
 // Type definitions
 export type FeatureFlagKey = keyof typeof FEATURE_FLAGS;
-export type FeatureFlagValue<T extends FeatureFlagKey> = string;
+export type FeatureFlagValue = string;
 
 interface UseFeatureFlagOptions {
   trackExposure?: boolean; // Whether to track when user is exposed to this flag
@@ -87,12 +87,12 @@ interface UseFeatureFlagOptions {
  */
 export const useFeatureFlag = (
   flagKey: string,
-  options: UseFeatureFlagOptions = {}
+  options: UseFeatureFlagOptions = {},
 ): string | null => {
   const posthog = usePostHog();
   const [flagValue, setFlagValue] = useState<string | null>(null);
   const [hasTrackedExposure, setHasTrackedExposure] = useState(false);
-  
+
   const { trackExposure = true, fallback = 'control' } = options;
 
   useEffect(() => {
@@ -106,7 +106,7 @@ export const useFeatureFlag = (
       try {
         const value = posthog.getFeatureFlag?.(flagKey) as string | null;
         const finalValue = value || fallback;
-        
+
         setFlagValue(finalValue);
 
         // Track exposure to this feature flag (for analytics)
@@ -118,10 +118,10 @@ export const useFeatureFlag = (
           });
           setHasTrackedExposure(true);
         }
-      } catch (error) {
+      } catch {
         // If feature flags aren't ready yet, use fallback and retry
         setFlagValue(fallback);
-        
+
         // Retry after a short delay
         setTimeout(() => {
           try {
@@ -146,7 +146,7 @@ export const useFeatureFlag = (
 
     // Small delay to let PostHog initialize
     const timeoutId = setTimeout(checkFeatureFlag, 100);
-    
+
     return () => {
       clearTimeout(timeoutId);
     };
@@ -160,30 +160,33 @@ export const useFeatureFlag = (
  */
 export const useFeatureFlags = (
   flagKeys: string[],
-  options: UseFeatureFlagOptions = {}
+  options: UseFeatureFlagOptions = {},
 ): Record<string, string | null> => {
   const posthog = usePostHog();
   const [flags, setFlags] = useState<Record<string, string | null>>({});
   const [hasTrackedExposure, setHasTrackedExposure] = useState<Record<string, boolean>>({});
-  
+
   const { trackExposure = true, fallback = 'control' } = options;
 
   // FIXED: Memoize the tracking function to prevent dependency loops
-  const trackExposureEvents = useCallback((events: Array<{ flag_key: string; flag_value: string }>) => {
-    events.forEach(({ flag_key, flag_value }) => {
-      trackEvent('feature_flag_exposure', {
-        flag_key,
-        flag_value,
-        timestamp: Date.now(),
+  const trackExposureEvents = useCallback(
+    (events: Array<{ flag_key: string; flag_value: string }>) => {
+      events.forEach(({ flag_key, flag_value }) => {
+        trackEvent('feature_flag_exposure', {
+          flag_key,
+          flag_value,
+          timestamp: Date.now(),
+        });
       });
-    });
-  }, []);
+    },
+    [],
+  );
 
   const loadFeatureFlags = useCallback(() => {
     if (!posthog) {
       // Initialize with fallbacks if PostHog not ready
       const fallbackFlags: Record<string, string | null> = {};
-      flagKeys.forEach(key => {
+      flagKeys.forEach((key) => {
         fallbackFlags[key] = fallback;
       });
       setFlags(fallbackFlags);
@@ -193,7 +196,7 @@ export const useFeatureFlags = (
     const flagValues: Record<string, string | null> = {};
     const exposureEvents: Array<{ flag_key: string; flag_value: string }> = [];
 
-    flagKeys.forEach(flagKey => {
+    flagKeys.forEach((flagKey) => {
       try {
         const value = posthog.getFeatureFlag?.(flagKey) as string | null;
         const finalValue = value || fallback;
@@ -206,7 +209,7 @@ export const useFeatureFlags = (
             flag_value: finalValue,
           });
         }
-      } catch (error) {
+      } catch {
         // If individual flag fails, use fallback
         flagValues[flagKey] = fallback;
       }
@@ -217,9 +220,9 @@ export const useFeatureFlags = (
     // Track exposures if any
     if (exposureEvents.length > 0) {
       trackExposureEvents(exposureEvents);
-      
+
       // Use functional update to avoid dependency on hasTrackedExposure state
-      setHasTrackedExposure(prev => {
+      setHasTrackedExposure((prev) => {
         const newState = { ...prev };
         exposureEvents.forEach(({ flag_key }) => {
           newState[flag_key] = true;
@@ -232,7 +235,7 @@ export const useFeatureFlags = (
   useEffect(() => {
     // Initial load with small delay
     const timeoutId = setTimeout(loadFeatureFlags, 100);
-    
+
     return () => {
       clearTimeout(timeoutId);
     };
@@ -248,7 +251,7 @@ export const useFeatureFlags = (
  */
 export const useFeatureFlagEnabled = (
   flagKey: string,
-  options: UseFeatureFlagOptions = {}
+  options: UseFeatureFlagOptions = {},
 ): boolean => {
   const flagValue = useFeatureFlag(flagKey, options);
   return flagValue === 'true';
@@ -261,7 +264,7 @@ export const trackFeatureFlagInteraction = (
   flagKey: string,
   flagValue: string | null,
   interactionType: string,
-  additionalData: Record<string, any> = {}
+  additionalData: Record<string, unknown> = {},
 ) => {
   trackEvent('feature_flag_interaction', {
     flag_key: flagKey,

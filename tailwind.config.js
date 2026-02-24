@@ -3,7 +3,11 @@ export default {
   darkMode: ['class'],
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}', './src/components/**/*.{js,ts,jsx,tsx}'],
   theme: {
-  	extend: {
+  		extend: {
+  		fontFamily: {
+  			sans: ['Sora', 'Inter', 'sans-serif'],
+  			mono: ['IBM Plex Mono', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
+  		},
   		animation: {
   			shimmer: 'shimmer 4s linear infinite',
   			grid: 'grid 15s linear infinite',

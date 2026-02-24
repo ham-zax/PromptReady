@@ -10,99 +10,56 @@ interface FAQItem {
 const items: FAQItem[] = [
   {
     key: 'local-first',
-    q: 'Is it local‑first?',
-    a: (
-      <>
-        Yes. All core cleaning and structuring runs on your device. Nothing is uploaded or stored on a server.
-      </>
-    ),
+    q: 'Is it local first?',
+    a: <>Yes. Core cleaning and structuring runs on your device. Nothing is uploaded by default.</>,
   },
   {
     key: 'api-key',
     q: 'Do I need an API key?',
-    a: (
-      <>
-        No. An API key is not required. Pro adds optional “Bring Your Own Key (BYOK)” for validation or formatting
-        using OpenAI‑compatible providers (e.g., OpenRouter or a custom base URL/model).
-      </>
-    ),
+    a: <>No. The core product works without one. Optional pro features may support BYOK.</>,
   },
   {
     key: 'browsers',
     q: 'Which browsers are supported?',
-    a: (
-      <>
-        Chrome MV3 and Chromium‑based browsers targeting stable releases from roughly the past 12 months.
-      </>
-    ),
+    a: <>Chrome and Chromium-based browsers are currently supported. Firefox support is planned.</>,
   },
   {
     key: 'preserve',
     q: 'Will it preserve code and tables?',
-    a: (
-      <>
-        Yes. Use Code & Docs mode to keep code fences (with language inference), tables, and technical formatting intact.
-      </>
-    ),
+    a: <>Yes. PromptReady is built for technical formatting and keeps structure intact.</>,
   },
   {
-    key: 'naming',
-    q: 'How are files named?',
-    a: (
-      <>
-        <code className="font-mono">&lt;title&gt;__YYYY-MM-DD__hhmm__hash.(md|json)</code> for easy sorting and traceability.
-      </>
-    ),
-  },
-  {
-    key: 'free-forever',
-    q: 'Is the free version really free forever?',
-    a: (
-      <>
-        Yes. Core clean/structure/export is free forever. Upgrade to Pro when you want Bundles or optional BYOK validation.
-      </>
-    ),
-  },
-  {
-    key: 'what-pro',
-    q: 'What does Pro include?',
-    a: (
-      <>
-        Prompt‑Ready Bundles editor, optional BYOK validation (OpenAI‑compatible), and power‑user options. Pricing is
-        <strong> $3/mo or $29/yr</strong>.
-      </>
-    ),
-  },
-  {
-    key: 'cancel',
-    q: 'Can I cancel Pro anytime?',
-    a: (
-      <>Yes. You can cancel anytime and keep access until the end of the billing period.</>
-    ),
+    key: 'pricing',
+    q: 'Is the free plan time-limited?',
+    a: <>No. Current beta access is free, with optional paid tiers added separately.</>,
   },
 ];
 
 const FAQ: React.FC = () => {
   return (
-    <section className="relative bg-white py-16 lg:py-24" aria-labelledby="faq-heading">
-      <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 id="faq-heading" className="mb-4 text-3xl font-bold text-slate-900 lg:text-4xl">
-            Frequently Asked Questions
+    <section id="faq" className="py-20 sm:py-24" aria-labelledby="faq-heading">
+      <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+        <div className="mb-10 text-center sm:mb-12">
+          <h2 id="faq-heading" className="text-3xl font-semibold tracking-tight text-charcoal-500 sm:text-4xl">
+            Frequently asked questions
           </h2>
-          <p className="text-lg text-slate-700">Everything you need to know about PromptReady.</p>
+          <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-slate-700 sm:text-lg">
+            Details on privacy, support, and how PromptReady fits into your workflow.
+          </p>
         </div>
 
-        <Accordion type="single" collapsible defaultValue="local-first">
+        <Accordion type="single" collapsible className="space-y-3">
           {items.map((item) => (
-            <AccordionItem key={item.key} value={item.key}>
-              <AccordionTrigger className="text-left text-base text-slate-900">
+            <AccordionItem
+              key={item.key}
+              value={item.key}
+              className="rounded-2xl border border-slate-200 bg-white/85 px-5"
+            >
+              <AccordionTrigger className="text-left text-base font-semibold text-charcoal-500 hover:no-underline sm:text-lg">
                 {item.q}
               </AccordionTrigger>
-              <AccordionContent className="text-slate-700">
-                <div className="prose prose-sm max-w-none">
-                  {item.a}
-                </div>
+              <AccordionContent className="pb-4 text-sm leading-relaxed text-slate-700 sm:text-base">
+                {item.a}
               </AccordionContent>
             </AccordionItem>
           ))}
@@ -113,5 +70,3 @@ const FAQ: React.FC = () => {
 };
 
 export default FAQ;
-
-

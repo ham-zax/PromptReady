@@ -14,7 +14,7 @@ export const sendTestEvents = () => {
   }
 
   console.group('🧪 Sending Test Analytics Events');
-  
+
   // Test CTA click event
   trackEvent('cta_click', {
     cta_location: 'hero_button',
@@ -64,7 +64,7 @@ export const sendTestEvents = () => {
 
 // Add to window for manual testing
 if (import.meta.env.DEV) {
-  (window as any).sendTestEvents = sendTestEvents;
+  (window as unknown as Record<string, unknown>).sendTestEvents = sendTestEvents;
   console.log('🧪 Test function available: window.sendTestEvents()');
 }
 

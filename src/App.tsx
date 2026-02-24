@@ -32,28 +32,17 @@ function App() {
       touchMultiplier: 0, // Disable smooth scrolling on touch devices for better performance
     });
 
-    // Use requestAnimationFrame instead of gsap.ticker for better performance
-    let rafId: number;
+    lenis.on('scroll', ScrollTrigger.update);
 
     const raf = (time: number) => {
-      lenis.raf(time);
-      rafId = requestAnimationFrame(raf);
+      lenis.raf(time * 1000);
     };
 
-    rafId = requestAnimationFrame(raf);
-
-    // Sync Lenis with ScrollTrigger using throttled updates
-    let scrollTimeout: NodeJS.Timeout;
-    lenis.on('scroll', () => {
-      clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(() => {
-        ScrollTrigger.update();
-      }, 16); // ~60fps throttling
-    });
+    gsap.ticker.add(raf);
+    gsap.ticker.lagSmoothing(0);
 
     return () => {
-      cancelAnimationFrame(rafId);
-      clearTimeout(scrollTimeout);
+      gsap.ticker.remove(raf);
       lenis.destroy();
     };
   }, []);
@@ -66,37 +55,37 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#f3f3f3] via-white to-purple-50/30 relative">
-      {/* Dot pattern overlay */}
-      <div className="pointer-events-none absolute inset-0 -z-10 opacity-30">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(0,0,0,0.15)_1px,transparent_0)] bg-[length:20px_20px]" />
+    <div className="relative min-h-screen overflow-x-clip bg-[#f7f4ed] font-sans text-slate-900">
+      <div className="pointer-events-none fixed inset-0 -z-10">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_12%_20%,rgba(244,162,97,0.2),transparent_28%),radial-gradient(circle_at_88%_14%,rgba(42,157,143,0.18),transparent_30%),radial-gradient(circle_at_52%_88%,rgba(38,70,83,0.14),transparent_32%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(38,70,83,0.08)_1px,transparent_1px),linear-gradient(to_bottom,rgba(38,70,83,0.08)_1px,transparent_1px)] bg-[size:20px_20px] opacity-30" />
       </div>
-      
-      {/* Bleeding gradient overlay */}
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-transparent via-transparent to-purple-100/40" />
-      
+
       <div className="relative z-10">
         <Helmet>
-        <title>{seo.title}</title>
-        <meta name="description" content={seo.description} />
-        <meta property="og:title" content={seo.ogTitle} />
-        <meta property="og:description" content={seo.ogDescription} />
-        <meta property="og:type" content={seo.ogType} />
-        <meta property="og:url" content={seo.ogUrl} />
-        <link rel="canonical" href={getCurrentCanonicalUrl()} />
-        {/* Conditional robots meta tag based on environment */}
-        <meta name="robots" content={
-          import.meta.env.VITE_VERCEL_GIT_COMMIT_REF === 'main' ||
-          import.meta.env.PROD ||
-          window.location.hostname === 'promptready.app'
-            ? 'index,follow'
-            : 'noindex,nofollow'
-        } />
-      </Helmet>
+          <title>{seo.title}</title>
+          <meta name="description" content={seo.description} />
+          <meta property="og:title" content={seo.ogTitle} />
+          <meta property="og:description" content={seo.ogDescription} />
+          <meta property="og:type" content={seo.ogType} />
+          <meta property="og:url" content={seo.ogUrl} />
+          <link rel="canonical" href={getCurrentCanonicalUrl()} />
+          {/* Conditional robots meta tag based on environment */}
+          <meta
+            name="robots"
+            content={
+              import.meta.env.VITE_VERCEL_GIT_COMMIT_REF === 'main' ||
+              import.meta.env.PROD ||
+              window.location.hostname === 'promptready.app'
+                ? 'index,follow'
+                : 'noindex,nofollow'
+            }
+          />
+        </Helmet>
 
-              {/* Landing Flow Router handles all routing and page transitions */}
+        {/* Landing Flow Router handles all routing and page transitions */}
         <LandingFlowRouter onPrimaryAction={handlePrimaryAction} />
-        
+
         {/* Toast notifications */}
         <Toaster />
       </div>

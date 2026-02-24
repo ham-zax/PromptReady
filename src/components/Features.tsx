@@ -1,68 +1,92 @@
 import React from 'react';
-import { Zap, Brain, Settings, Shield, Sparkles } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Brain, Code, Copy, FileText, Shield, Sparkles } from 'lucide-react';
 
-const Features: React.FC = () => (
-  <section className="py-16 lg:py-24 bg-gradient-to-br from-slate-50 via-white to-blue-50/30">
-    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div className="mb-16 text-center">
-        <h2 className="mb-4 text-3xl font-bold text-gray-900 lg:text-4xl">
-          Benefits that save you time (and sanity)
-        </h2>
-        <p className="mx-auto max-w-2xl text-lg text-gray-600">
-          Every feature is designed to eliminate a frustrating step in your workflow, giving you
-          back your most valuable asset: time.
-        </p>
+const cards = [
+  {
+    title: 'Structure-preserving cleanup',
+    description: 'Keeps headings, lists, and tables intact so models parse your context correctly.',
+    icon: <Brain className="h-6 w-6 text-charcoal-500" />,
+    tone: 'from-slate-100 to-white',
+  },
+  {
+    title: 'One-click extraction',
+    description: 'No manual selection dance. Run from toolbar or shortcut and copy instantly.',
+    icon: <Copy className="h-6 w-6 text-burnt-sienna-500" />,
+    tone: 'from-[#fff2eb] to-white',
+  },
+  {
+    title: 'Citation metadata',
+    description: 'Every export can include source URL and capture timestamp for verification.',
+    icon: <FileText className="h-6 w-6 text-persian-green-500" />,
+    tone: 'from-[#ecfaf6] to-white',
+  },
+  {
+    title: 'Local-first by default',
+    description: 'Core parsing happens on-device. Your browsing context stays private.',
+    icon: <Shield className="h-6 w-6 text-charcoal-500" />,
+    tone: 'from-slate-100 to-white',
+  },
+  {
+    title: 'Built for technical content',
+    description: 'Understands docs, code snippets, forum threads, and long-form article pages.',
+    icon: <Code className="h-6 w-6 text-burnt-sienna-500" />,
+    tone: 'from-[#fff2eb] to-white',
+  },
+  {
+    title: 'Configurable output',
+    description: 'Toggle title, source footer, spacing, and formatting to fit your workflow.',
+    icon: <Sparkles className="h-6 w-6 text-persian-green-500" />,
+    tone: 'from-[#ecfaf6] to-white',
+  },
+];
+
+const Features: React.FC = () => {
+  return (
+    <section id="features" className="py-20 sm:py-24">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mb-12 text-center sm:mb-14">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-3xl font-semibold tracking-tight text-charcoal-500 sm:text-4xl lg:text-5xl"
+          >
+            Built for people who prompt all day
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-slate-700 sm:text-lg"
+          >
+            Everything here exists to reduce friction between source material and high-quality model
+            responses.
+          </motion.p>
+        </div>
+
+        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+          {cards.map((card, index) => (
+            <motion.article
+              key={card.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.06 }}
+              className={`rounded-3xl border border-slate-200 bg-gradient-to-br ${card.tone} p-6 shadow-sm`}
+            >
+              <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-white shadow-sm">
+                {card.icon}
+              </div>
+              <h3 className="text-lg font-semibold text-charcoal-500">{card.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-slate-700 sm:text-base">{card.description}</p>
+            </motion.article>
+          ))}
+        </div>
       </div>
-      <div className="grid grid-cols-1 gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
-        <div className="group rounded-2xl border border-white/30 bg-white/60 backdrop-blur-sm p-6 shadow-lg ring-1 ring-black/5 transition-all duration-200 hover:bg-white/80 hover:scale-105 hover:shadow-lg">
-          <div className="mb-6 flex aspect-video items-center justify-center rounded-xl bg-gradient-to-br from-yellow-100 to-yellow-200 p-4 shadow-lg">
-            <div className="text-center">
-              <Zap className="mx-auto mb-2 h-10 w-10 text-yellow-600" />
-              <div className="text-xs font-semibold text-yellow-700">Instant Parsing</div>
-            </div>
-          </div>
-          <h3 className="mb-3 text-xl font-semibold text-gray-900">Save time</h3>
-          <p className="leading-relaxed text-gray-600">Cut 30–90 seconds of clean‑up on every paste.</p>
-        </div>
-        <div className="group rounded-2xl border border-white/30 bg-white/60 backdrop-blur-sm p-6 shadow-lg ring-1 ring-black/5 transition-all duration-200 hover:bg-white/80 hover:scale-105 hover:shadow-lg">
-          <div className="mb-6 flex aspect-video items-center justify-center rounded-xl bg-gradient-to-br from-purple-100 to-purple-200 p-4 shadow-lg">
-            <div className="text-center">
-              <Brain className="mx-auto mb-2 h-10 w-10 text-purple-600" />
-              <div className="text-xs font-semibold text-purple-700">AI Enhancement</div>
-            </div>
-          </div>
-          <h3 className="mb-3 text-xl font-semibold text-gray-900">Preserve structure</h3>
-          <p className="leading-relaxed text-gray-600">Headings, lists, tables, and code fences intact.</p>
-        </div>
-        <div className="group rounded-2xl border border-white/30 bg-white/60 backdrop-blur-sm p-6 shadow-lg ring-1 ring-black/5 transition-all duration-200 hover:bg-white/80 hover:scale-105 hover:shadow-lg">
-          <div className="mb-6 flex aspect-video items-center justify-center rounded-xl bg-gradient-to-br from-blue-100 to-blue-200 p-4 shadow-lg">
-            <div className="text-center">
-              <Settings className="mx-auto mb-2 h-10 w-10 text-blue-600" />
-              <div className="text-xs font-semibold text-blue-700">Customization</div>
-            </div>
-          </div>
-          <h3 className="mb-3 text-xl font-semibold text-gray-900">Cite confidently</h3>
-          <p className="leading-relaxed text-gray-600">Canonical URL + timestamp in every export.</p>
-        </div>
-        <div className="group rounded-2xl border border-white/30 bg-white/60 backdrop-blur-sm p-6 shadow-lg ring-1 ring-black/5 transition-all duration-200 hover:bg-white/80 hover:scale-105 hover:shadow-lg">
-          <div className="mb-6 flex aspect-video items-center justify-center rounded-xl bg-gradient-to-br from-green-100 to-green-200 p-4 shadow-lg">
-            <div className="text-center">
-              <Shield className="mx-auto mb-2 h-10 w-10 text-green-600" />
-              <div className="text-xs font-semibold text-green-700">Privacy First</div>
-            </div>
-          </div>
-          <h3 className="mb-3 text-xl font-semibold text-gray-900">Privacy‑first</h3>
-          <p className="leading-relaxed text-gray-600">All processing runs locally; nothing leaves your device.</p>
-        </div>
-      </div>
-      <div className="mt-12 text-center">
-        <div className="inline-flex items-center rounded-full border border-white/30 bg-gradient-to-r from-blue-50 to-indigo-50 backdrop-blur-sm px-8 py-4 text-sm font-semibold text-gray-700 shadow-lg ring-1 ring-black/5">
-          <Sparkles className="mr-3 h-5 w-5 text-blue-600" />
-          Smart Hybrid Engine (Pro): Local cleaning + optional AI validation with your key
-        </div>
-      </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
 
 export default Features;

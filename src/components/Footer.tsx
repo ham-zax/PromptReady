@@ -1,235 +1,118 @@
-import React, { Suspense, lazy } from 'react';
-import { Github, Linkedin, Twitter, MessageCircle } from 'lucide-react';
-import Logo from './ui/Logo';
+import React from 'react';
+import { ArrowRight, Github, MessageCircle, Terminal } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { env } from '../config';
+import { trackEvent } from '../hooks/useAnalytics';
 
-// Lazy load the gradient footer image component for better performance
-const LazyGradientFooter = lazy(() => import('./ui/LazyGradientFooter'));
+const Footer: React.FC = () => {
+  const handleWaitlistClick = () => {
+    trackEvent('footer_cta_click', { placement: 'footer', destination_url: env.WAITLIST_URL });
+    window.open(env.WAITLIST_URL, '_blank', 'noopener,noreferrer');
+  };
 
-const Footer: React.FC = () => (
-  <footer className="relative py-16 text-slate-700 overflow-hidden bg-slate-100">
-    {/* Lazy-loaded background image component */}
-    <Suspense fallback={<div className="absolute inset-0 bg-slate-100" />}>
-      <LazyGradientFooter />
-    </Suspense>
+  return (
+    <footer className="border-t border-slate-200 bg-white/70 py-14 sm:py-16">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="grid gap-10 lg:grid-cols-3">
+          <div className="lg:col-span-2">
+            <div className="flex items-center gap-2 text-charcoal-500">
+              <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-charcoal-500 text-white">
+                <Terminal className="h-4 w-4" />
+              </span>
+              <span className="text-xl font-semibold">PromptReady</span>
+            </div>
 
-    <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-      <div className="grid grid-cols-1 gap-12 lg:grid-cols-3">
-
-        {/* Logo, tagline, and testimonial section - 66% width */}
-        <div className="lg:col-span-2">
-          <div className="mb-4">
-            <Logo size="lg" textColor="dark" theme="light" />
-          </div>
-          <p className="mb-4 text-sm text-slate-700 leading-relaxed">
-            Making web content extraction simple and powerful
-          </p>
-
-          {/* Trust-building testimonial - Enhanced with better contrast */}
-          <div className="mb-6">
-            <p className="text-base italic text-slate-900 font-medium">
-              "A must-have tool for developers."
+            <p className="mt-4 max-w-lg text-sm leading-relaxed text-slate-700 sm:text-base">
+              Clean, structured context for AI workflows. Capture what matters and skip the manual
+              cleanup.
             </p>
-            <p className="text-sm text-slate-700 mt-1">
-              — Senior Developer
-            </p>
-          </div>
 
-          {/* Organized navigation links with improved contrast */}
-          <div className="grid grid-cols-3 gap-6 text-sm">
-            <div>
-              <h4 className="font-semibold text-slate-900 mb-2">
-                Product
-              </h4>
-              <div className="space-y-2">
-                <a
-                  href="/pricing"
-                  className="block text-slate-800 hover:text-slate-900 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 rounded"
-                  aria-label="View pricing plans"
-                >
-                  Pricing
-                </a>
-                <a
-                  href="/demo"
-                  className="block text-slate-800 hover:text-slate-900 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 rounded"
-                  aria-label="View product demo"
-                >
-                  Demo
-                </a>
+            <div className="mt-7 grid grid-cols-2 gap-6 text-sm sm:grid-cols-3">
+              <div>
+                <p className="mb-3 font-semibold text-charcoal-500">Product</p>
+                <div className="space-y-2.5 text-slate-700">
+                  <a href="/#features" className="block hover:text-charcoal-500">
+                    Features
+                  </a>
+                  <a href="/#pricing" className="block hover:text-charcoal-500">
+                    Pricing
+                  </a>
+                  <a href="/#demo" className="block hover:text-charcoal-500">
+                    Demo
+                  </a>
+                </div>
+              </div>
+
+              <div>
+                <p className="mb-3 font-semibold text-charcoal-500">Pages</p>
+                <div className="space-y-2.5 text-slate-700">
+                  <Link to="/" className="block hover:text-charcoal-500">
+                    Home
+                  </Link>
+                  <Link to="/demo" className="block hover:text-charcoal-500">
+                    Demo Page
+                  </Link>
+                  <Link to="/pricing" className="block hover:text-charcoal-500">
+                    Pricing Page
+                  </Link>
+                </div>
+              </div>
+
+              <div>
+                <p className="mb-3 font-semibold text-charcoal-500">Support</p>
+                <div className="space-y-2.5 text-slate-700">
+                  <a href={env.FEEDBACK_URL} target="_blank" rel="noreferrer" className="block hover:text-charcoal-500">
+                    Feedback
+                  </a>
+                  <a href={env.WAITLIST_URL} target="_blank" rel="noreferrer" className="block hover:text-charcoal-500">
+                    Waitlist
+                  </a>
+                </div>
               </div>
             </div>
-            <div>
-              <h4 className="font-semibold text-slate-900 mb-2">Company</h4>
-              <div className="space-y-2">
-                <a
-                  href="#"
-                  className="block text-slate-800 hover:text-slate-900 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 rounded"
-                  aria-label="Learn about us"
-                >
-                  About Us
+          </div>
+
+          <div>
+            <div className="rounded-3xl border border-slate-200 bg-[#f7f4ed] p-6">
+              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-slate-600">Get started</p>
+              <p className="mt-3 text-sm leading-relaxed text-slate-700 sm:text-base">
+                Install the extension and clean your first page in under a minute.
+              </p>
+
+              <button
+                onClick={handleWaitlistClick}
+                className="group mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full bg-charcoal-500 px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-charcoal-400"
+              >
+                Join Waitlist
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+              </button>
+
+              <div className="mt-5 flex items-center gap-3 text-slate-600">
+                <a href={env.SITE_URL} target="_blank" rel="noreferrer" className="hover:text-charcoal-500" aria-label="PromptReady website">
+                  <MessageCircle className="h-5 w-5" />
                 </a>
-                <a
-                  href="#"
-                  className="block text-slate-800 hover:text-slate-900 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 rounded"
-                  aria-label="Read our blog"
-                >
-                  Blog
-                </a>
-              </div>
-            </div>
-            <div>
-              <h4 className="font-semibold text-slate-900 mb-2">
-                Resources
-              </h4>
-              <div className="space-y-2">
-                <a
-                  href="#"
-                  className="block text-slate-800 hover:text-slate-900 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 rounded"
-                  aria-label="View documentation"
-                >
-                  Documentation
-                </a>
-                <a
-                  href="#"
-                  className="block text-slate-800 hover:text-slate-900 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 rounded"
-                  aria-label="Get support"
-                >
-                  Support
+                <a href={env.SITE_URL} target="_blank" rel="noreferrer" className="hover:text-charcoal-500" aria-label="PromptReady GitHub">
+                  <Github className="h-5 w-5" />
                 </a>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Get Started section - Primary CTA */}
-        <div className="lg:col-span-1">
-          <h3 className="mb-4 text-lg font-bold text-slate-900">
-            Get Started
-          </h3>
-          <p className="mb-6 text-sm text-slate-700">
-            Available as browser extension
-          </p>
-          <div className="space-y-3 mb-6">
-            <a
-              href="#"
-              className="flex items-center gap-3 rounded-lg border-2 border-slate-500 bg-transparent px-4 py-3 text-slate-800 hover:bg-slate-900 hover:text-white hover:border-slate-900 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2"
-              aria-label="Download Chrome Extension"
-            >
-              <svg
-                className="h-5 w-5"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                aria-hidden="true"
-              >
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
-              </svg>
-              <span className="font-medium">Chrome Extension</span>
-            </a>
-            <a
-              href="#"
-              className="flex items-center gap-3 rounded-lg border-2 border-slate-500 bg-transparent px-4 py-3 text-slate-800 hover:bg-slate-900 hover:text-white hover:border-slate-900 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2"
-              aria-label="Download Firefox Add-on"
-            >
-              <svg
-                className="h-5 w-5"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                aria-hidden="true"
-              >
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
-              </svg>
-              <span className="font-medium">Firefox Add-on</span>
-            </a>
-          </div>
-
-          {/* Trust badge with improved contrast */}
-          <div className="inline-flex items-center gap-2 rounded-full bg-green-100 px-3 py-1.5 text-xs font-medium text-green-900">
-            <svg
-              className="h-3 w-3"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              aria-hidden="true"
-            >
-              <path
-                fillRule="evenodd"
-                d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
-                clipRule="evenodd"
-              />
-            </svg>
-            Privacy-First by Design
+        <div className="mt-10 border-t border-slate-200 pt-6 text-sm text-slate-600 sm:flex sm:items-center sm:justify-between">
+          <p>© {new Date().getFullYear()} PromptReady. All rights reserved.</p>
+          <div className="mt-3 flex gap-5 sm:mt-0">
+            <Link to="/" className="hover:text-charcoal-500">
+              Privacy
+            </Link>
+            <Link to="/" className="hover:text-charcoal-500">
+              Terms
+            </Link>
           </div>
         </div>
       </div>
-
-      {/* Bottom section with improved contrast and accessibility */}
-      <div className="mt-12 flex flex-col items-center justify-between pt-8 sm:flex-row">
-        <div className="mb-4 flex space-x-6 sm:mb-0">
-          <a
-            href="#"
-            className="text-sm text-slate-700 hover:text-slate-900 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 rounded"
-            aria-label="Read our privacy policy"
-          >
-            Privacy Policy
-          </a>
-          <a
-            href="#"
-            className="text-sm text-slate-700 hover:text-slate-900 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 rounded"
-            aria-label="Read our terms of service"
-          >
-            Terms of Service
-          </a>
-          <a
-            href="#"
-            className="text-sm text-slate-700 hover:text-slate-900 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 rounded"
-            aria-label="Contact us"
-          >
-            Contact
-          </a>
-        </div>
-
-        <div className="mb-4 text-center sm:mb-0">
-          <p className="text-sm text-slate-600">
-            © 2025 PromptReady - Making web content extraction simple and powerful
-          </p>
-        </div>
-
-        {/* Social icons with improved accessibility */}
-        <div className="flex space-x-4" role="list" aria-label="Social media links">
-          <a
-            href="#"
-            className="text-slate-500 hover:text-slate-700 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 rounded"
-            title="Follow on Twitter"
-            aria-label="Follow PromptReady on Twitter"
-          >
-            <Twitter className="h-5 w-5" />
-          </a>
-          <a
-            href="#"
-            className="text-slate-500 hover:text-slate-700 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 rounded"
-            title="Connect on LinkedIn"
-            aria-label="Connect with PromptReady on LinkedIn"
-          >
-            <Linkedin className="h-5 w-5" />
-          </a>
-          <a
-            href="#"
-            className="text-slate-500 hover:text-slate-700 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 rounded"
-            title="Contribute on GitHub"
-            aria-label="Contribute to PromptReady on GitHub"
-          >
-            <Github className="h-5 w-5" />
-          </a>
-          <a
-            href="#"
-            className="text-slate-500 hover:text-slate-700 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 rounded"
-            title="Join our Discord"
-            aria-label="Join PromptReady Discord community"
-          >
-            <MessageCircle className="h-5 w-5" />
-          </a>
-        </div>
-      </div>
-    </div>
-  </footer>
-);
+    </footer>
+  );
+};
 
 export default Footer;
