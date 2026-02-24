@@ -67,7 +67,7 @@ const FlowProgressIndicator: React.FC = () => {
   return (
     <div className="fixed bottom-3 left-1/2 z-40 -translate-x-1/2 sm:bottom-6">
       <motion.div
-        className="scale-95 rounded-full border border-slate-200 bg-white/95 px-4 py-2 shadow-lg backdrop-blur-sm sm:scale-100 sm:px-6 sm:py-3"
+        className="scale-95 rounded-full border border-brand-border bg-brand-surface/95 px-4 py-2 shadow-md sm:scale-100 sm:px-6 sm:py-3"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5 }}
@@ -89,16 +89,16 @@ const FlowProgressIndicator: React.FC = () => {
                   <div
                     className={`relative flex h-8 w-8 items-center justify-center rounded-full transition-all duration-200 ${
                       isActive
-                        ? 'bg-emerald-500 text-white'
+                        ? 'bg-brand-accent text-white'
                         : isCompleted
-                        ? 'bg-emerald-500/85 text-white'
-                        : 'bg-slate-200 text-slate-600'
+                        ? 'bg-brand-accent/85 text-white'
+                        : 'bg-brand-surface-soft text-brand-muted'
                     } ${isClickable ? 'hover:scale-105' : 'opacity-60'}`}
                   >
                     <Icon className="h-4 w-4" />
                     {isActive && (
                       <motion.div
-                        className="absolute inset-0 rounded-full border-2 border-emerald-400"
+                        className="absolute inset-0 rounded-full border-2 border-brand-accent"
                         initial={{ scale: 1 }}
                         animate={{ scale: [1, 1.2, 1] }}
                         transition={{ duration: 2, repeat: Infinity }}
@@ -110,11 +110,11 @@ const FlowProgressIndicator: React.FC = () => {
                     <div
                       className={`text-xs font-medium transition-colors ${
                         isActive
-                          ? 'text-emerald-600'
+                          ? 'text-brand-accent'
                           : isCompleted
-                            ? 'text-emerald-600'
-                            : 'text-slate-600'
-                      } ${isClickable ? 'hover:text-emerald-500' : ''}`}
+                            ? 'text-brand-accent'
+                            : 'text-brand-muted'
+                      } ${isClickable ? 'hover:text-brand-accent-hover' : ''}`}
                     >
                       {step.label}
                     </div>
@@ -124,7 +124,7 @@ const FlowProgressIndicator: React.FC = () => {
                 {index < steps.length - 1 && (
                   <div
                     className={`mx-3 h-0.5 w-8 transition-colors ${
-                      isCompleted ? 'bg-emerald-500' : 'bg-slate-200'
+                      isCompleted ? 'bg-brand-accent' : 'bg-brand-surface-soft'
                     }`}
                   />
                 )}

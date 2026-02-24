@@ -6,7 +6,7 @@ import { env } from '../config';
 
 const ThankYou: React.FC = () => {
   return (
-    <section className="relative bg-white">
+    <section className="relative bg-brand-bg">
       <div className="relative z-10 mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
         <div className="mb-8 text-center">
           {/* Logo */}
@@ -14,10 +14,10 @@ const ThankYou: React.FC = () => {
             <Logo size="xl" />
           </div>
 
-          <h1 className="mb-3 text-4xl font-bold tracking-tight text-slate-900">
+          <h1 className="mb-3 text-4xl font-bold tracking-tight text-brand-ink">
             You're on the list — thank you!
           </h1>
-          <p className="mx-auto max-w-2xl text-slate-600">
+          <p className="mx-auto max-w-2xl text-brand-muted">
             Two quick ways to help shape PromptReady while we build:
           </p>
         </div>
@@ -30,16 +30,16 @@ const ThankYou: React.FC = () => {
             onClick={() =>
               trackEvent('thankyou_interview_click', { destination_url: env.INTERVIEW_URL })
             }
-            className="group rounded-2xl border border-slate-200 bg-gradient-to-b from-white to-slate-50 p-6 shadow-sm transition hover:border-blue-300 hover:shadow-md"
+            className="group rounded-2xl border border-brand-border bg-brand-surface p-6 shadow-sm transition hover:border-brand-accent/40 hover:shadow-md"
           >
-            <div className="mb-2 text-xs uppercase tracking-wide text-slate-500">
+            <div className="mb-2 text-xs uppercase tracking-wide text-brand-muted">
               Get early access
             </div>
-            <div className="mb-1 flex items-center gap-2 text-lg font-semibold text-slate-900">
-              <Calendar className="h-5 w-5 text-blue-600" />
+            <div className="mb-1 flex items-center gap-2 text-lg font-semibold text-brand-ink">
+              <Calendar className="h-5 w-5 text-brand-accent" />
               15-minute interview
             </div>
-            <p className="text-sm text-slate-600">
+            <p className="text-sm text-brand-muted">
               Share your workflow and get prioritized access.
             </p>
           </a>
@@ -49,23 +49,23 @@ const ThankYou: React.FC = () => {
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => trackEvent('thankyou_feedback_click', { destination_url: env.FEEDBACK_URL })}
-            className="group rounded-2xl border border-slate-200 bg-gradient-to-b from-white to-slate-50 p-6 shadow-sm transition hover:border-blue-300 hover:shadow-md"
+            className="group rounded-2xl border border-brand-border bg-brand-surface p-6 shadow-sm transition hover:border-brand-accent/40 hover:shadow-md"
           >
-            <div className="mb-2 text-xs uppercase tracking-wide text-slate-500">
+            <div className="mb-2 text-xs uppercase tracking-wide text-brand-muted">
               Share feedback
             </div>
-            <div className="mb-1 flex items-center gap-2 text-lg font-semibold text-slate-900">
-              <MessageSquare className="h-5 w-5 text-blue-600" />
+            <div className="mb-1 flex items-center gap-2 text-lg font-semibold text-brand-ink">
+              <MessageSquare className="h-5 w-5 text-brand-accent" />
               2-minute survey
             </div>
-            <p className="text-sm text-slate-600">Tell us what you need most to make this great.</p>
+            <p className="text-sm text-brand-muted">Tell us what you need most to make this great.</p>
           </a>
         </div>
 
         <div className="mt-8 text-center">
           <a
             href="/"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-blue-700 hover:text-blue-800"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-brand-accent hover:text-brand-accent-hover"
           >
             <ArrowLeft className="h-4 w-4" />
             Back to home

@@ -14,29 +14,26 @@ const ProblemSolution: React.FC<ProblemSolutionProps> = ({ onPrimaryAction }) =>
           initial={{ opacity: 0, scale: 0.98 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          className="relative overflow-hidden rounded-[2.25rem] border border-slate-200 bg-gradient-to-br from-white to-[#f4fbf9] px-6 py-10 shadow-[0_18px_70px_-34px_rgba(38,70,83,0.45)] sm:px-10 sm:py-14"
+          className="relative overflow-hidden rounded-[2.25rem] border border-brand-border bg-brand-surface px-6 py-10 shadow-[0_18px_70px_-34px_rgba(0,0,0,0.32)] sm:px-10 sm:py-14"
         >
-          <div className="pointer-events-none absolute -right-20 top-0 h-56 w-56 rounded-full bg-persian-green-200/40 blur-3xl" />
-          <div className="pointer-events-none absolute -left-20 bottom-0 h-56 w-56 rounded-full bg-sandy-brown-200/45 blur-3xl" />
-
           <div className="relative z-10 text-center">
-            <h2 className="text-3xl font-semibold leading-tight text-charcoal-500 sm:text-4xl lg:text-5xl">
+            <h2 className="linear-display text-[clamp(2.6rem,7vw,4.8rem)] leading-[0.94] text-brand-ink">
               Stop spending time fixing text before you can think.
             </h2>
-            <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-slate-700 sm:text-lg">
+            <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-brand-muted sm:text-lg">
               PromptReady removes cleanup work so you can focus on the actual question you want to
               solve.
             </p>
 
             <button
               onClick={onPrimaryAction}
-              className="group mt-8 inline-flex items-center gap-2 rounded-full bg-charcoal-500 px-8 py-3.5 text-base font-semibold text-white shadow-lg transition-all duration-200 hover:-translate-y-0.5 hover:bg-charcoal-400"
+              className="group mt-8 inline-flex items-center gap-2 rounded-full border border-brand-accent-hover bg-brand-accent px-8 py-3.5 text-base font-semibold text-white shadow-lg transition-all duration-200 hover:-translate-y-0.5 hover:bg-brand-accent-hover"
             >
               Get PromptReady Free
               <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-0.5" />
             </button>
 
-            <p className="mt-4 text-sm text-slate-600">No card required. Installs in under 30 seconds.</p>
+            <p className="mt-4 text-sm text-brand-muted">No card required. Installs in under 30 seconds.</p>
           </div>
         </motion.div>
       </div>

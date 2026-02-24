@@ -19,8 +19,8 @@ const NotFoundPage: React.FC = () => {
         <meta name="robots" content="noindex, nofollow" />
       </Helmet>
 
-      <main className="min-h-screen bg-gradient-to-b from-white to-blue-50 flex items-center justify-center">
-        <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8 text-center">
+      <main className="flex min-h-screen items-center justify-center bg-brand-bg">
+        <div className="mx-auto max-w-2xl px-4 text-center sm:px-6 lg:px-8">
           {/* Logo */}
           <motion.div
             className="mb-8 flex justify-center"
@@ -37,26 +37,26 @@ const NotFoundPage: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
           >
-            <div className="mx-auto mb-6 flex h-24 w-24 items-center justify-center rounded-full bg-blue-100">
-              <Search className="h-12 w-12 text-blue-600" />
+            <div className="mx-auto mb-6 flex h-24 w-24 items-center justify-center rounded-full bg-brand-accent/10">
+              <Search className="h-12 w-12 text-brand-accent" />
             </div>
 
-            <h1 className="mb-4 text-6xl font-bold text-slate-900">404</h1>
-            <h2 className="mb-4 text-2xl font-semibold text-slate-900">Page Not Found</h2>
-            <p className="text-lg text-slate-700">
+            <h1 className="mb-4 text-6xl font-bold text-brand-ink">404</h1>
+            <h2 className="mb-4 text-2xl font-semibold text-brand-ink">Page Not Found</h2>
+            <p className="text-lg text-brand-muted">
               Sorry, we couldn't find the page you're looking for. It might have been moved, deleted, or you entered the wrong URL.
             </p>
           </motion.div>
 
           <motion.div
-            className="flex flex-col sm:flex-row gap-4 justify-center"
+            className="flex flex-col justify-center gap-4 sm:flex-row"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
           >
             <Link
               to="/"
-              className="inline-flex items-center gap-2 rounded-full bg-blue-600 px-6 py-3 text-base font-semibold text-white shadow-lg transition-colors hover:bg-blue-700"
+              className="inline-flex items-center gap-2 rounded-full bg-brand-accent px-6 py-3 text-base font-semibold text-white shadow-lg transition-colors hover:bg-brand-accent-hover"
             >
               <Home className="h-4 w-4" />
               Go to Homepage
@@ -64,7 +64,7 @@ const NotFoundPage: React.FC = () => {
             
             <button
               onClick={() => window.history.back()}
-              className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-6 py-3 text-base font-semibold text-slate-700 shadow-sm transition-colors hover:bg-slate-50"
+              className="inline-flex items-center gap-2 rounded-full border border-brand-border bg-brand-surface px-6 py-3 text-base font-semibold text-brand-muted shadow-sm transition-colors hover:bg-brand-surface-soft"
             >
               <ArrowLeft className="h-4 w-4" />
               Go Back
@@ -72,14 +72,21 @@ const NotFoundPage: React.FC = () => {
           </motion.div>
 
           <motion.div
-            className="mt-12 text-sm text-slate-600"
+            className="mt-12 text-sm text-brand-muted"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
           >
             <p>
-              Need help? <Link to="/" className="text-blue-600 hover:text-blue-700 font-medium">Contact us</Link> or visit our{' '}
-              <Link to="/" className="text-blue-600 hover:text-blue-700 font-medium">homepage</Link>.
+              Need help?{' '}
+              <Link to="/" className="font-medium text-brand-accent hover:text-brand-accent-hover">
+                Contact us
+              </Link>{' '}
+              or visit our{' '}
+              <Link to="/" className="font-medium text-brand-accent hover:text-brand-accent-hover">
+                homepage
+              </Link>
+              .
             </p>
           </motion.div>
         </div>

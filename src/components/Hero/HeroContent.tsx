@@ -52,7 +52,7 @@ const HeroContent: React.FC<HeroContentProps> = ({ spring }) => {
       </motion.div>
 
       <motion.h1
-        className="mb-4 text-5xl font-bold leading-tight text-slate-900 sm:text-6xl lg:text-7xl"
+        className="mb-4 text-5xl font-bold leading-tight text-brand-ink sm:text-6xl lg:text-7xl"
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ ...spring, delay: 0.1 }}
@@ -61,7 +61,7 @@ const HeroContent: React.FC<HeroContentProps> = ({ spring }) => {
       </motion.h1>
 
       <motion.p
-        className="mx-auto mb-6 max-w-4xl text-lg font-medium text-slate-700 sm:text-xl"
+        className="mx-auto mb-6 max-w-4xl text-lg font-medium text-brand-muted sm:text-xl"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ ...spring, delay: 0.18 }}

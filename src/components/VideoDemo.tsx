@@ -94,10 +94,10 @@ const VideoDemo: React.FC = () => {
     <section id="demo" className="pb-24 pt-20 sm:pb-24 sm:pt-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-10 text-center sm:mb-12">
-          <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl lg:text-5xl">
+          <h2 className="linear-display text-[clamp(2.5rem,6.8vw,4.4rem)] leading-[0.94] text-brand-ink">
             See the transformation in one pass
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-slate-300 sm:text-lg">
+          <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-brand-muted sm:text-lg">
             Preview how PromptReady turns noisy web content into clean, source-aware output.
           </p>
         </div>
@@ -115,8 +115,8 @@ const VideoDemo: React.FC = () => {
                 }}
                 className={`rounded-full px-4 py-2 text-sm font-semibold transition-colors ${
                   isActive
-                    ? 'bg-indigo-500 text-white'
-                    : 'border border-slate-200 bg-white text-slate-700 hover:bg-slate-100'
+                    ? 'bg-brand-accent text-white'
+                    : 'border border-brand-border bg-brand-surface text-brand-muted hover:bg-brand-surface-soft'
                 }`}
               >
                 {SCENARIOS[key].label}
@@ -125,25 +125,25 @@ const VideoDemo: React.FC = () => {
           })}
         </div>
 
-        <div className="rounded-3xl border border-slate-200 bg-white/90 p-4 shadow-[0_20px_85px_-44px_rgba(38,70,83,0.55)] sm:p-6 lg:p-8">
+        <div className="rounded-3xl border border-brand-border bg-brand-surface p-4 shadow-[0_20px_85px_-44px_rgba(0,0,0,0.35)] sm:p-6 lg:p-8">
           <div className="grid gap-4 md:grid-cols-2 lg:gap-6">
-            <article className="rounded-2xl border border-slate-200 bg-[#fff8f4] p-4 sm:p-5">
-              <div className="mb-3 flex items-center justify-between text-xs font-semibold uppercase tracking-[0.16em] text-slate-600">
+            <article className="rounded-2xl border border-brand-border bg-brand-surface-soft p-4 sm:p-5">
+              <div className="mb-3 flex items-center justify-between text-xs font-semibold uppercase tracking-[0.16em] text-brand-muted">
                 <span>Raw input</span>
                 <span className="truncate">{current.source}</span>
               </div>
-              <pre className="min-h-[220px] whitespace-pre-wrap rounded-xl bg-white/90 p-3 font-mono text-xs leading-relaxed text-slate-700 sm:text-sm">
+              <pre className="min-h-[220px] whitespace-pre-wrap rounded-xl bg-brand-surface p-3 font-mono text-xs leading-relaxed text-brand-muted sm:text-sm">
                 {current.raw}
               </pre>
             </article>
 
-            <article className="rounded-2xl border border-persian-green-200 bg-[#eff9f6] p-4 sm:p-5">
+            <article className="rounded-2xl border border-brand-success/30 bg-brand-surface-soft p-4 sm:p-5">
               <div className="mb-3 flex items-center justify-between">
-                <div className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-600">
+                <div className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-muted">
                   PromptReady output
                 </div>
                 {stepIndex === STEP_LABELS.length - 1 ? (
-                  <span className="inline-flex items-center gap-1 rounded-full border border-persian-green-300 bg-white px-2.5 py-1 text-xs font-semibold text-persian-green-600">
+                  <span className="inline-flex items-center gap-1 rounded-full border border-brand-success/30 bg-brand-surface px-2.5 py-1 text-xs font-semibold text-brand-success">
                     <CheckCircle2 className="h-3.5 w-3.5" />
                     Ready
                   </span>
@@ -156,7 +156,7 @@ const VideoDemo: React.FC = () => {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
-                  className="min-h-[220px] whitespace-pre-wrap rounded-xl border border-persian-green-200/80 bg-white/95 p-3 font-mono text-xs leading-relaxed text-charcoal-500 sm:text-sm"
+                  className="min-h-[220px] whitespace-pre-wrap rounded-xl border border-brand-success/25 bg-brand-surface p-3 font-mono text-xs leading-relaxed text-brand-ink sm:text-sm"
                 >
                   {currentFrame}
                 </motion.pre>
@@ -173,8 +173,8 @@ const VideoDemo: React.FC = () => {
                     key={label}
                     className={`rounded-full px-3 py-1.5 text-xs font-semibold sm:text-sm ${
                       active
-                        ? 'bg-indigo-500 text-white'
-                        : 'border border-slate-200 bg-white text-slate-600'
+                        ? 'bg-brand-accent text-white'
+                        : 'border border-brand-border bg-brand-surface text-brand-muted'
                     }`}
                   >
                     {index + 1}. {label}
@@ -187,7 +187,7 @@ const VideoDemo: React.FC = () => {
               <button
                 onClick={runDemo}
                 disabled={isRunning}
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-indigo-500 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-indigo-400 disabled:cursor-not-allowed disabled:opacity-75"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-brand-accent-hover bg-brand-accent px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-accent-hover disabled:cursor-not-allowed disabled:opacity-75"
               >
                 {isRunning ? <Loader2 className="h-4 w-4 animate-spin" /> : <Play className="h-4 w-4" />}
                 {isRunning ? 'Running...' : 'Run Demo'}
@@ -195,7 +195,7 @@ const VideoDemo: React.FC = () => {
 
               <button
                 onClick={resetDemo}
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-2.5 text-sm font-semibold text-slate-700 transition-colors hover:bg-slate-100"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-brand-border bg-brand-surface px-5 py-2.5 text-sm font-semibold text-brand-muted transition-colors hover:bg-brand-surface-soft"
               >
                 <RotateCcw className="h-4 w-4" />
                 Reset
@@ -204,7 +204,7 @@ const VideoDemo: React.FC = () => {
               <Link
                 to="/demo"
                 onClick={() => trackUserEngagement('demo_to_full_page', 'video_demo', { scenario })}
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-charcoal-200 bg-[#f7f4ed] px-5 py-2.5 text-sm font-semibold text-charcoal-500 transition-colors hover:bg-[#efe9dc]"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-brand-border bg-brand-surface-soft px-5 py-2.5 text-sm font-semibold text-brand-ink transition-colors hover:bg-brand-surface-soft"
               >
                 See full flow
                 <ArrowRight className="h-4 w-4" />

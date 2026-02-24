@@ -1,24 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import logoSvg from '../../assets/logo.svg';
-import logoWhiteSvg from '../../assets/logo-white.svg';
+import { motion } from 'framer-motion';
 
 interface LogoProps {
-  /** Size variant for the logo */
   size?: 'sm' | 'md' | 'lg' | 'xl';
-  /** Whether to show the text alongside the logo */
   showText?: boolean;
-  /** Whether the logo should be clickable (links to home) */
   clickable?: boolean;
-  /** Additional CSS classes */
   className?: string;
-  /** Text color variant */
   textColor?: 'light' | 'dark';
-  /** Logo color variant */
   logoColor?: 'dark' | 'light' | 'auto';
-  /** Background style */
   background?: 'none' | 'subtle' | 'card';
-  /** Theme context for auto logo color detection */
   theme?: 'light' | 'dark';
 }
 
@@ -30,77 +21,111 @@ const Logo: React.FC<LogoProps> = ({
   textColor = 'dark',
   logoColor = 'auto',
   background = 'none',
-  theme
+  theme,
 }) => {
-  // Size configurations
   const sizeConfig = {
-    sm: {
-      logo: 'h-5 w-5',
-      text: 'text-base font-medium',
-      gap: 'gap-2'
-    },
-    md: {
-      logo: 'h-6 w-6',
-      text: 'text-2xl font-medium',
-      gap: 'gap-3'
-    },
-    lg: {
-      logo: 'h-8 w-8',
-      text: 'text-2xl font-semibold',
-      gap: 'gap-3'
-    },
-    xl: {
-      logo: 'h-12 w-12',
-      text: 'text-4xl font-semibold',
-      gap: 'gap-4'
-    }
+    sm: { logo: 'w-5 h-5', text: 'linear-display text-xl font-black', gap: 'gap-2', strokeWidth: '4' },
+    md: { logo: 'w-6 h-6', text: 'linear-display text-2xl font-black', gap: 'gap-3', strokeWidth: '3.5' },
+    lg: { logo: 'w-8 h-8', text: 'linear-display text-3xl font-black', gap: 'gap-3', strokeWidth: '3' },
+    xl: { logo: 'w-12 h-12', text: 'linear-display text-5xl font-black', gap: 'gap-4', strokeWidth: '2.5' },
   };
 
-  // Text color configurations
   const textColorConfig = {
     light: 'text-white',
-    dark: 'text-slate-900'
+    dark: 'text-brand-ink',
   };
 
-  // Background configurations
   const backgroundConfig = {
     none: '',
-    subtle: 'bg-white/80 backdrop-blur-sm px-3 py-1.5 rounded-full border border-slate-200 shadow-sm',
-    card: 'bg-white px-4 py-2 rounded-full border border-slate-200 shadow-md'
+    subtle: 'rounded-full border border-brand-border bg-brand-surface/80 px-3 py-1.5 shadow-sm backdrop-blur-sm',
+    card: 'rounded-full border border-brand-border bg-brand-surface px-4 py-2 shadow-md',
   };
 
   const config = sizeConfig[size];
 
-  // Auto-detect logo color based on theme or explicit setting
   const getLogoColor = () => {
     if (logoColor === 'auto') {
-      // Auto-detect based on theme or background
       if (theme === 'dark') return 'light';
-      if (textColor === 'light') return 'light'; // If text is light, likely dark background
+      if (textColor === 'light') return 'light';
       return 'dark';
     }
     return logoColor;
   };
 
   const finalLogoColor = getLogoColor();
-  const logoSrc = finalLogoColor === 'light' ? logoWhiteSvg : logoSvg;
+  const strokeColor = finalLogoColor === 'light' ? '#ffffff' : '#000000';
 
-  // CSS filter approach as fallback (inverts black to white)
-  const logoFilter = finalLogoColor === 'light' && logoSrc === logoSvg
-    ? 'brightness(0) invert(1)'
-    : '';
+  const draw = {
+    hidden: { pathLength: 0, opacity: 0 },
+    visible: (i: number) => {
+      const delay = 0.1 + i * 0.1;
+      return {
+        pathLength: 1,
+        opacity: 1,
+        transition: {
+          pathLength: { delay, type: "spring", duration: 1.5, bounce: 0 },
+          opacity: { delay, duration: 0.01 }
+        }
+      };
+    }
+  };
+
+  // Convert the text into letter paths or just animate standard text with a handwritten feel
+  const textAnimation = {
+    hidden: { opacity: 0, y: 10, filter: 'blur(4px)' },
+    visible: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      filter: 'blur(0px)',
+      transition: { delay: 0.5 + i * 0.05, duration: 0.4, ease: "easeOut" }
+    })
+  };
 
   const logoElement = (
     <div className={`flex items-center ${config.gap} ${backgroundConfig[background]} ${className}`}>
-      <img
-        src={logoSrc}
-        alt="PromptReady"
-        className={config.logo}
-        style={logoFilter ? { filter: logoFilter } : undefined}
-      />
+      <motion.svg 
+        xmlns="http://www.w3.org/2000/svg" 
+        viewBox="0 0 60 60" 
+        fill="none" 
+        className={`${config.logo} shrink-0 block`}
+        initial="hidden"
+        animate="visible"
+      >
+        {/* Sparkles (paths broken up for animation) - thicker strokes for bold look */}
+        <motion.path stroke={strokeColor} strokeWidth={config.strokeWidth} strokeLinecap="round" d="M1.3 20.1 l8.4 -0.1" variants={draw} custom={0} />
+        <motion.path stroke={strokeColor} strokeWidth={config.strokeWidth} strokeLinecap="round" d="M26.7 19.8 l8.4 -0.1" variants={draw} custom={1} />
+        <motion.path stroke={strokeColor} strokeWidth={config.strokeWidth} strokeLinecap="round" d="M19.8 35.4 l-0.1 -8.4" variants={draw} custom={2} />
+        <motion.path stroke={strokeColor} strokeWidth={config.strokeWidth} strokeLinecap="round" d="M19.5 10 l-0.1 -8.4" variants={draw} custom={3} />
+        <motion.path stroke={strokeColor} strokeWidth={config.strokeWidth} strokeLinecap="round" d="M7.4 31.6 l5.9 -6.0" variants={draw} custom={4} />
+        <motion.path stroke={strokeColor} strokeWidth={config.strokeWidth} strokeLinecap="round" d="M25.1 13.4 l5.9 -6.0" variants={draw} custom={5} />
+        <motion.path stroke={strokeColor} strokeWidth={config.strokeWidth} strokeLinecap="round" d="M13.1 11.5 l6.0 5.9" variants={draw} custom={6} />
+        
+        {/* Cursor path - animated drawing - thicker strokes */}
+        <motion.path 
+          stroke={strokeColor} 
+          strokeLinecap="round" 
+          strokeLinejoin="round" 
+          strokeWidth={Number(config.strokeWidth) + 0.5} 
+          d="M24.116 25.572a.931.931 0 0 1 1.225-1.224L55.44 36.575a.94.94 0 0 1-.118 1.781L43.8 41.33a3.763 3.763 0 0 0-2.705 2.7l-2.97 11.523a.94.94 0 0 1-1.782.118L24.116 25.572Z"
+          variants={draw} 
+          custom={7}
+        />
+      </motion.svg>
+      
       {showText && (
-        <span className={`${config.text} ${textColorConfig[textColor]}`}>
-          PromptReady
+        <span className={`flex ${config.text} ${textColorConfig[textColor]} leading-none tracking-tight font-black`}>
+          {"PROMPTREADY".split("").map((letter, i) => (
+            <motion.span 
+              key={i} 
+              custom={i}
+              initial="hidden"
+              animate="visible"
+              variants={textAnimation}
+              className="inline-block"
+            >
+              {letter}
+            </motion.span>
+          ))}
         </span>
       )}
     </div>
@@ -108,8 +133,10 @@ const Logo: React.FC<LogoProps> = ({
 
   if (clickable) {
     return (
-      <Link to="/" className="inline-flex">
-        {logoElement}
+      <Link to="/" className="inline-flex group">
+        <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+          {logoElement}
+        </motion.div>
       </Link>
     );
   }

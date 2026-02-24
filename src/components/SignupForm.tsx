@@ -23,13 +23,13 @@ const SignupForm: React.FC = () => {
 
   return (
     <div id="signup" className="mx-auto max-w-2xl">
-      <div className="rounded-2xl border bg-white p-8 shadow-lg">
+      <div className="rounded-2xl border border-brand-border bg-brand-surface p-8 shadow-lg">
         <div className="mb-8 text-center">
-          <h3 className="mb-2 text-2xl font-bold text-gray-900">Get Exclusive Early Access</h3>
-          <p className="text-gray-600">
+          <h3 className="mb-2 text-2xl font-bold text-brand-ink">Get Exclusive Early Access</h3>
+          <p className="text-brand-muted">
             Join the waitlist and be the first to experience PromptReady.
           </p>
-          <div className="mt-4 inline-flex animate-pulse items-center rounded-full bg-red-100 px-4 py-2 text-sm font-medium text-red-800">
+          <div className="mt-4 inline-flex animate-pulse items-center rounded-full bg-brand-accent/10 px-4 py-2 text-sm font-medium text-brand-accent">
             <Clock className="mr-2 h-4 w-4" />
             Limited Spots - Sign Up Before We Launch!
           </div>
@@ -37,7 +37,7 @@ const SignupForm: React.FC = () => {
         <form onSubmit={handleSignup} className="space-y-6">
           <div className="grid gap-4 md:grid-cols-2">
             <div>
-              <label htmlFor="name" className="mb-2 block text-sm font-medium text-gray-700">
+              <label htmlFor="name" className="mb-2 block text-sm font-medium text-brand-ink">
                 Full Name
               </label>
               <input
@@ -46,12 +46,12 @@ const SignupForm: React.FC = () => {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 required
-                className="w-full rounded-lg border border-gray-300 px-4 py-3 transition-all focus:border-transparent focus:ring-2 focus:ring-blue-500"
+                className="w-full rounded-lg border border-brand-border px-4 py-3 transition-all focus:border-brand-accent focus:outline-none focus:ring-2 focus:ring-brand-accent/30"
                 placeholder="Enter your full name"
               />
             </div>
             <div>
-              <label htmlFor="email" className="mb-2 block text-sm font-medium text-gray-700">
+              <label htmlFor="email" className="mb-2 block text-sm font-medium text-brand-ink">
                 Email Address
               </label>
               <input
@@ -60,7 +60,7 @@ const SignupForm: React.FC = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="w-full rounded-lg border border-gray-300 px-4 py-3 transition-all focus:border-transparent focus:ring-2 focus:ring-blue-500"
+                className="w-full rounded-lg border border-brand-border px-4 py-3 transition-all focus:border-brand-accent focus:outline-none focus:ring-2 focus:ring-brand-accent/30"
                 placeholder="Enter your email"
               />
             </div>
@@ -68,7 +68,7 @@ const SignupForm: React.FC = () => {
           <button
             type="submit"
             disabled={signupStatus === 'submitting'}
-            className="w-full transform rounded-lg bg-blue-600 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-200 hover:scale-105 hover:bg-blue-700 disabled:transform-none disabled:cursor-not-allowed disabled:opacity-50"
+            className="w-full transform rounded-lg bg-brand-accent px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-200 hover:scale-105 hover:bg-brand-accent-hover disabled:transform-none disabled:cursor-not-allowed disabled:opacity-50"
           >
             {signupStatus === 'submitting' ? (
               <span className="flex items-center justify-center">

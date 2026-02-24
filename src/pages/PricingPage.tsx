@@ -37,18 +37,18 @@ const PricingPage: React.FC<PricingPageProps> = ({ onPrimaryAction }) => {
       </Helmet>
 
       <main>
-        <section className="px-4 pb-4 pt-24 text-center sm:px-6 sm:pb-8 sm:pt-32 lg:px-8 lg:pt-36">
+        <section className="px-4 pb-4 pt-36 text-center sm:px-6 sm:pb-8 sm:pt-44 lg:px-8 lg:pt-48">
           <motion.p
-            className="inline-flex items-center gap-2 rounded-full border border-persian-green-600 bg-persian-green-200 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-persian-green-900"
+            className="linear-kicker inline-flex items-center gap-2 rounded-full border border-brand-border bg-brand-surface px-4 py-1.5 text-[1.05rem] text-brand-muted"
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
           >
-            <Star className="h-3.5 w-3.5" />
+            <Star className="h-3.5 w-3.5 text-brand-accent" />
             Straightforward pricing
           </motion.p>
 
           <motion.h1
-            className="mx-auto mt-4 max-w-4xl text-3xl font-semibold leading-tight text-white sm:mt-5 sm:text-5xl lg:text-6xl"
+            className="linear-display mx-auto mt-4 max-w-5xl text-[clamp(3rem,8vw,5.8rem)] leading-[0.92] tracking-[0.01em] text-brand-ink sm:mt-5"
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.08 }}
@@ -57,7 +57,7 @@ const PricingPage: React.FC<PricingPageProps> = ({ onPrimaryAction }) => {
           </motion.h1>
 
           <motion.p
-            className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-slate-300 sm:mt-5 sm:text-lg"
+            className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-brand-muted sm:mt-5 sm:text-lg"
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.16 }}
@@ -73,37 +73,37 @@ const PricingPage: React.FC<PricingPageProps> = ({ onPrimaryAction }) => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.22 }}
           >
-            <article className="rounded-3xl border border-slate-200 bg-white/90 p-6 shadow-lg shadow-black/10">
-              <h3 className="text-lg font-semibold text-charcoal-500">Free</h3>
-              <ul className="mt-4 space-y-2.5 text-sm text-slate-700 sm:text-base">
+            <article className="rounded-3xl border border-brand-border bg-brand-surface p-6 shadow-[0_12px_32px_-20px_rgba(0,0,0,0.28)]">
+              <h3 className="linear-display text-[2rem] leading-none text-brand-ink">Free</h3>
+              <ul className="mt-4 space-y-2.5 text-sm text-brand-muted sm:text-base">
                 <li className="flex items-center gap-2">
-                  <Check className="h-4 w-4 text-persian-green-500" />
+                  <Check className="h-4 w-4 text-brand-success" />
                   Unlimited core clean exports
                 </li>
                 <li className="flex items-center gap-2">
-                  <Check className="h-4 w-4 text-persian-green-500" />
+                  <Check className="h-4 w-4 text-brand-success" />
                   Local-first privacy
                 </li>
                 <li className="flex items-center gap-2">
-                  <Check className="h-4 w-4 text-persian-green-500" />
+                  <Check className="h-4 w-4 text-brand-success" />
                   Citation footer support
                 </li>
               </ul>
             </article>
 
-            <article className="rounded-3xl border border-emerald-300/70 bg-[#fff7f1] p-6 shadow-[0_10px_30px_-18px_rgba(16,185,129,0.6)]">
-              <h3 className="text-lg font-semibold text-charcoal-500">Pro (optional)</h3>
-              <ul className="mt-4 space-y-2.5 text-sm text-slate-700 sm:text-base">
+            <article className="rounded-3xl border border-brand-accent/40 bg-brand-surface-soft p-6 shadow-[0_14px_34px_-22px_rgba(231,0,0,0.35)]">
+              <h3 className="linear-display text-[2rem] leading-none text-brand-ink">Pro (optional)</h3>
+              <ul className="mt-4 space-y-2.5 text-sm text-brand-muted sm:text-base">
                 <li className="flex items-center gap-2">
-                  <Check className="h-4 w-4 text-burnt-sienna-600" />
+                  <Check className="h-4 w-4 text-brand-accent" />
                   All free features
                 </li>
                 <li className="flex items-center gap-2">
-                  <Check className="h-4 w-4 text-burnt-sienna-600" />
+                  <Check className="h-4 w-4 text-brand-accent" />
                   Bundle templates and advanced options
                 </li>
                 <li className="flex items-center gap-2">
-                  <Check className="h-4 w-4 text-burnt-sienna-600" />
+                  <Check className="h-4 w-4 text-brand-accent" />
                   BYOK validation workflows
                 </li>
               </ul>
@@ -116,13 +116,15 @@ const PricingPage: React.FC<PricingPageProps> = ({ onPrimaryAction }) => {
         <FAQ />
 
         <section className="pb-20 pt-8 text-center sm:pt-12">
-          <h2 className="text-3xl font-semibold text-white sm:text-4xl">Want early access?</h2>
-          <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-slate-300 sm:text-lg">
+          <h2 className="linear-display text-[clamp(2.5rem,6.6vw,3.6rem)] leading-[0.95] text-brand-ink">
+            Want early access?
+          </h2>
+          <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-brand-muted sm:text-lg">
             Join now to get notified about upcoming releases and paid-tier launch details.
           </p>
           <button
             onClick={() => onPrimaryAction('PricingPage-Final-CTA')}
-            className="mt-6 inline-flex items-center gap-2 rounded-full bg-indigo-500 px-8 py-3.5 text-base font-semibold text-white transition-colors hover:bg-indigo-400"
+            className="mt-6 inline-flex items-center gap-2 rounded-full border border-brand-accent-hover bg-brand-accent px-8 py-3.5 text-base font-semibold text-white transition-colors hover:bg-brand-accent-hover"
           >
             Join the Waitlist
             <ArrowRight className="h-4 w-4" />

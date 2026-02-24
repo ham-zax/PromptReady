@@ -11,7 +11,7 @@ const HeroBadges: React.FC<HeroBadgesProps> = ({ spring }) => {
   return (
     <div className="mb-8 flex flex-wrap justify-center gap-3">
       <motion.span
-        className="inline-flex items-center gap-2 rounded-full bg-blue-600 px-4 py-2 text-xs font-semibold text-white shadow-sm"
+        className="inline-flex items-center gap-2 rounded-full bg-brand-ink px-4 py-2 text-xs font-semibold text-white shadow-sm"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ ...spring, delay: animations.delays.badge1 }}
@@ -20,7 +20,7 @@ const HeroBadges: React.FC<HeroBadgesProps> = ({ spring }) => {
         Client-side privacy
       </motion.span>
       <motion.span
-        className="inline-flex items-center gap-2 rounded-full bg-emerald-600 px-4 py-2 text-xs font-semibold text-white shadow-sm"
+        className="inline-flex items-center gap-2 rounded-full bg-brand-success px-4 py-2 text-xs font-semibold text-white shadow-sm"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ ...spring, delay: animations.delays.badge2 }}
@@ -29,7 +29,7 @@ const HeroBadges: React.FC<HeroBadgesProps> = ({ spring }) => {
         Blazingly fast
       </motion.span>
       <motion.span
-        className="inline-flex items-center gap-2 rounded-full bg-violet-600 px-4 py-2 text-xs font-semibold text-white shadow-sm"
+        className="inline-flex items-center gap-2 rounded-full bg-brand-accent px-4 py-2 text-xs font-semibold text-white shadow-sm"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ ...spring, delay: animations.delays.badge3 }}

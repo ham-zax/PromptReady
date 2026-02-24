@@ -30,34 +30,34 @@ const LandingNavigation: React.FC<LandingNavigationProps> = ({ onPrimaryAction }
   return (
     <motion.nav
       initial={false}
-      className={`fixed left-0 right-0 top-4 z-50 mx-auto max-w-5xl px-4 sm:px-6 lg:px-8`}
+      className="fixed left-0 right-0 top-3 z-50 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8"
     >
       <div
         className={`mx-auto rounded-full border transition-all duration-300 ${
           isScrolled
-            ? 'border-white/10 bg-black/40 px-4 py-2 shadow-2xl shadow-black/50 backdrop-blur-xl'
-            : 'border-transparent bg-transparent px-4 py-2'
+            ? 'border-brand-border bg-brand-surface/95 px-4 py-2 shadow-[0_14px_34px_-28px_rgba(0,0,0,0.3)]'
+            : 'border-brand-border/70 bg-brand-surface/90 px-4 py-2 shadow-[0_10px_24px_-22px_rgba(0,0,0,0.25)]'
         }`}
       >
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Logo size="lg" clickable textColor="light" />
+          <Logo size="lg" clickable textColor="dark" logoColor="dark" className="items-center" />
 
           {/* Desktop Navigation */}
-          <div className="hidden items-center gap-1 rounded-full border border-white/5 bg-white/5 p-1 md:flex">
+          <div className="hidden items-center gap-1 rounded-full border border-brand-border bg-brand-surface-soft p-1 md:flex">
             {navigationItems.map((item) => (
               <Link
                 key={item.id}
                 to={item.path}
-                className={`relative rounded-full px-4 py-1.5 text-sm font-medium transition-colors ${
+                className={`linear-kicker relative rounded-full px-4 py-1.5 text-[1.35rem] transition-colors ${
                   isActive(item.path)
                     ? 'text-white'
-                    : 'text-slate-400 hover:bg-white/5 hover:text-white'
+                    : 'text-brand-muted hover:bg-brand-surface hover:text-brand-ink'
                 }`}
               >
                 {isActive(item.path) && (
                   <motion.div
-                    className="absolute inset-0 rounded-full bg-white/10"
+                    className="absolute inset-0 rounded-full bg-brand-ink"
                     layoutId="activeNavBackground"
                     initial={false}
                     transition={{ type: 'spring', stiffness: 300, damping: 30 }}
@@ -72,7 +72,7 @@ const LandingNavigation: React.FC<LandingNavigationProps> = ({ onPrimaryAction }
           <div className="hidden items-center md:flex">
             <button
               onClick={() => onPrimaryAction('Navigation')}
-              className="group relative inline-flex items-center gap-2 rounded-full border border-indigo-500/30 bg-indigo-500/10 px-5 py-2 text-sm font-semibold text-indigo-300 transition-all duration-300 hover:bg-indigo-500/20 hover:text-indigo-200"
+              className="group linear-kicker relative inline-flex items-center gap-2 rounded-full border border-brand-accent-hover bg-brand-accent px-5 py-2 text-[1.25rem] font-normal text-white transition-colors duration-300 hover:bg-brand-accent-hover"
             >
               <span>Join Waitlist</span>
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -82,7 +82,7 @@ const LandingNavigation: React.FC<LandingNavigationProps> = ({ onPrimaryAction }
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="rounded-full p-2 text-slate-300 transition-colors hover:bg-white/10 md:hidden"
+            className="rounded-full p-2 text-brand-muted transition-colors hover:bg-brand-surface-soft md:hidden"
             aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
           >
             {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -99,7 +99,7 @@ const LandingNavigation: React.FC<LandingNavigationProps> = ({ onPrimaryAction }
               transition={{ duration: 0.2 }}
               className="mt-4 overflow-hidden md:hidden"
             >
-              <div className="flex flex-col gap-2 rounded-2xl border border-white/10 bg-black/60 p-4 backdrop-blur-xl">
+              <div className="flex flex-col gap-2 rounded-2xl border border-brand-border bg-brand-surface p-4 shadow-lg">
                 {navigationItems.map((item) => (
                   <Link
                     key={item.id}
@@ -107,20 +107,20 @@ const LandingNavigation: React.FC<LandingNavigationProps> = ({ onPrimaryAction }
                     onClick={() => setIsMenuOpen(false)}
                     className={`rounded-lg px-4 py-3 text-base font-medium transition-colors ${
                       isActive(item.path)
-                        ? 'bg-white/10 text-white'
-                        : 'text-slate-400 hover:bg-white/5 hover:text-white'
+                        ? 'bg-brand-ink text-white'
+                        : 'text-brand-muted hover:bg-brand-surface-soft hover:text-brand-ink'
                     }`}
                   >
                     {item.name}
                   </Link>
                 ))}
-                <div className="mt-2 border-t border-white/10 pt-4">
+                <div className="mt-2 border-t border-brand-border pt-4">
                   <button
                     onClick={() => {
                       onPrimaryAction('Navigation-Mobile');
                       setIsMenuOpen(false);
                     }}
-                    className="flex w-full items-center justify-center gap-2 rounded-lg bg-indigo-500 px-4 py-3 text-base font-semibold text-white transition-colors hover:bg-indigo-400"
+                    className="linear-kicker flex w-full items-center justify-center gap-2 rounded-lg bg-brand-accent px-4 py-3 text-[1.35rem] font-normal text-white transition-colors hover:bg-brand-accent-hover"
                   >
                     Join Waitlist
                     <ArrowRight className="h-4 w-4" />

@@ -10,13 +10,13 @@ const StarRating = ({ rating }: { rating: number }) => {
 
   return (
     <div className="flex items-center gap-3">
-      <div className="flex gap-0.5 text-saffron-400">
+      <div className="flex gap-0.5 text-brand-accent">
         {[...Array(fullStars)].map((_, i) => (
           <Star key={`full-${i}`} className="h-4 w-4 fill-current" />
         ))}
         {hasHalfStar && <Star key="half" className="h-4 w-4 fill-current opacity-50" />}
       </div>
-      <span className="text-sm font-semibold text-charcoal-500">{rating.toFixed(1)}</span>
+      <span className="text-sm font-semibold text-brand-ink">{rating.toFixed(1)}</span>
     </div>
   );
 };
@@ -43,16 +43,16 @@ const Testimonials: React.FC = () => {
               currentTestimonial === index ? 'opacity-100' : 'pointer-events-none opacity-0'
             }`}
           >
-            <div className="rounded-3xl border border-slate-200 bg-white/90 p-7 shadow-[0_18px_70px_-42px_rgba(38,70,83,0.7)] sm:p-10">
+            <div className="rounded-3xl border border-brand-border bg-brand-surface/95 p-7 shadow-[0_18px_70px_-42px_rgba(38,70,83,0.25)] sm:p-10">
               <StarRating rating={testimonial.stars} />
 
-              <blockquote className="mt-5 text-xl font-medium leading-relaxed text-charcoal-500 sm:text-2xl">
+              <blockquote className="mt-5 text-xl font-medium leading-relaxed text-brand-ink sm:text-2xl">
                 "{testimonial.quote}"
               </blockquote>
 
-              <div className="mt-7 border-t border-slate-200 pt-5">
-                <p className="font-semibold text-charcoal-500">{testimonial.author}</p>
-                <p className="text-sm text-slate-600">{testimonial.title}</p>
+              <div className="mt-7 border-t border-brand-border pt-5">
+                <p className="font-semibold text-brand-ink">{testimonial.author}</p>
+                <p className="text-sm text-brand-muted">{testimonial.title}</p>
               </div>
             </div>
           </article>
@@ -65,10 +65,10 @@ const Testimonials: React.FC = () => {
             key={index}
             onClick={() => setCurrentTestimonial(index)}
             aria-label={`Go to testimonial ${index + 1}`}
-            className={`h-2 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-burnt-sienna-500 focus:ring-offset-2 ${
+            className={`h-2 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 ${
               currentTestimonial === index
-                ? 'w-8 bg-burnt-sienna-500'
-                : 'w-2 bg-slate-300 hover:bg-slate-400'
+                ? 'w-8 bg-brand-accent'
+                : 'w-2 bg-brand-border hover:bg-brand-muted/50'
             }`}
           />
         ))}

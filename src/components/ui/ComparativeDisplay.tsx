@@ -9,8 +9,8 @@ import { cn } from '@/lib/utils'; // Make sure you have this utility function
 const beforeVariants = cva('border-2 border-dashed rounded-xl p-6 flex flex-col', {
   variants: {
     variant: {
-      'red-green': 'bg-red-50/60 border-red-200/80 shadow-md',
-      'blue-purple': 'bg-blue-50/60 border-blue-200/80 shadow-md',
+      'red-green': 'border-brand-border bg-brand-surface-soft shadow-sm',
+      'blue-purple': 'border-brand-border bg-brand-surface-soft shadow-sm',
     },
   },
   defaultVariants: {
@@ -22,8 +22,8 @@ const beforeVariants = cva('border-2 border-dashed rounded-xl p-6 flex flex-col'
 const afterVariants = cva('border-2 border-solid rounded-xl p-6 flex flex-col shadow-lg', {
   variants: {
     variant: {
-      'red-green': 'bg-green-50/60 border-green-300 shadow-green-500/10',
-      'blue-purple': 'bg-purple-50/60 border-purple-300 shadow-purple-500/10',
+      'red-green': 'border-brand-success/35 bg-brand-surface shadow-brand-success/10',
+      'blue-purple': 'border-brand-accent/35 bg-brand-surface shadow-brand-accent/10',
     },
   },
   defaultVariants: {
@@ -34,23 +34,23 @@ const afterVariants = cva('border-2 border-solid rounded-xl p-6 flex flex-col sh
 // --- Define content for each variant ---
 const variantContent = {
   'red-green': {
-    before: { icon: Trash2, label: 'Before', color: 'text-red-600' },
+    before: { icon: Trash2, label: 'Before', color: 'text-brand-accent' },
     after: {
       icon: Sparkles,
       label: 'After',
-      color: 'text-green-700',
-      shimmer: 'before:via-green-200/30',
-      text: 'text-green-900',
+      color: 'text-brand-success',
+      shimmer: 'before:via-brand-success/20',
+      text: 'text-brand-ink',
     },
   },
   'blue-purple': {
-    before: { icon: ShieldX, label: 'Without AI', color: 'text-blue-600' },
+    before: { icon: ShieldX, label: 'Without AI', color: 'text-brand-muted' },
     after: {
       icon: Wand2,
       label: 'With AI Enhancement',
-      color: 'text-purple-700',
-      shimmer: 'before:via-purple-200/30',
-      text: 'text-purple-900',
+      color: 'text-brand-accent',
+      shimmer: 'before:via-brand-accent/20',
+      text: 'text-brand-ink',
     },
   },
 };
@@ -81,7 +81,7 @@ export const ComparativeDisplay: React.FC<ComparativeDisplayProps> = ({
           <BeforeIcon className="mr-2 h-5 w-5 flex-shrink-0" />
           <span>{content.before.label}</span>
         </div>
-        <div className="font-mono text-sm leading-relaxed text-slate-800/80">{beforeContent}</div>
+        <div className="font-mono text-sm leading-relaxed text-brand-muted">{beforeContent}</div>
       </div>
 
       {/* After Column */}

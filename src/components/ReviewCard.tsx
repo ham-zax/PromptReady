@@ -11,29 +11,29 @@ interface ReviewCardProps {
 
 const defaultFeatures = [
   {
-    icon: <Copy className="h-6 w-6 text-blue-600" />,
+    icon: <Copy className="h-6 w-6 text-brand-accent" />,
     label: 'Copy Clean',
-    bg: 'bg-blue-100',
+    bg: 'bg-brand-accent/10',
   },
   {
-    icon: <CheckCircle className="h-6 w-6 text-green-600" />,
+    icon: <CheckCircle className="h-6 w-6 text-brand-success" />,
     label: 'Instant Results',
-    bg: 'bg-green-100',
+    bg: 'bg-brand-success/10',
   },
   {
-    icon: <Shield className="h-6 w-6 text-purple-600" />,
+    icon: <Shield className="h-6 w-6 text-brand-muted" />,
     label: 'Privacy First',
-    bg: 'bg-purple-100',
+    bg: 'bg-brand-surface-soft',
   },
 ];
 
 const ReviewCard: React.FC<ReviewCardProps> = ({ features = defaultFeatures }) => (
-  <div className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm">
+  <div className="rounded-xl border border-brand-border bg-brand-surface p-4 shadow-sm">
     <div className="flex items-center justify-center space-x-6">
       {features.map((feature, idx) => (
         <div key={idx} className="flex flex-col items-center space-y-2">
           <div className={`${feature.bg} rounded-xl p-4`}>{feature.icon}</div>
-          <span className="text-xs font-medium text-gray-600">{feature.label}</span>
+          <span className="text-xs font-medium text-brand-muted">{feature.label}</span>
         </div>
       ))}
     </div>
