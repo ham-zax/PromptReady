@@ -53,29 +53,30 @@ const Logo: React.FC<LogoProps> = ({
   };
 
   const finalLogoColor = getLogoColor();
-  const fillColor = finalLogoColor === 'light' ? '#ffffff' : '#000000';
 
+  // High contrast configuration for pixel art readability
+  const outlineColor = finalLogoColor === 'light' ? '#ffffff' : '#000000';
+  const cursorFillColor = finalLogoColor === 'light' ? '#0f172a' : '#ffffff'; // Dark interior for dark mode, white for light mode
+
+  // Snappy sequence animation
   const draw = {
     hidden: { opacity: 0 },
-    visible: (i: number) => {
-      const delay = 0.1 + i * 0.05;
-      return {
-        opacity: 1,
-        transition: {
-          delay,
-          duration: 0.2
-        }
-      };
-    }
+    visible: (i: number) => ({
+      opacity: 1,
+      transition: {
+        delay: 0.1 + i * 0.05,
+        duration: 0.2,
+      }
+    })
   };
 
   const textAnimation = {
-    hidden: { opacity: 0, y: 10, filter: 'blur(4px)' },
+    hidden: { opacity: 0, y: 5, filter: 'blur(2px)' },
     visible: (i: number) => ({
       opacity: 1,
       y: 0,
       filter: 'blur(0px)',
-      transition: { delay: 0.5 + i * 0.05, duration: 0.4, ease: "easeOut" }
+      transition: { delay: 0.4 + i * 0.04, duration: 0.3, ease: "easeOut" }
     })
   };
 
@@ -83,82 +84,42 @@ const Logo: React.FC<LogoProps> = ({
     <div className={`flex items-center ${config.gap} ${backgroundConfig[background]} ${className}`}>
       <motion.svg
         xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 40 40"
+        viewBox="0 0 32 32"
         className={`${config.logo} shrink-0 block`}
+        // crispEdges is crucial for pixel art SVGs to prevent blurry anti-aliasing
         shapeRendering="crispEdges"
       >
-        <g fill={fillColor}>
-          {/* Sparkles Top */}
-          <motion.rect x="19" y="0" width="2" height="6" variants={draw} custom={0} initial="hidden" animate="visible" />
+        <g fill={outlineColor}>
+          {/* Top Sparks */}
+          <motion.rect x="11" y="0" width="2" height="5" variants={draw} custom={0} initial="hidden" animate="visible" />
+          <motion.rect x="11" y="6" width="2" height="2" variants={draw} custom={1} initial="hidden" animate="visible" />
 
-          {/* Sparkles Top Right */}
-          <motion.rect x="25" y="4" width="2" height="2" variants={draw} custom={1} initial="hidden" animate="visible" />
-          <motion.rect x="27" y="6" width="2" height="2" variants={draw} custom={1} initial="hidden" animate="visible" />
-          <motion.rect x="29" y="8" width="2" height="2" variants={draw} custom={1} initial="hidden" animate="visible" />
+          {/* Left Sparks */}
+          <motion.rect x="0" y="11" width="5" height="2" variants={draw} custom={2} initial="hidden" animate="visible" />
+          <motion.rect x="6" y="11" width="2" height="2" variants={draw} custom={3} initial="hidden" animate="visible" />
 
-          {/* Sparkles Right */}
-          <motion.rect x="30" y="15" width="6" height="2" variants={draw} custom={2} initial="hidden" animate="visible" />
+          {/* Top-Left Diagonal Sparks */}
+          <motion.rect x="4" y="4" width="2" height="2" variants={draw} custom={4} initial="hidden" animate="visible" />
+          <motion.rect x="7" y="7" width="2" height="2" variants={draw} custom={5} initial="hidden" animate="visible" />
 
-          {/* Sparkles Left */}
-          <motion.rect x="4" y="15" width="6" height="2" variants={draw} custom={3} initial="hidden" animate="visible" />
-
-          {/* Sparkles Top Left */}
-          <motion.rect x="13" y="4" width="2" height="2" variants={draw} custom={4} initial="hidden" animate="visible" />
-          <motion.rect x="11" y="6" width="2" height="2" variants={draw} custom={4} initial="hidden" animate="visible" />
-          <motion.rect x="9" y="8" width="2" height="2" variants={draw} custom={4} initial="hidden" animate="visible" />
-
-          {/* Mouse Cursor Body (8-bit pointer style) */}
-          <motion.path
-            variants={draw}
-            custom={5}
-            initial="hidden"
-            animate="visible"
-            d="
-            M 18 10
-            h 4
-            v 2 h 2
-            v 2 h 2
-            v 2 h 2
-            v 2 h 2
-            v 2 h 2
-            v 2 h 2
-            v 2
-            h -8
-            v 4 h 2
-            v 4 h 2
-            v 2 h -4
-            v -4 h -2
-            v -4
-            h -6
-            v -18
-            Z"
-          />
-
-          {/* Cursor white inner border to separate from background */}
-          <motion.path
-            variants={draw}
-            custom={5}
-            initial="hidden"
-            animate="visible"
-            fill="none"
-            stroke={finalLogoColor === 'light' ? '#000000' : '#ffffff'}
-            strokeWidth="2"
-            d="
-            M 20 12
-            v 14
-            h 4
-            v 4 h 2
-            v 2 h -2
-            v -4 h -2
-            v -4
-            h 6
-            v -2 h -2
-            v -2 h -2
-            v -2 h -2
-            v -2 h -2
-            Z"
-          />
+          {/* Top-Right Diagonal Sparks */}
+          <motion.rect x="18" y="4" width="2" height="2" variants={draw} custom={6} initial="hidden" animate="visible" />
+          <motion.rect x="15" y="7" width="2" height="2" variants={draw} custom={7} initial="hidden" animate="visible" />
         </g>
+
+        {/* Pixel Cursor Body */}
+        {/* Using a precise polygon creates a perfect pixel outline when strokeWidth is an even number */}
+        <motion.polygon
+          variants={draw}
+          custom={8}
+          initial="hidden"
+          animate="visible"
+          points="12,12 12,26 16,22 18,28 21,27 18,21 23,21"
+          fill={cursorFillColor}
+          stroke={outlineColor}
+          strokeWidth="2"
+          strokeLinejoin="miter"
+        />
       </motion.svg>
 
       {showText && (

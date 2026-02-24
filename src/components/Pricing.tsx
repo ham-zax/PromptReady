@@ -32,6 +32,25 @@ const Pricing: React.FC<PricingProps> = ({ onPrimaryAction }) => (
         <circle cx="400" cy="400" r="200" stroke="currentColor" strokeWidth="1" strokeDasharray="10 10" />
         <circle cx="400" cy="400" r="100" stroke="currentColor" strokeWidth="0.5" strokeDasharray="5 5" />
       </motion.svg>
+
+      <motion.svg
+        initial={{ opacity: 0, x: 20 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.9, ease: 'easeOut' }}
+        className="absolute right-[6%] top-[14%] h-14 w-64 text-brand-accent/20"
+        viewBox="0 0 300 70"
+        fill="none"
+        preserveAspectRatio="none"
+      >
+        <path
+          d="M8 34 C 52 4, 98 62, 148 28 S 234 10, 292 52"
+          stroke="currentColor"
+          strokeWidth="4"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </motion.svg>
     </div>
 
     <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 relative z-10">
@@ -53,34 +72,37 @@ const Pricing: React.FC<PricingProps> = ({ onPrimaryAction }) => (
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="linear-display text-[clamp(2.5rem,6.8vw,4.4rem)] leading-[0.94] text-brand-ink relative inline-block"
+          className="linear-display text-[clamp(2.5rem,6.8vw,4.4rem)] leading-[0.94] text-brand-ink"
         >
-          Simple pricing while in beta
-           {/* Underline drawn under 'beta' */}
-          <motion.svg
+          Simple pricing
+          <br className="hidden sm:block" />
+          <span className="relative inline-block text-brand-accent sm:translate-x-2">
+            while in beta
+            <motion.svg
               initial={{ pathLength: 0, opacity: 0 }}
-              whileInView={{ pathLength: 1, opacity: 1 }}
+              whileInView={{ pathLength: 1, opacity: 0.95 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}
-              className="absolute -bottom-2 right-0 w-32 h-4 text-brand-accent"
-              viewBox="0 0 100 20"
+              transition={{ duration: 1.3, ease: 'easeInOut', delay: 0.35 }}
+              className="pointer-events-none absolute -inset-3 h-[calc(100%+1.5rem)] w-[calc(100%+1.5rem)] -rotate-[1deg] text-brand-accent/35 sm:-inset-4 sm:h-[calc(100%+2rem)] sm:w-[calc(100%+2rem)]"
+              viewBox="0 0 200 100"
               preserveAspectRatio="none"
             >
-              <path 
-                d="M5 15 Q 50 5 95 15" 
-                fill="none" 
-                stroke="currentColor" 
-                strokeWidth="4" 
-                strokeLinecap="round" 
+              <path
+                d="M100 15 C 160 5 190 30 180 60 C 170 90 30 90 20 60 C 10 30 40 5 100 15 Z"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="3"
+                strokeLinecap="round"
               />
             </motion.svg>
+          </span>
         </motion.h2>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
-          className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-brand-muted sm:text-lg"
+          className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-brand-muted sm:-translate-x-1 sm:text-lg"
         >
           Core functionality is free today. Join now and lock in early-adopter access.
         </motion.p>
@@ -92,7 +114,7 @@ const Pricing: React.FC<PricingProps> = ({ onPrimaryAction }) => (
         viewport={{ once: true, margin: "-50px" }}
         transition={{ delay: 0.2, type: "spring", stiffness: 50 }}
         whileHover={{ y: -5 }}
-        className="relative mx-auto mt-12 max-w-xl rounded-[2.5rem] border border-brand-border bg-brand-surface p-8 shadow-[0_22px_80px_-38px_rgba(0,0,0,0.3)] sm:p-10 transition-transform duration-500 bg-white/90 backdrop-blur-md"
+        className="relative mx-auto mt-12 max-w-xl rounded-[2.5rem] border border-brand-border bg-brand-surface p-8 shadow-[0_22px_80px_-38px_rgba(0,0,0,0.3)] transition-transform duration-500 sm:rotate-[0.25deg] sm:p-10"
       >
         {/* Corner Ribbon/Tag */}
         <div className="absolute top-0 right-0 overflow-hidden w-24 h-24 rounded-tr-[2.5rem]">
@@ -123,7 +145,7 @@ const Pricing: React.FC<PricingProps> = ({ onPrimaryAction }) => (
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3 + index * 0.1 }}
-              className="flex items-start gap-3 text-sm text-brand-muted sm:text-base"
+              className={`flex items-start gap-3 text-sm text-brand-muted sm:text-base ${index % 2 === 0 ? 'sm:translate-x-1' : 'sm:-translate-x-1'}`}
             >
               <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-brand-success/80" />
               <span className="font-medium text-brand-ink/80">{feature}</span>

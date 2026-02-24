@@ -15,13 +15,13 @@ type DemoScenario = {
 
 const SCENARIOS: Record<Scenario, DemoScenario> = {
   article: {
-    label: 'Article page',
-    source: 'example.com/ai/retrieval-guide',
-    raw: `Top nav | Pricing | Sign in\n\n<div class="promo">Subscribe for weekly AI news</div>\n\nHow retrieval boosts LLM reliability\n\nRetrieval-augmented generation combines model reasoning with an external knowledge index...\n\nRelated posts | Privacy | Cookie banner`,
+    label: 'Wikipedia page',
+    source: 'en.wikipedia.org/wiki/Artificial_intelligence',
+    raw: `Donate | Create account | Log in\n\nContents [hide]\n(Top)\nGoals\n\nArtificial intelligence\n\nFrom Wikipedia, the free encyclopedia\n\nArtificial intelligence (AI), in its broadest sense, is intelligence exhibited by machines, particularly computer systems. It is a field of research in computer science that develops and studies methods and software that enable machines to perceive their environment...\n\n<div class="navbox">Categories: Artificial intelligence</div>\n\nPrivacy policy | About Wikipedia`,
     cleanFrames: [
       'Selecting main content...',
-      '# How retrieval boosts LLM reliability\n\nRetrieval-augmented generation combines model reasoning with an external knowledge index...',
-      '# How retrieval boosts LLM reliability\n\nRetrieval-augmented generation combines model reasoning with an external knowledge index...\n\nSource: example.com/ai/retrieval-guide\nCaptured: 2026-02-24T18:40Z',
+      '# Artificial intelligence\n\nArtificial intelligence (AI), in its broadest sense, is intelligence exhibited by machines, particularly computer systems. It is a field of research in computer science that develops and studies methods and software that enable machines to perceive their environment...',
+      '# Artificial intelligence\n\nArtificial intelligence (AI), in its broadest sense, is intelligence exhibited by machines, particularly computer systems. It is a field of research in computer science that develops and studies methods and software that enable machines to perceive their environment...\n\nSource: en.wikipedia.org/wiki/Artificial_intelligence\nCaptured: 2026-02-25T14:30Z',
     ],
   },
   reddit: {
@@ -189,7 +189,11 @@ const VideoDemo: React.FC = () => {
                 disabled={isRunning}
                 className="inline-flex items-center justify-center gap-2 rounded-full border border-brand-accent-hover bg-brand-accent px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-accent-hover disabled:cursor-not-allowed disabled:opacity-75"
               >
-                {isRunning ? <Loader2 className="h-4 w-4 animate-spin" /> : <Play className="h-4 w-4" />}
+                {isRunning ? (
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                ) : (
+                  <Play className="h-4 w-4" />
+                )}
                 {isRunning ? 'Running...' : 'Run Demo'}
               </button>
 

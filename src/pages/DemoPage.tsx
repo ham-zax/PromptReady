@@ -5,6 +5,7 @@ import { ArrowRight, Play } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
 import HowItWorks from '../components/HowItWorks';
+import HeroBackground from '../components/ui/HeroBackground';
 import { usePageSEO } from '../hooks/useSEO';
 
 const VideoDemo = React.lazy(() => import('../components/VideoDemo'));
@@ -37,8 +38,9 @@ const DemoPage: React.FC<DemoPageProps> = ({ onPrimaryAction }) => {
         {seo.noindex && <meta name="robots" content="noindex,nofollow" />}
       </Helmet>
 
-      <main className="pb-16 sm:pb-20">
-        <section className="px-4 pb-8 pt-36 text-center sm:px-6 sm:pt-44 lg:px-8 lg:pt-48">
+      <main className="relative pb-16 sm:pb-20">
+        <HeroBackground />
+        <section className="relative z-10 px-4 pb-8 pt-36 text-center sm:px-6 sm:pt-44 lg:px-8 lg:pt-48">
           <motion.p
             className="linear-kicker inline-flex items-center gap-2 rounded-full border border-brand-border bg-brand-surface px-4 py-1.5 text-[1.05rem] text-brand-muted"
             initial={{ opacity: 0, y: 12 }}
@@ -90,7 +92,9 @@ const DemoPage: React.FC<DemoPageProps> = ({ onPrimaryAction }) => {
           </motion.div>
         </section>
 
-        <React.Suspense fallback={<div className="flex h-96 items-center justify-center">Loading demo…</div>}>
+        <React.Suspense
+          fallback={<div className="flex h-96 items-center justify-center">Loading demo…</div>}
+        >
           <VideoDemo />
         </React.Suspense>
 

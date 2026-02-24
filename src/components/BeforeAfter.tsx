@@ -14,6 +14,25 @@ const BeforeAfterBackground = () => {
 
   return (
     <div ref={ref} className="absolute inset-0 overflow-hidden pointer-events-none -z-10">
+      <motion.svg
+        initial={{ opacity: 0, x: -20 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.9, ease: 'easeOut' }}
+        className="absolute left-[8%] top-[8%] h-14 w-72 text-brand-accent/25"
+        viewBox="0 0 300 70"
+        fill="none"
+        preserveAspectRatio="none"
+      >
+        <path
+          d="M8 42 C 60 8, 120 72, 178 32 S 260 10, 296 58"
+          stroke="currentColor"
+          strokeWidth="4"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </motion.svg>
+
       <motion.svg 
         style={{ x: x1, rotate }}
         className="absolute top-[30%] left-[-5%] w-64 h-64 text-brand-muted/10" 
@@ -49,27 +68,29 @@ const BeforeAfter: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="linear-display text-[clamp(2.6rem,7vw,4.8rem)] leading-[0.94] text-brand-ink relative inline-block"
+            className="linear-display text-[clamp(2.6rem,7vw,4.8rem)] leading-[0.94] text-brand-ink"
           >
-            Same source,{' '}
-            <span className="relative inline-block">
+            Same source,
+            <br className="hidden sm:block" />
+            <span className="relative inline-block text-brand-accent sm:translate-x-3">
               cleaner context
-              {/* Zigzag underline */}
+
+              {/* Hand-drawn loop */}
               <motion.svg
                 initial={{ pathLength: 0, opacity: 0 }}
-                whileInView={{ pathLength: 1, opacity: 1 }}
+                whileInView={{ pathLength: 1, opacity: 0.95 }}
                 viewport={{ once: true }}
-                transition={{ duration: 1, ease: "easeOut", delay: 0.4 }}
-                className="absolute -bottom-3 left-0 w-full h-6 text-brand-success"
-                viewBox="0 0 200 20"
+                transition={{ duration: 1.4, ease: 'easeInOut', delay: 0.3 }}
+                className="pointer-events-none absolute -inset-3 h-[calc(100%+1.5rem)] w-[calc(100%+1.5rem)] -rotate-[1.8deg] text-brand-accent/40 sm:-inset-4 sm:h-[calc(100%+2rem)] sm:w-[calc(100%+2rem)]"
+                viewBox="0 0 200 100"
                 preserveAspectRatio="none"
               >
                 <path 
-                  d="M0 10 L20 18 L40 5 L60 18 L80 5 L100 18 L120 5 L140 18 L160 5 L180 18 L200 10" 
+                  d="M100 15 C 160 5 190 30 180 60 C 170 90 30 90 20 60 C 10 30 40 5 100 15 Z" 
                   fill="none" 
                   stroke="currentColor" 
                   strokeWidth="3" 
-                  strokeLinejoin="round" 
+                  strokeLinecap="round"
                 />
               </motion.svg>
             </span>
@@ -79,7 +100,7 @@ const BeforeAfter: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-brand-muted"
+            className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-brand-muted sm:translate-x-1"
           >
             Stop hand-editing every snippet before using it in your prompts.
           </motion.p>
@@ -90,7 +111,7 @@ const BeforeAfter: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.4, ease: 'easeOut' }}
-          className="overflow-hidden rounded-3xl border border-brand-border bg-brand-surface shadow-[0_18px_42px_-26px_rgba(0,0,0,0.35)] relative"
+          className="relative overflow-hidden rounded-3xl border border-brand-border bg-brand-surface shadow-[0_18px_42px_-26px_rgba(0,0,0,0.35)] sm:rotate-[-0.2deg]"
         >
           <div className="flex items-center justify-between border-b border-brand-border bg-brand-surface-soft px-4 py-4 sm:px-6">
             <div className="hidden text-xs font-semibold uppercase tracking-widest text-brand-muted sm:block">
@@ -104,7 +125,7 @@ const BeforeAfter: React.FC = () => {
 
           <div className="grid divide-y divide-brand-border md:grid-cols-2 md:divide-x md:divide-y-0">
             {/* Before Side */}
-            <article className="bg-brand-surface-soft p-6 sm:p-8">
+            <article className="bg-brand-surface-soft p-6 sm:p-8 md:-translate-y-1">
               <h3 className="mb-6 flex items-center gap-2 text-lg font-semibold text-brand-accent">
                 <XCircle className="h-5 w-5" />
                 Raw Copy-Paste
@@ -157,7 +178,7 @@ const BeforeAfter: React.FC = () => {
             </article>
 
             {/* After Side */}
-            <article className="relative overflow-hidden bg-brand-surface p-6 sm:p-8">
+            <article className="relative overflow-hidden bg-brand-surface p-6 sm:p-8 md:translate-y-1">
               <h3 className="relative z-10 mb-6 flex items-center gap-2 text-lg font-semibold text-brand-success">
                 <CheckCircle2 className="h-5 w-5" />
                 PromptReady Output

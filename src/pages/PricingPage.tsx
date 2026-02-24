@@ -7,6 +7,7 @@ import Features from '../components/Features';
 import Footer from '../components/Footer';
 import Pricing from '../components/Pricing';
 import { usePageSEO } from '../hooks/useSEO';
+import HeroBackground from '../components/ui/HeroBackground';
 
 interface PricingPageProps {
   onPrimaryAction: (sourceComponent: string) => void;
@@ -36,8 +37,9 @@ const PricingPage: React.FC<PricingPageProps> = ({ onPrimaryAction }) => {
         {seo.noindex && <meta name="robots" content="noindex,nofollow" />}
       </Helmet>
 
-      <main>
-        <section className="px-4 pb-4 pt-36 text-center sm:px-6 sm:pb-8 sm:pt-44 lg:px-8 lg:pt-48">
+      <main className="relative">
+        <HeroBackground />
+        <section className="relative z-10 px-4 pb-4 pt-36 text-center sm:px-6 sm:pb-8 sm:pt-44 lg:px-8 lg:pt-48">
           <motion.p
             className="linear-kicker inline-flex items-center gap-2 rounded-full border border-brand-border bg-brand-surface px-4 py-1.5 text-[1.05rem] text-brand-muted"
             initial={{ opacity: 0, y: 12 }}
@@ -92,7 +94,9 @@ const PricingPage: React.FC<PricingPageProps> = ({ onPrimaryAction }) => {
             </article>
 
             <article className="rounded-3xl border border-brand-accent/40 bg-brand-surface-soft p-6 shadow-[0_14px_34px_-22px_rgba(231,0,0,0.35)]">
-              <h3 className="linear-display text-[2rem] leading-none text-brand-ink">Pro (optional)</h3>
+              <h3 className="linear-display text-[2rem] leading-none text-brand-ink">
+                Pro (optional)
+              </h3>
               <ul className="mt-4 space-y-2.5 text-sm text-brand-muted sm:text-base">
                 <li className="flex items-center gap-2">
                   <Check className="h-4 w-4 text-brand-accent" />
