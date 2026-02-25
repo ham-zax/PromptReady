@@ -64,7 +64,7 @@ const HeroActions: React.FC<HeroActionsProps> = ({ onPrimaryAction }) => {
       >
         <div className="flex items-center gap-2">
           <Play className="h-5 w-5 text-brand-accent transition-transform group-hover:scale-110" />
-          <span>Watch 60-sec Demo</span>
+          <span>Watch Demo</span>
         </div>
       </Link>
     </div>

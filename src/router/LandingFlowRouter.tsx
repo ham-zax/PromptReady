@@ -130,7 +130,7 @@ const LandingFlowRouter: React.FC<LandingFlowRouterProps> = ({ onPrimaryAction }
       <ScrollToTop />
       <LandingNavigation onPrimaryAction={onPrimaryAction} />
       <AnimatedRoutes onPrimaryAction={onPrimaryAction} />
-      <FlowProgressIndicator />
+      <FlowProgressIndicator onPrimaryAction={onPrimaryAction} />
     </Router>
   );
 };

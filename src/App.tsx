@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Lenis from 'lenis';
 import { trackEvent } from './hooks/useAnalytics';
 import { usePostHog } from './hooks/usePostHog';
 import { Toaster } from '@/components/ui/sonner';
 import { SketchyIconProvider } from '@/components/ui/Icons';
 import LandingFlowRouter from './router/LandingFlowRouter';
+import WaitlistModal from './components/WaitlistModal';
 import { env } from './config';
 
 // Import test utilities in development
@@ -18,6 +19,8 @@ if (env.DEV) {
 function App() {
   // Initialize PostHog analytics
   usePostHog();
+
+  const [isWaitlistModalOpen, setIsWaitlistModalOpen] = useState(false);
 
   // Initialize Lenis smooth scrolling once at app mount
   React.useEffect(() => {
@@ -54,7 +57,7 @@ function App() {
       destination_url: env.WAITLIST_URL,
       source_component: sourceComponent,
     });
-    window.open(env.WAITLIST_URL, '_blank', 'noopener,noreferrer');
+    setIsWaitlistModalOpen(true);
   };
 
   return (
@@ -63,6 +66,9 @@ function App() {
       <div className="relative z-10">
         {/* Landing Flow Router handles all routing and page transitions */}
         <LandingFlowRouter onPrimaryAction={handlePrimaryAction} />
+
+        {/* Waitlist Modal overlay */}
+        <WaitlistModal isOpen={isWaitlistModalOpen} onClose={() => setIsWaitlistModalOpen(false)} />
 
         {/* Toast notifications */}
         <Toaster />

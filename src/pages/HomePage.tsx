@@ -99,7 +99,7 @@ const HomePage: React.FC<HomePageProps> = ({ onPrimaryAction }) => {
 
           <DeferredSection placeholderClassName="min-h-[220px] sm:min-h-[260px]">
             <React.Suspense fallback={<div className="min-h-[220px] sm:min-h-[260px]" />}>
-              <Footer />
+              <Footer onPrimaryAction={() => onPrimaryAction('Footer')} />
             </React.Suspense>
           </DeferredSection>
         </main>
