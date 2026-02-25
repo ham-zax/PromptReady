@@ -2,6 +2,9 @@ interface WaitlistEnv {
   RESEND_API_KEY?: string;
   WAITLIST_NOTIFY_EMAIL?: string;
   WAITLIST_FROM_EMAIL?: string;
+  WAITLIST_AUTOREPLY_FROM_EMAIL?: string;
+  WAITLIST_AUTOREPLY_REPLY_TO?: string;
+  WAITLIST_AUTOREPLY_SUBJECT?: string;
 }
 
 interface JoinWaitlistContext {
@@ -63,10 +66,17 @@ export async function onRequestPost(context: JoinWaitlistContext): Promise<Respo
 
     const notifyEmail = env.WAITLIST_NOTIFY_EMAIL || 'ceo@promptready.app';
     const fromEmail = env.WAITLIST_FROM_EMAIL || 'Waitlist Bot <ceo@promptready.app>';
+    const autoReplyFromEmail = env.WAITLIST_AUTOREPLY_FROM_EMAIL || fromEmail;
+    const autoReplyReplyTo = env.WAITLIST_AUTOREPLY_REPLY_TO || notifyEmail;
+    const autoReplySubject =
+      env.WAITLIST_AUTOREPLY_SUBJECT || `You're on the list, ${firstName} — PromptReady`;
+    const firstName = name.split(/\s+/)[0] || 'there';
     const safeName = escapeHtml(name);
+    const safeFirstName = escapeHtml(firstName);
     const safeEmail = escapeHtml(email);
 
-    const resendResponse = await fetch('https://api.resend.com/emails', {
+    // 1. Notification email for internal team.
+    const notifyResponse = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${resendApiKey}`,
@@ -87,10 +97,43 @@ export async function onRequestPost(context: JoinWaitlistContext): Promise<Respo
       }),
     });
 
-    if (!resendResponse.ok) {
-      const errorText = await resendResponse.text();
-      console.error('Resend API error:', errorText);
+    if (!notifyResponse.ok) {
+      const errorText = await notifyResponse.text();
+      console.error('Resend API error (Notify):', errorText);
       return json({ error: 'Failed to process waitlist signup' }, 500);
+    }
+
+    // 2. Best-effort auto-reply email for the user.
+    const autoReplyResponse = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${resendApiKey}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        from: autoReplyFromEmail,
+        to: email,
+        reply_to: autoReplyReplyTo,
+        subject: autoReplySubject,
+        html: [
+          `<p>Hi ${safeFirstName},</p>`,
+          '<p>Thanks for joining PromptReady. You are officially on the early-access list.</p>',
+          '<p>What happens next:</p>',
+          '<ul>',
+          '<li>We are finalizing onboarding for the next cohort.</li>',
+          '<li>You will get an invite email as soon as your slot opens.</li>',
+          '</ul>',
+          '<p>If you want priority, reply with your workflow (coding, research, content, etc.) and where cleanup slows you down most.</p>',
+          `<br/>`,
+          '<p>Best,<br/>Hamza<br/>CEO, PromptReady</p>',
+          '<p><em>This email is from Hamza, CEO at PromptReady.</em></p>',
+        ].join('\n'),
+      }),
+    });
+
+    if (!autoReplyResponse.ok) {
+      const errorText = await autoReplyResponse.text();
+      console.error('Resend API error (Auto-Reply):', errorText);
     }
 
     return json({ success: true, message: 'Added to waitlist' }, 200);
