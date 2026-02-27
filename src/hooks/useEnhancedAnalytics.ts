@@ -275,5 +275,3 @@ export const useEnhancedAnalytics = () => {
     posthog,
   ]);
 };
-
-export default useEnhancedAnalytics;

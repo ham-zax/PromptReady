@@ -49,48 +49,5 @@ export const animations = {
   },
 } as const;
 
-// UI configuration
-export const ui = {
-  breakpoints: {
-    sm: '640px',
-    md: '768px',
-    lg: '1024px',
-    xl: '1280px',
-  },
-  maxWidths: {
-    content: '7xl', // max-w-7xl
-    text: '4xl',     // max-w-4xl
-    form: '2xl',     // max-w-2xl
-  },
-  colors: {
-    primary: 'blue-600',
-    secondary: 'slate-600',
-    success: 'green-600',
-    warning: 'yellow-600',
-    error: 'red-600',
-  },
-} as const;
-
-// SEO configuration (legacy - use useSEO hook for dynamic canonical URLs)
-export const seo = {
-  title: 'PromptReady - Copy clean, AI-ready text. Instantly.',
-  description: 'One-click extension that turns any page into structured, distraction-free text for ChatGPT, Claude, or your LLM workflow — with private, on-device parsing.',
-  ogTitle: 'PromptReady - Copy clean, AI-ready text. Instantly.',
-  ogDescription: 'One-click extension that turns any page into structured, distraction-free text for ChatGPT, Claude, or your LLM workflow — with private, on-device parsing.',
-  ogType: 'website',
-  ogUrl: 'https://promptready.app', // Always use production domain
-  canonicalUrl: 'https://promptready.app', // Always use production domain
-} as const;
-
 // Export environment variables
 export { env };
-
-// Export all configuration
-export const config = {
-  env,
-  animations,
-  ui,
-  seo,
-} as const;
-
-export default config;

@@ -73,10 +73,6 @@ export const FEATURE_FLAG_VALUES = {
   },
 } as const;
 
-// Type definitions
-export type FeatureFlagKey = keyof typeof FEATURE_FLAGS;
-export type FeatureFlagValue = string;
-
 interface UseFeatureFlagOptions {
   trackExposure?: boolean; // Whether to track when user is exposed to this flag
   fallback?: string; // Fallback value if flag is not available
@@ -247,17 +243,6 @@ export const useFeatureFlags = (
 };
 
 /**
- * Hook to check if a feature flag is enabled (boolean flags)
- */
-export const useFeatureFlagEnabled = (
-  flagKey: string,
-  options: UseFeatureFlagOptions = {},
-): boolean => {
-  const flagValue = useFeatureFlag(flagKey, options);
-  return flagValue === 'true';
-};
-
-/**
  * Utility function to track feature flag interactions
  */
 export const trackFeatureFlagInteraction = (
@@ -274,5 +259,3 @@ export const trackFeatureFlagInteraction = (
     ...additionalData,
   });
 };
-
-export default useFeatureFlag;

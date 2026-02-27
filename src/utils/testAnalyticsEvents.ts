@@ -67,5 +67,3 @@ if (import.meta.env.DEV) {
   (window as unknown as Record<string, unknown>).sendTestEvents = sendTestEvents;
   console.log('🧪 Test function available: window.sendTestEvents()');
 }
-
-export default sendTestEvents;

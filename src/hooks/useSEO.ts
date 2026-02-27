@@ -102,5 +102,3 @@ export const seoConfigs = {
 export const usePageSEO = (pageKey: keyof typeof seoConfigs) => {
   return useSEO(seoConfigs[pageKey]);
 };
-
-export default useSEO;

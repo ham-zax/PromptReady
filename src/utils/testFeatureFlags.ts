@@ -43,5 +43,3 @@ if (import.meta.env.DEV) {
   // Wait for PostHog to load
   setTimeout(testFeatureFlags, 2000);
 }
-
-export default testFeatureFlags;

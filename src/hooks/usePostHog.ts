@@ -60,5 +60,3 @@ export const usePostHog = () => {
 
   return posthog;
 };
-
-export default usePostHog;
