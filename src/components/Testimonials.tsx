@@ -7,12 +7,13 @@ import useTestimonialCarousel from '../hooks/useTestimonialCarousel';
 const StarRating = ({ rating }: { rating: number }) => {
   const fullStars = Math.floor(rating);
   const hasHalfStar = rating % 1 !== 0;
+  const fullStarIds = Array.from({ length: fullStars }, (_, starNumber) => `full-${starNumber + 1}`);
 
   return (
     <div className="flex items-center gap-3">
       <div className="flex gap-0.5 text-brand-accent">
-        {[...Array(fullStars)].map((_, i) => (
-          <Star key={`full-${i}`} className="h-4 w-4 fill-current" />
+        {fullStarIds.map((starId) => (
+          <Star key={starId} className="h-4 w-4 fill-current" />
         ))}
         {hasHalfStar && <Star key="half" className="h-4 w-4 fill-current opacity-50" />}
       </div>

@@ -2,6 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
+const LOGO_CHARACTERS = Array.from('PROMPTREADY').map((letter, order) => ({
+  id: `${letter}-${order}`,
+  letter,
+  order,
+}));
+
 interface LogoProps {
   size?: 'sm' | 'md' | 'lg' | 'xl';
   showText?: boolean;
@@ -212,16 +218,16 @@ const Logo: React.FC<LogoProps> = ({
         <span
           className={`flex ${config.text} ${textColorConfig[textColor]} leading-none tracking-tight`}
         >
-          {'PROMPTREADY'.split('').map((letter, i) => (
+          {LOGO_CHARACTERS.map((character) => (
             <motion.span
-              key={i}
-              custom={i}
+              key={character.id}
+              custom={character.order}
               initial="hidden"
               animate="visible"
               variants={textAnimation}
               className="inline-block"
             >
-              {letter}
+              {character.letter}
             </motion.span>
           ))}
         </span>

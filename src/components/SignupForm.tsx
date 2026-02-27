@@ -145,7 +145,7 @@ const SignupForm: React.FC<SignupFormProps> = ({ onSuccess }) => {
           >
             {signupStatus === 'submitting' ? (
               <span className="flex items-center justify-center">
-                <div className="mr-2 h-5 w-5 animate-spin rounded-full border-b-2 border-white"></div>
+                <div className="mr-2 h-5 w-5 animate-spin rounded-full border-b-2 border-white" />
                 Joining Waitlist...
               </span>
             ) : signupStatus === 'success' ? (
