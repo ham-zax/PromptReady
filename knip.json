@@ -1,0 +1,25 @@
+{
+  "$schema": "https://unpkg.com/knip@5/schema.json",
+  "entry": [
+    "functions/api/join-waitlist.ts!",
+    "cursor.js",
+    "generate_cursor.js",
+    "make_svg.js",
+    "plot_path.js",
+    "render_cursor.js",
+    "test_cursor.js",
+    "test_fill.js",
+    "test_grid.js",
+    "test_shape.js"
+  ],
+  "project": [
+    "src/**/*.ts!",
+    "src/**/*.tsx!",
+    "functions/**/*.ts!"
+  ],
+  "ignoreExportsUsedInFile": true,
+  "rules": {
+    "exports": "warn",
+    "types": "warn"
+  }
+}
