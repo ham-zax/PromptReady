@@ -47,7 +47,7 @@ const Testimonials: React.FC = () => {
               <StarRating rating={testimonial.stars} />
 
               <blockquote className="mt-5 text-xl font-medium leading-relaxed text-brand-ink sm:text-2xl">
-                "{testimonial.quote}"
+                &ldquo;{testimonial.quote}&rdquo;
               </blockquote>
 
               <div className="mt-7 border-t border-brand-border pt-5">
@@ -60,9 +60,9 @@ const Testimonials: React.FC = () => {
       </div>
 
       <div className="mt-6 flex items-center justify-center gap-2">
-        {testimonials.map((_, index) => (
+        {testimonials.map((testimonial, index) => (
           <button
-            key={index}
+            key={testimonial.id}
             onClick={() => setCurrentTestimonial(index)}
             aria-label={`Go to testimonial ${index + 1}`}
             className={`h-2 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 ${

@@ -8,7 +8,7 @@ interface DeferredSectionProps {
 
 const DeferredSection: React.FC<DeferredSectionProps> = ({
   children,
-  rootMargin = '320px 0px',
+  rootMargin = '720px 0px',
   placeholderClassName = 'min-h-[320px]',
 }) => {
   const [isVisible, setIsVisible] = React.useState(() => {

@@ -87,7 +87,11 @@ const FlowProgressIndicator: React.FC<FlowProgressIndicatorProps> = ({ onPrimary
 
             return (
               <div key={step.id} className="flex items-center">
-                <div
+                <button
+                  type="button"
+                  disabled={!isClickable}
+                  aria-current={isActive ? 'step' : undefined}
+                  aria-label={`${step.label}: ${step.description}`}
                   className={`flex items-center gap-2 ${isClickable ? 'cursor-pointer' : 'cursor-not-allowed'}`}
                   onClick={() => handleStepClick(step, index)}
                 >
@@ -124,7 +128,7 @@ const FlowProgressIndicator: React.FC<FlowProgressIndicatorProps> = ({ onPrimary
                       {step.label}
                     </div>
                   </div>
-                </div>
+                </button>
 
                 {index < steps.length - 1 && (
                   <div

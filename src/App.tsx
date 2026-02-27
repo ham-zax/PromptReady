@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import Lenis from 'lenis';
 import { trackEvent } from './hooks/useAnalytics';
 import { usePostHog } from './hooks/usePostHog';
@@ -7,6 +7,7 @@ import { SketchyIconProvider } from '@/components/ui/Icons';
 import LandingFlowRouter from './router/LandingFlowRouter';
 import WaitlistModal from './components/WaitlistModal';
 import { env } from './config';
+import { homeSectionLoaders } from './lazyLoaders/homeSections';
 
 // Import test utilities in development
 if (env.DEV) {
@@ -21,6 +22,7 @@ function App() {
   usePostHog();
 
   const [isWaitlistModalOpen, setIsWaitlistModalOpen] = useState(false);
+  const didPreloadRef = useRef(false);
 
   // Initialize Lenis smooth scrolling once at app mount
   React.useEffect(() => {
@@ -52,6 +54,69 @@ function App() {
       lenis.destroy();
     };
   }, []);
+
+  // Preload lazy route modules globally so text-heavy sections are ready before user scrolls/navigates.
+  React.useEffect(() => {
+    if (didPreloadRef.current) return;
+    didPreloadRef.current = true;
+
+    let isCancelled = false;
+    const staggerTimerIds: number[] = [];
+    let fallbackTimer: number | undefined;
+    const win = window as Window & {
+      requestIdleCallback?: (callback: IdleRequestCallback, options?: IdleRequestOptions) => number;
+      cancelIdleCallback?: (handle: number) => void;
+    };
+    const navigatorWithConnection = navigator as Navigator & {
+      connection?: {
+        saveData?: boolean;
+        effectiveType?: string;
+      };
+    };
+    const connection = navigatorWithConnection.connection;
+    const shouldPreload =
+      !connection?.saveData && !['slow-2g', '2g'].includes(connection?.effectiveType ?? '');
+
+    if (!shouldPreload) {
+      return () => {
+        isCancelled = true;
+      };
+    }
+
+    const preloadLazyRouteModules = () => {
+      if (isCancelled) return;
+
+      homeSectionLoaders.forEach((loader, index) => {
+        const timerId = window.setTimeout(() => {
+          if (isCancelled) return;
+          loader().catch((error) => {
+            if (env.DEV) {
+              console.warn('[Preload] Failed to fetch lazy module chunk', error);
+            }
+          });
+        }, index * 120);
+
+        staggerTimerIds.push(timerId);
+      });
+    };
+
+    let idleHandle: number | undefined;
+    if (typeof win.requestIdleCallback === 'function') {
+      idleHandle = win.requestIdleCallback(() => preloadLazyRouteModules(), { timeout: 1800 });
+    } else {
+      fallbackTimer = window.setTimeout(preloadLazyRouteModules, 500);
+    }
+
+    return () => {
+      isCancelled = true;
+      staggerTimerIds.forEach((timerId) => window.clearTimeout(timerId));
+      if (typeof fallbackTimer === 'number') window.clearTimeout(fallbackTimer);
+      if (typeof idleHandle === 'number' && typeof win.cancelIdleCallback === 'function') {
+        win.cancelIdleCallback(idleHandle);
+      }
+    };
+  }, []);
+
   const handlePrimaryAction = (sourceComponent: string) => {
     trackEvent('primary_cta_click', {
       destination_url: env.WAITLIST_URL,

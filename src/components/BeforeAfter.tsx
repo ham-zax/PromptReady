@@ -146,7 +146,7 @@ const BeforeAfter: React.FC = () => {
                   whileHover={{ scale: 1.02 }}
                   className="rounded-xl border border-brand-accent/20 bg-brand-surface p-4 relative"
                 >
-                  <span className="text-brand-accent/70">&lt;div class="promo"&gt;</span>
+                  <span className="text-brand-accent/70">&lt;div class=&quot;promo&quot;&gt;</span>
                   <br />
                   &nbsp;&nbsp;Save 40% today! Subscribe to our newsletter.
                   <br />

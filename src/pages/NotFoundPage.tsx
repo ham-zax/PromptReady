@@ -43,7 +43,8 @@ const NotFoundPage: React.FC = () => {
             <h1 className="mb-4 text-6xl font-bold text-brand-ink">404</h1>
             <h2 className="mb-4 text-2xl font-semibold text-brand-ink">Page Not Found</h2>
             <p className="text-lg text-brand-muted">
-              Sorry, we couldn't find the page you're looking for. It might have been moved, deleted, or you entered the wrong URL.
+              Sorry, we couldn&apos;t find the page you&apos;re looking for. It might have been
+              moved, deleted, or you entered the wrong URL.
             </p>
           </motion.div>
 

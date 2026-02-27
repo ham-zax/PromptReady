@@ -2,20 +2,30 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import DeferredSection from '../components/performance/DeferredSection';
 import SEOHead from '../components/seo/SEOHead';
+import {
+  loadFAQ,
+  loadFeatures,
+  loadFooter,
+  loadHowItWorks,
+  loadPricing,
+  loadProblemSolution,
+  loadSocialProof,
+  loadVideoDemo,
+} from '../lazyLoaders/homeSections';
 
 // Import existing components
 import Hero from '../components/Hero';
 import BeforeAfter from '../components/BeforeAfter';
 
 // Lazy load below-the-fold components
-const ProblemSolution = React.lazy(() => import('../components/ProblemSolution'));
-const SocialProof = React.lazy(() => import('../components/SocialProof'));
-const Features = React.lazy(() => import('../components/Features'));
-const HowItWorks = React.lazy(() => import('../components/HowItWorks'));
-const Pricing = React.lazy(() => import('../components/Pricing'));
-const Footer = React.lazy(() => import('../components/Footer'));
-const FAQ = React.lazy(() => import('../components/FAQ'));
-const VideoDemo = React.lazy(() => import('../components/VideoDemo'));
+const ProblemSolution = React.lazy(loadProblemSolution);
+const SocialProof = React.lazy(loadSocialProof);
+const Features = React.lazy(loadFeatures);
+const HowItWorks = React.lazy(loadHowItWorks);
+const Pricing = React.lazy(loadPricing);
+const Footer = React.lazy(loadFooter);
+const FAQ = React.lazy(loadFAQ);
+const VideoDemo = React.lazy(loadVideoDemo);
 
 // Import analytics components
 import ScrollTracker from '../components/analytics/ScrollTracker';

@@ -18,7 +18,7 @@ const ThankYou: React.FC = () => {
           </div>
 
           <h1 className="mb-3 text-4xl font-bold tracking-tight text-brand-ink">
-            You're on the list — thank you!
+            You&apos;re on the list — thank you!
           </h1>
           <p className="mx-auto max-w-2xl text-brand-muted">
             We will email you as soon as early access opens.
