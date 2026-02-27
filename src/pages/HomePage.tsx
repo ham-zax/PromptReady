@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import DeferredSection from '../components/performance/DeferredSection';
 import SEOHead from '../components/seo/SEOHead';
 import {
+  homeSectionLoaders,
   loadFAQ,
   loadFeatures,
   loadFooter,
@@ -12,6 +13,7 @@ import {
   loadSocialProof,
   loadVideoDemo,
 } from '../lazyLoaders/homeSections';
+import { env } from '../config';
 
 // Import existing components
 import Hero from '../components/Hero';
@@ -41,6 +43,68 @@ interface HomePageProps {
 const HomePage: React.FC<HomePageProps> = ({ onPrimaryAction }) => {
   // Get dynamic SEO configuration with proper canonical URLs
   const seo = usePageSEO('home');
+  const didPreloadRef = React.useRef(false);
+
+  React.useEffect(() => {
+    if (didPreloadRef.current) return;
+    didPreloadRef.current = true;
+
+    let isCancelled = false;
+    const staggerTimerIds: number[] = [];
+    let fallbackTimer: number | undefined;
+    const win = window as Window & {
+      requestIdleCallback?: (callback: IdleRequestCallback, options?: IdleRequestOptions) => number;
+      cancelIdleCallback?: (handle: number) => void;
+    };
+    const navigatorWithConnection = navigator as Navigator & {
+      connection?: {
+        saveData?: boolean;
+        effectiveType?: string;
+      };
+    };
+    const connection = navigatorWithConnection.connection;
+    const shouldPreload =
+      !connection?.saveData && !['slow-2g', '2g'].includes(connection?.effectiveType ?? '');
+
+    if (!shouldPreload) {
+      return () => {
+        isCancelled = true;
+      };
+    }
+
+    const preloadHomeSections = () => {
+      if (isCancelled) return;
+
+      homeSectionLoaders.forEach((loader, index) => {
+        const timerId = window.setTimeout(() => {
+          if (isCancelled) return;
+          loader().catch((error) => {
+            if (env.DEV) {
+              console.warn('[Preload] Failed to fetch lazy module chunk', error);
+            }
+          });
+        }, index * 120);
+
+        staggerTimerIds.push(timerId);
+      });
+    };
+
+    let idleHandle: number | undefined;
+    if (typeof win.requestIdleCallback === 'function') {
+      idleHandle = win.requestIdleCallback(() => preloadHomeSections(), { timeout: 1800 });
+    } else {
+      fallbackTimer = window.setTimeout(preloadHomeSections, 500);
+    }
+
+    return () => {
+      isCancelled = true;
+      staggerTimerIds.forEach((timerId) => window.clearTimeout(timerId));
+      if (typeof fallbackTimer === 'number') window.clearTimeout(fallbackTimer);
+      if (typeof idleHandle === 'number' && typeof win.cancelIdleCallback === 'function') {
+        win.cancelIdleCallback(idleHandle);
+      }
+    };
+  }, []);
 
   return (
     <ScrollTracker milestones={[25, 50, 75, 90, 100]}>
