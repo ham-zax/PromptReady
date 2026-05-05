@@ -5,6 +5,7 @@ This guide will help you set up feature flags in PostHog for A/B testing your Pr
 ## 🚀 Quick Setup
 
 ### 1. Access PostHog Feature Flags
+
 1. Go to [PostHog Dashboard](https://us.posthog.com/project/199797)
 2. Navigate to **Feature Flags** in the left sidebar
 3. Click **New Feature Flag**
@@ -16,12 +17,14 @@ This guide will help you set up feature flags in PostHog for A/B testing your Pr
 **Description:** Test different CTA button text variants on the hero section
 
 **Variants:**
-- `control` (25%) - "Get Early Access" (default)
-- `variant-a` (25%) - "Join the Waitlist"
-- `variant-b` (25%) - "Get Early Access" 
-- `variant-c` (25%) - "Start Free Trial"
+
+- `control` (25%) - "Get PromptReady free" (default)
+- `variant-a` (25%) - "Get PromptReady free"
+- `variant-b` (25%) - "Get PromptReady free"
+- `variant-c` (25%) - "Get PromptReady free"
 
 **Release Conditions:**
+
 - Set to 100% of users
 - Use **Percentage rollout** with equal distribution
 
@@ -32,6 +35,7 @@ This guide will help you set up feature flags in PostHog for A/B testing your Pr
 **Description:** Test different headline approaches
 
 **Variants:**
+
 - `control` (25%) - Original headline
 - `variant-a` (25%) - Original headline
 - `variant-b` (25%) - Benefit-focused headline
@@ -48,9 +52,11 @@ You can also create these flags for future testing:
 ## 📊 Monitoring Results
 
 ### Dashboard Access
+
 Your custom analytics dashboard: https://us.posthog.com/project/199797/dashboard/501055
 
 ### Key Metrics to Watch
+
 1. **Feature Flag Performance** - Compare click rates across variants
 2. **Landing Page Conversion Funnel** - Track user journey
 3. **Section Engagement Analysis** - See which sections perform best
@@ -59,19 +65,22 @@ Your custom analytics dashboard: https://us.posthog.com/project/199797/dashboard
 ## 🧪 Testing Your Setup
 
 ### Development Testing
+
 1. Run `npm run dev`
 2. Open browser console
 3. Look for "🧪 Feature Flags Test" log group
 4. Verify PostHog is loaded and flags are working
 
 ### Manual Testing
+
 In browser console, you can override flags for testing:
+
 ```javascript
 // Test different CTA variants
-window.posthog.featureFlags.override({"hero-cta-variant": "variant-a"});
+window.posthog.featureFlags.override({ 'hero-cta-variant': 'variant-a' });
 
 // Test different headlines
-window.posthog.featureFlags.override({"hero-headline-variant": "variant-b"});
+window.posthog.featureFlags.override({ 'hero-headline-variant': 'variant-b' });
 
 // Reset overrides
 window.posthog.featureFlags.override({});
@@ -108,12 +117,14 @@ The feature flags are integrated into:
 ## 🚨 Troubleshooting
 
 ### Feature Flags Not Working?
+
 1. Check PostHog is loaded: `window.posthog` in console
 2. Verify flag keys match exactly (case-sensitive)
 3. Check browser network tab for PostHog requests
 4. Ensure `VITE_PUBLIC_POSTHOG_KEY` is set in environment
 
 ### No Data in Dashboard?
+
 1. Verify events are being sent (check browser network tab)
 2. Wait a few minutes for data to appear
 3. Check date range in dashboard filters
@@ -122,6 +133,7 @@ The feature flags are integrated into:
 ## 📞 Support
 
 If you need help:
+
 1. Check PostHog documentation: https://posthog.com/docs/feature-flags
 2. Review the implementation in the codebase
 3. Check browser console for errors

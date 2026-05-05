@@ -19,13 +19,13 @@ const HeroActions: React.FC<HeroActionsProps> = ({ onPrimaryAction }) => {
   const getCtaText = React.useCallback(() => {
     switch (ctaVariant) {
       case FEATURE_FLAG_VALUES[FEATURE_FLAGS.HERO_CTA_VARIANT].VARIANT_A:
-        return 'Join the Waitlist';
+        return 'Get PromptReady free';
       case FEATURE_FLAG_VALUES[FEATURE_FLAGS.HERO_CTA_VARIANT].VARIANT_B:
-        return 'Get Early Access';
+        return 'Get PromptReady free';
       case FEATURE_FLAG_VALUES[FEATURE_FLAGS.HERO_CTA_VARIANT].VARIANT_C:
-        return 'Start Free Trial';
+        return 'Get PromptReady free';
       default:
-        return 'Get Early Access';
+        return 'Get PromptReady free';
     }
   }, [ctaVariant]);
 
@@ -50,7 +50,7 @@ const HeroActions: React.FC<HeroActionsProps> = ({ onPrimaryAction }) => {
     <div className="flex w-full flex-col gap-4 sm:w-auto sm:flex-row">
       <button
         onClick={handlePrimaryClick}
-        className="group inline-flex items-center justify-center gap-2 rounded-full border border-brand-accent-hover bg-brand-accent px-8 py-4 text-base font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-accent-hover active:translate-y-0"
+        className="group border-brand-accent-hover bg-brand-accent hover:bg-brand-accent-hover inline-flex items-center justify-center gap-2 rounded-full border px-8 py-4 text-base font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0"
       >
         <div className="flex items-center gap-2">
           {getCtaText()}
@@ -60,10 +60,10 @@ const HeroActions: React.FC<HeroActionsProps> = ({ onPrimaryAction }) => {
 
       <Link
         to="/demo"
-        className="group inline-flex items-center justify-center gap-2 rounded-full border border-brand-border bg-brand-surface px-8 py-4 text-base font-semibold text-brand-ink transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-surface-soft active:translate-y-0"
+        className="group border-brand-border bg-brand-surface text-brand-ink hover:bg-brand-surface-soft inline-flex items-center justify-center gap-2 rounded-full border px-8 py-4 text-base font-semibold transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0"
       >
         <div className="flex items-center gap-2">
-          <Play className="h-5 w-5 text-brand-accent transition-transform group-hover:scale-110" />
+          <Play className="text-brand-accent h-5 w-5 transition-transform group-hover:scale-110" />
           <span>Watch Demo</span>
         </div>
       </Link>

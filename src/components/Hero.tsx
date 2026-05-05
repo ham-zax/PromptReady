@@ -11,37 +11,40 @@ interface HeroProps {
 
 const Hero: React.FC<HeroProps> = ({ onPrimaryAction }) => {
   return (
-    <section id="hero" className="relative overflow-hidden pb-16 pt-36 sm:pb-24 sm:pt-44 lg:pb-28 lg:pt-48 min-h-[90vh] flex items-center">
+    <section
+      id="hero"
+      className="relative flex min-h-[90vh] items-center overflow-hidden pt-36 pb-16 sm:pt-44 sm:pb-24 lg:pt-48 lg:pb-28"
+    >
       <HeroBackground />
-      <div className="pointer-events-none absolute -left-20 top-8 h-52 w-52 rounded-full bg-brand-surface-soft" />
-      <div className="pointer-events-none absolute -right-16 top-40 h-44 w-44 rounded-full bg-brand-surface-soft" />
+      <div className="bg-brand-surface-soft pointer-events-none absolute top-8 -left-20 h-52 w-52 rounded-full" />
+      <div className="bg-brand-surface-soft pointer-events-none absolute top-40 -right-16 h-44 w-44 rounded-full" />
 
       <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
         <div className="relative z-10">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="linear-kicker mb-6 inline-flex items-center gap-2 rounded-full border border-brand-border bg-brand-surface px-4 py-2 text-[1.05rem] text-brand-muted"
+            className="linear-kicker border-brand-border bg-brand-surface text-brand-muted mb-6 inline-flex items-center gap-2 rounded-full border px-4 py-2 text-[1.05rem]"
           >
-            <Sparkles className="h-3.5 w-3.5 text-brand-accent" />
-            Cleaner input. Better model output.
+            <Sparkles className="text-brand-accent h-3.5 w-3.5" />
+            One click. Clean Markdown. Better context.
           </motion.div>
 
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1, duration: 0.5 }}
-            className="linear-display text-[clamp(3.2rem,9vw,6.2rem)] leading-[0.92] tracking-[0.01em] text-brand-ink relative"
+            className="linear-display text-brand-ink relative text-[clamp(3.2rem,9vw,6.2rem)] leading-[0.92] tracking-[0.01em]"
           >
-            Turn messy pages into
-            <span className="block text-brand-accent relative inline-block">
-              precise LLM context
+            Turn messy web pages into
+            <span className="text-brand-accent relative block inline-block">
+              prompt-ready Markdown
               {/* Hand-drawn underline SVG under 'context' */}
               <motion.svg
                 initial={{ pathLength: 0, opacity: 0 }}
                 animate={{ pathLength: 1, opacity: 1 }}
-                transition={{ duration: 1, ease: "easeOut", delay: 0.8 }}
-                className="absolute -bottom-2 left-0 w-full h-4 text-brand-accent"
+                transition={{ duration: 1, ease: 'easeOut', delay: 0.8 }}
+                className="text-brand-accent absolute -bottom-2 left-0 h-4 w-full"
                 viewBox="0 0 300 20"
                 preserveAspectRatio="none"
               >
@@ -60,12 +63,14 @@ const Hero: React.FC<HeroProps> = ({ onPrimaryAction }) => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.5 }}
-            className="mt-6 max-w-xl text-lg leading-relaxed text-brand-muted sm:text-xl"
+            className="text-brand-muted mt-6 max-w-xl text-lg leading-relaxed sm:text-xl"
           >
-            PromptReady extracts the useful parts, preserves structure, and gives you citation-ready
-            text in one click.
+            PromptReady extracts the useful parts, preserves structure, and gives you clean Markdown
+            in one click.
             <br />
-            <strong className="font-semibold text-brand-ink">No cleanup loops.</strong>
+            <strong className="text-brand-ink font-semibold">
+              Use it for articles, docs, Reddit threads, research, and everyday AI prompts.
+            </strong>
           </motion.p>
 
           <motion.div
@@ -89,21 +94,21 @@ const Hero: React.FC<HeroProps> = ({ onPrimaryAction }) => {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.35, duration: 0.5 }}
-            className="mx-auto mt-12 w-full max-w-2xl px-4 text-xs font-medium text-brand-muted sm:text-sm"
+            className="text-brand-muted mx-auto mt-12 w-full max-w-2xl px-4 text-xs font-medium sm:text-sm"
           >
             <div className="flex flex-wrap justify-center gap-3 xl:flex-nowrap">
-              <div className="flex w-fit items-center gap-2 rounded-full border border-brand-border bg-brand-surface-soft px-4 py-2 sm:whitespace-nowrap">
-                <span className="h-1.5 w-1.5 rounded-full bg-brand-success" />
-                Preserves code fences
+              <div className="border-brand-border bg-brand-surface-soft flex w-fit items-center gap-2 rounded-full border px-4 py-2 sm:whitespace-nowrap">
+                <span className="bg-brand-success h-1.5 w-1.5 rounded-full" />
+                One-click clean copy
               </div>
-              <div className="flex w-fit items-center gap-2 rounded-full border border-brand-border bg-brand-surface-soft px-4 py-2 sm:whitespace-nowrap">
-                <span className="h-1.5 w-1.5 rounded-full bg-brand-accent" />
-                Adds clean citations
+              <div className="border-brand-border bg-brand-surface-soft flex w-fit items-center gap-2 rounded-full border px-4 py-2 sm:whitespace-nowrap">
+                <span className="bg-brand-accent h-1.5 w-1.5 rounded-full" />
+                Articles, docs, and Reddit
               </div>
-              <div className="sm:basis-full sm:flex sm:justify-center xl:basis-auto xl:block">
-                <div className="flex w-fit items-center gap-2 rounded-full border border-brand-border bg-brand-surface-soft px-4 py-2 sm:whitespace-nowrap">
-                  <span className="h-1.5 w-1.5 rounded-full bg-brand-ink" />
-                  Privacy-first local parsing
+              <div className="sm:flex sm:basis-full sm:justify-center xl:block xl:basis-auto">
+                <div className="border-brand-border bg-brand-surface-soft flex w-fit items-center gap-2 rounded-full border px-4 py-2 sm:whitespace-nowrap">
+                  <span className="bg-brand-ink h-1.5 w-1.5 rounded-full" />
+                  Private local parsing
                 </div>
               </div>
             </div>

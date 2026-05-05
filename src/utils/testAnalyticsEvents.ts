@@ -18,7 +18,7 @@ export const sendTestEvents = () => {
   // Test CTA click event
   trackEvent('cta_click', {
     cta_location: 'hero_button',
-    cta_text: 'Get Early Access',
+    cta_text: 'Get PromptReady free',
     cta_variant: 'control',
     placement: 'hero_button',
     timestamp: Date.now(),

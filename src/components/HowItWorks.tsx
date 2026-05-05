@@ -134,10 +134,11 @@ type Step = {
 const steps: Step[] = [
   {
     title: 'Select your source',
-    description: 'Use the extension button or keyboard shortcut on any page.',
-    icon: <SketchyPointer className="h-7 w-7 text-brand-accent" />,
+    description:
+      'Use the extension button or keyboard shortcut on the page or selection you want to capture.',
+    icon: <SketchyPointer className="text-brand-accent h-7 w-7" />,
     badge: (
-      <SketchyNumberOne className="h-16 w-16 text-brand-accent/40 transition-colors duration-300 group-hover:text-brand-accent/60" />
+      <SketchyNumberOne className="text-brand-accent/40 group-hover:text-brand-accent/60 h-16 w-16 transition-colors duration-300" />
     ),
     doodleColor: 'text-brand-accent/20',
     doodlePath: 'M12 62 C30 30 55 18 82 22 C96 25 97 43 77 47 C55 51 48 65 58 83',
@@ -152,11 +153,12 @@ const steps: Step[] = [
     ),
   },
   {
-    title: 'Clean in one pass',
-    description: 'PromptReady strips clutter and keeps structure that LLMs can parse.',
-    icon: <SketchyZap className="h-7 w-7 text-brand-success" />,
+    title: 'Build the local baseline',
+    description:
+      'PromptReady cleans the captured source into Markdown before any optional AI step.',
+    icon: <SketchyZap className="text-brand-success h-7 w-7" />,
     badge: (
-      <SketchyNumberTwo className="h-16 w-16 text-brand-success/40 transition-colors duration-300 group-hover:text-brand-success/60" />
+      <SketchyNumberTwo className="text-brand-success/40 group-hover:text-brand-success/60 h-16 w-16 transition-colors duration-300" />
     ),
     doodleColor: 'text-brand-success/20',
     doodlePath:
@@ -169,11 +171,12 @@ const steps: Step[] = [
     ),
   },
   {
-    title: 'Paste with confidence',
-    description: 'Get citation-ready Markdown instantly in your clipboard.',
-    icon: <SketchyCopy className="h-7 w-7 text-brand-ink" />,
+    title: 'Accept or fall back',
+    description:
+      'AI cleanup is accepted only when it preserves the offline baseline; otherwise you keep the local result.',
+    icon: <SketchyCopy className="text-brand-ink h-7 w-7" />,
     badge: (
-      <SketchyNumberThree className="h-16 w-16 text-brand-ink/40 transition-colors duration-300 group-hover:text-brand-ink/60" />
+      <SketchyNumberThree className="text-brand-ink/40 group-hover:text-brand-ink/60 h-16 w-16 transition-colors duration-300" />
     ),
     doodleColor: 'text-brand-muted/25',
     doodlePath:
@@ -231,10 +234,10 @@ const HowItWorksCard = ({ step, index }: { step: Step; index: number }) => {
       }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className={`group relative overflow-hidden rounded-[2rem] border-2 border-brand-border bg-brand-surface p-8 transition-shadow duration-300 hover:shadow-[0_20px_40px_-20px_rgba(0,0,0,0.16)] ${index === 0 ? 'md:translate-y-1' : index === 1 ? 'md:translate-y-3' : 'md:-translate-y-1'}`}
+      className={`group border-brand-border bg-brand-surface relative overflow-hidden rounded-[2rem] border-2 p-8 transition-shadow duration-300 hover:shadow-[0_20px_40px_-20px_rgba(0,0,0,0.16)] ${index === 0 ? 'md:translate-y-1' : index === 1 ? 'md:translate-y-3' : 'md:-translate-y-1'}`}
     >
       <motion.div
-        className={`absolute -right-16 -top-16 h-48 w-48 opacity-10 transition-transform duration-700 group-hover:scale-110 group-hover:opacity-20 ${step.bubbleClass}`}
+        className={`absolute -top-16 -right-16 h-48 w-48 opacity-10 transition-transform duration-700 group-hover:scale-110 group-hover:opacity-20 ${step.bubbleClass}`}
         style={{ transform: 'translateZ(10px)' }}
       >
         <svg
@@ -251,7 +254,7 @@ const HowItWorksCard = ({ step, index }: { step: Step; index: number }) => {
       </motion.div>
       <div
         style={{ transform: 'translateZ(30px)' }}
-        className="absolute right-6 top-6 transition-colors duration-300"
+        className="absolute top-6 right-6 transition-colors duration-300"
       >
         {step.badge}
       </div>
@@ -262,7 +265,7 @@ const HowItWorksCard = ({ step, index }: { step: Step; index: number }) => {
         viewport={{ once: true }}
         transition={{ delay: 0.15 + index * 0.1, duration: 0.5 }}
         style={{ transform: 'translateZ(10px)' }}
-        className={`pointer-events-none absolute right-0 top-0 hidden h-24 w-24`}
+        className={`pointer-events-none absolute top-0 right-0 hidden h-24 w-24`}
         viewBox="0 0 100 100"
         fill="none"
       >
@@ -283,7 +286,7 @@ const HowItWorksCard = ({ step, index }: { step: Step; index: number }) => {
           whileHover={{ rotate: [0, -10, 10, -5, 5, 0] }}
           transition={{ duration: 0.5 }}
           style={{ borderRadius: step.blobRadius }}
-          className={`inline-flex h-16 w-16 items-center justify-center border-2 border-brand-border bg-brand-surface-soft shadow-sm transition-transform duration-500 ${step.tiltClass}`}
+          className={`border-brand-border bg-brand-surface-soft inline-flex h-16 w-16 items-center justify-center border-2 shadow-sm transition-transform duration-500 ${step.tiltClass}`}
         >
           {step.icon}
         </motion.div>
@@ -291,13 +294,13 @@ const HowItWorksCard = ({ step, index }: { step: Step; index: number }) => {
 
       <h3
         style={{ transform: 'translateZ(35px)' }}
-        className="relative z-10 mb-3 text-2xl font-bold leading-tight tracking-tight text-brand-ink"
+        className="text-brand-ink relative z-10 mb-3 text-2xl leading-tight font-bold tracking-tight"
       >
         {step.title}
       </h3>
       <p
         style={{ transform: 'translateZ(25px)' }}
-        className="relative z-10 text-lg leading-relaxed text-brand-muted"
+        className="text-brand-muted relative z-10 text-lg leading-relaxed"
       >
         {step.description}
       </p>
@@ -310,9 +313,7 @@ const AnimatedLine = () => {
   const pathLength = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
-    <div
-      className="absolute left-[10%] right-[10%] top-1/2 z-0 hidden h-32 -translate-y-1/2 md:block"
-    >
+    <div className="absolute top-1/2 right-[10%] left-[10%] z-0 hidden h-32 -translate-y-1/2 md:block">
       <svg className="h-full w-full" preserveAspectRatio="none" viewBox="0 0 1000 100" fill="none">
         <path
           d="M0,52 C 160,22 320,80 500,48 C 680,16 840,72 1000,42"
@@ -343,7 +344,7 @@ const HowItWorks: React.FC = () => (
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8, ease: 'easeOut' }}
-      className="pointer-events-none absolute left-[7%] top-[8%] h-12 w-56 text-brand-accent/20"
+      className="text-brand-accent/20 pointer-events-none absolute top-[8%] left-[7%] h-12 w-56"
       viewBox="0 0 240 60"
       fill="none"
       preserveAspectRatio="none"
@@ -362,17 +363,17 @@ const HowItWorks: React.FC = () => (
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="linear-display relative inline-block text-[clamp(2.5rem,6.8vw,4.2rem)] leading-[0.94] text-brand-ink"
+          className="linear-display text-brand-ink relative inline-block text-[clamp(2.5rem,6.8vw,4.2rem)] leading-[0.94]"
         >
-          From noisy page to useful prompt{' '}
-          <span className="relative inline-block text-brand-accent sm:translate-x-2">
+          From rendered page to useful Markdown{' '}
+          <span className="text-brand-accent relative inline-block sm:translate-x-2">
             in seconds
             <motion.svg
               initial={{ pathLength: 0, opacity: 0 }}
               whileInView={{ pathLength: 1, opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 1.2, ease: 'easeInOut', delay: 0.5 }}
-              className="pointer-events-none absolute -inset-4 h-[calc(100%+2rem)] w-[calc(100%+2rem)] text-brand-accent/30"
+              className="text-brand-accent/30 pointer-events-none absolute -inset-4 h-[calc(100%+2rem)] w-[calc(100%+2rem)]"
               viewBox="0 0 200 100"
               preserveAspectRatio="none"
             >
@@ -390,9 +391,10 @@ const HowItWorks: React.FC = () => (
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
-          className="mx-auto mt-6 max-w-2xl -translate-x-1 text-lg leading-relaxed text-brand-muted"
+          className="text-brand-muted mx-auto mt-6 max-w-2xl -translate-x-1 text-lg leading-relaxed"
         >
-          The flow is intentionally simple so you can stay in your research or coding context.
+          The flow is intentionally local-first so the output remains useful even when AI cleanup is
+          unavailable or rejected.
         </motion.p>
       </div>
 

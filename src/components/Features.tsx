@@ -120,9 +120,9 @@ const SketchySparkle = ({ className }: { className?: string }) => (
 
 const cards = [
   {
-    title: 'Structure-preserving cleanup',
-    description: 'Keeps headings, lists, and tables intact so models parse your context correctly.',
-    icon: <SketchyStructure className="h-7 w-7 text-brand-accent" />,
+    title: 'Offline Markdown baseline',
+    description: 'Builds the local Markdown document first, before any optional AI cleanup runs.',
+    icon: <SketchyStructure className="text-brand-accent h-7 w-7" />,
     size: 'tall',
     accent: 'bg-brand-accent',
     blob: '60% 40% 30% 70% / 60% 30% 70% 40%',
@@ -135,9 +135,10 @@ const cards = [
     ),
   },
   {
-    title: 'One-click extraction',
-    description: 'No manual selection dance. Run from toolbar or shortcut and copy instantly.',
-    icon: <SketchyCursor className="h-7 w-7 text-brand-success" />,
+    title: 'Rendered capture policy',
+    description:
+      'Captures the page state you actually see, with deeper capture for lazy content when useful.',
+    icon: <SketchyCursor className="text-brand-success h-7 w-7" />,
     size: 'medium',
     accent: 'bg-brand-success',
     blob: '40% 60% 70% 30% / 40% 50% 60% 50%',
@@ -147,9 +148,10 @@ const cards = [
     ),
   },
   {
-    title: 'Citation metadata',
-    description: 'Every export can include source URL and capture timestamp for verification.',
-    icon: <SketchyTag className="h-7 w-7 text-brand-ink" />,
+    title: 'Source-aware exports',
+    description:
+      'Carries title, URL, capture timestamp, and selection identity into the final output.',
+    icon: <SketchyTag className="text-brand-ink h-7 w-7" />,
     size: 'short',
     accent: 'bg-brand-ink',
     blob: '50% 50% 30% 70% / 60% 40% 60% 40%',
@@ -160,8 +162,9 @@ const cards = [
   },
   {
     title: 'Local-first by default',
-    description: 'Core parsing happens on-device. Your browsing context stays private.',
-    icon: <SketchyShield className="h-7 w-7 text-brand-accent-hover" />,
+    description:
+      'Core parsing happens on-device. AI cleanup is optional and explicitly configured.',
+    icon: <SketchyShield className="text-brand-accent-hover h-7 w-7" />,
     size: 'medium',
     accent: 'bg-brand-accent-hover',
     blob: '70% 30% 40% 60% / 50% 60% 40% 50%',
@@ -171,9 +174,10 @@ const cards = [
     ),
   },
   {
-    title: 'Built for any content',
-    description: 'Understands Wikipedia, news articles, long-form essays, docs, and forum threads.',
-    icon: <SketchyDoc className="h-7 w-7 text-brand-muted" />,
+    title: 'Best-effort across page types',
+    description:
+      'Works best on articles, docs, and long-form pages; app-heavy and social pages stay visible as hard cases.',
+    icon: <SketchyDoc className="text-brand-muted h-7 w-7" />,
     size: 'tall',
     accent: 'bg-brand-muted',
     blob: '40% 60% 50% 50% / 60% 50% 50% 40%',
@@ -183,9 +187,10 @@ const cards = [
     ),
   },
   {
-    title: 'Configurable output',
-    description: 'Toggle title, source footer, spacing, and formatting to fit your workflow.',
-    icon: <SketchySparkle className="h-7 w-7 text-brand-accent" />,
+    title: 'Quality-gated AI cleanup',
+    description:
+      'Rejects AI rewrites that drop headings, lose content, break fences, or remove technical tokens.',
+    icon: <SketchySparkle className="text-brand-accent h-7 w-7" />,
     size: 'short',
     accent: 'bg-brand-accent',
     blob: '50% 50% 60% 40% / 40% 60% 40% 60%',
@@ -201,8 +206,8 @@ const FeatureCard: React.FC<{ card: (typeof cards)[0]; index: number }> = ({ car
     card.size === 'tall'
       ? 'min-h-[320px] sm:min-h-[340px]'
       : card.size === 'medium'
-      ? 'min-h-[280px] sm:min-h-[300px]'
-      : 'min-h-[240px] sm:min-h-[260px]';
+        ? 'min-h-[280px] sm:min-h-[300px]'
+        : 'min-h-[240px] sm:min-h-[260px]';
 
   return (
     <motion.article
@@ -211,11 +216,11 @@ const FeatureCard: React.FC<{ card: (typeof cards)[0]; index: number }> = ({ car
       viewport={{ once: true, margin: '-50px' }}
       transition={{ delay: index * 0.1, duration: 0.6, type: 'spring', bounce: 0.4 }}
       whileHover={{ y: -8, scale: 1.02, rotate: card.rotation }}
-      className={`group relative mb-6 flex h-auto w-full break-inside-avoid flex-col overflow-hidden rounded-[2rem] border-2 border-brand-border bg-brand-surface p-8 transition-all duration-300 hover:border-brand-ink/10 hover:shadow-[0_20px_40px_-20px_rgba(0,0,0,0.15)] ${sizeClass}`}
+      className={`group border-brand-border bg-brand-surface hover:border-brand-ink/10 relative mb-6 flex h-auto w-full break-inside-avoid flex-col overflow-hidden rounded-[2rem] border-2 p-8 transition-all duration-300 hover:shadow-[0_20px_40px_-20px_rgba(0,0,0,0.15)] ${sizeClass}`}
     >
       {/* Hand-drawn scribble accent in corner */}
       <motion.div
-        className={`absolute -right-16 -top-16 h-48 w-48 opacity-10 transition-transform duration-700 group-hover:scale-110 group-hover:opacity-20 ${card.accent.replace('bg-', 'text-')}`}
+        className={`absolute -top-16 -right-16 h-48 w-48 opacity-10 transition-transform duration-700 group-hover:scale-110 group-hover:opacity-20 ${card.accent.replace('bg-', 'text-')}`}
       >
         <svg
           viewBox="0 0 100 100"
@@ -235,12 +240,12 @@ const FeatureCard: React.FC<{ card: (typeof cards)[0]; index: number }> = ({ car
           whileHover={{ rotate: [0, -10, 10, -5, 5, 0], scale: 1.1 }}
           transition={{ duration: 0.5 }}
           style={{ borderRadius: card.blob }}
-          className="mb-8 inline-flex h-16 w-16 items-center justify-center border-2 border-brand-border bg-brand-surface-soft shadow-sm transition-colors group-hover:bg-brand-surface"
+          className="border-brand-border bg-brand-surface-soft group-hover:bg-brand-surface mb-8 inline-flex h-16 w-16 items-center justify-center border-2 shadow-sm transition-colors"
         >
           {card.icon}
         </motion.div>
-        <h3 className="mb-3 text-2xl font-bold tracking-tight text-brand-ink">{card.title}</h3>
-        <p className="max-w-sm text-lg leading-relaxed text-brand-muted">{card.description}</p>
+        <h3 className="text-brand-ink mb-3 text-2xl font-bold tracking-tight">{card.title}</h3>
+        <p className="text-brand-muted max-w-sm text-lg leading-relaxed">{card.description}</p>
       </div>
     </motion.article>
   );
@@ -257,7 +262,7 @@ const FeaturesBackground = () => {
       {/* Large background star/sparkle */}
       <motion.svg
         style={{ y, rotate }}
-        className="absolute -right-[10%] top-[20%] h-96 w-96 text-brand-muted/5"
+        className="text-brand-muted/5 absolute top-[20%] -right-[10%] h-96 w-96"
         viewBox="0 0 100 100"
         fill="currentColor"
         xmlns="http://www.w3.org/2000/svg"
@@ -281,10 +286,10 @@ const Features: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="linear-display text-[clamp(2.6rem,7.5vw,5.2rem)] leading-[0.94] text-brand-ink"
+            className="linear-display text-brand-ink text-[clamp(2.6rem,7.5vw,5.2rem)] leading-[0.94]"
           >
             Built for people who <br className="hidden sm:block" />
-            <span className="relative inline-block text-brand-accent">
+            <span className="text-brand-accent relative inline-block">
               prompt all day
               {/* Hand-drawn circle around 'all day' */}
               <motion.svg
@@ -292,7 +297,7 @@ const Features: React.FC = () => {
                 whileInView={{ pathLength: 1, opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 1.5, ease: 'easeInOut', delay: 0.3 }}
-                className="pointer-events-none absolute -inset-4 h-[calc(100%+2rem)] w-[calc(100%+2rem)] text-brand-accent/40"
+                className="text-brand-accent/40 pointer-events-none absolute -inset-4 h-[calc(100%+2rem)] w-[calc(100%+2rem)]"
                 viewBox="0 0 200 100"
                 preserveAspectRatio="none"
               >
@@ -311,7 +316,7 @@ const Features: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-brand-muted"
+            className="text-brand-muted mx-auto mt-6 max-w-2xl text-lg leading-relaxed"
           >
             Everything here exists to reduce friction between source material and high-quality model
             responses.

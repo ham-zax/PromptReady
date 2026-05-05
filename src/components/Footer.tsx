@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Github, MessageCircle } from '@/components/ui/Icons';
+import { ArrowRight, MessageCircle } from '@/components/ui/Icons';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { env } from '../config';
@@ -68,8 +68,8 @@ const Footer: React.FC<FooterProps> = ({ onPrimaryAction }) => {
             </div>
 
             <p className="text-brand-muted max-w-lg text-sm leading-relaxed sm:text-base">
-              Clean, structured context for AI workflows. Capture what matters and skip the manual
-              cleanup.
+              One-click clean Markdown for AI workflows, notes, research, docs, and threads.
+              Preserve the source without getting stuck in copy-paste cleanup.
             </p>
 
             <div className="mt-7 grid grid-cols-2 gap-6 text-sm sm:grid-cols-3">
@@ -118,7 +118,7 @@ const Footer: React.FC<FooterProps> = ({ onPrimaryAction }) => {
                     onClick={handleWaitlistClick}
                     className="hover:text-brand-ink block cursor-pointer text-left transition-colors"
                   >
-                    Waitlist
+                    Get PromptReady
                   </button>
                 </div>
               </div>
@@ -134,14 +134,14 @@ const Footer: React.FC<FooterProps> = ({ onPrimaryAction }) => {
                 Get started
               </p>
               <p className="text-brand-muted mt-3 text-sm leading-relaxed sm:text-base">
-                Install the extension and clean your first page in under a minute.
+                Get clean Markdown from messy pages without handing the whole workflow to AI.
               </p>
 
               <button
                 onClick={handleWaitlistClick}
                 className="group/btn bg-brand-accent hover:bg-brand-accent-hover mt-5 inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-full px-4 py-3 text-sm font-semibold text-white transition-colors"
               >
-                Join Waitlist
+                Get PromptReady free
                 <ArrowRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
               </button>
 
@@ -154,15 +154,6 @@ const Footer: React.FC<FooterProps> = ({ onPrimaryAction }) => {
                   aria-label="PromptReady website"
                 >
                   <MessageCircle className="h-5 w-5" />
-                </a>
-                <a
-                  href={env.SITE_URL}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="hover:text-brand-ink transition-colors"
-                  aria-label="PromptReady GitHub"
-                >
-                  <Github className="h-5 w-5" />
                 </a>
               </div>
             </div>

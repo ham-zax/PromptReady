@@ -5,9 +5,11 @@
 [![React](https://img.shields.io/badge/react-%2320232a.svg?style=flat&logo=react&logoColor=%2361DAFB)](https://reactjs.org/)
 [![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=flat&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 
-This repository contains the source code for the official landing page of **PromptReady**, a one-click browser extension that turns any web page into perfectly formatted, private context for your LLM.
+This repository contains the source code for the official landing page of **PromptReady**, a one-click browser extension for turning messy web pages into clean, private Markdown context for LLM workflows.
 
-### ✨ [Live Demo Link](https://your-live-url.com)
+### Live site
+
+https://promptready.app
 
 ---
 
@@ -20,7 +22,7 @@ This project is a fully responsive landing page built with a focus on modern des
 - **Features Overview:** A breakdown of the key benefits of using PromptReady.
 - **How It Works:** A visual demonstration of the product in action.
 - **Social Proof:** A section designed for testimonials and trust-building badges.
-- **Pricing / Final CTA:** A clear, final call-to-action to join the waitlist.
+- **Pricing / Final CTA:** A clear, final call-to-action to get PromptReady free.
 
 ## 🛠️ Tech Stack
 
@@ -75,4 +77,4 @@ In the project directory, you can run:
 
 - **Design Blueprint:** The visual design and color scheme are governed by the `color-system-analysis.md` file, which serves as the architectural "source of truth."
 - **Component-Based:** The UI is broken down into reusable React components located in `src/components/`.
-- **Centralized CTA Handler:** All primary "Join Waitlist" actions are routed through a single `handlePrimaryAction` function in `src/App.tsx` for consistent analytics tracking.
+- **Centralized CTA Handler:** All primary "Get PromptReady free" actions are routed through a single `handlePrimaryAction` function in `src/App.tsx` for consistent analytics tracking.

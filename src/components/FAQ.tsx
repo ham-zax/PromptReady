@@ -12,12 +12,22 @@ const items: FAQItem[] = [
   {
     key: 'local-first',
     q: 'Is it local first?',
-    a: <>Yes. Core cleaning and structuring runs on your device. Nothing is uploaded by default.</>,
+    a: (
+      <>
+        Yes. Core capture, cleaning, and Markdown structuring runs on your device. Nothing is
+        uploaded by default.
+      </>
+    ),
   },
   {
     key: 'api-key',
     q: 'Do I need an API key?',
-    a: <>No. The core product works without one. Optional pro features may support BYOK.</>,
+    a: (
+      <>
+        No. The core product works without one. Optional AI cleanup can use your own OpenRouter key
+        when you enable it.
+      </>
+    ),
   },
   {
     key: 'browsers',
@@ -27,12 +37,33 @@ const items: FAQItem[] = [
   {
     key: 'preserve',
     q: 'Will it preserve code and tables?',
-    a: <>Yes. PromptReady is built for technical formatting and keeps structure intact.</>,
+    a: (
+      <>
+        That is the goal of the offline baseline. AI cleanup is quality-gated so it can fall back
+        when headings, code fences, or technical tokens are lost.
+      </>
+    ),
+  },
+  {
+    key: 'site-limits',
+    q: 'Does it work on every site?',
+    a: (
+      <>
+        Not perfectly. PromptReady is designed for articles, docs, Reddit-style discussions,
+        research pages, and everyday web content, but app-heavy, lazy, and social pages can still
+        need site-specific handling.
+      </>
+    ),
   },
   {
     key: 'pricing',
     q: 'Is the free plan time-limited?',
-    a: <>No. Current beta access is free, with optional paid tiers added separately.</>,
+    a: (
+      <>
+        Core capture, cleanup, and Markdown export are free. Paid tiers may be added separately for
+        advanced workflow controls.
+      </>
+    ),
   },
 ];
 
@@ -43,26 +74,26 @@ const FAQBackground = () => {
   const y = useTransform(scrollYProgress, [0, 1], [-50, 50]);
 
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10">
-      <motion.svg 
+    <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+      <motion.svg
         style={{ rotate, y }}
-        className="absolute top-1/4 right-[10%] w-48 h-48 text-brand-accent/5" 
-        viewBox="0 0 100 100" 
+        className="text-brand-accent/5 absolute top-1/4 right-[10%] h-48 w-48"
+        viewBox="0 0 100 100"
         fill="currentColor"
       >
         <path d="M50 0 C 70 20 80 50 50 100 C 30 80 20 50 50 0 Z" />
       </motion.svg>
       {/* Hand-drawn question mark */}
-      <motion.svg 
+      <motion.svg
         initial={{ opacity: 0, scale: 0 }}
         whileInView={{ opacity: 0.1, scale: 1 }}
         viewport={{ once: true }}
-        transition={{ type: "spring", stiffness: 50, delay: 0.2 }}
-        className="absolute top-10 left-[5%] w-32 h-32 text-brand-ink" 
-        viewBox="0 0 100 100" 
-        fill="none" 
-        stroke="currentColor" 
-        strokeWidth="4" 
+        transition={{ type: 'spring', stiffness: 50, delay: 0.2 }}
+        className="text-brand-ink absolute top-10 left-[5%] h-32 w-32"
+        viewBox="0 0 100 100"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="4"
         strokeLinecap="round"
       >
         <path d="M 30 40 C 30 20 70 20 70 40 C 70 55 50 60 50 70 M 50 85 L 50 90" />
@@ -77,38 +108,38 @@ const FAQ: React.FC = () => {
       <FAQBackground />
       <div className="relative z-10 mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
         <div className="mb-10 text-center sm:mb-12">
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            id="faq-heading" 
-            className="text-3xl font-semibold tracking-tight text-brand-ink sm:text-4xl relative inline-block"
+            id="faq-heading"
+            className="text-brand-ink relative inline-block text-3xl font-semibold tracking-tight sm:text-4xl"
           >
             Frequently asked questions
             <motion.svg
               initial={{ pathLength: 0, opacity: 0 }}
               whileInView={{ pathLength: 1, opacity: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 1, ease: "easeOut", delay: 0.3 }}
-              className="absolute -bottom-3 right-0 w-24 h-4 text-brand-accent/50"
+              transition={{ duration: 1, ease: 'easeOut', delay: 0.3 }}
+              className="text-brand-accent/50 absolute right-0 -bottom-3 h-4 w-24"
               viewBox="0 0 100 20"
               preserveAspectRatio="none"
             >
-              <path 
-                d="M5 10 C 30 5 70 15 95 10" 
-                fill="none" 
-                stroke="currentColor" 
-                strokeWidth="4" 
-                strokeLinecap="round" 
+              <path
+                d="M5 10 C 30 5 70 15 95 10"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="4"
+                strokeLinecap="round"
               />
             </motion.svg>
           </motion.h2>
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-brand-muted sm:text-lg"
+            className="text-brand-muted mx-auto mt-6 max-w-2xl text-base leading-relaxed sm:text-lg"
           >
             Details on privacy, support, and how PromptReady fits into your workflow.
           </motion.p>
@@ -120,17 +151,17 @@ const FAQ: React.FC = () => {
               key={item.key}
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
+              viewport={{ once: true, margin: '-50px' }}
               transition={{ delay: index * 0.1 }}
             >
               <AccordionItem
                 value={item.key}
-                className="rounded-3xl border border-brand-border bg-white/80 backdrop-blur-sm px-6 py-2 transition-all duration-300 hover:shadow-md hover:border-brand-accent/30 data-[state=open]:shadow-md data-[state=open]:bg-white"
+                className="border-brand-border hover:border-brand-accent/30 rounded-3xl border bg-white/80 px-6 py-2 backdrop-blur-sm transition-all duration-300 hover:shadow-md data-[state=open]:bg-white data-[state=open]:shadow-md"
               >
-                <AccordionTrigger className="text-left text-base font-semibold text-brand-ink hover:no-underline sm:text-lg py-4 group">
+                <AccordionTrigger className="text-brand-ink group py-4 text-left text-base font-semibold hover:no-underline sm:text-lg">
                   <span className="group-hover:text-brand-accent transition-colors">{item.q}</span>
                 </AccordionTrigger>
-                <AccordionContent className="pb-6 text-sm leading-relaxed text-brand-muted sm:text-base pr-8">
+                <AccordionContent className="text-brand-muted pr-8 pb-6 text-sm leading-relaxed sm:text-base">
                   {item.a}
                 </AccordionContent>
               </AccordionItem>

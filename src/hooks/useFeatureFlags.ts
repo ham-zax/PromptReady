@@ -27,9 +27,9 @@ export const FEATURE_FLAGS = {
 export const FEATURE_FLAG_VALUES = {
   [FEATURE_FLAGS.HERO_CTA_VARIANT]: {
     CONTROL: 'control',
-    VARIANT_A: 'variant-a', // "Join the Waitlist"
-    VARIANT_B: 'variant-b', // "Get Early Access"
-    VARIANT_C: 'variant-c', // "Start Free Trial"
+    VARIANT_A: 'variant-a', // "Get PromptReady free"
+    VARIANT_B: 'variant-b', // "Get PromptReady free"
+    VARIANT_C: 'variant-c', // "Get PromptReady free"
   },
   [FEATURE_FLAGS.HERO_HEADLINE_VARIANT]: {
     CONTROL: 'control',

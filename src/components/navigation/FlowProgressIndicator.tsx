@@ -38,7 +38,7 @@ const FlowProgressIndicator: React.FC<FlowProgressIndicatorProps> = ({ onPrimary
       path: '/',
       label: 'Join',
       icon: CheckCircle,
-      description: 'Get early access',
+      description: 'Get PromptReady',
     },
   ];
 

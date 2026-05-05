@@ -113,7 +113,7 @@ const LandingNavigation: React.FC<LandingNavigationProps> = ({ onPrimaryAction }
               onClick={() => onPrimaryAction('Navigation')}
               className="group linear-kicker border-brand-accent-hover bg-brand-accent hover:bg-brand-accent-hover relative inline-flex cursor-pointer items-center justify-center gap-2 rounded-full border px-5 py-2 text-[1.25rem] font-normal text-white transition-colors duration-300"
             >
-              <span>Join Waitlist</span>
+              <span>Get PromptReady free</span>
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </button>
           </div>
@@ -164,7 +164,7 @@ const LandingNavigation: React.FC<LandingNavigationProps> = ({ onPrimaryAction }
                     }}
                     className="linear-kicker bg-brand-accent hover:bg-brand-accent-hover flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg px-4 py-3 text-[1.35rem] font-normal text-white transition-colors"
                   >
-                    Join Waitlist
+                    Get PromptReady free
                     <ArrowRight className="h-4 w-4" />
                   </button>
                 </div>

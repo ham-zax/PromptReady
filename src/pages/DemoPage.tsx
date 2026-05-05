@@ -44,7 +44,7 @@ const DemoPage: React.FC<DemoPageProps> = ({ onPrimaryAction }) => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.08 }}
           >
-            Watch PromptReady clean a page from start to finish
+            Watch PromptReady clean messy sources in one click
           </motion.h1>
 
           <motion.p
@@ -53,8 +53,8 @@ const DemoPage: React.FC<DemoPageProps> = ({ onPrimaryAction }) => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.15 }}
           >
-            See exactly how the extension captures content, removes noise, and prepares model-ready
-            context.
+            See how the extension cleans articles, technical docs, and Reddit-style threads into
+            source-aware Markdown you can paste into your workflow.
           </motion.p>
 
           <motion.div
@@ -67,7 +67,7 @@ const DemoPage: React.FC<DemoPageProps> = ({ onPrimaryAction }) => {
               onClick={() => onPrimaryAction('DemoPage-Hero')}
               className="border-brand-accent-hover bg-brand-accent hover:bg-brand-accent-hover inline-flex items-center justify-center gap-2 rounded-full border px-6 py-3 text-sm font-semibold text-white transition-colors sm:text-base"
             >
-              Get Early Access
+              Get PromptReady free
               <ArrowRight className="h-4 w-4" />
             </button>
 
@@ -93,13 +93,13 @@ const DemoPage: React.FC<DemoPageProps> = ({ onPrimaryAction }) => {
             Ready to use this on your own workflow?
           </h2>
           <p className="text-brand-muted mx-auto mt-4 max-w-2xl text-base leading-relaxed sm:text-lg">
-            Join the waitlist and get notified as soon as the next release is live.
+            Use PromptReady for your next article, docs page, Reddit thread, or research source.
           </p>
           <button
             onClick={() => onPrimaryAction('DemoPage-CTA')}
             className="border-brand-accent-hover bg-brand-accent hover:bg-brand-accent-hover mt-6 inline-flex items-center gap-2 rounded-full border px-8 py-3.5 text-base font-semibold text-white transition-colors"
           >
-            Join the Waitlist
+            Get PromptReady free
             <ArrowRight className="h-4 w-4" />
           </button>
         </section>

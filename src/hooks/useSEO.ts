@@ -73,25 +73,29 @@ export const useSEO = (config: SEOConfig): SEOResult => {
  */
 export const seoConfigs = {
   home: {
-    title: 'PromptReady — One-click clean Markdown from any page',
-    description: 'Turn any selection into AI-ready Markdown/JSON — code fences, tables, and citations preserved. Runs locally. Pro adds optional validation with your key.',
+    title: 'PromptReady — One-click clean Markdown for AI context',
+    description:
+      'Turn messy pages, docs, articles, and Reddit threads into clean Markdown for prompts, notes, and LLM workflows.',
   },
   demo: {
-    title: 'PromptReady Demo — One‑click clean Markdown from any page',
-    description: 'See PromptReady turn messy selections into AI‑ready Markdown/JSON with citations. Privacy‑first, runs locally. Pro adds optional BYOK validation using your key.',
+    title: 'PromptReady Demo — One-click clean Markdown',
+    description:
+      'See PromptReady turn noisy web content into clean, source-aware Markdown for articles, technical docs, and Reddit-style threads.',
   },
   pricing: {
-    title: 'PromptReady Pricing — Free core local features • Pro $3/mo',
-    description: 'Free forever core local features. Pro adds Prompt‑Ready Bundles and optional BYOK validation using your key (OpenRouter or manual base URL/model). No credit card required.',
+    title: 'PromptReady Pricing — Get PromptReady free',
+    description:
+      'Get PromptReady free for core Markdown capture and export. Optional AI cleanup can use your own OpenRouter key.',
   },
   thankYou: {
     title: 'Thank You — PromptReady',
-    description: 'Thank you for your interest in PromptReady! We\'ll keep you updated on our progress.',
+    description:
+      "Thank you for your interest in PromptReady! We'll keep you updated on our progress.",
     noindex: true, // Don't index thank you pages
   },
   notFound: {
     title: 'Page Not Found — PromptReady',
-    description: 'The page you\'re looking for doesn\'t exist. Return to PromptReady homepage.',
+    description: "The page you're looking for doesn't exist. Return to PromptReady homepage.",
     noindex: true, // Don't index 404 pages
   },
 } as const;

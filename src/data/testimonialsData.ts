@@ -13,24 +13,23 @@ export const testimonials: Testimonial[] = [
     id: 1,
     stars: 5,
     quote:
-      'Saves me hours weekly on research! The offline mode is incredibly fast and the AI features are game-changing for content creation.',
-    author: 'Alex Chen',
-    title: 'Senior Developer, Reddit',
+      'Offline baseline first: build the local Markdown document before asking AI to polish it.',
+    author: 'PromptReady engineering note',
+    title: 'Capture contract',
   },
   {
     id: 2,
     stars: 5,
     quote:
-      'Privacy-first approach is exactly what our team needed. No more worrying about sensitive data being processed externally.',
-    author: 'Sarah Mitchell',
-    title: 'IT Security Manager, Enterprise Corp',
+      'Quality gates should reject pretty AI output when it drops headings, fences, or source structure.',
+    author: 'PromptReady engineering note',
+    title: 'AI cleanup boundary',
   },
   {
     id: 3,
-    stars: 4.5,
-    quote:
-      'Finally, clean copies without the junk! Perfect for feeding content to ChatGPT and Claude. This is a must-have tool.',
-    author: 'Marcus Johnson',
-    title: 'Content Creator, YouTube',
+    stars: 5,
+    quote: 'Hard pages are not marketing proof. They are fixture candidates and diagnostics work.',
+    author: 'PromptReady engineering note',
+    title: 'Known limits',
   },
 ];

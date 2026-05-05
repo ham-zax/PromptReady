@@ -15,11 +15,11 @@ const env = {
   // External URLs
   WAITLIST_URL: import.meta.env.VITE_WAITLIST_URL || 'https://waitlister.me/p/promptready',
   INTERVIEW_URL: import.meta.env.VITE_INTERVIEW_URL || 'https://cal.com/your-handle/15min',
-  FEEDBACK_URL: import.meta.env.VITE_FEEDBACK_URL || 'https://forms.gle/your-form-id',
-  
+  FEEDBACK_URL: import.meta.env.VITE_FEEDBACK_URL || 'mailto:contact@promptready.app',
+
   // Site URLs
   SITE_URL: import.meta.env.VITE_SITE_URL || 'https://promptready.app',
-  
+
   // Analytics
   ANALYTICS_ENABLED: import.meta.env.VITE_ANALYTICS_ENABLED === 'true',
   POSTHOG_KEY: import.meta.env.VITE_PUBLIC_POSTHOG_KEY || '',

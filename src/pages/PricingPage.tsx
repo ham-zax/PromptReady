@@ -43,7 +43,7 @@ const PricingPage: React.FC<PricingPageProps> = ({ onPrimaryAction }) => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.08 }}
           >
-            Free core product, paid extras only when you need them
+            Get PromptReady free
           </motion.h1>
 
           <motion.p
@@ -52,7 +52,8 @@ const PricingPage: React.FC<PricingPageProps> = ({ onPrimaryAction }) => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.16 }}
           >
-            Start with the free plan and upgrade later for advanced workflow controls.
+            Use core capture, cleanup, and Markdown export without an API key. Optional paid tiers
+            can add advanced workflow controls later.
           </motion.p>
         </section>
 
@@ -68,7 +69,7 @@ const PricingPage: React.FC<PricingPageProps> = ({ onPrimaryAction }) => {
               <ul className="text-brand-muted mt-4 space-y-2.5 text-sm sm:text-base">
                 <li className="flex items-center gap-2">
                   <Check className="text-brand-success h-4 w-4" />
-                  Unlimited core clean exports
+                  Core one-click Markdown exports
                 </li>
                 <li className="flex items-center gap-2">
                   <Check className="text-brand-success h-4 w-4" />
@@ -96,7 +97,7 @@ const PricingPage: React.FC<PricingPageProps> = ({ onPrimaryAction }) => {
                 </li>
                 <li className="flex items-center gap-2">
                   <Check className="text-brand-accent h-4 w-4" />
-                  BYOK validation workflows
+                  Optional OpenRouter BYOK cleanup
                 </li>
               </ul>
             </article>
@@ -109,16 +110,16 @@ const PricingPage: React.FC<PricingPageProps> = ({ onPrimaryAction }) => {
 
         <section className="pt-8 pb-20 text-center sm:pt-12">
           <h2 className="linear-display text-brand-ink text-[clamp(2.5rem,6.6vw,3.6rem)] leading-[0.95]">
-            Want early access?
+            Ready to clean your next source?
           </h2>
           <p className="text-brand-muted mx-auto mt-4 max-w-2xl text-base leading-relaxed sm:text-lg">
-            Join now to get notified about upcoming releases and paid-tier launch details.
+            Turn messy pages, docs, and threads into clean Markdown without copy-paste repair.
           </p>
           <button
             onClick={() => onPrimaryAction('PricingPage-Final-CTA')}
             className="border-brand-accent-hover bg-brand-accent hover:bg-brand-accent-hover mt-6 inline-flex items-center gap-2 rounded-full border px-8 py-3.5 text-base font-semibold text-white transition-colors"
           >
-            Join the Waitlist
+            Get PromptReady free
             <ArrowRight className="h-4 w-4" />
           </button>
         </section>
