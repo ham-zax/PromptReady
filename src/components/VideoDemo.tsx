@@ -136,25 +136,25 @@ const VideoDemo: React.FC = () => {
           })}
         </div>
 
-        <div className="border-brand-border bg-brand-surface rounded-3xl border p-4 shadow-[0_20px_85px_-44px_rgba(0,0,0,0.35)] sm:p-6 lg:p-8">
-          <div className="grid gap-4 md:grid-cols-2 lg:gap-6">
-            <article className="border-brand-border bg-brand-surface-soft rounded-2xl border p-4 sm:p-5">
-              <div className="text-brand-muted mb-3 flex items-center justify-between text-xs font-semibold tracking-[0.16em] uppercase">
-                <span>Raw input</span>
-                <span className="truncate">{current.source}</span>
+        <div className="border-brand-border bg-brand-surface min-w-0 rounded-3xl border p-4 shadow-[0_20px_85px_-44px_rgba(0,0,0,0.35)] sm:p-6 lg:p-8">
+          <div className="grid min-w-0 gap-4 md:grid-cols-2 lg:gap-6">
+            <article className="border-brand-border bg-brand-surface-soft min-w-0 rounded-2xl border p-4 sm:p-5">
+              <div className="text-brand-muted mb-3 flex min-w-0 items-center justify-between gap-3 text-xs font-semibold tracking-[0.16em] uppercase">
+                <span className="shrink-0">Raw input</span>
+                <span className="min-w-0 truncate">{current.source}</span>
               </div>
-              <pre className="bg-brand-surface text-brand-muted min-h-[220px] rounded-xl p-3 font-mono text-xs leading-relaxed whitespace-pre-wrap sm:text-sm">
+              <pre className="bg-brand-surface text-brand-muted min-h-[220px] min-w-0 overflow-x-auto rounded-xl p-3 font-mono text-xs leading-relaxed break-words whitespace-pre-wrap sm:text-sm">
                 {current.raw}
               </pre>
             </article>
 
-            <article className="border-brand-success/30 bg-brand-surface-soft rounded-2xl border p-4 sm:p-5">
-              <div className="mb-3 flex items-center justify-between">
-                <div className="text-brand-muted text-xs font-semibold tracking-[0.16em] uppercase">
+            <article className="border-brand-success/30 bg-brand-surface-soft min-w-0 rounded-2xl border p-4 sm:p-5">
+              <div className="mb-3 flex min-w-0 items-center justify-between gap-3">
+                <div className="text-brand-muted min-w-0 text-xs font-semibold tracking-[0.16em] uppercase">
                   PromptReady output
                 </div>
                 {stepIndex === STEP_LABELS.length - 1 ? (
-                  <span className="border-brand-success/30 bg-brand-surface text-brand-success inline-flex items-center gap-1 rounded-full border px-2.5 py-1 text-xs font-semibold">
+                  <span className="border-brand-success/30 bg-brand-surface text-brand-success inline-flex shrink-0 items-center gap-1 rounded-full border px-2.5 py-1 text-xs font-semibold">
                     <CheckCircle2 className="h-3.5 w-3.5" />
                     Ready
                   </span>
@@ -167,7 +167,7 @@ const VideoDemo: React.FC = () => {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
-                  className="border-brand-success/25 bg-brand-surface text-brand-ink min-h-[220px] rounded-xl border p-3 font-mono text-xs leading-relaxed whitespace-pre-wrap sm:text-sm"
+                  className="border-brand-success/25 bg-brand-surface text-brand-ink min-h-[220px] min-w-0 overflow-x-auto rounded-xl border p-3 font-mono text-xs leading-relaxed break-words whitespace-pre-wrap sm:text-sm"
                 >
                   {currentFrame}
                 </motion.pre>
