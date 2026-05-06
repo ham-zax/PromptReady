@@ -13,8 +13,7 @@ const env = {
   PROD: import.meta.env.PROD || false,
 
   // External URLs
-  WAITLIST_URL: import.meta.env.VITE_WAITLIST_URL || 'https://waitlister.me/p/promptready',
-  INTERVIEW_URL: import.meta.env.VITE_INTERVIEW_URL || 'https://cal.com/your-handle/15min',
+  CHROME_STORE_URL: import.meta.env.VITE_CHROME_STORE_URL || '',
   FEEDBACK_URL: import.meta.env.VITE_FEEDBACK_URL || 'mailto:contact@promptready.app',
 
   // Site URLs

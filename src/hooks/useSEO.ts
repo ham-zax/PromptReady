@@ -75,7 +75,7 @@ export const seoConfigs = {
   home: {
     title: 'PromptReady — One-click clean Markdown for AI context',
     description:
-      'Turn messy pages, docs, articles, and Reddit threads into clean Markdown for prompts, notes, and LLM workflows.',
+      'Turn articles, technical docs, Reddit-style discussions, research sources, notes, and everyday pages into clean Markdown for prompts and export.',
   },
   demo: {
     title: 'PromptReady Demo — One-click clean Markdown',
@@ -85,13 +85,22 @@ export const seoConfigs = {
   pricing: {
     title: 'PromptReady Pricing — Get PromptReady free',
     description:
-      'Get PromptReady free for core Markdown capture and export. Optional AI cleanup can use your own OpenRouter key.',
+      'Get PromptReady free for offline Markdown capture and export. Optional OpenRouter BYOK AI cleanup allows 5 successful cleanups per local day.',
   },
   thankYou: {
-    title: 'Thank You — PromptReady',
-    description:
-      "Thank you for your interest in PromptReady! We'll keep you updated on our progress.",
+    title: 'PromptReady is available now',
+    description: 'Install PromptReady from the Chrome Web Store.',
     noindex: true, // Don't index thank you pages
+  },
+  privacy: {
+    title: 'Privacy Policy — PromptReady',
+    description:
+      'How PromptReady handles offline capture, local settings, and optional direct OpenRouter BYOK AI cleanup.',
+  },
+  terms: {
+    title: 'Terms of Use — PromptReady',
+    description:
+      'Terms for using PromptReady, including free local export and optional BYOK AI cleanup.',
   },
   notFound: {
     title: 'Page Not Found — PromptReady',

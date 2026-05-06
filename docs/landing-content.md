@@ -31,7 +31,7 @@ Version: 0.1 (MVP)
 - Problem title: The copy‑paste clean‑up tax
 - Problem copy: You copy text, then spend minutes fixing broken lines, tables, and code. It kills focus and flow.
 - Solution title: One click, clean output
-- Solution copy: PromptReady structures captured source into Markdown with headings, lists, code fences, and source metadata so it is ready for ChatGPT, Claude, notes, or export.
+- Solution copy: PromptReady structures captured source into Markdown with headings, lists, code fences, and source metadata so it is ready for AI prompts, notes, or export.
 
 ## Before / After
 
@@ -50,7 +50,7 @@ Version: 0.1 (MVP)
 - Code & Docs Mode: Preserves code fences, API tables, and stack traces
 - Cite‑First Capture: Canonical URL, timestamp, selection hash, quoted snippets
 - Exports: Copy to clipboard, download `.md` and `.json`
-- Fast & Local: Client‑side by default; no server storage
+- Fast & Local: Offline capture and Markdown export run locally by default
 - Optional AI Cleanup: Deterministic local cleaning plus optional OpenRouter BYOK cleanup that can fall back when fidelity drops.
 
 ## Why Privacy‑First Matters
@@ -62,11 +62,11 @@ Version: 0.1 (MVP)
 ## Pricing (MVP)
 
 - Free: Core clean/structure/export forever
-- Future paid tiers: advanced workflow controls and optional AI cleanup features. Do not publish exact pricing until finalized.
+- Optional BYOK AI cleanup: OpenRouter only, 5 successful cleanups per local day.
 
 ## FAQ
 
-- Is it local‑first? Yes. All core features are client‑side with no server storage.
+- What runs locally? Offline capture and Markdown export run locally. BYOK AI cleanup sends captured content and the user's OpenRouter API key directly to OpenRouter for that request.
 - Do I need an API key? No. BYOK is optional for AI cleanup.
 - Which browsers are supported? Chrome MV3 and Chromium‑based browsers (targeting stable from ~12 months ago).
 - Will it preserve code and tables? Yes — use Code & Docs Mode for best results.
@@ -89,11 +89,11 @@ Version: 0.1 (MVP)
 ## SEO (Demo)
 
 - Title: PromptReady Demo — One‑Click Clean & Export
-- Meta Description: See PromptReady turn messy page selections into clean Markdown/JSON with citations. Privacy‑first and fast.
+- Meta Description: See PromptReady turn messy page selections into clean Markdown/JSON with citations. Offline capture and export run locally.
 
 ## SEO (Pricing)
 
-- Title: PromptReady Pricing — Free Forever for Core • Pro $3/mo
+- Title: PromptReady Pricing — Get PromptReady free
 - Meta Description: Get PromptReady free for core Markdown capture and export. Optional AI cleanup can use your own OpenRouter key.
 
 ## Microcopy

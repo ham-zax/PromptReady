@@ -16,18 +16,18 @@ Audience: privacy‑conscious LLM power users — researchers, developers, analy
 ### 3) Solution — Immediate Relief, No New Workflow
 
 - Before/after shows one‑click cleanup and ready‑to‑paste output.
-- Privacy‑first by default (100% client‑side) to satisfy compliance/security.
+- Offline capture and export run locally by default; BYOK AI cleanup is an explicit OpenRouter request.
 - Optional cloud extras (summaries/templates) as an upgrade path, not a requirement.
 
 ### 4) Features — Time ROI + Control + Trust
 
 - Speed, AI formatting, customization, privacy mapped to frequent micro‑taxes.
 - Power‑user control (headings, lists, export) without complexity.
-- Freemium aligns with try‑first behavior; paid value via advanced summaries.
+- Free core export aligns with try-first behavior; optional BYOK AI cleanup is clearly disclosed.
 
 ### 5) Social Proof — Professional Signals + Co‑Creation
 
-- Privacy‑first and pro‑workflow badges signal work context fit.
+- Offline export and workflow badges signal work context fit.
 - Early feedback invite appeals to makers who want influence.
 - Testimonial carousel area seeds credibility runway as usage grows.
 
@@ -44,5 +44,5 @@ KPIs to watch:
 - Hero CTA click‑through rate
 - Demo click rate and completion
 - Problem→Solution section scroll depth
-- Waitlist signup conversion rate (section‑sourced)
+- Chrome Store install intent rate (section-sourced)
 - Return visitor rate and time to second session

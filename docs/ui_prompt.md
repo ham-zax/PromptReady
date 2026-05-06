@@ -5,7 +5,7 @@ SYSTEM
 You are a senior frontend engineer generating a Chrome MV3 extension UI with WXT + React 18+ (React 19 acceptable) + TailwindCSS. Implement the PromptReady MVP popup and settings UI precisely per spec. Produce production-quality, accessible, typed React code with clean composition and zero inline scripts (MV3-compliant). Optimize for keyboard-first UX, ARIA, and performance.
 
 CONTEXT
-Product: PromptReady — clean, structure, and export selected page content into Markdown/JSON with citations. Two modes: General and Code & Docs. Pro (BYOK) adds optional validation via OpenAI-compatible endpoints (default OpenRouter). Default hotkey: Ctrl/Cmd+Shift+P. File naming: <title>__YYYY-MM-DD__hhmm__hash.(md|json). Telemetry: opt-in, minimal events.
+Product: PromptReady — clean, structure, and export selected page content into Markdown/JSON with citations. Two modes: General and Code & Docs. Optional OpenRouter BYOK AI cleanup is limited to 5 successful cleanups per local day. Default hotkey: Ctrl/Cmd+Shift+P. File naming: <title>__YYYY-MM-DD__hhmm__hash.(md|json). Telemetry: opt-in, minimal events.
 
 Tooling:
 - WXT (MV3) + React 18+ + TailwindCSS
@@ -19,7 +19,7 @@ TARGET SCREENS (MVP)
    - Actions: Split buttons
      - Copy: Markdown | JSON
      - Download: Markdown | JSON
-   - Footer: StatusStrip (processing status/errors); Pro badge (opens Bundles view when available)
+   - Footer: StatusStrip (processing status/errors); BYOK status badge when configured
    - Edge cases:
      - No selection → inline hint with “Try Again”
      - Large selection → progress indicator with cancel
@@ -27,11 +27,8 @@ TARGET SCREENS (MVP)
    Tabs: General | Templates | BYOK | Privacy
    - General: default mode selector; hotkey info (read-only); show file naming convention
    - Templates: table of bundles (placeholder list, MVP simple view/edit)
-   - BYOK: provider (OpenRouter fixed), apiBase (editable), apiKey (masked), model (dropdown with free text)
-   - Privacy: telemetry toggle (opt-in) with consent copy
-3) Pro: Bundles Editor (MVP Basic)
-   - System, Task, Content textareas
-   - Validate button (triggers consent and uses BYOK); Save/Export
+   - BYOK: OpenRouter API key (masked), model (dropdown with free text), daily success counter
+   - Privacy: telemetry toggle (opt-in) with consent copy and BYOK network disclosure
 
 ACCESSIBILITY
 - Full keyboard nav; visible focus; ESC closes modals/menus; focus trap in popup
@@ -43,7 +40,7 @@ STATE + DATA FLOW
   {
     mode: 'general' | 'code_docs',
     templates: { bundles: any[] },
-    byok: { provider: 'openrouter', apiBase: 'https://openrouter.ai/api', apiKey: string, model: string },
+    byok: { provider: 'openrouter', apiKey: string, model: string },
     privacy: { telemetryEnabled: boolean }
   }
 - Popup interacts with background/content via message channels (stubs ok). Show optimistic progress and final actions (copy/download).
@@ -110,7 +107,7 @@ POPUP UX LOGIC
 
 SETTINGS UX LOGIC
 - General: Dropdown for default mode; show hotkey (Ctrl/Cmd+Shift+P); show filename convention; Save is immediate with success toast.
-- BYOK: inputs for apiBase/apiKey/model; model select seeded with a few OpenRouter models; free text allowed; masked apiKey with reveal toggle.
+- BYOK: inputs for apiKey/model; model select seeded with a few OpenRouter models; free text allowed; masked apiKey with reveal toggle.
 - Privacy: telemetry toggle with consent copy; default off.
 
 TAILWIND
@@ -130,14 +127,17 @@ OUTPUT FORMAT
 ```
 
 Notes for the generator:
+
 - Prefer React 18 stable; React 19 features only if fully supported by WXT.
 - Keep BYOK/network behavior stubbed but UX complete (consent, indicators).
 - Ensure aria-live for toasts and status changes.
 
 - If you need a minimal Tailwind config, assume standard postcss setup; no custom plugin required.
+
 ```
 
 - Created a complete, paste-ready UI generation prompt tailored to WXT + React + Tailwind, aligned with our UX/architecture specs and MV3 constraints.
-- Next options: 
+- Next options:
   - Use this prompt to generate the UI scaffold now.
   - Or I can run the scaffold task and commit the generated files for you.
+```

@@ -28,7 +28,7 @@ export const sendTestEvents = () => {
   // Test conversion event (simulated)
   setTimeout(() => {
     trackEvent('conversion', {
-      conversion_type: 'waitlist_signup',
+      conversion_type: 'chrome_store_install_intent',
       conversion_value: 1,
       source_component: 'Hero',
       timestamp: Date.now(),

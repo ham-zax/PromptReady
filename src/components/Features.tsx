@@ -161,9 +161,9 @@ const cards = [
     ),
   },
   {
-    title: 'Local-first by default',
+    title: 'Local by default for offline export',
     description:
-      'Core parsing happens on-device. AI cleanup is optional and explicitly configured.',
+      'Offline capture and Markdown export run on-device. BYOK AI cleanup is optional and sends requests directly to OpenRouter.',
     icon: <SketchyShield className="text-brand-accent-hover h-7 w-7" />,
     size: 'medium',
     accent: 'bg-brand-accent-hover',

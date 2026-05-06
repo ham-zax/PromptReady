@@ -5,7 +5,7 @@
 [![React](https://img.shields.io/badge/react-%2320232a.svg?style=flat&logo=react&logoColor=%2361DAFB)](https://reactjs.org/)
 [![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=flat&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 
-This repository contains the source code for the official landing page of **PromptReady**, a one-click browser extension for turning messy web pages into clean, private Markdown context for LLM workflows.
+This repository contains the source code for the official landing page of **PromptReady**, a one-click browser extension for turning articles, technical docs, Reddit-style discussions, research sources, notes, and everyday pages into clean Markdown for LLM workflows.
 
 ### Live site
 
@@ -23,6 +23,7 @@ This project is a fully responsive landing page built with a focus on modern des
 - **How It Works:** A visual demonstration of the product in action.
 - **Social Proof:** A section designed for testimonials and trust-building badges.
 - **Pricing / Final CTA:** A clear, final call-to-action to get PromptReady free.
+- **Privacy and terms pages:** Public release pages describing local offline export and optional direct OpenRouter BYOK AI cleanup.
 
 ## 🛠️ Tech Stack
 
@@ -72,9 +73,10 @@ In the project directory, you can run:
 - **`npm run lint`**: Lints the codebase using ESLint to identify and fix stylistic and programmatic errors.
 
 - **`npm run preview`**: Serves the production build locally to preview before deployment.
+- **`npm run format:check`**: Verifies Prettier formatting before release.
 
 ## 🏗️ Architectural Notes
 
 - **Design Blueprint:** The visual design and color scheme are governed by the `color-system-analysis.md` file, which serves as the architectural "source of truth."
 - **Component-Based:** The UI is broken down into reusable React components located in `src/components/`.
-- **Centralized CTA Handler:** All primary "Get PromptReady free" actions are routed through a single `handlePrimaryAction` function in `src/App.tsx` for consistent analytics tracking.
+- **Centralized CTA Handler:** All primary "Get PromptReady free" actions are routed through a single `handlePrimaryAction` function in `src/App.tsx`, which opens `VITE_CHROME_STORE_URL` and tracks the install intent.

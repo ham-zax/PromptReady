@@ -68,7 +68,7 @@ export const FEATURE_FLAG_VALUES = {
   [FEATURE_FLAGS.FOOTER_CTA_VARIANT]: {
     CONTROL: 'control',
     VARIANT_A: 'variant-a', // Newsletter signup
-    VARIANT_B: 'variant-b', // Waitlist CTA
+    VARIANT_B: 'variant-b', // Install CTA
     VARIANT_C: 'variant-c', // Contact form
   },
 } as const;

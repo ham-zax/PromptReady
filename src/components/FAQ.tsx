@@ -11,11 +11,12 @@ interface FAQItem {
 const items: FAQItem[] = [
   {
     key: 'local-first',
-    q: 'Is it local first?',
+    q: 'What runs locally?',
     a: (
       <>
-        Yes. Core capture, cleaning, and Markdown structuring runs on your device. Nothing is
-        uploaded by default.
+        Offline capture and Markdown export run locally by default. If you enable BYOK AI cleanup,
+        the extension sends the captured content and your OpenRouter API key directly to OpenRouter
+        for that request.
       </>
     ),
   },
@@ -25,7 +26,7 @@ const items: FAQItem[] = [
     a: (
       <>
         No. The core product works without one. Optional AI cleanup can use your own OpenRouter key
-        when you enable it.
+        when you enable it. PromptReady does not proxy or store that request.
       </>
     ),
   },
@@ -60,8 +61,8 @@ const items: FAQItem[] = [
     q: 'Is the free plan time-limited?',
     a: (
       <>
-        Core capture, cleanup, and Markdown export are free. Paid tiers may be added separately for
-        advanced workflow controls.
+        No. Core offline capture and Markdown export are free. Optional OpenRouter BYOK AI cleanup
+        is limited to 5 successful cleanups per local day, and failed OpenRouter calls do not count.
       </>
     ),
   },

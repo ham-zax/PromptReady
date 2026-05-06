@@ -393,8 +393,8 @@ const HowItWorks: React.FC = () => (
           transition={{ delay: 0.1 }}
           className="text-brand-muted mx-auto mt-6 max-w-2xl -translate-x-1 text-lg leading-relaxed"
         >
-          The flow is intentionally local-first so the output remains useful even when AI cleanup is
-          unavailable or rejected.
+          The flow builds a local offline baseline first so the output remains useful even when AI
+          cleanup is unavailable or rejected.
         </motion.p>
       </div>
 

@@ -8,6 +8,8 @@ import HomePage from '../pages/HomePage';
 import DemoPage from '../pages/DemoPage';
 import PricingPage from '../pages/PricingPage';
 import ThankYou from '../pages/ThankYou';
+import PrivacyPage from '../pages/PrivacyPage';
+import TermsPage from '../pages/TermsPage';
 import NotFoundPage from '../pages/NotFoundPage';
 
 // Import navigation
@@ -115,6 +117,8 @@ const AnimatedRoutes: React.FC<{ onPrimaryAction: (sourceComponent: string) => v
           <Route path="/demo" element={<DemoPage onPrimaryAction={onPrimaryAction} />} />
           <Route path="/pricing" element={<PricingPage onPrimaryAction={onPrimaryAction} />} />
           <Route path="/thank-you" element={<ThankYou />} />
+          <Route path="/privacy" element={<PrivacyPage />} />
+          <Route path="/terms" element={<TermsPage />} />
           <Route path="/404" element={<NotFoundPage />} />
           {/* Redirect any unknown routes to 404 */}
           <Route path="*" element={<Navigate to="/404" replace />} />

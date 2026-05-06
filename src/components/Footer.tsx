@@ -48,12 +48,17 @@ interface FooterProps {
 }
 
 const Footer: React.FC<FooterProps> = ({ onPrimaryAction }) => {
-  const handleWaitlistClick = () => {
+  const handleInstallClick = () => {
     trackEvent('footer_cta_click', { placement: 'footer' });
     if (onPrimaryAction) {
       onPrimaryAction('Footer');
     } else {
-      window.open(env.WAITLIST_URL, '_blank', 'noopener,noreferrer');
+      if (!env.CHROME_STORE_URL) {
+        console.warn('VITE_CHROME_STORE_URL is required before publishing release CTAs.');
+        return;
+      }
+
+      window.open(env.CHROME_STORE_URL, '_blank', 'noopener,noreferrer');
     }
   };
 
@@ -115,7 +120,7 @@ const Footer: React.FC<FooterProps> = ({ onPrimaryAction }) => {
                     Feedback
                   </a>
                   <button
-                    onClick={handleWaitlistClick}
+                    onClick={handleInstallClick}
                     className="hover:text-brand-ink block cursor-pointer text-left transition-colors"
                   >
                     Get PromptReady
@@ -138,7 +143,7 @@ const Footer: React.FC<FooterProps> = ({ onPrimaryAction }) => {
               </p>
 
               <button
-                onClick={handleWaitlistClick}
+                onClick={handleInstallClick}
                 className="group/btn bg-brand-accent hover:bg-brand-accent-hover mt-5 inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-full px-4 py-3 text-sm font-semibold text-white transition-colors"
               >
                 Get PromptReady free
@@ -163,10 +168,10 @@ const Footer: React.FC<FooterProps> = ({ onPrimaryAction }) => {
         <div className="border-brand-border text-brand-muted mt-10 border-t pt-6 text-sm sm:flex sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} PromptReady. All rights reserved.</p>
           <div className="mt-3 flex gap-5 sm:mt-0">
-            <Link to="/" className="hover:text-brand-ink transition-colors">
+            <Link to="/privacy" className="hover:text-brand-ink transition-colors">
               Privacy
             </Link>
-            <Link to="/" className="hover:text-brand-ink transition-colors">
+            <Link to="/terms" className="hover:text-brand-ink transition-colors">
               Terms
             </Link>
           </div>

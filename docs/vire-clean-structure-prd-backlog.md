@@ -2,61 +2,59 @@
 
 ## 0. Final Decisions & Strategic Approach
 
-*   **Phased Approach:** The MVP will be a **BYOK (Bring Your Own Key) Extension**. This allows for a fast, low-risk launch to prove market fit. A full **Usage-Based SaaS Model** (with integrated billing and API keys) is planned for a future phase, contingent on the MVP's success.
-*   **BYOK Provider:** Support any **OpenAI-compatible endpoint** with **OpenRouter as the default provider**; allow a **manual base URL** override.
-*   **Pro Pricing:** The launch price will be **$3/mo or $29/yr**, with a potential launch promotion.
-*   **License UX:** The MVP will use a simple **local license flag** to unlock Pro features, avoiding the complexity of the Chrome Web Store licensing API at launch.
+- **Release Contract:** Core offline capture and Markdown export are free.
+- **BYOK Provider:** Optional AI cleanup uses OpenRouter directly.
+- **BYOK Limit:** Optional AI cleanup is limited to 5 successful cleanups per local day.
+- **No Paid Gate:** The published release does not include paid licensing or local access flags.
 
 ## 1. Goals
 
-*   Deliver fast, reliable clean/structure/export from any webpage selection with citations.
-*   Win developers & researchers with a dedicated Code & Docs mode.
-*   Monetize at launch with a Pro tier: Prompt-Ready Bundles powered by user's own API keys (BYOK).
+- Deliver fast, reliable clean/structure/export from any webpage selection with citations.
+- Win developers & researchers with a dedicated Code & Docs mode.
+- Ship a free Chrome/Chromium release with optional OpenRouter BYOK AI cleanup.
 
 ## 2. Non-Goals (Postponed for future versions)
 
-*   Pipelines (#8) - *Scheduled for 2-4 weeks post-launch.*
-*   OCR/Transcripts (#10, #11)
-*   Multi-page binder (#12)
-*   Content deduplication (#13)
-*   Entity extraction (#14)
-*   Hosted AI inference or background scraping.
-*   Internationalization (i18n) — deferred post‑MVP (revisit ~2 weeks after launch).
+- Pipelines (#8) - _Scheduled for 2-4 weeks post-launch._
+- OCR/Transcripts (#10, #11)
+- Multi-page binder (#12)
+- Content deduplication (#13)
+- Entity extraction (#14)
+- Hosted AI inference or background scraping.
+- Internationalization (i18n) — deferred post‑MVP (revisit ~2 weeks after launch).
 
 ## 3. Personas
 
-*   **Developer:** Cleans API docs, PRs/issues, stack traces, blog posts into prompt-ready MD/JSON.
-*   **Researcher/Student:** Structures articles/papers into headings, quotes, and references.
+- **Developer:** Cleans API docs, PRs/issues, stack traces, blog posts into prompt-ready MD/JSON.
+- **Researcher/Student:** Structures articles/papers into headings, quotes, and references.
 
 ## 4. User Stories (MVP)
 
-*   As a user, I can press a hotkey or click the extension to clean and structure selected content into Markdown/JSON.
-*   As a dev, I can accurately preserve code blocks, tables, and stack traces.
-*   As a researcher, I can export content with the canonical URL, timestamp, and quotes preserved.
-*   As a Pro user, I can export content as a role-primed prompt bundle (system + task + content) using my own API key for optional formatting/validation.
+- As a user, I can press a hotkey or click the extension to clean and structure selected content into Markdown/JSON.
+- As a dev, I can accurately preserve code blocks, tables, and stack traces.
+- As a researcher, I can export content with the canonical URL, timestamp, and quotes preserved.
+- As a BYOK user, I can run optional OpenRouter AI cleanup on the offline Markdown baseline using my own API key.
 
 ## 5. Core Features
 
-*   **One-Click Clean Copy (#1):** Selection → clean → structure → export (MD/JSON).
-*   **Code & Docs Mode (#3):** Preserves code fences, API tables, stack traces; uses heuristics per site class.
-*   **Cite-First Capture (#9):** Includes canonical URL, timestamp, selection hash; preserves quoted snippets.
-*   **Pro at Launch:**
-    *   **Prompt-Ready Bundles (#18):** Exportable kits with system, task, and content blocks.
-    *   **BYOK Adapter (#22):** Allows users to provide their own API key to optionally refine/validate output.
+- **One-Click Clean Copy (#1):** Selection → clean → structure → export (MD/JSON).
+- **Code & Docs Mode (#3):** Preserves code fences, API tables, stack traces; uses heuristics per site class.
+- **Cite-First Capture (#9):** Includes canonical URL, timestamp, selection hash; preserves quoted snippets.
+- **Optional BYOK AI Cleanup:** Allows users to provide an OpenRouter API key to optionally refine output, limited to 5 successful cleanups per local day.
 
 ## 6. Requirements
 
 ### Functional
 
-*   Triggered by hotkey and toolbar action.
-    *   Default hotkey: **Ctrl/Cmd+Shift+P** (for "Prompt"). Less likely to conflict than K. User‑configurable post‑MVP.
-*   Deterministic cleaner (Readability.js + DOM heuristics + boilerplate filters).
-*   Structurer creates H1–H3, lists, tables, code fences, and blockquotes.
-*   Export options: copy to clipboard, save as `.md`, download as `.json`.
-    *   File naming convention: `<title>__YYYY-MM-DD__hhmm__hash.(md|json)` (e.g., `My-Article__2024-07-25__1430__a1b2c3d4.md`). Unsafe characters sanitized.
-*   Modes: General and Code & Docs (toggle in popup/settings).
-*   Citations: URL, timestamp, optional quoted-lines block, selection hash.
-*   Pro: Bundles editor (choose system/task template), BYOK settings (OpenAI-compatible first).
+- Triggered by hotkey and toolbar action.
+  - Default hotkey: **Ctrl/Cmd+Shift+P** (for "Prompt"). Less likely to conflict than K. User‑configurable post‑MVP.
+- Deterministic cleaner (Readability.js + DOM heuristics + boilerplate filters).
+- Structurer creates H1–H3, lists, tables, code fences, and blockquotes.
+- Export options: copy to clipboard, save as `.md`, download as `.json`.
+  - File naming convention: `<title>__YYYY-MM-DD__hhmm__hash.(md|json)` (e.g., `My-Article__2024-07-25__1430__a1b2c3d4.md`). Unsafe characters sanitized.
+- Modes: General and Code & Docs (toggle in popup/settings).
+- Citations: URL, timestamp, optional quoted-lines block, selection hash.
+- BYOK: OpenRouter key, selected model, local daily successful-cleanup counter.
 
 #### Settings schema (MVP)
 
@@ -68,7 +66,6 @@ Stored in `chrome.storage.local`.
   "templates": { "bundles": [] },
   "byok": {
     "provider": "openrouter",
-    "apiBase": "https://openrouter.ai/api",
     "apiKey": "",
     "model": "" // dropdown list with manual override supported
   },
@@ -78,63 +75,61 @@ Stored in `chrome.storage.local`.
 
 ### Non-Functional
 
-*   **Platform:** Chrome MV3 with minimal permissions: `activeTab`, `storage`, `scripting`.
-*   **Browser support target:** Chromium stable released ~12 months prior to launch (pin exact minimum version during release prep).
-*   **Privacy:** Local-first, no server storage, explicit user action for any network call (BYOK only).
-*   **Performance:** Process a typical article in <300ms; long documents <1.5s on a mid-tier laptop.
-*   **Accessibility:** Keyboard-first navigation, ARIA labels for popup/settings.
-*   **Quality:** ≥85% of exports require “no manual fix needed” on a test set of 30 diverse pages.
+- **Platform:** Chrome MV3 with minimal permissions: `activeTab`, `storage`, `scripting`.
+- **Browser support target:** Chromium stable released ~12 months prior to launch (pin exact minimum version during release prep).
+- **Privacy:** Offline capture/export runs locally; BYOK AI cleanup is an explicit direct OpenRouter request.
+- **Performance:** Process a typical article in <300ms; long documents <1.5s on a mid-tier laptop.
+- **Accessibility:** Keyboard-first navigation, ARIA labels for popup/settings.
+- **Quality:** ≥85% of exports require “no manual fix needed” on a test set of 30 diverse pages.
 
 ## 7. Lean Backlog
 
 ### Epic: Extension Core (MV3)
 
-*   **EXT-1:** MV3 scaffold (manifest, service worker, content script, popup shell).
-*   **EXT-2:** Settings page (modes, templates list, BYOK key field).
+- **EXT-1:** MV3 scaffold (manifest, service worker, content script, popup shell).
+- **EXT-2:** Settings page (modes, templates list, BYOK key field).
 
 ### Epic: Clean & Structure (#1)
 
-*   **CLS-1:** Selection capture and DOM snapshot.
-*   **CLS-2:** Rule-based cleaner (Readability + boilerplate filters).
-*   **CLS-3:** Structurer to Markdown.
-*   **CLS-4:** JSON export model.
+- **CLS-1:** Selection capture and DOM snapshot.
+- **CLS-2:** Rule-based cleaner (Readability + boilerplate filters).
+- **CLS-3:** Structurer to Markdown.
+- **CLS-4:** JSON export model.
 
 ### Epic: Code & Docs Mode (#3)
 
-*   **DEV-1:** Code fence preservation with language inference.
-*   **DEV-2:** API tables normalization.
-*   **DEV-3:** Stack trace formatter.
+- **DEV-1:** Code fence preservation with language inference.
+- **DEV-2:** API tables normalization.
+- **DEV-3:** Stack trace formatter.
 
 ### Epic: Cite-First Capture (#9)
 
-*   **CIT-1:** Canonical URL + timestamp capture.
-*   **CIT-2:** Selection hash and quote preservation.
-*   **CIT-3:** Citation footer in exports.
+- **CIT-1:** Canonical URL + timestamp capture.
+- **CIT-2:** Selection hash and quote preservation.
+- **CIT-3:** Citation footer in exports.
 
 ### Epic: Export
 
-*   **EXP-1:** Copy to clipboard (MD/JSON).
-*   **EXP-2:** Save `.md` and `.json` via downloads API.
+- **EXP-1:** Copy to clipboard (MD/JSON).
+- **EXP-2:** Save `.md` and `.json` via downloads API.
 
-### Epic: Pro: Prompt-Ready Bundles (#18) + BYOK (#22)
+### Epic: Optional OpenRouter BYOK AI Cleanup (#22)
 
-*   **PRO-1:** Bundles editor UI (system/task/content).
-*   **PRO-2:** Bundle export (MD and JSON with roles).
-*   **PRO-3:** BYOK settings and storage (obfuscated local storage).
-*   **PRO-4:** BYOK formatter/validator call with explicit user consent UI, visible network activity indicator, per-minute local rate limit, and graceful fallback to local (non-AI-refined) output on error.
-*   **PRO-5:** Pro feature gating (local flag, no server).
+- **BYOK-1:** OpenRouter key settings and local storage.
+- **BYOK-2:** BYOK AI cleanup call with explicit user disclosure and visible network activity indicator.
+- **BYOK-3:** Local 5-successful-cleanups-per-day limit and graceful fallback to local output on error.
 
 ### Epic: QA, Compliance, and Release
 
-*   **QA-1:** Test matrix of 30 pages (news, docs, GitHub, MDN, ArXiv, etc.).
-*   **QA-2:** Accessibility audit on popup/settings.
-*   **REL-1:** Chrome Web Store listing assets (icons, screenshots, GIFs, copy).
-*   **LEG-1:** Privacy policy and permissions rationale document.
+- **QA-1:** Test matrix of 30 pages (news, docs, GitHub, MDN, ArXiv, etc.).
+- **QA-2:** Accessibility audit on popup/settings.
+- **REL-1:** Chrome Web Store listing assets (icons, screenshots, GIFs, copy).
+- **LEG-1:** Privacy policy and permissions rationale document.
 
 ## 8. 2-Week Sprint Plan (MVP)
 
-*   **Week 1:** EXT-1, EXT-2, CLS-1, CLS-2, CLS-3, EXP-1, DEV-1, CIT-1.
-*   **Week 2:** DEV-2, DEV-3, CIT-2, CIT-3, EXP-2, PRO-1 through PRO-5, QA-1, QA-2, REL-1, LEG-1.
+- **Week 1:** EXT-1, EXT-2, CLS-1, CLS-2, CLS-3, EXP-1, DEV-1, CIT-1.
+- **Week 2:** DEV-2, DEV-3, CIT-2, CIT-3, EXP-2, BYOK-1 through BYOK-3, QA-1, QA-2, REL-1, LEG-1.
 
 ---
 
@@ -142,7 +137,7 @@ Stored in `chrome.storage.local`.
 
 - Adoption: 1,000 installs; 35% activation (first clean within 24h).
 - Engagement: median 3 cleans/user/week; 25% W4 retention.
-- Monetization: 6–8% Pro conversion; ≥40% BYOK attach among Pro.
+- BYOK adoption: track optional AI cleanup configuration and successful cleanup rate.
 - Quality: ≥85% “no manual fix needed” on a curated 30‑page test set.
 
 ## 10. Release Criteria
@@ -156,15 +151,15 @@ Stored in `chrome.storage.local`.
 
 - Content script: selection/DOM capture → cleaner → structurer → message to UI.
 - Service worker: orchestrates commands, downloads, settings.
-- UI: popup (quick actions, mode), settings (templates, BYOK), Pro bundles editor.
-- Storage: `chrome.storage.local` (API keys obfuscated; optional passphrase for at‑rest encryption).
-- BYOK: OpenAI‑compatible client; explicit user consent per call; retries/backoff; local rate limit.
+- UI: popup (quick actions, mode), settings (BYOK and privacy).
+- Storage: `chrome.storage.local` for settings and the user-provided OpenRouter key.
+- BYOK: direct OpenRouter client; explicit user consent per call; retries/backoff; local daily success limit.
 - Permissions: `activeTab`, `storage`, `scripting`, `downloads`, optional `clipboardWrite`.
 
 ## 12. Analytics & Telemetry
 
 - Default off; post‑install opt‑in.
-- If enabled: event counts only (clean, export, pro‑bundle used). No content captured.
+- If enabled: event counts only (clean, export, optional AI cleanup outcome). No content captured.
 
 ## 13. Risks & Mitigations
 
@@ -184,15 +179,15 @@ Stored in `chrome.storage.local`.
   "type": "object",
   "required": ["version", "metadata", "blocks"],
   "properties": {
-    "version": {"type": "string", "const": "1.0"},
+    "version": { "type": "string", "const": "1.0" },
     "metadata": {
       "type": "object",
       "required": ["title", "url", "capturedAt"],
       "properties": {
-        "title": {"type": "string"},
-        "url": {"type": "string", "format": "uri"},
-        "capturedAt": {"type": "string", "format": "date-time"},
-        "selectionHash": {"type": "string"}
+        "title": { "type": "string" },
+        "url": { "type": "string", "format": "uri" },
+        "capturedAt": { "type": "string", "format": "date-time" },
+        "selectionHash": { "type": "string" }
       }
     },
     "blocks": {
@@ -201,19 +196,25 @@ Stored in `chrome.storage.local`.
         "type": "object",
         "required": ["type"],
         "properties": {
-          "type": {"type": "string", "enum": ["heading", "paragraph", "list", "table", "code", "quote"]},
-          "level": {"type": "integer", "minimum": 1, "maximum": 3},
-          "text": {"type": "string"},
-          "items": {"type": "array", "items": {"type": "string"}},
+          "type": {
+            "type": "string",
+            "enum": ["heading", "paragraph", "list", "table", "code", "quote"]
+          },
+          "level": { "type": "integer", "minimum": 1, "maximum": 3 },
+          "text": { "type": "string" },
+          "items": { "type": "array", "items": { "type": "string" } },
           "table": {
             "type": "object",
             "properties": {
-              "headers": {"type": "array", "items": {"type": "string"}},
-              "rows": {"type": "array", "items": {"type": "array", "items": {"type": "string"}}}
+              "headers": { "type": "array", "items": { "type": "string" } },
+              "rows": {
+                "type": "array",
+                "items": { "type": "array", "items": { "type": "string" } }
+              }
             }
           },
-          "code": {"type": "string"},
-          "language": {"type": "string"}
+          "code": { "type": "string" },
+          "language": { "type": "string" }
         }
       }
     }
@@ -230,15 +231,15 @@ Stored in `chrome.storage.local`.
   "type": "object",
   "required": ["version", "bundle"],
   "properties": {
-    "version": {"type": "string", "const": "1.0"},
+    "version": { "type": "string", "const": "1.0" },
     "bundle": {
       "type": "object",
       "required": ["system", "task", "content"],
       "properties": {
-        "system": {"type": "string"},
-        "task": {"type": "string"},
-        "content": {"type": "string"},
-        "metadata": {"type": "object"}
+        "system": { "type": "string" },
+        "task": { "type": "string" },
+        "content": { "type": "string" },
+        "metadata": { "type": "object" }
       }
     }
   }
@@ -254,21 +255,21 @@ Stored in `chrome.storage.local`.
   "type": "object",
   "required": ["version", "name", "steps"],
   "properties": {
-    "version": {"type": "string", "const": "1.0"},
-    "name": {"type": "string"},
-    "sitePreset": {"type": "string"},
+    "version": { "type": "string", "const": "1.0" },
+    "name": { "type": "string" },
+    "sitePreset": { "type": "string" },
     "steps": {
       "type": "array",
       "items": {
         "type": "object",
         "required": ["type", "id"],
         "properties": {
-          "id": {"type": "string"},
-          "type": {"type": "string", "enum": ["clean", "structure", "transform", "export"]},
-          "config": {"type": "object"},
-          "inputs": {"type": "array", "items": {"type": "string"}},
-          "outputs": {"type": "array", "items": {"type": "string"}},
-          "enabled": {"type": "boolean", "default": true}
+          "id": { "type": "string" },
+          "type": { "type": "string", "enum": ["clean", "structure", "transform", "export"] },
+          "config": { "type": "object" },
+          "inputs": { "type": "array", "items": { "type": "string" } },
+          "outputs": { "type": "array", "items": { "type": "string" } },
+          "enabled": { "type": "boolean", "default": true }
         }
       }
     }
@@ -294,15 +295,18 @@ Stored in `chrome.storage.local`.
 
 ## 17. API Contracts (BYOK)
 
-- Endpoint: OpenAI‑compatible (e.g., `POST /v1/chat/completions`). Default provider: **OpenRouter** with manual `apiBase` override supported.
+- Endpoint: OpenRouter chat completions API.
 - Request (example):
 
 ```json
 {
   "model": "<selected-model-or-manual-name>",
   "messages": [
-    {"role": "system", "content": "You are a formatter that ensures JSON validity and preserves code fences."},
-    {"role": "user", "content": "<bundle content here>"}
+    {
+      "role": "system",
+      "content": "You are a formatter that ensures JSON validity and preserves code fences."
+    },
+    { "role": "user", "content": "<bundle content here>" }
   ],
   "temperature": 0
 }
@@ -313,4 +317,3 @@ Stored in `chrome.storage.local`.
   - Temperature 0; max tokens bounded; client‑side rate limit.
   - Model selection via dropdown seeded with known OpenRouter models, with manual name entry supported.
   - On failure/timeouts, fall back to local, non‑refined bundle.
-

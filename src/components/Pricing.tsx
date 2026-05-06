@@ -10,8 +10,8 @@ const FEATURES = [
   'One-click Markdown exports',
   'Preserve headings, lists, tables, and code fences',
   'Source URL + timestamp metadata',
-  'Local-first processing',
-  'Optional OpenRouter BYOK cleanup',
+  'Offline capture and export runs locally',
+  'Optional OpenRouter BYOK cleanup, 5 successful runs per local day',
   'No credit card required',
 ];
 
@@ -126,7 +126,8 @@ const Pricing: React.FC<PricingProps> = ({ onPrimaryAction }) => (
           transition={{ delay: 0.1 }}
           className="text-brand-muted mx-auto mt-4 max-w-2xl text-base leading-relaxed sm:-translate-x-1 sm:text-lg"
         >
-          Core capture, cleanup, and Markdown export are free. No card required.
+          Core offline capture and Markdown export are free. Optional BYOK AI cleanup uses your
+          OpenRouter key with a 5-successful-cleanups-per-day local limit.
         </motion.p>
       </div>
 

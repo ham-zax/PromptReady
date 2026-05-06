@@ -23,7 +23,7 @@ const posthogCapture = (eventName: string, payload: AnalyticsPayload) => {
     } else if (env.DEV) {
       console.warn('[PostHog] Analytics disabled or key missing:', {
         enabled: env.ANALYTICS_ENABLED,
-        hasKey: !!env.POSTHOG_KEY
+        hasKey: !!env.POSTHOG_KEY,
       });
     }
   } catch (error) {
@@ -56,12 +56,11 @@ export const trackEvent = (eventName: string, payload: AnalyticsPayload = {}) =>
 export const trackHeroCtaClick = (extra: AnalyticsPayload = {}) =>
   trackEvent('hero_cta_click', extra);
 export const trackDemoPlay = (extra: AnalyticsPayload = {}) => trackEvent('demo_play', extra);
-export const trackWaitlistSubmit = (extra: AnalyticsPayload = {}) =>
-  trackEvent('waitlist_submit', extra);
+export const trackInstallIntent = (extra: AnalyticsPayload = {}) =>
+  trackEvent('install_intent', extra);
 
 export const trackUserEngagement = (
   action: string,
   element: string,
-  extra: AnalyticsPayload = {}
-) =>
-  trackEvent('user_engagement', { action, element, ...extra });
+  extra: AnalyticsPayload = {},
+) => trackEvent('user_engagement', { action, element, ...extra });

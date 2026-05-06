@@ -52,8 +52,8 @@ const PricingPage: React.FC<PricingPageProps> = ({ onPrimaryAction }) => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.16 }}
           >
-            Use core capture, cleanup, and Markdown export without an API key. Optional paid tiers
-            can add advanced workflow controls later.
+            Use offline capture and Markdown export without an API key. Optional OpenRouter BYOK AI
+            cleanup is available with a 5-successful-cleanups-per-day local limit.
           </motion.p>
         </section>
 
@@ -73,7 +73,7 @@ const PricingPage: React.FC<PricingPageProps> = ({ onPrimaryAction }) => {
                 </li>
                 <li className="flex items-center gap-2">
                   <Check className="text-brand-success h-4 w-4" />
-                  Local-first privacy
+                  Offline capture and export runs locally
                 </li>
                 <li className="flex items-center gap-2">
                   <Check className="text-brand-success h-4 w-4" />
@@ -84,7 +84,7 @@ const PricingPage: React.FC<PricingPageProps> = ({ onPrimaryAction }) => {
 
             <article className="border-brand-accent/40 bg-brand-surface-soft rounded-3xl border p-6 shadow-[0_14px_34px_-22px_rgba(231,0,0,0.35)]">
               <h3 className="linear-display text-brand-ink text-[2rem] leading-none">
-                Pro (optional)
+                BYOK AI (optional)
               </h3>
               <ul className="text-brand-muted mt-4 space-y-2.5 text-sm sm:text-base">
                 <li className="flex items-center gap-2">
@@ -92,12 +92,12 @@ const PricingPage: React.FC<PricingPageProps> = ({ onPrimaryAction }) => {
                   All free features
                 </li>
                 <li className="flex items-center gap-2">
-                  <Check className="text-brand-accent h-4 w-4" />
-                  Bundle templates and advanced options
+                  <Check className="text-brand-accent h-4 w-4" />5 successful AI cleanups per local
+                  day
                 </li>
                 <li className="flex items-center gap-2">
                   <Check className="text-brand-accent h-4 w-4" />
-                  Optional OpenRouter BYOK cleanup
+                  Direct OpenRouter requests with your key
                 </li>
               </ul>
             </article>

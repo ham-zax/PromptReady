@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Lenis from 'lenis';
 import { trackEvent } from './hooks/useAnalytics';
 import { usePostHog } from './hooks/usePostHog';
 import { Toaster } from '@/components/ui/sonner';
 import { SketchyIconProvider } from '@/components/ui/Icons';
 import LandingFlowRouter from './router/LandingFlowRouter';
-import WaitlistModal from './components/WaitlistModal';
 import { env } from './config';
 
 // Import test utilities in development
@@ -19,8 +18,6 @@ if (env.DEV) {
 function App() {
   // Initialize PostHog analytics
   usePostHog();
-
-  const [isWaitlistModalOpen, setIsWaitlistModalOpen] = useState(false);
 
   // Initialize Lenis smooth scrolling once at app mount
   React.useEffect(() => {
@@ -54,11 +51,19 @@ function App() {
   }, []);
 
   const handlePrimaryAction = (sourceComponent: string) => {
+    const destinationUrl = env.CHROME_STORE_URL;
+
     trackEvent('primary_cta_click', {
-      destination_url: env.WAITLIST_URL,
+      destination_url: destinationUrl || 'missing_chrome_store_url',
       source_component: sourceComponent,
     });
-    setIsWaitlistModalOpen(true);
+
+    if (!destinationUrl) {
+      console.warn('VITE_CHROME_STORE_URL is required before publishing release CTAs.');
+      return;
+    }
+
+    window.open(destinationUrl, '_blank', 'noopener,noreferrer');
   };
 
   return (
@@ -67,9 +72,6 @@ function App() {
       <div className="relative z-10">
         {/* Landing Flow Router handles all routing and page transitions */}
         <LandingFlowRouter onPrimaryAction={handlePrimaryAction} />
-
-        {/* Waitlist Modal overlay */}
-        <WaitlistModal isOpen={isWaitlistModalOpen} onClose={() => setIsWaitlistModalOpen(false)} />
 
         {/* Toast notifications */}
         <Toaster />

@@ -18,10 +18,10 @@ const ThankYou: React.FC = () => {
           </div>
 
           <h1 className="text-brand-ink mb-3 text-4xl font-bold tracking-tight">
-            You&apos;re on the list — thank you!
+            PromptReady is available now
           </h1>
           <p className="text-brand-muted mx-auto max-w-2xl">
-            We will email you with PromptReady release details and product updates.
+            Install PromptReady from the Chrome Web Store to start exporting clean Markdown.
           </p>
         </div>
 

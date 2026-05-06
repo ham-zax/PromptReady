@@ -44,12 +44,12 @@ This document outlines the comprehensive SEO strategy implemented for PromptRead
   <title>PromptReady Demo — One-click clean Markdown for AI context</title>
   <meta
     name="description"
-    content="See PromptReady turn messy selections into AI‑ready Markdown/JSON with citations. Privacy‑first, runs locally. Pro adds optional BYOK validation using your key."
+    content="See PromptReady turn messy selections into AI-ready Markdown/JSON with citations. Offline capture and export run locally. Optional BYOK AI cleanup uses OpenRouter."
   />
   <meta property="og:title" content="PromptReady Demo — One-click clean Markdown for AI context" />
   <meta
     property="og:description"
-    content="See PromptReady turn messy selections into AI‑ready Markdown/JSON with citations. Privacy‑first, runs locally."
+    content="See PromptReady turn messy selections into AI-ready Markdown/JSON with citations. Offline capture and export run locally."
   />
   <meta property="og:image" content="/og-image.png" />
   <meta name="twitter:card" content="summary_large_image" />
@@ -138,7 +138,9 @@ This document outlines the comprehensive SEO strategy implemented for PromptRead
   "operatingSystem": "All",
   "offers": {
     "@type": "Offer",
-    "url": "https://waitlister.me/p/promptready"
+    "url": "https://promptready.app/pricing",
+    "price": "0",
+    "priceCurrency": "USD"
   }
 }
 ```
