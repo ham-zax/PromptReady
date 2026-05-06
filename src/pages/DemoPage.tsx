@@ -7,8 +7,7 @@ import HowItWorks from '../components/HowItWorks';
 import HeroBackground from '../components/ui/HeroBackground';
 import { usePageSEO } from '../hooks/useSEO';
 import SEOHead from '../components/seo/SEOHead';
-
-const VideoDemo = React.lazy(() => import('../components/VideoDemo'));
+import VideoDemo from '../components/VideoDemo';
 
 interface DemoPageProps {
   onPrimaryAction: (sourceComponent: string) => void;
@@ -80,11 +79,7 @@ const DemoPage: React.FC<DemoPageProps> = ({ onPrimaryAction }) => {
           </motion.div>
         </section>
 
-        <React.Suspense
-          fallback={<div className="flex h-96 items-center justify-center">Loading demo…</div>}
-        >
-          <VideoDemo />
-        </React.Suspense>
+        <VideoDemo />
 
         <HowItWorks />
 

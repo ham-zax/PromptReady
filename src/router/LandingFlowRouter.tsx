@@ -5,12 +5,13 @@ import { useLocation } from 'react-router-dom';
 
 // Import page components
 import HomePage from '../pages/HomePage';
-import DemoPage from '../pages/DemoPage';
-import PricingPage from '../pages/PricingPage';
-import ThankYou from '../pages/ThankYou';
-import PrivacyPage from '../pages/PrivacyPage';
-import TermsPage from '../pages/TermsPage';
-import NotFoundPage from '../pages/NotFoundPage';
+
+const DemoPage = React.lazy(() => import('../pages/DemoPage'));
+const PricingPage = React.lazy(() => import('../pages/PricingPage'));
+const ThankYou = React.lazy(() => import('../pages/ThankYou'));
+const PrivacyPage = React.lazy(() => import('../pages/PrivacyPage'));
+const TermsPage = React.lazy(() => import('../pages/TermsPage'));
+const NotFoundPage = React.lazy(() => import('../pages/NotFoundPage'));
 
 // Import navigation
 import LandingNavigation from '../components/navigation/LandingNavigation';
@@ -112,17 +113,25 @@ const AnimatedRoutes: React.FC<{ onPrimaryAction: (sourceComponent: string) => v
         exit={{ opacity: 0, y: -8 }}
         transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
       >
-        <Routes location={location}>
-          <Route path="/" element={<HomePage onPrimaryAction={onPrimaryAction} />} />
-          <Route path="/demo" element={<DemoPage onPrimaryAction={onPrimaryAction} />} />
-          <Route path="/pricing" element={<PricingPage onPrimaryAction={onPrimaryAction} />} />
-          <Route path="/thank-you" element={<ThankYou />} />
-          <Route path="/privacy" element={<PrivacyPage />} />
-          <Route path="/terms" element={<TermsPage />} />
-          <Route path="/404" element={<NotFoundPage />} />
-          {/* Redirect any unknown routes to 404 */}
-          <Route path="*" element={<Navigate to="/404" replace />} />
-        </Routes>
+        <React.Suspense
+          fallback={
+            <main className="bg-brand-bg flex min-h-screen items-center justify-center px-4">
+              <p className="linear-kicker text-brand-muted text-[1.1rem]">Loading PromptReady</p>
+            </main>
+          }
+        >
+          <Routes location={location}>
+            <Route path="/" element={<HomePage onPrimaryAction={onPrimaryAction} />} />
+            <Route path="/demo" element={<DemoPage onPrimaryAction={onPrimaryAction} />} />
+            <Route path="/pricing" element={<PricingPage onPrimaryAction={onPrimaryAction} />} />
+            <Route path="/thank-you" element={<ThankYou />} />
+            <Route path="/privacy" element={<PrivacyPage />} />
+            <Route path="/terms" element={<TermsPage />} />
+            <Route path="/404" element={<NotFoundPage />} />
+            {/* Redirect any unknown routes to 404 */}
+            <Route path="*" element={<Navigate to="/404" replace />} />
+          </Routes>
+        </React.Suspense>
       </motion.div>
     </AnimatePresence>
   );

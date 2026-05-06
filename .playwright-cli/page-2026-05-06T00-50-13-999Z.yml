@@ -1,0 +1,413 @@
+- generic [ref=e4]:
+  - navigation [ref=e5]:
+    - generic [ref=e7]:
+      - link "P R O M P T R E A D Y" [ref=e8] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e10]:
+          - img [ref=e11]
+          - generic [ref=e22]:
+            - generic [ref=e23]: P
+            - generic [ref=e24]: R
+            - generic [ref=e25]: O
+            - generic [ref=e26]: M
+            - generic [ref=e27]: P
+            - generic [ref=e28]: T
+            - generic [ref=e29]: R
+            - generic [ref=e30]: E
+            - generic [ref=e31]: A
+            - generic [ref=e32]: D
+            - generic [ref=e33]: "Y"
+      - generic [ref=e34]:
+        - link "Home" [ref=e35] [cursor=pointer]:
+          - /url: /
+          - text: Home
+        - link "Demo" [ref=e37] [cursor=pointer]:
+          - /url: /demo
+        - link "Pricing" [ref=e38] [cursor=pointer]:
+          - /url: /pricing
+      - button "Get PromptReady free" [ref=e40] [cursor=pointer]:
+        - generic [ref=e41]: Get PromptReady free
+        - img [ref=e42]
+  - main [ref=e46]:
+    - generic [ref=e48]:
+      - generic:
+        - generic:
+          - img
+          - img
+          - img
+          - img
+          - img
+      - generic [ref=e49]:
+        - generic [ref=e50]:
+          - generic [ref=e51]:
+            - img [ref=e52]
+            - text: One click. Clean Markdown. Better context.
+          - heading "Turn messy web pages into prompt-ready Markdown" [level=1] [ref=e54]:
+            - text: Turn messy web pages into
+            - generic [ref=e55]:
+              - text: prompt-ready Markdown
+              - img [ref=e56]
+          - paragraph [ref=e58]:
+            - text: PromptReady extracts the useful parts, preserves structure, and gives you clean Markdown in one click.
+            - strong [ref=e59]: Use it for articles, docs, Reddit threads, research, and everyday AI prompts.
+          - generic [ref=e61]:
+            - button "Get PromptReady free" [ref=e62]:
+              - generic [ref=e63]:
+                - text: Get PromptReady free
+                - img [ref=e64]
+            - link "Watch Demo" [ref=e66] [cursor=pointer]:
+              - /url: /demo
+              - generic [ref=e67]:
+                - img [ref=e68]
+                - generic [ref=e70]: Watch Demo
+        - generic [ref=e71]:
+          - img [ref=e79]:
+            - generic [ref=e82]: ANNOYING POPUP AD
+            - generic [ref=e91]: Accept all 500 tracking cookies to continue.
+            - generic [ref=e93]: "#"
+            - generic [ref=e99]:
+              - generic [ref=e101]: "```json"
+              - generic [ref=e104]: "```"
+          - generic [ref=e113]:
+            - generic [ref=e114]: One-click clean copy
+            - generic [ref=e116]: Articles, docs, and Reddit
+            - generic [ref=e119]: Private local parsing
+    - generic [ref=e122]:
+      - generic:
+        - img
+        - img
+      - generic [ref=e123]:
+        - generic [ref=e124]:
+          - heading "Same source, cleaner context" [level=2] [ref=e125]:
+            - text: Same source,
+            - generic [ref=e126]:
+              - text: cleaner context
+              - img
+          - paragraph [ref=e127]: Stop hand-editing every snippet before using it in your prompts.
+        - generic [ref=e128]:
+          - generic [ref=e129]:
+            - generic [ref=e130]: Before / After Comparison
+            - generic [ref=e131]:
+              - img [ref=e132]
+              - text: Offline baseline pass
+          - generic [ref=e141]:
+            - article [ref=e142]:
+              - heading "Raw Copy-Paste" [level=3] [ref=e143]:
+                - img [ref=e144]
+                - text: Raw Copy-Paste
+              - generic [ref=e148]:
+                - img
+                - generic [ref=e149]:
+                  - text: <div class="promo">
+                  - text: Save 40% today! Subscribe to our newsletter.
+                  - text: </div>
+                - generic [ref=e152]: Breaking down retrieval-augmented generation in production...
+                - generic [ref=e153]:
+                  - text: <footer>
+                  - text: Subscribe to our newsletter | Related links | Footer text
+                  - text: </footer>
+            - article [ref=e156]:
+              - heading "PromptReady Output" [level=3] [ref=e157]:
+                - img [ref=e158]
+                - text: PromptReady Output
+              - generic [ref=e161]:
+                - img [ref=e162]
+                - paragraph [ref=e164]: "# Retrieval-Augmented Generation in Production"
+                - paragraph [ref=e165]: Clean article body with headings, lists, and code blocks preserved. Ads and navigation are filtered when the captured source has enough real content.
+                - generic [ref=e166]:
+                  - generic [ref=e168]: "Source: example.com/rag-guide"
+                  - generic [ref=e169]: •
+                  - generic [ref=e170]: "Captured: 2026-02-24T18:40Z"
+    - generic [ref=e173]:
+      - generic [ref=e174]:
+        - heading "See the transformation in one pass" [level=2] [ref=e175]
+        - paragraph [ref=e176]: Preview how PromptReady turns articles, technical docs, and Reddit-style threads into clean, source-aware Markdown.
+      - generic [ref=e177]:
+        - button "Wikipedia page" [ref=e178]
+        - button "Technical docs" [ref=e179]
+        - button "Reddit thread" [ref=e180]
+      - generic [ref=e181]:
+        - generic [ref=e182]:
+          - article [ref=e183]:
+            - generic [ref=e184]:
+              - generic [ref=e185]: Raw input
+              - generic [ref=e186]: en.wikipedia.org/wiki/Artificial_intelligence
+            - generic [ref=e187]: "Donate | Create account | Log in Contents [hide] (Top) Goals Artificial intelligence From Wikipedia, the free encyclopedia Artificial intelligence (AI), in its broadest sense, is intelligence exhibited by machines, particularly computer systems. It is a field of research in computer science that develops and studies methods and software that enable machines to perceive their environment... <div class=\"navbox\">Categories: Artificial intelligence</div> Privacy policy | About Wikipedia"
+          - article [ref=e188]:
+            - generic [ref=e190]: PromptReady output
+            - generic [ref=e191]: Selecting main content...
+        - generic [ref=e192]:
+          - generic [ref=e193]:
+            - generic [ref=e194]: 1. Select source
+            - generic [ref=e195]: 2. Clean in one click
+            - generic [ref=e196]: 3. Copy Markdown
+          - generic [ref=e197]:
+            - button "Run Demo" [ref=e198]:
+              - img [ref=e199]
+              - text: Run Demo
+            - button "Reset" [ref=e201]:
+              - img [ref=e202]
+              - text: Reset
+            - link "See full flow" [ref=e205] [cursor=pointer]:
+              - /url: /demo
+              - text: See full flow
+              - img [ref=e206]
+    - generic [ref=e209]:
+      - img
+      - generic [ref=e210]:
+        - generic [ref=e211]:
+          - heading "From rendered page to useful Markdown in seconds" [level=2] [ref=e212]:
+            - text: From rendered page to useful Markdown
+            - generic [ref=e213]:
+              - text: in seconds
+              - img
+          - paragraph [ref=e214]: The flow builds a local offline baseline first so the output remains useful even when AI cleanup is unavailable or rejected.
+        - generic [ref=e215]:
+          - img [ref=e217]
+          - generic [ref=e220]:
+            - article [ref=e221]:
+              - img [ref=e223]
+              - img [ref=e227]
+              - img [ref=e231]
+              - heading "Select your source" [level=3] [ref=e234]
+              - paragraph [ref=e235]: Use the extension button or keyboard shortcut on the page or selection you want to capture.
+            - article [ref=e236]:
+              - img [ref=e238]
+              - img [ref=e241]
+              - img [ref=e245]
+              - heading "Build the local baseline" [level=3] [ref=e247]
+              - paragraph [ref=e248]: PromptReady cleans the captured source into Markdown before any optional AI step.
+            - article [ref=e249]:
+              - img [ref=e251]
+              - img [ref=e254]
+              - img [ref=e258]
+              - heading "Accept or fall back" [level=3] [ref=e261]
+              - paragraph [ref=e262]: AI cleanup is accepted only when it preserves the offline baseline; otherwise you keep the local result.
+    - generic [ref=e266]:
+      - heading "Copy-paste should not eat your workflow." [level=2] [ref=e267]
+      - paragraph [ref=e268]: PromptReady turns noisy web content into clean Markdown for prompts, notes, research, docs, and threads while keeping the source details close.
+      - button "Get PromptReady free" [ref=e269]:
+        - text: Get PromptReady free
+        - img [ref=e270]
+      - paragraph [ref=e272]: No card required. Clean articles, docs, Reddit threads, and everyday web pages faster.
+    - generic [ref=e273]:
+      - generic:
+        - img
+      - generic [ref=e274]:
+        - generic [ref=e275]:
+          - heading "Built for people who prompt all day" [level=2] [ref=e276]:
+            - text: Built for people who
+            - generic [ref=e277]:
+              - text: prompt all day
+              - img
+          - paragraph [ref=e278]: Everything here exists to reduce friction between source material and high-quality model responses.
+        - generic [ref=e279]:
+          - article [ref=e280]:
+            - img [ref=e282]
+            - generic [ref=e285]:
+              - img [ref=e287]
+              - heading "Offline Markdown baseline" [level=3] [ref=e289]
+              - paragraph [ref=e290]: Builds the local Markdown document first, before any optional AI cleanup runs.
+          - article [ref=e291]:
+            - img [ref=e293]
+            - generic [ref=e295]:
+              - img [ref=e297]
+              - heading "Rendered capture policy" [level=3] [ref=e300]
+              - paragraph [ref=e301]: Captures the page state you actually see, with deeper capture for lazy content when useful.
+          - article [ref=e302]:
+            - img [ref=e304]
+            - generic [ref=e306]:
+              - img [ref=e308]
+              - heading "Source-aware exports" [level=3] [ref=e312]
+              - paragraph [ref=e313]: Carries title, URL, capture timestamp, and selection identity into the final output.
+          - article [ref=e314]:
+            - img [ref=e316]
+            - generic [ref=e318]:
+              - img [ref=e320]
+              - heading "Local by default for offline export" [level=3] [ref=e323]
+              - paragraph [ref=e324]: Offline capture and Markdown export run on-device. BYOK AI cleanup is optional and sends requests directly to OpenRouter.
+          - article [ref=e325]:
+            - img [ref=e327]
+            - generic [ref=e329]:
+              - img [ref=e331]
+              - heading "Best-effort across page types" [level=3] [ref=e334]
+              - paragraph [ref=e335]: Works best on articles, docs, and long-form pages; app-heavy and social pages stay visible as hard cases.
+          - article [ref=e336]:
+            - img [ref=e338]
+            - generic [ref=e340]:
+              - img [ref=e342]
+              - heading "Quality-gated AI cleanup" [level=3] [ref=e345]
+              - paragraph [ref=e346]: Rejects AI rewrites that drop headings, lose content, break fences, or remove technical tokens.
+    - generic [ref=e347]:
+      - generic:
+        - img
+        - img
+      - generic [ref=e348]:
+        - generic [ref=e349]:
+          - heading "Built for the sources people actually copy" [level=2] [ref=e350]:
+            - text: Built for the sources
+            - generic [ref=e351]:
+              - text: people actually copy
+              - img
+          - paragraph [ref=e352]: PromptReady is for researchers, students, builders, writers, and anyone turning messy web pages into context they can reuse.
+        - generic [ref=e353]:
+          - article [ref=e354]:
+            - paragraph [ref=e355]: Research
+            - heading "Articles and long reads" [level=3] [ref=e356]
+            - paragraph [ref=e357]: Capture the useful sections, keep source details nearby, and paste cleaner context into notes or AI tools.
+          - article [ref=e358]:
+            - paragraph [ref=e359]: Technical docs
+            - heading "Code blocks stay readable" [level=3] [ref=e360]
+            - paragraph [ref=e361]: Preserve headings, commands, config blocks, tables, and URLs so technical references survive the cleanup pass.
+          - article [ref=e362]:
+            - paragraph [ref=e363]: Threads
+            - heading "Reddit and discussions" [level=3] [ref=e364]
+            - paragraph [ref=e365]: Turn noisy discussion pages into structured Markdown while staying honest about hard social and app-heavy pages.
+    - generic [ref=e366]:
+      - generic:
+        - img
+        - img
+      - generic [ref=e367]:
+        - generic [ref=e368]:
+          - img [ref=e369]
+          - heading "Get PromptReady free" [level=2] [ref=e371]:
+            - text: Get PromptReady
+            - generic [ref=e372]:
+              - text: free
+              - img
+          - paragraph [ref=e373]: Core offline capture and Markdown export are free. Optional BYOK AI cleanup uses your OpenRouter key with a 5-successful-cleanups-per-day local limit.
+        - generic [ref=e374]:
+          - generic [ref=e375]:
+            - img [ref=e376]
+            - text: Free plan
+          - generic [ref=e382]:
+            - paragraph [ref=e383]: PromptReady
+            - generic [ref=e384]:
+              - generic [ref=e385]: $0
+              - generic [ref=e386]: / month
+            - paragraph [ref=e387]: Free to use
+          - list [ref=e388]:
+            - listitem [ref=e389]:
+              - img [ref=e390]
+              - generic [ref=e393]: One-click Markdown exports
+            - listitem [ref=e394]:
+              - img [ref=e395]
+              - generic [ref=e398]: Preserve headings, lists, tables, and code fences
+            - listitem [ref=e399]:
+              - img [ref=e400]
+              - generic [ref=e403]: Source URL + timestamp metadata
+            - listitem [ref=e404]:
+              - img [ref=e405]
+              - generic [ref=e408]: Offline capture and export runs locally
+            - listitem [ref=e409]:
+              - img [ref=e410]
+              - generic [ref=e413]: Optional OpenRouter BYOK cleanup, 5 successful runs per local day
+            - listitem [ref=e414]:
+              - img [ref=e415]
+              - generic [ref=e418]: No credit card required
+          - button "Get PromptReady free →" [ref=e419]:
+            - generic [ref=e420]:
+              - text: Get PromptReady free
+              - generic [ref=e421]: →
+    - region "Frequently asked questions" [ref=e423]:
+      - generic:
+        - img
+        - img
+      - generic [ref=e424]:
+        - generic [ref=e425]:
+          - heading "Frequently asked questions" [level=2] [ref=e426]:
+            - text: Frequently asked questions
+            - img [ref=e427]
+          - paragraph [ref=e429]: Details on privacy, support, and how PromptReady fits into your workflow.
+        - generic [ref=e430]:
+          - heading "What runs locally?" [level=3] [ref=e433]:
+            - button "What runs locally?" [ref=e434]:
+              - generic [ref=e435]: What runs locally?
+              - img [ref=e436]
+          - heading "Do I need an API key?" [level=3] [ref=e440]:
+            - button "Do I need an API key?" [ref=e441]:
+              - generic [ref=e442]: Do I need an API key?
+              - img [ref=e443]
+          - heading "Which browsers are supported?" [level=3] [ref=e447]:
+            - button "Which browsers are supported?" [ref=e448]:
+              - generic [ref=e449]: Which browsers are supported?
+              - img [ref=e450]
+          - heading "Will it preserve code and tables?" [level=3] [ref=e454]:
+            - button "Will it preserve code and tables?" [ref=e455]:
+              - generic [ref=e456]: Will it preserve code and tables?
+              - img [ref=e457]
+          - heading "Does it work on every site?" [level=3] [ref=e461]:
+            - button "Does it work on every site?" [ref=e462]:
+              - generic [ref=e463]: Does it work on every site?
+              - img [ref=e464]
+          - heading "Is the free plan time-limited?" [level=3] [ref=e468]:
+            - button "Is the free plan time-limited?" [ref=e469]:
+              - generic [ref=e470]: Is the free plan time-limited?
+              - img [ref=e471]
+    - generic [ref=e473]:
+      - generic:
+        - img
+        - img
+        - img
+      - generic [ref=e474]:
+        - generic [ref=e475]:
+          - generic [ref=e476]:
+            - link "P R O M P T R E A D Y" [ref=e478] [cursor=pointer]:
+              - /url: /
+              - generic [ref=e480]:
+                - img [ref=e481]
+                - generic [ref=e492]:
+                  - generic [ref=e493]: P
+                  - generic [ref=e494]: R
+                  - generic [ref=e495]: O
+                  - generic [ref=e496]: M
+                  - generic [ref=e497]: P
+                  - generic [ref=e498]: T
+                  - generic [ref=e499]: R
+                  - generic [ref=e500]: E
+                  - generic [ref=e501]: A
+                  - generic [ref=e502]: D
+                  - generic [ref=e503]: "Y"
+            - paragraph [ref=e504]: One-click clean Markdown for AI workflows, notes, research, docs, and threads. Preserve the source without getting stuck in copy-paste cleanup.
+            - generic [ref=e505]:
+              - generic [ref=e506]:
+                - paragraph [ref=e507]: Product
+                - generic [ref=e508]:
+                  - link "Features" [ref=e509] [cursor=pointer]:
+                    - /url: /#features
+                  - link "Pricing" [ref=e510] [cursor=pointer]:
+                    - /url: /#pricing
+                  - link "Demo" [ref=e511] [cursor=pointer]:
+                    - /url: /#demo
+              - generic [ref=e512]:
+                - paragraph [ref=e513]: Pages
+                - generic [ref=e514]:
+                  - link "Home" [ref=e515] [cursor=pointer]:
+                    - /url: /
+                  - link "Demo Page" [ref=e516] [cursor=pointer]:
+                    - /url: /demo
+                  - link "Pricing Page" [ref=e517] [cursor=pointer]:
+                    - /url: /pricing
+              - generic [ref=e518]:
+                - paragraph [ref=e519]: Support
+                - generic [ref=e520]:
+                  - link "Feedback" [ref=e521] [cursor=pointer]:
+                    - /url: mailto:contact@promptready.app
+                  - button "Get PromptReady" [ref=e522] [cursor=pointer]
+          - generic [ref=e524]:
+            - paragraph [ref=e526]: Get started
+            - paragraph [ref=e527]: Get clean Markdown from messy pages without handing the whole workflow to AI.
+            - button "Get PromptReady free" [ref=e528] [cursor=pointer]:
+              - text: Get PromptReady free
+              - img [ref=e529]
+            - link "PromptReady website" [ref=e532] [cursor=pointer]:
+              - /url: https://promptready.app
+              - img [ref=e533]
+        - generic [ref=e535]:
+          - paragraph [ref=e536]: © 2026 PromptReady. All rights reserved.
+          - generic [ref=e537]:
+            - link "Privacy" [ref=e538] [cursor=pointer]:
+              - /url: /privacy
+            - link "Terms" [ref=e539] [cursor=pointer]:
+              - /url: /terms
+  - region "Notifications alt+T"
