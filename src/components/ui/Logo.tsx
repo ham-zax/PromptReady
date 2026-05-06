@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import LogoSvg from '../../assets/logo_pixelated_simple';
 
 const LOGO_CHARACTERS = Array.from('PROMPTREADY').map((letter, order) => ({
   id: `${letter}-${order}`,
@@ -104,115 +105,14 @@ const Logo: React.FC<LogoProps> = ({
 
   const logoElement = (
     <div className={`flex items-center ${config.gap} ${backgroundConfig[background]} ${className}`}>
-      <motion.svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 32 32"
+      <motion.div
         className={`${config.logo} block shrink-0`}
-        // crispEdges is crucial for pixel art SVGs to prevent blurry anti-aliasing
-        shapeRendering="crispEdges"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.3 }}
       >
-        <g fill={outlineColor}>
-          {/* Top Sparks */}
-          <motion.rect
-            x="11"
-            y="0"
-            width="2"
-            height="5"
-            variants={draw}
-            custom={0}
-            initial="hidden"
-            animate="visible"
-          />
-          <motion.rect
-            x="11"
-            y="6"
-            width="2"
-            height="2"
-            variants={draw}
-            custom={1}
-            initial="hidden"
-            animate="visible"
-          />
-
-          {/* Left Sparks */}
-          <motion.rect
-            x="0"
-            y="11"
-            width="5"
-            height="2"
-            variants={draw}
-            custom={2}
-            initial="hidden"
-            animate="visible"
-          />
-          <motion.rect
-            x="6"
-            y="11"
-            width="2"
-            height="2"
-            variants={draw}
-            custom={3}
-            initial="hidden"
-            animate="visible"
-          />
-
-          {/* Top-Left Diagonal Sparks */}
-          <motion.rect
-            x="4"
-            y="4"
-            width="2"
-            height="2"
-            variants={draw}
-            custom={4}
-            initial="hidden"
-            animate="visible"
-          />
-          <motion.rect
-            x="7"
-            y="7"
-            width="2"
-            height="2"
-            variants={draw}
-            custom={5}
-            initial="hidden"
-            animate="visible"
-          />
-
-          {/* Top-Right Diagonal Sparks */}
-          <motion.rect
-            x="18"
-            y="4"
-            width="2"
-            height="2"
-            variants={draw}
-            custom={6}
-            initial="hidden"
-            animate="visible"
-          />
-          <motion.rect
-            x="15"
-            y="7"
-            width="2"
-            height="2"
-            variants={draw}
-            custom={7}
-            initial="hidden"
-            animate="visible"
-          />
-        </g>
-
-        {/* Pixel Cursor Body */}
-        {/* Using a precise orthogonal path without stroke creates a crisp solid pixel shape */}
-        <motion.path
-          variants={draw}
-          custom={8}
-          initial="hidden"
-          animate="visible"
-          d="M12 12 v15 h1 v-1 h1 v-1 h1 v-1 h1 v-1 h1 v2 h1 v3 h1 v2 h2 v-1 h1 v-1 h-1 v-2 h-1 v-2 h-1 v-2 h4 v-1 h-1 v-1 h-1 v-1 h-1 v-1 h-1 v-1 h-1 v-1 h-1 v-1 h-1 v-1 h-1 v-1 h-1 v-1 h-1 v-1 Z"
-          fill={outlineColor}
-          stroke="none"
-        />
-      </motion.svg>
+        <LogoSvg className="w-full h-full" />
+      </motion.div>
 
       {showText && (
         <span
