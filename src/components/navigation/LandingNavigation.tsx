@@ -69,11 +69,11 @@ const LandingNavigation: React.FC<LandingNavigationProps> = ({ onPrimaryAction }
       className="fixed top-3 right-0 left-0 z-50 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8"
     >
       <div
-        className={`mx-auto rounded-full border transition-all duration-300 ${
+        className={`mx-auto border transition-[background-color,border-color,box-shadow] duration-300 ${
           isScrolled
             ? 'border-brand-border bg-brand-surface/95 px-4 py-2 shadow-[0_14px_34px_-28px_rgba(0,0,0,0.3)]'
             : 'border-brand-border/70 bg-brand-surface/90 px-4 py-2 shadow-[0_10px_24px_-22px_rgba(0,0,0,0.25)]'
-        }`}
+        } ${isMenuOpen ? 'rounded-[1.75rem] md:rounded-full' : 'rounded-full'}`}
       >
         <div className="flex items-center justify-between">
           {/* Logo */}
