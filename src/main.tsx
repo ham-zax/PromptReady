@@ -1,8 +1,6 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { HelmetProvider } from 'react-helmet-async';
-import { PostHogProvider } from 'posthog-js/react';
-import posthog from 'posthog-js';
 import '@fontsource/space-grotesk/latin-400.css';
 import '@fontsource/space-grotesk/latin-500.css';
 import '@fontsource/space-grotesk/latin-600.css';
@@ -19,11 +17,9 @@ if (import.meta.env.DEV) console.log('[Startup] main.tsx: Before ReactDOM render
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <PostHogProvider client={posthog}>
-      <HelmetProvider>
-        <App />
-      </HelmetProvider>
-    </PostHogProvider>
+    <HelmetProvider>
+      <App />
+    </HelmetProvider>
   </StrictMode>,
 );
 

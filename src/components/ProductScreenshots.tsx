@@ -15,6 +15,8 @@ const productScreens = [
     title: 'One popup, clear next action',
     description: 'Offline capture, AI mode, and deep capture stay visible beside the main action.',
     image: captureScreenshot,
+    width: 419,
+    height: 477,
     alt: 'PromptReady popup showing capture content, offline mode, AI mode, and deep capture.',
   },
   {
@@ -22,6 +24,8 @@ const productScreens = [
     title: 'Progress stays visible',
     description: 'The queue state makes extraction and fallback stages legible while work runs.',
     image: processingScreenshot,
+    width: 419,
+    height: 516,
     alt: 'PromptReady processing state showing queued capture and progress steps.',
   },
   {
@@ -29,6 +33,8 @@ const productScreens = [
     title: 'Cleanup stays close',
     description: 'AI mode keeps strategy and Markdown output controls near the capture flow.',
     image: aiModeScreenshot,
+    width: 414,
+    height: 657,
     alt: 'PromptReady AI mode settings showing content strategy and output format controls.',
   },
   {
@@ -36,6 +42,8 @@ const productScreens = [
     title: 'Provider setup is explicit',
     description: 'OpenRouter, API key, base URL, and model selection stay clear in one panel.',
     image: providerScreenshot,
+    width: 420,
+    height: 658,
     alt: 'PromptReady provider settings showing OpenRouter API configuration and model selection.',
   },
 ];
@@ -188,7 +196,10 @@ const ProductScreenshots: React.FC = () => {
                         <img
                           src={activeScreen.image}
                           alt={activeScreen.alt}
+                          width={activeScreen.width}
+                          height={activeScreen.height}
                           loading="lazy"
+                          decoding="async"
                           draggable={false}
                           className="h-auto max-h-[300px] w-auto max-w-full select-none drop-shadow-[0_18px_24px_rgba(0,0,0,0.12)] sm:max-h-[390px]"
                         />

@@ -22,10 +22,6 @@ const env = {
   // Site URLs
   SITE_URL: import.meta.env.VITE_SITE_URL || 'https://promptready.app',
 
-  // Analytics
-  ANALYTICS_ENABLED: import.meta.env.VITE_ANALYTICS_ENABLED === 'true',
-  POSTHOG_KEY: import.meta.env.VITE_PUBLIC_POSTHOG_KEY || '',
-  POSTHOG_HOST: import.meta.env.VITE_PUBLIC_POSTHOG_HOST || 'https://us.i.posthog.com',
 } as const;
 
 // Animation configuration

@@ -13,7 +13,7 @@ export const sendTestEvents = () => {
     return;
   }
 
-  console.group('🧪 Sending Test Analytics Events');
+  console.group('Sending Test Analytics Events');
 
   // Test CTA click event
   trackEvent('cta_click', {
@@ -23,7 +23,7 @@ export const sendTestEvents = () => {
     placement: 'hero_button',
     timestamp: Date.now(),
   });
-  console.log('✅ Sent test CTA click event');
+  console.log('Sent test CTA click event');
 
   // Test conversion event (simulated)
   setTimeout(() => {
@@ -33,7 +33,7 @@ export const sendTestEvents = () => {
       source_component: 'Hero',
       timestamp: Date.now(),
     });
-    console.log('✅ Sent test conversion event');
+    console.log('Sent test conversion event');
   }, 1000);
 
   // Test section view events
@@ -44,7 +44,7 @@ export const sendTestEvents = () => {
       time_to_view: 500,
       timestamp: Date.now(),
     });
-    console.log('✅ Sent test section view event');
+    console.log('Sent test section view event');
   }, 2000);
 
   // Test scroll milestone
@@ -58,12 +58,12 @@ export const sendTestEvents = () => {
     console.log('✅ Sent test scroll milestone event');
   }, 3000);
 
-  console.log('🎯 Test events sent! Check your PostHog dashboard in a few minutes.');
+  console.log('Test events sent to the local analytics facade.');
   console.groupEnd();
 };
 
 // Add to window for manual testing
 if (import.meta.env.DEV) {
   (window as unknown as Record<string, unknown>).sendTestEvents = sendTestEvents;
-  console.log('🧪 Test function available: window.sendTestEvents()');
+  console.log('Test function available: window.sendTestEvents()');
 }

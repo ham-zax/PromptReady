@@ -1,7 +1,6 @@
 // src/hooks/useEnhancedAnalytics.ts
 
 import { useCallback, useMemo } from 'react';
-import { usePostHog } from 'posthog-js/react';
 import { trackEvent } from './useAnalytics';
 import { useFeatureFlags, FEATURE_FLAGS } from './useFeatureFlags';
 import type { AnalyticsPayload } from '../types';
@@ -14,8 +13,6 @@ const ALL_FEATURE_FLAG_KEYS = Object.values(FEATURE_FLAGS);
  * and provides specialized tracking functions for A/B testing
  */
 export const useEnhancedAnalytics = () => {
-  const posthog = usePostHog();
-  
   // Get all current feature flag values with stable flag keys reference
   const featureFlags = useFeatureFlags(ALL_FEATURE_FLAG_KEYS, { trackExposure: false });
 
@@ -37,14 +34,11 @@ export const useEnhancedAnalytics = () => {
       ...payload,
       // Add flattened feature flag properties
       ...flagProperties,
-      // Add session context (only if available)
-      ...(posthog?.get_session_id?.() && { session_id: posthog.get_session_id() }),
-      ...(posthog?.get_distinct_id?.() && { distinct_id: posthog.get_distinct_id() }),
       timestamp: Date.now(),
     };
 
     trackEvent(eventName, enhancedPayload);
-  }, [featureFlags, posthog]);
+  }, [featureFlags]);
 
   /**
    * Track A/B test conversion events
@@ -256,8 +250,6 @@ export const useEnhancedAnalytics = () => {
     // Feature flag context
     featureFlags,
     
-    // PostHog instance for advanced usage
-    posthog,
   }), [
     trackWithContext,
     trackConversion,
@@ -272,6 +264,5 @@ export const useEnhancedAnalytics = () => {
     trackError,
     trackPerformance,
     featureFlags,
-    posthog,
   ]);
 };

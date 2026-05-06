@@ -1,7 +1,6 @@
 import React from 'react';
 import Lenis from 'lenis';
 import { trackEvent } from './hooks/useAnalytics';
-import { usePostHog } from './hooks/usePostHog';
 import { Toaster } from '@/components/ui/sonner';
 import { SketchyIconProvider } from '@/components/ui/Icons';
 import LandingFlowRouter from './router/LandingFlowRouter';
@@ -16,9 +15,6 @@ if (env.DEV) {
 }
 
 function App() {
-  // Initialize PostHog analytics
-  usePostHog();
-
   // Initialize Lenis smooth scrolling once at app mount
   React.useEffect(() => {
     const win = window as Window & { __appLenis?: Lenis };

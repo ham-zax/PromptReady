@@ -1,54 +1,21 @@
 // src/hooks/useAnalytics.ts
 
-import posthog from 'posthog-js';
 import type { AnalyticsPayload } from '../types';
-import { env } from '../config';
 
 /**
- * PostHog event capture with proper error handling
- */
-const posthogCapture = (eventName: string, payload: AnalyticsPayload) => {
-  try {
-    // Only capture if analytics are enabled and PostHog is initialized
-    if (env.ANALYTICS_ENABLED && env.POSTHOG_KEY) {
-      // Check if PostHog is available and initialized
-      if (typeof posthog !== 'undefined' && posthog.capture) {
-        posthog.capture(eventName, payload);
-        if (env.DEV) {
-          console.log('[PostHog] Event captured:', eventName, payload);
-        }
-      } else if (env.DEV) {
-        console.warn('[PostHog] PostHog not ready, event not captured:', eventName);
-      }
-    } else if (env.DEV) {
-      console.warn('[PostHog] Analytics disabled or key missing:', {
-        enabled: env.ANALYTICS_ENABLED,
-        hasKey: !!env.POSTHOG_KEY,
-      });
-    }
-  } catch (error) {
-    if (env.DEV) {
-      console.warn('[PostHog] Failed to capture event:', eventName, error);
-    }
-  }
-};
-
-/**
- * A simple utility function to log analytics events using PostHog.
+ * Local analytics facade.
+ *
+ * Production site metrics are handled by Cloudflare at the domain layer. Keep
+ * this function as a no-op in production so component event calls do not ship a
+ * third-party analytics SDK.
+ *
+ * A simple utility function to log analytics events in development.
  * @param eventName - The name of the event to track.
  * @param payload - A data object associated with the event.
  */
 export const trackEvent = (eventName: string, payload: AnalyticsPayload = {}) => {
-  try {
-    if (import.meta && import.meta.env && import.meta.env.DEV) {
-      // Dev-only log to avoid noise in production
-      console.log(`[Analytics] Event: ${eventName}`, payload);
-    }
-
-    // Send to PostHog
-    posthogCapture(eventName, payload);
-  } catch {
-    // swallow analytics errors
+  if (import.meta.env.DEV) {
+    console.log(`[Analytics] Event: ${eventName}`, payload);
   }
 };
 
