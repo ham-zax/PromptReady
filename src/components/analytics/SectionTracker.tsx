@@ -27,6 +27,8 @@ const SectionTracker: React.FC<SectionTrackerProps> = ({
   const viewStartTime = useRef<number | null>(null);
 
   useEffect(() => {
+    if (import.meta.env.PROD) return;
+
     const currentSection = sectionRef.current;
     if (!currentSection) return;
 

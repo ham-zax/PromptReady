@@ -24,11 +24,15 @@ const ScrollTracker: React.FC<ScrollTrackerProps> = ({
 
   // Reset tracking when page changes
   useEffect(() => {
+    if (import.meta.env.PROD) return;
+
     trackedMilestones.current.clear();
     pageStartTime.current = Date.now();
   }, [location.pathname]);
 
   useEffect(() => {
+    if (import.meta.env.PROD) return;
+
     let scrollTimeout: NodeJS.Timeout;
     let throttleTimeout: NodeJS.Timeout | null = null;
     let lastKnownScrollTop = 0;
