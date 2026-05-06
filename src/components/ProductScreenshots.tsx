@@ -167,7 +167,7 @@ const ProductScreenshots: React.FC = () => {
                     />
                   </div>
                 </figcaption>
-                <div className="relative flex flex-1 items-start justify-center overflow-hidden px-4 pt-4 sm:px-6 sm:pt-5">
+                <div className="relative flex flex-1 flex-col items-center justify-start overflow-hidden px-4 pt-4 pb-3 sm:px-6 sm:pt-5 sm:pb-4">
                   <button
                     type="button"
                     onClick={goPrevious}
@@ -206,6 +206,14 @@ const ProductScreenshots: React.FC = () => {
                       </motion.div>
                     </AnimatePresence>
                   </motion.div>
+                  <div
+                    className="linear-mono text-brand-muted mt-2 flex items-center justify-center gap-2 text-[0.68rem] font-semibold tracking-[0.18em] uppercase md:hidden"
+                    aria-hidden="true"
+                  >
+                    <ArrowLeft className="h-3.5 w-3.5" />
+                    <span>Swipe</span>
+                    <ArrowLeft className="h-3.5 w-3.5 rotate-180" />
+                  </div>
                   <button
                     type="button"
                     onClick={goNext}
