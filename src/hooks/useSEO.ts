@@ -88,8 +88,8 @@ export const seoConfigs = {
       'Get PromptReady free for offline Markdown capture and export. Optional OpenRouter BYOK AI cleanup allows 5 successful cleanups per local day.',
   },
   thankYou: {
-    title: 'PromptReady is available now',
-    description: 'Install PromptReady from the Chrome Web Store.',
+    title: 'PromptReady Chrome Web Store listing',
+    description: 'Open the PromptReady Chrome Web Store listing when publication goes live.',
     noindex: true, // Don't index thank you pages
   },
   privacy: {

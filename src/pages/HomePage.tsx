@@ -11,6 +11,7 @@ import Footer from '../components/Footer';
 import HowItWorks from '../components/HowItWorks';
 import Pricing from '../components/Pricing';
 import ProblemSolution from '../components/ProblemSolution';
+import ProductScreenshots from '../components/ProductScreenshots';
 import SocialProof from '../components/SocialProof';
 import VideoDemo from '../components/VideoDemo';
 
@@ -42,6 +43,10 @@ const HomePage: React.FC<HomePageProps> = ({ onPrimaryAction }) => {
         <main className="relative">
           <SectionTracker sectionName="hero" sectionId="hero-section">
             <Hero onPrimaryAction={() => onPrimaryAction('Hero')} />
+          </SectionTracker>
+
+          <SectionTracker sectionName="product-screenshots" sectionId="product-screenshots-section">
+            <ProductScreenshots />
           </SectionTracker>
 
           <SectionTracker sectionName="before-after" sectionId="before-after-section">

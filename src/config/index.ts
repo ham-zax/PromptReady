@@ -6,6 +6,9 @@
  */
 
 // Environment variables with defaults
+const chromeStoreUrl =
+  'https://chromewebstore.google.com/detail/promptready/inghgabddmlnmlgnjedkcleelonkggkg';
+
 const env = {
   // App environment
   NODE_ENV: import.meta.env.NODE_ENV || 'development',
@@ -13,7 +16,7 @@ const env = {
   PROD: import.meta.env.PROD || false,
 
   // External URLs
-  CHROME_STORE_URL: import.meta.env.VITE_CHROME_STORE_URL || '',
+  CHROME_STORE_URL: import.meta.env.VITE_CHROME_STORE_URL || chromeStoreUrl,
   FEEDBACK_URL: import.meta.env.VITE_FEEDBACK_URL || 'mailto:contact@promptready.app',
 
   // Site URLs
