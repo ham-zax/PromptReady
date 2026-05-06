@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Home, Play, DollarSign, CheckCircle } from '@/components/ui/Icons';
 

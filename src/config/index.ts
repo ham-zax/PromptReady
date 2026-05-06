@@ -24,28 +24,7 @@ const env = {
 
 } as const;
 
-// Animation configuration
-export const animations = {
-  spring: {
-    type: 'spring' as const,
-    stiffness: 300,
-    damping: 26,
-  },
-  delays: {
-    badge1: 0.05,
-    badge2: 0.12,
-    badge3: 0.18,
-    logo: 0.05,
-    title: 0.1,
-    description: 0.18,
-    mode1: 0.05,
-    mode2: 0.12,
-  },
-  durations: {
-    carousel: 5000, // 5 seconds
-    shimmer: 2000, // 2 seconds
-  },
-} as const;
+
 
 // Export environment variables
 export { env };

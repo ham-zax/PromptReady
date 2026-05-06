@@ -1,7 +1,41 @@
-import { defineConfig } from 'vite';
+import { defineConfig, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 import { fileURLToPath } from 'url';
+
+/**
+ * Injects <link rel="preload"> tags for critical font files into the built HTML.
+ * Breaks the CSS→font waterfall that adds ~730ms to LCP.
+ */
+function fontPreloadPlugin(): Plugin {
+  return {
+    name: 'font-preload',
+    enforce: 'post',
+    transformIndexHtml(html, ctx) {
+      // Only inject in build output (assets have hashed names)
+      if (!ctx.bundle) return html;
+
+      const fontFiles = Object.keys(ctx.bundle).filter(
+        (name) =>
+          name.endsWith('.woff2') &&
+          name.includes('space-grotesk-latin-400'),
+      );
+
+      const preloadTags = fontFiles.map(
+        (file) =>
+          `    <link rel="preload" href="/${file}" as="font" type="font/woff2" crossorigin />`,
+      );
+
+      if (preloadTags.length === 0) return html;
+
+      // Insert after <meta charset> for earliest possible discovery
+      return html.replace(
+        '<meta charset="UTF-8" />',
+        `<meta charset="UTF-8" />\n${preloadTags.join('\n')}`,
+      );
+    },
+  };
+}
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -12,6 +46,7 @@ export default defineConfig({
         plugins: ['babel-plugin-react-compiler'],
       },
     }),
+    fontPreloadPlugin(),
   ],
   resolve: {
     alias: {
@@ -63,7 +98,7 @@ export default defineConfig({
               return 'vendor-utils';
             }
 
-            // Everything else (including dynamic imports like gsap, framer-motion, lenis)
+            // Everything else (including dynamic imports like gsap, motion, lenis)
             // Let Vite handle automatically - no manual chunking
             return undefined;
           }

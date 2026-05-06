@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import LogoSvg from '../../assets/logo_pixelated_simple';
 
 const LOGO_CHARACTERS = Array.from('PROMPTREADY').map((letter, order) => ({

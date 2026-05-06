@@ -23,8 +23,7 @@ export const trackEvent = (eventName: string, payload: AnalyticsPayload = {}) =>
 export const trackHeroCtaClick = (extra: AnalyticsPayload = {}) =>
   trackEvent('hero_cta_click', extra);
 export const trackDemoPlay = (extra: AnalyticsPayload = {}) => trackEvent('demo_play', extra);
-export const trackInstallIntent = (extra: AnalyticsPayload = {}) =>
-  trackEvent('install_intent', extra);
+
 
 export const trackUserEngagement = (
   action: string,

@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { ArrowRight, Check, Star } from '@/components/ui/Icons';
 import FAQ from '../components/FAQ';
 import Features from '../components/Features';

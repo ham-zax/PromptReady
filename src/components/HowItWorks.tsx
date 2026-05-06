@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion';
+import { motion, useScroll, useTransform, useMotionValue, useSpring } from 'motion/react';
 
 const SketchyPointer = ({ className }: { className?: string }) => (
   <svg viewBox="0 0 100 100" className={className}>

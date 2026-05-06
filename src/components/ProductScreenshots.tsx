@@ -1,5 +1,5 @@
 import React from 'react';
-import { AnimatePresence, motion, type PanInfo } from 'framer-motion';
+import { AnimatePresence, motion, type PanInfo } from 'motion/react';
 
 import aiModeScreenshot from '@/assets/raw-images/Screenshot 2026-05-06 211207.png';
 import captureScreenshot from '@/assets/raw-images/Screenshot 2026-05-06 211133.png';

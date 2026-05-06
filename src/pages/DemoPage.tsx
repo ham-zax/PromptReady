@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { ArrowRight, Play } from '@/components/ui/Icons';
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';

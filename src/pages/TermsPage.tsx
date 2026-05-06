@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import SEOHead from '../components/seo/SEOHead';
 import Footer from '../components/Footer';
 import { usePageSEO } from '../hooks/useSEO';

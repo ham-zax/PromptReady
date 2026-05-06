@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'motion/react';
 import { CheckCircle2, Wand2, XCircle } from '@/components/ui/Icons';
 
 const BeforeAfterBackground = () => {

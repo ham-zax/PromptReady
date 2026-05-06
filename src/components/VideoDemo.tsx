@@ -1,5 +1,5 @@
 import React from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'motion/react';
 import { ArrowRight, CheckCircle2, Loader2, Play, RotateCcw } from '@/components/ui/Icons';
 import { Link } from 'react-router-dom';
 import { trackDemoPlay, trackUserEngagement } from '../hooks/useAnalytics';

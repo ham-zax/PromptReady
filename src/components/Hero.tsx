@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { Sparkles } from '@/components/ui/Icons';
 import HeroActions from './Hero/HeroActions';
 import HeroBackground from './ui/HeroBackground';

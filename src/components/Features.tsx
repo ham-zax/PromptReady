@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'motion/react';
 
 const SketchyStructure = ({ className }: { className?: string }) => (
   <svg viewBox="0 0 100 100" className={className}>

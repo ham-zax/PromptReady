@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion, AnimatePresence, LayoutGroup } from 'framer-motion';
+import { motion, AnimatePresence, LayoutGroup } from 'motion/react';
 import { Link, useLocation } from 'react-router-dom';
 import { ArrowRight, Menu, X } from '@/components/ui/Icons';
 import Logo from '../ui/Logo';

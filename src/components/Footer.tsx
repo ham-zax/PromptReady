@@ -1,7 +1,7 @@
 import React from 'react';
 import { ArrowRight, MessageCircle } from '@/components/ui/Icons';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { env } from '../config';
 import { trackEvent } from '../hooks/useAnalytics';
 import Logo from './ui/Logo';
